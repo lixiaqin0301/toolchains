@@ -13,8 +13,17 @@ if [[ ! -d /home/lixq/toolchains/github.com/Valloric/YouCompleteMe ]]; then
              /home/lixq/toolchains/github.com/Valloric/YouCompleteMe/third_party/ycmd/third_party/jedi_deps/jedi \
              /home/lixq/toolchains/github.com/Valloric/YouCompleteMe/third_party/ycmd/third_party/jedi_deps/numpydoc; do
         cd "$d" || exit 1
+        pwd
         sed -i 's;github.com/;github.com.cnpmjs.org/;' .gitmodules
         git submodule update --init
+    done
+    for d in /home/lixq/toolchains/github.com/Valloric/YouCompleteMe/third_party/ycmd/cpp \
+             /home/lixq/toolchains/github.com/Valloric/YouCompleteMe/third_party/ycmd/cpp/ycm \
+             /home/lixq/toolchains/github.com/Valloric/YouCompleteMe/third_party/ycmd/cpp/ycm/tests \
+             /home/lixq/toolchains/github.com/Valloric/YouCompleteMe/third_party/ycmd/cpp/ycm/benchmarks; do
+        cd "$d" || exit 1
+        pwd
+        sed -i 's;github.com/;github.com.cnpmjs.org/;' CMakeLists.txt
     done
     cd /home/lixq/toolchains/github.com/Valloric/YouCompleteMe || exit 1
     git submodule update --init --recursive
@@ -28,3 +37,4 @@ export LIBRARY_PATH=/home/lixq/toolchains/gcc/lib64:/home/lixq/toolchains/llvm/l
 export LD_LIBRARY_PATH=/home/lixq/toolchains/gcc/lib64:/home/lixq/toolchains/llvm/lib
 export LD_RUN_PATH=/home/lixq/toolchains/gcc/lib64:/home/lixq/toolchains/llvm/lib
 python3 install.py --clang-completer --system-libclang
+sed -i 's;github.com/;github.com.cnpmjs.org/;' /home/lixq/toolchains/github.com/Valloric/YouCompleteMe/third_party/ycmd/cpp/absl/CMakeLists.txt
