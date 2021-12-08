@@ -101,3 +101,4 @@ export MANPATH="/home/lixq/toolchains/bashdb/share/man:/home/lixq/toolchains/Bea
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias bat="/home/lixq/toolchains/bat/bat --paging=never"
