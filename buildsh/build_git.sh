@@ -5,7 +5,7 @@ export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 [[ -d /home/lixq/src ]] || mkdir -p /home/lixq/src
 
 if [[ ! -f /home/lixq/src/git-2.35.0.tar.gz ]]; then
-    if ! wget https://github.com.cnpmjs.org/git/git/archive/refs/tags/v2.35.0.tar.gz -O /home/lixq/src/git-2.35.0.tar.gz; then
+    if ! wget https://github.com/git/git/archive/refs/tags/v2.35.0.tar.gz -O /home/lixq/src/git-2.35.0.tar.gz; then
         rm -f /home/lixq/src/git-2.35.0.tar.gz*
         echo "Need /home/lixq/src/git-2.35.0.tar.gz (https://github.com/git/git/archive/refs/tags/v2.35.0.tar.gz)"
         exit 1

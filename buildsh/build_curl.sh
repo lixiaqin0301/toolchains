@@ -15,7 +15,7 @@ cd /home/lixq/toolchains
 # openssl
 if [[ ! -d /home/lixq/src/openssl-1.1.1l-quic ]]; then
     cd /home/lixq/src || exit 1
-    if ! git clone --depth 1 -b OpenSSL_1_1_1l+quic https://github.com.cnpmjs.org/quictls/openssl openssl-1.1.1l-quic; then
+    if ! git clone --depth 1 -b OpenSSL_1_1_1l+quic https://github.com/quictls/openssl openssl-1.1.1l-quic; then
         echo "Need /home/lixq/src/openssl-1.1.1l-quic (git clone --depth 1 -b OpenSSL_1_1_1l+quic https://github.com/quictls/openssl)"
         exit 1
     fi
@@ -32,7 +32,7 @@ fi
 # nghttp3
 if [[ ! -d /home/lixq/src/nghttp3 ]]; then
     cd /home/lixq/src || exit 1
-    if ! git clone https://github.com.cnpmjs.org/ngtcp2/nghttp3; then
+    if ! git clone https://github.com/ngtcp2/nghttp3; then
         echo "Need /home/lixq/src/nghttp3 (https://github.com/ngtcp2/nghttp3)"
         exit 1
     fi
@@ -46,7 +46,7 @@ make install
 # ngtcp2
 if [[ ! -d /home/lixq/src/ngtcp2 ]]; then
     cd /home/lixq/src || exit 1
-    if ! git clone https://github.com.cnpmjs.org/ngtcp2/ngtcp2; then
+    if ! git clone https://github.com/ngtcp2/ngtcp2; then
         echo "Need /home/lixq/src/ngtcp2 (https://github.com/ngtcp2/ngtcp2)"
         exit 1
     fi
@@ -60,7 +60,7 @@ make install
 # curl
 if [[ ! -f /home/lixq/src/curl-7.81.0.tar.bz2 ]]; then
     cd /home/lixq/src || exit 1
-    if ! wget https://github.com.cnpmjs.org/curl/curl/releases/download/curl-7_81_0/curl-7.81.0.tar.bz2; then
+    if ! wget https://github.com/curl/curl/releases/download/curl-7_81_0/curl-7.81.0.tar.bz2; then
         echo "Need /home/lixq/src/curl-7.81.0.tar.bz2 (https://github.com/curl/curl/releases/download/curl-7.81.0/curl-7.81.0.tar.bz2)"
         exit 1
     fi

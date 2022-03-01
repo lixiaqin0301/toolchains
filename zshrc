@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=/home/lixq/toolchains/bashdb/bin:/home/lixq/toolchains/Bear/bin:/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/curl/bin:/home/lixq/toolchains/gdb/bin:/home/lixq/toolchains/git/bin:/home/lixq/toolchains/jdk/bin:/home/lixq/toolchains/llvm/bin:/home/lixq/toolchains/rtags/bin:/home/lixq/toolchains/shellcheck:/home/lixq/toolchains/vim/bin:$PATH:/home/lixq/toolchains/Anaconda3/bin:/home/lixq/bin
+export PATH=/home/lixq/toolchains/bashdb/bin:/home/lixq/toolchains/Bear/bin:/home/lixq/toolchains/clojure/bin:/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/curl/bin:/home/lixq/toolchains/gdb/bin:/home/lixq/toolchains/git/bin:/home/lixq/toolchains/jdk/bin:/home/lixq/toolchains/llvm/bin:/home/lixq/toolchains/rtags/bin:/home/lixq/toolchains/shellcheck:/home/lixq/toolchains/vim/bin:$PATH:/home/lixq/toolchains/Anaconda3/bin:/home/lixq/bin
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/lixq/toolchains/oh-my-zsh"
@@ -78,7 +78,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
-export MANPATH="/home/lixq/toolchains/bashdb/share/man:/home/lixq/toolchains/Bear/share/man:/home/lixq/toolchains/cmake/man:/home/lixq/toolchains/curl/share/man:/home/lixq/toolchains/gdb/share/man:/home/lixq/toolchains/jdk/man:/home/lixq/toolchains/llvm/share/man:/home/lixq/toolchains/rtags/share/man:/home/lixq/toolchains/vim/share/man:$MANPATH:/home/lixq/toolchains/Anaconda3/man"
+export MANPATH="/home/lixq/toolchains/bashdb/share/man:/home/lixq/toolchains/Bear/share/man:/home/lixq/toolchains/clojure/share/man:/home/lixq/toolchains/cmake/man:/home/lixq/toolchains/curl/share/man:/home/lixq/toolchains/gdb/share/man:/home/lixq/toolchains/jdk/man:/home/lixq/toolchains/llvm/share/man:/home/lixq/toolchains/rtags/share/man:/home/lixq/toolchains/vim/share/man:$MANPATH:/home/lixq/toolchains/Anaconda3/man"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8

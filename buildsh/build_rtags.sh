@@ -3,7 +3,7 @@
 [[ -d /home/lixq/toolchains/src ]] || mkdir -p /home/lixq/toolchains/src
 
 if [[ ! -f /home/lixq/toolchains/src/rtags-2.38.tar.bz2 ]]; then
-    if ! wget https://github.com.cnpmjs.org/Andersbakken/rtags/releases/download/v2.38/rtags-2.38.tar.bz2 -O /home/lixq/toolchains/src/rtags-2.38.tar.bz2; then
+    if ! wget https://github.com/Andersbakken/rtags/releases/download/v2.38/rtags-2.38.tar.bz2 -O /home/lixq/toolchains/src/rtags-2.38.tar.bz2; then
         /bin/rm -f /home/lixq/toolchains/src/rtags-2.38.tar.bz2*
         echo "Need /home/lixq/toolchains/src/rtags-2.38.tar.bz2 (https://github.com/Andersbakken/rtags/releases/download/v2.38/rtags-2.38.tar.bz2)"
         exit 1
