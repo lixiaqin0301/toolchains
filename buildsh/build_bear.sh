@@ -67,7 +67,6 @@ if [[ ! -f /home/lixq/src/grpc-v1.41.1.tar.gz ]]; then
             /home/lixq/src/grpc-v1.41.1/third_party/protobuf; do
             cd "$d" || exit 1
             pwd
-            sed -i 's;github.com/;github.com.cnpmjs.org/;' .gitmodules
             git submodule update --init
         done
     fi
