@@ -1,8 +1,8 @@
 #!/bin/bash
 
-[[ -d /home/lixq/src ]] || mkdir -p /home/lixq/src
-
 ver=3.0.19
+
+[[ -d /home/lixq/src ]] || mkdir -p /home/lixq/src
 
 if [[ ! -f /home/lixq/src/Bear-${ver}.tar.gz ]]; then
     if ! wget https://github.com/rizsotto/Bear/archive/refs/tags/${ver}.tar.gz -O /home/lixq/src/Bear-${ver}.tar.gz; then

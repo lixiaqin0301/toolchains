@@ -44,7 +44,6 @@ export CPP=/home/lixq/toolchains/gcc/bin/cpp
     ..
 make
 make install
-#   -DLLVM_OPTIMIZED_TABLEGEN=1 \
 
 if [[ -d /home/lixq/toolchains/llvm-${ver} ]]; then
     cd /home/lixq/toolchains || exit 1
