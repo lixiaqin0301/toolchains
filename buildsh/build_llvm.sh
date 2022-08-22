@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver=14.0.1
+ver=14.0.6
 
 if [[ ! -f /home/lixq/src/llvm-${ver}.src.tar.xz ]]; then
     if ! wget https://github.com/llvm/llvm-project/releases/download/llvmorg-${ver}/llvm-${ver}.src.tar.xz -O /home/lixq/src/llvm-${ver}.src.tar.xz; then

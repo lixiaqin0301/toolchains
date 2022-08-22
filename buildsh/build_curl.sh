@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver=7.83.0
+ver=7.84.0
 
 export CC=/home/lixq/toolchains/gcc/bin/gcc
 export CXX=/home/lixq/toolchains/gcc/bin/g++
@@ -23,7 +23,6 @@ if [[ ! -d /home/lixq/src/openssl-1.1.1l-quic ]]; then
     fi
 fi
 cd /home/lixq/src/openssl-1.1.1l-quic || exit 1
-git pull
 ./config enable-tls1_3 --prefix=/home/lixq/toolchains/curl-${ver}/thirdparty/openssl-1.1.1l-quic
 make -j4
 make install_sw
@@ -41,7 +40,6 @@ if [[ ! -d /home/lixq/src/nghttp3 ]]; then
     fi
 fi
 cd /home/lixq/src/nghttp3 || exit 1
-git pull
 autoreconf -i
 ./configure --prefix=/home/lixq/toolchains/curl-${ver}/thirdparty/nghttp3 --enable-lib-only
 make -j4 check
@@ -56,7 +54,6 @@ if [[ ! -d /home/lixq/src/ngtcp2 ]]; then
     fi
 fi
 cd /home/lixq/src/ngtcp2 || exit 1
-git pull
 autoreconf -i
 ./configure --prefix=/home/lixq/toolchains/curl-${ver}/thirdparty/ngtcp2
 make -j4 check
@@ -75,6 +72,9 @@ rm -rf curl-${ver}
 tar -xvf curl-${ver}.tar.bz2
 cd /home/lixq/src/curl-${ver} || exit 1
 ./configure --prefix=/home/lixq/toolchains/curl-${ver} --with-openssl --with-libssh2 --with-brotli --with-zstd --with-gssapi --with-libidn2 --enable-ldap --enable-ldaps --with-librtmp --with-nghttp2 --with-ngtcp2 || exit 1
+sed -i -e 's/rv = nghttp3_conn_block_stream(/nghttp3_conn_block_stream(/' \
+       -e 's/rv = nghttp3_conn_shutdown_stream_write(/nghttp3_conn_shutdown_stream_write(/' \
+       lib/vquic/ngtcp2.c
 make || exit 1
 make install || exit 1
 if [[ -d /home/lixq/toolchains/curl-${ver} ]]; then

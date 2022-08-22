@@ -1,6 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=/home/lixq/toolchains/bashdb/bin:/home/lixq/toolchains/Bear/bin:/home/lixq/toolchains/clojure/bin:/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/curl/bin:/home/lixq/toolchains/gdb/bin:/home/lixq/toolchains/git/bin:/home/lixq/toolchains/jdk/bin:/home/lixq/toolchains/llvm/bin:/home/lixq/toolchains/rtags/bin:/home/lixq/toolchains/shellcheck:/home/lixq/toolchains/vim/bin:$PATH:/home/lixq/toolchains/Anaconda3/bin:/home/lixq/bin
+export PATH=/home/lixq/toolchains/bashdb/bin:/home/lixq/toolchains/bin:/home/lixq/toolchains/Bear/bin:/home/lixq/toolchains/clojure/bin:/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/curl/bin:/home/lixq/toolchains/gdb/bin:/home/lixq/toolchains/git/bin:/home/lixq/toolchains/jdk/bin:/home/lixq/toolchains/lcov/bin:/home/lixq/toolchains/llvm/bin:/home/lixq/toolchains/rtags/bin:/home/lixq/toolchains/shellcheck:/home/lixq/toolchains/vim/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/home/lixq/toolchains/Anaconda3/bin::/home/lixq/bin
+export PYTHONPATH=
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/lixq/toolchains/oh-my-zsh"
@@ -102,3 +103,4 @@ export MANPATH="/home/lixq/toolchains/bashdb/share/man:/home/lixq/toolchains/Bea
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias bat="/home/lixq/toolchains/bat/bat --paging=never"
+export ASAN_OPTIONS=log_path=/tmp/asan.log:detect_leaks=false:abort_on_error=true:disable_coredump=false:detect_odr_violation=0

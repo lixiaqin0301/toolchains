@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver=2.36.0
+ver=2.37.2
 
 export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 
@@ -18,8 +18,20 @@ cd /home/lixq/src || exit 1
 rm -rf git-${ver} /home/lixq/toolchains/git-${ver}
 tar -xvf git-${ver}.tar.gz
 cd /home/lixq/src/git-${ver} || exit 1
-make prefix=/home/lixq/toolchains/git-${ver} || exit 1
-make prefix=/home/lixq/toolchains/git-${ver} install || exit 1
+make CC=/home/lixq/toolchains/gcc/bin/gcc \
+     CXX=/home/lixq/toolchains/gcc/bin/g++ \
+     CPP=/home/lixq/toolchains/gcc/bin/cpp \
+     LIBRARY_PATH=/home/lixq/toolchains/gcc/lib64 \
+     LD_LIBRARY_PATH=/home/lixq/toolchains/gcc/lib64 \
+     LD_RUN_PATH=/home/lixq/toolchains/gcc/lib64 \
+     prefix=/home/lixq/toolchains/git-${ver} || exit 1
+make CC=/home/lixq/toolchains/gcc/bin/gcc \
+     CXX=/home/lixq/toolchains/gcc/bin/g++ \
+     CPP=/home/lixq/toolchains/gcc/bin/cpp \
+     LIBRARY_PATH=/home/lixq/toolchains/gcc/lib64 \
+     LD_LIBRARY_PATH=/home/lixq/toolchains/gcc/lib64 \
+     LD_RUN_PATH=/home/lixq/toolchains/gcc/lib64 \
+     prefix=/home/lixq/toolchains/git-${ver} install || exit 1
 if [[ -d /home/lixq/toolchains/git-${ver} ]]; then
     cd /home/lixq/toolchains || exit 1
     rm git

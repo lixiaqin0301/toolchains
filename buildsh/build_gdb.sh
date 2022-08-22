@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver=11.2
+ver=12.1
 
 if [[ ! -f /home/lixq/src/gdb-${ver}.tar.gz ]]; then
     if ! wget http://mirrors.ustc.edu.cn/gnu/gdb/gdb-${ver}.tar.gz -O /home/lixq/src/gdb-${ver}.tar.gz; then

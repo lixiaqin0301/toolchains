@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver=8.2
+ver=9.0
 
 [[ -d /home/lixq/src ]] || mkdir -p /home/lixq/src
 
@@ -13,9 +13,9 @@ if [[ ! -f /home/lixq/src/vim-${ver}.tar.bz2 ]]; then
 fi
 
 cd /home/lixq/src || exit 1
-rm -rf vim82
+rm -rf vim*/
 tar -xvf vim-${ver}.tar.bz2
-cd /home/lixq/src/vim82 || exit 1
+cd /home/lixq/src/vim*/ || exit 1
 rm -rf /home/lixq/toolchains/vim-${ver}
 #./configure --prefix=/home/lixq/toolchains/vim-${ver} || exit 1
 ./configure --prefix=/home/lixq/toolchains/vim-${ver} --enable-luainterp=yes --enable-mzschemeinterp --enable-perlinterp=yes --enable-pythoninterp=yes --enable-python3interp=yes --enable-tclinterp=yes --enable-rubyinterp=yes --enable-cscope --enable-terminal --enable-autoservername --enable-multibyte || exit 1

@@ -1,11 +1,11 @@
 #!/bin/bash
 
-ver=11.3.0
+ver=12.1.0
 
-gmp='gmp-6.1.0.tar.bz2'
-mpfr='mpfr-3.1.6.tar.bz2'
-mpc='mpc-1.0.3.tar.gz'
-isl='isl-0.18.tar.bz2'
+gmp='gmp-6.2.1.tar.bz2'
+mpfr='mpfr-4.1.0.tar.bz2'
+mpc='mpc-1.2.1.tar.gz'
+isl='isl-0.24.tar.bz2'
 
 [[ -d /home/lixq/src ]] || mkdir -p /home/lixq/src
 
