@@ -1,22 +1,22 @@
 #!/bin/bash
 
-trap recover EXIT
+export PATH=/home/lixq/toolchains/Anaconda3/bin:/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/llvm/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
+. /opt/rh/devtoolset-11/enable
+
 function recover() {
     cd /home/lixq/toolchains/github.com/Valloric/YouCompleteMe/third_party/ycmd/cpp || exit 1
     [[ -f CMakeLists.txt.bak ]] && mv CMakeLists.txt.bak CMakeLists.txt
     cd /home/lixq/toolchains/github.com/Valloric/YouCompleteMe/third_party/ycmd || exit 1
     [[ -f build.py.bak ]] && mv build.py.bak build.py
 }
-
-[[ -d /home/lixq/toolchains/github.com/Valloric ]] || mkdir -p /home/lixq/toolchains/github.com/Valloric
+trap recover EXIT
 
 if [[ ! -d /home/lixq/toolchains/github.com/Valloric/YouCompleteMe ]]; then
-    cd /home/lixq/toolchains/github.com/Valloric || exit 1
-    if ! git clone https://github.com/ycm-core/YouCompleteMe.git; then
-        echo "Need /home/lixq/toolchains/github.com/Valloric/YouCompleteMe"
-        exit 1
-    fi
-    git submodule update --init --recursive
+    echo "cd /home/lixq/toolchains/github.com/Valloric"
+    echo "git clone https://github.com/ycm-core/YouCompleteMe.git"
+    echo "cd /home/lixq/toolchains/github.com/Valloric/YouCompleteMe"
+    echo "git submodule update --init --recursive"
+    exit 1
 fi
 
 cd /home/lixq/toolchains/github.com/Valloric/YouCompleteMe/third_party/ycmd/cpp || exit 1
@@ -28,12 +28,8 @@ sed -i '/if not OnWindows() and os.geteuid() == 0:/,/This script should not be r
 
 cd /home/lixq/toolchains/github.com/Valloric/YouCompleteMe || exit 1
 
-export PATH=/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/gcc/bin:/home/lixq/toolchains/llvm/bin:$PATH
-export CC=/home/lixq/toolchains/gcc/bin/gcc
-export CXX=/home/lixq/toolchains/gcc/bin/g++
-export CPP=/home/lixq/toolchains/gcc/bin/cpp
-export LIBRARY_PATH=/home/lixq/toolchains/gcc/lib64:/home/lixq/toolchains/llvm/lib
-export LD_LIBRARY_PATH=/home/lixq/toolchains/gcc/lib64:/home/lixq/toolchains/llvm/lib
-export LD_RUN_PATH=/home/lixq/toolchains/gcc/lib64:/home/lixq/toolchains/llvm/lib
-export LDFLAGS="-Wl,-rpath,/home/lixq/toolchains/gcc/lib64:/home/lixq/toolchains/llvm/lib"
+export LIBRARY_PATH=/home/lixq/toolchains/llvm/lib
+export LD_LIBRARY_PATH=/home/lixq/toolchains/llvm/lib
+export LD_RUN_PATH=/home/lixq/toolchains/llvm/lib
+export LDFLAGS="-Wl,-rpath,/home/lixq/toolchains/llvm/lib"
 python3 install.py --clang-completer --system-libclang --verbose
