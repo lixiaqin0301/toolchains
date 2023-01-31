@@ -73,7 +73,7 @@ until ss -ltpn | grep ':443 '; do
     sleep 1
 done
 :> /tmp/nginx_access.log
-sed -i -e '/luarocks.org/d' -e '/github.com/d' '/www.leonerd.org.uk/d' /etc/hosts
+sed -i -e '/luarocks.org/d' -e '/github.com/d' -e '/www.leonerd.org.uk/d' /etc/hosts
 sed -i -e '$a 127.0.0.1 luarocks.org' -e '$a 127.0.0.1 github.com' -e '$a 127.0.0.1 www.leonerd.org.uk' /etc/hosts
 
 cd /home/lixq/src || exit 1
