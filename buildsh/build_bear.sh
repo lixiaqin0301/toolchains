@@ -3,7 +3,7 @@
 export PATH=/home/lixq/toolchains/cmake/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 . /opt/rh/devtoolset-11/enable
 
-ver=3.0.21
+ver=3.1.1
 grpcver=1.49.2
 
 if [[ ! -f /home/lixq/src/Bear-${ver}.tar.gz ]]; then
@@ -11,11 +11,11 @@ if [[ ! -f /home/lixq/src/Bear-${ver}.tar.gz ]]; then
     exit 1
 fi
 
-for p in                                            \
-    google/googletest/archive/release-1.12.1.tar.gz \
-    nlohmann/json/archive/v3.11.2.tar.gz            \
-    fmtlib/fmt/archive/9.1.0.tar.gz                 \
-    gabime/spdlog/archive/v1.11.0.tar.gz            \
+for p in                                               \
+    google/googletest/archive/refs/tags/v1.13.0.tar.gz \
+    nlohmann/json/archive/v3.11.2.tar.gz               \
+    fmtlib/fmt/archive/9.1.0.tar.gz                    \
+    gabime/spdlog/archive/v1.11.0.tar.gz               \
     ; do
     if [[ ! -f /home/lixq/src/nginx_bear/${p} ]]; then
         echo "wget https://github.com/${p} -O /home/lixq/src/nginx_bear/${p}"

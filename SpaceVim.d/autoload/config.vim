@@ -7,4 +7,5 @@ func! config#after() abort
     let g:ycm_semantic_triggers = { 'c,cpp,python,sh': ['re!\w{3}'] }
     "let g:ycm_filetype_whitelist = { c":1, cpp":1, python":1, sh":1 }
     let g:python3_host_prog = '/home/lixq/toolchains/Anaconda3/bin/python3'
+    set clipboard+=unnamedplus
 endf

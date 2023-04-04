@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=/home/lixq/toolchains/bashdb/bin:/home/lixq/toolchains/bin:/home/lixq/toolchains/Bear/bin:/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/gdb/bin:/home/lixq/toolchains/git/bin:/home/lixq/toolchains/jdk/bin:/home/lixq/toolchains/lcov/bin:/home/lixq/toolchains/llvm/bin:/home/lixq/toolchains/neovim/bin:/home/lixq/toolchains/rtags/bin:/home/lixq/toolchains/shellcheck:/home/lixq/toolchains/vim/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/home/lixq/toolchains/Anaconda3/bin:/home/lixq/bin
+export PATH=/home/lixq/toolchains/bashdb/bin:/home/lixq/toolchains/bin:/home/lixq/toolchains/Bear/bin:/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/gdb/bin:/home/lixq/toolchains/git/bin:/home/lixq/toolchains/jdk/bin:/home/lixq/toolchains/lcov/bin:/home/lixq/toolchains/llvm/bin:/home/lixq/toolchains/neovim/bin:/home/lixq/toolchains/rtags/bin:/home/lixq/toolchains/shellcheck:/home/lixq/toolchains/tcpflow/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/home/lixq/toolchains/Anaconda3/bin:/home/lixq/bin
 export PYTHONPATH=
 
 # Path to your oh-my-zsh installation.
@@ -79,7 +79,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
-export MANPATH="/home/lixq/toolchains/bashdb/share/man:/home/lixq/toolchains/Bear/share/man:/home/lixq/toolchains/cmake/man:/home/lixq/toolchains/gdb/share/man:/home/lixq/toolchains/jdk/man:/home/lixq/toolchains/llvm/share/man:/home/lixq/toolchains/neovim/share/man:/home/lixq/toolchains/rtags/share/man:/home/lixq/toolchains/vim/share/man:$MANPATH:/home/lixq/toolchains/Anaconda3/man"
+export MANPATH="/home/lixq/toolchains/bashdb/share/man:/home/lixq/toolchains/Bear/share/man:/home/lixq/toolchains/cmake/man:/home/lixq/toolchains/gdb/share/man:/home/lixq/toolchains/jdk/man:/home/lixq/toolchains/llvm/share/man:/home/lixq/toolchains/neovim/share/man:/home/lixq/toolchains/rtags/share/man:$MANPATH:/home/lixq/toolchains/Anaconda3/man"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8

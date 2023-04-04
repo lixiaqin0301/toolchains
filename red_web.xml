@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<projectConfiguration>
+    <configVersion>2</configVersion>
+    <relativeTo>WORKSPACE</relativeTo>
+    <referencedLibrary type="PYTHON" name="WSTestListener"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/WSTestListener.py"/>
+    <referencedLibrary type="PYTHON" name="config"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/config.py"/>
+    <referencedLibrary type="PYTHON" name="libdoc"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/libdoc.py"/>
+    <referencedLibrary type="PYTHON" name="otherFun"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/nlib/otherFun.py"/>
+    <referencedLibrary type="PYTHON" name="sshOpt"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/nlib/sshOpt.py"/>
+    <referencedLibrary type="PYTHON" name="sshOpt_anti"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/nlib/sshOpt_anti.py"/>
+    <referencedLibrary type="PYTHON" name="wsBase"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/nlib/wsBase.py"/>
+    <referencedLibrary type="PYTHON" name="wsDateTime"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/nlib/wsDateTime.py"/>
+    <referencedLibrary type="PYTHON" name="wsHttp"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/nlib/wsHttp.py"/>
+    <referencedLibrary type="PYTHON" name="wsLighttpd"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/nlib/wsLighttpd.py"/>
+    <referencedLibrary type="PYTHON" name="wsMeasured"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/nlib/wsMeasured.py"/>
+    <referencedLibrary type="PYTHON" name="wsNamed"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/nlib/wsNamed.py"/>
+    <referencedLibrary type="PYTHON" name="wsNginx"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/nlib/wsNginx.py"/>
+    <referencedLibrary type="PYTHON" name="wsShortCut"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/nlib/wsShortCut.py"/>
+    <referencedLibrary type="PYTHON" name="wsSimpleWebServer"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/nlib/wsSimpleWebServer.py"/>
+    <referencedLibrary type="PYTHON" name="wsSquid"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/nlib/wsSquid.py"/>
+    <referencedLibrary type="PYTHON" name="wsSquid_old"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/nlib/wsSquid_old.py"/>
+    <referencedLibrary type="PYTHON" name="wsWeb"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/nlib/wsWeb.py"/>
+    <referencedLibrary type="PYTHON" name="wsWebSocket"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/nlib/wsWebSocket.py"/>
+    <referencedLibrary type="PYTHON" name="wsWebSocketClient"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/nlib/wsWebSocketClient.py"/>
+    <referencedLibrary type="PYTHON" name="wsWebSocketServer"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/nlib/wsWebSocketServer.py"/>
+    <referencedLibrary type="PYTHON" name="xmlExtract"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/nlib/xmlExtract.py"/>
+    <referencedLibrary type="PYTHON" name="Antileech"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/olib/Antileech.py"/>
+    <referencedLibrary type="PYTHON" name="Attack"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/olib/Attack.py"/>
+    <referencedLibrary type="PYTHON" name="Base"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/olib/Base.py"/>
+    <referencedLibrary type="PYTHON" name="Command"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/olib/Command.py"/>
+    <referencedLibrary type="PYTHON" name="Fun"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/olib/Fun.py"/>
+    <referencedLibrary type="PYTHON" name="Globals"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/olib/Globals.py"/>
+    <referencedLibrary type="PYTHON" name="Lighttpd"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/olib/Lighttpd.py"/>
+    <referencedLibrary type="PYTHON" name="Squid"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/olib/Squid.py"/>
+    <referencedLibrary type="PYTHON" name="httputil"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/olib/httputil.py"/>
+    <referencedLibrary type="PYTHON" name="util"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/olib/util.py"/>
+    <referencedLibrary type="PYTHON" name="ssh_config"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/ssh_config.py"/>
+    <referencedLibrary type="PYTHON" name="ssh_config_anti"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/ssh_config_anti.py"/>
+    <referencedLibrary type="PYTHON" name="version"path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/version.py"/>
+    <pythonpath/>
+    <classpath/>
+    <variableFiles path="/home/lixq/wstest/squid-web-test/lib_20/wsbot/olib/Globals.py"/>
+    <excludedForValidation/>
+    <isValidatedFileSizeCheckingEnabled>true</isValidatedFileSizeCheckingEnabled>
+    <validatedFileMaxSize>1024</validatedFileMaxSize>
+</projectConfiguration>
