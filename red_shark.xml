@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<projectConfiguration>
+    <configVersion>2</configVersion>
+    <relativeTo>WORKSPACE</relativeTo>
+    <referencedLibrary type="PYTHON" name="config" path="/home/lixq/wstest/shark-test/lib/config.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="version" path="/home/lixq/wstest/shark-test/lib/version.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="Globals" path="/home/lixq/wstest/shark-test/lib/wsbot/nlib/Globals.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="otherFun" path="/home/lixq/wstest/shark-test/lib/wsbot/nlib/otherFun.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="wsBase" path="/home/lixq/wstest/shark-test/lib/wsbot/nlib/wsBase.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="wsDateTime" path="/home/lixq/wstest/shark-test/lib/wsbot/nlib/wsDateTime.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="wsHttp" path="/home/lixq/wstest/shark-test/lib/wsbot/nlib/wsHttp.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="wsLighttpd" path="/home/lixq/wstest/shark-test/lib/wsbot/nlib/wsLighttpd.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="wsMeasured" path="/home/lixq/wstest/shark-test/lib/wsbot/nlib/wsMeasured.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="wsNamed" path="/home/lixq/wstest/shark-test/lib/wsbot/nlib/wsNamed.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="wsNginx" path="/home/lixq/wstest/shark-test/lib/wsbot/nlib/wsNginx.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="wsShark" path="/home/lixq/wstest/shark-test/lib/wsbot/nlib/wsShark.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="wsShortCut" path="/home/lixq/wstest/shark-test/lib/wsbot/nlib/wsShortCut.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="wsSimpleWebServer" path="/home/lixq/wstest/shark-test/lib/wsbot/nlib/wsSimpleWebServer.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="wsSquid" path="/home/lixq/wstest/shark-test/lib/wsbot/nlib/wsSquid.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="wsSsh" path="/home/lixq/wstest/shark-test/lib/wsbot/nlib/wsSsh.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="wsWeb" path="/home/lixq/wstest/shark-test/lib/wsbot/nlib/wsWeb.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="wsWebSocket" path="/home/lixq/wstest/shark-test/lib/wsbot/nlib/wsWebSocket.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="Antileech" path="/home/lixq/wstest/shark-test/lib/wsbot/olib/Antileech.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="Attack" path="/home/lixq/wstest/shark-test/lib/wsbot/olib/Attack.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="Base" path="/home/lixq/wstest/shark-test/lib/wsbot/olib/Base.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="Command" path="/home/lixq/wstest/shark-test/lib/wsbot/olib/Command.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="Fun" path="/home/lixq/wstest/shark-test/lib/wsbot/olib/Fun.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="httputil" path="/home/lixq/wstest/shark-test/lib/wsbot/olib/httputil.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="Lighttpd" path="/home/lixq/wstest/shark-test/lib/wsbot/olib/Lighttpd.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="Squid" path="/home/lixq/wstest/shark-test/lib/wsbot/olib/Squid.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="util" path="/home/lixq/wstest/shark-test/lib/wsbot/olib/util.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="WSTestListener" path="/home/lixq/wstest/shark-test/lib/WSTestListener.py" dynamic="false"/>
+    <pythonpath/>
+    <classpath/>
+    <variableFiles path="/home/lixq/shark-test/lib/wsbot/nlib/Globals.py"/>
+    <excludedForValidation/>
+    <isValidatedFileSizeCheckingEnabled>true</isValidatedFileSizeCheckingEnabled>
+    <validatedFileMaxSize>1024</validatedFileMaxSize>
+</projectConfiguration>
