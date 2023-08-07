@@ -13,7 +13,7 @@ fc-cache -fv
 ln -sf /home/lixq/toolchains/github.com "$HOME/.cache/vimfiles/repos/github.com"
 
 /bin/rm -rfv "$HOME/.config/nvim" "$HOME/.vim"
-ln -sf /home/lixq/toolchains/SpaceVim-2.1.0 "$HOME/.config/nvim"
+ln -sf /home/lixq/toolchains/SpaceVim-2.2.0 "$HOME/.config/nvim"
 
 /bin/rm -rfv "$HOME/.SpaceVim.d"
 ln -sf /home/lixq/toolchains/SpaceVim.d "$HOME/.SpaceVim.d"

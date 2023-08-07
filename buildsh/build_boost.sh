@@ -6,7 +6,7 @@ export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 . /opt/rh/devtoolset-11/enable
 
 if [[ ! -f /home/lixq/src/boost_${ver}.tar.gz ]]; then
-    echo "wget get wget https://boostorg.jfrog.io/artifactory/main/release/${ver//_/.}/source/boost_${ver}.tar.g -O /home/lixq/src/boost_${ver}.tar.gz"
+    echo "wget get wget https://boostorg.jfrog.io/artifactory/main/release/${ver//_/.}/source/boost_${ver}.tar.gz -O /home/lixq/src/boost_${ver}.tar.gz"
     exit 1
 fi
 

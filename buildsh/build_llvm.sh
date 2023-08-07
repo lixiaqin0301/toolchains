@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver=16.0.0
+ver=16.0.6
 
 export PATH=/home/lixq/toolchains/cmake/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 . /opt/rh/devtoolset-11/enable
@@ -16,12 +16,12 @@ if [[ ! -f /home/lixq/src/clang-${ver}.src.tar.xz ]]; then
 fi
 
 if [[ ! -f  /home/lixq/src/cmake-${ver}.src.tar.xz ]]; then
-    echo "wget https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.0/cmake-16.0.0.src.tar.xz -O /home/lixq/src/cmake-${ver}.src.tar.xz"
+    echo "wget https://github.com/llvm/llvm-project/releases/download/llvmorg-${ver}/cmake-${ver}.src.tar.xz -O /home/lixq/src/cmake-${ver}.src.tar.xz"
     exit 1
 fi
 
 if [[ ! -f /home/lixq/src/third-party-${ver}.src.tar.xz ]]; then
-    echo "wget https://github.com/llvm/llvm-project/releases/download/llvmorg-16.0.0/third-party-16.0.0.src.tar.xz -O /home/lixq/src/third-party-${ver}.src.tar.xz"
+    echo "wget https://github.com/llvm/llvm-project/releases/download/llvmorg-${ver}/third-party-${ver}.src.tar.xz -O /home/lixq/src/third-party-${ver}.src.tar.xz"
     exit 1
 fi
 
@@ -32,7 +32,7 @@ mv cmake-${ver}.src cmake
 
 cd /home/lixq/src || exit 1
 rm -rf third-party-${ver}.src third-party
-tar -xf third-party-16.0.0.src.tar.xz
+tar -xf third-party-${ver}.src.tar.xz
 mv third-party-${ver}.src third-party
 
 cd /home/lixq/src || exit 1
