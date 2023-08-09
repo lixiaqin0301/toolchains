@@ -28,8 +28,9 @@ sed -i '/if not OnWindows() and os.geteuid() == 0:/,/This script should not be r
 
 cd /home/lixq/toolchains/github.com/Valloric/YouCompleteMe || exit 1
 
+export CPATH=/home/lixq/toolchains/llvm/include
 export LIBRARY_PATH=/home/lixq/toolchains/llvm/lib
 export LD_LIBRARY_PATH=/home/lixq/toolchains/llvm/lib
 export LD_RUN_PATH=/home/lixq/toolchains/llvm/lib
-export LDFLAGS="-Wl,-rpath,/home/lixq/toolchains/llvm/lib"
+export LDFLAGS="-Wl,-rpath,/home/lixq/toolchains/llvm/lib:/home/lixq/toolchains/Anaconda3/lib"
 python3 install.py --clang-completer --system-libclang --verbose
