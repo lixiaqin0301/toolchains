@@ -105,3 +105,51 @@ export MANPATH="/home/lixq/toolchains/Anaconda3/man:/home/lixq/toolchains/bashdb
 alias bat="/home/lixq/toolchains/bat/bat --paging=never"
 #export ASAN_OPTIONS=log_path=/tmp/asan.log:detect_leaks=false:abort_on_error=true:disable_coredump=false:detect_odr_violation=0
 export ASAN_OPTIONS=log_path=/tmp/asan.log:detect_leaks=false:detect_odr_violation=0
+# Invoke tab-completion script to be sourced with the Z shell.
+# Known to work on zsh 5.0.x, probably works on later 4.x releases as well (as
+# it uses the older compctl completion system).
+
+_complete_invoke() {
+    # `words` contains the entire command string up til now (including
+    # program name).
+    #
+    # We hand it to Invoke so it can figure out the current context: spit back
+    # core options, task names, the current task's options, or some combo.
+    #
+    # Before doing so, we attempt to tease out any collection flag+arg so we
+    # can ensure it is applied correctly.
+    collection_arg=''
+    if [[ "${words}" =~ "(-c|--collection) [^ ]+" ]]; then
+        collection_arg=$MATCH
+    fi
+    # `reply` is the array of valid completions handed back to `compctl`.
+    # Use ${=...} to force whitespace splitting in expansion of
+    # $collection_arg
+    reply=( $(invoke ${=collection_arg} --complete -- ${words}) )
+}
+
+
+# Tell shell builtin to use the above for completing our given binary name(s).
+# * -K: use given function name to generate completions.
+# * +: specifies 'alternative' completion, where options after the '+' are only
+#   used if the completion from the options before the '+' result in no matches.
+# * -f: when function generates no results, use filenames.
+# * positional args: program names to complete for.
+compctl -K _complete_invoke + -f invoke inv
+
+# vim: set ft=sh :
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/lixq/toolchains/Anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/lixq/toolchains/Anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/lixq/toolchains/Anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/lixq/toolchains/Anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
