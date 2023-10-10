@@ -16,13 +16,15 @@ for d in /home/lixq/toolchains/FlameGraph/ /home/lixq/toolchains/github.com/*/*/
 done
 
 cd /home/lixq || exit 1
-sudo apt update -y
-sudo apt upgrade -y
-#yum makecache || exit 1
-#yum update -y --skip-broken || exit 1
-#yum upgrade -y --skip-broken || exit 1
-#rm -rvf /tmp/*
-#reboot
+if command -v apt; then
+    sudo apt update -y
+    sudo apt upgrade -y
+elif command -v yum; then
+    yum clean all
+    yum makecache
+    yum update -y --skip-broken
+    yum upgrade -y --skip-broken
+fi
 
 cd /home/lixq/toolchains/github.com/Valloric/YouCompleteMe || exit 1
 export CPATH=/home/lixq/toolchains/llvm/include
