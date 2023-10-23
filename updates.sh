@@ -19,6 +19,7 @@ cd /home/lixq || exit 1
 if command -v apt; then
     sudo apt update -y
     sudo apt upgrade -y
+    sudo apt full-upgrade -y
 elif command -v yum; then
     yum clean all
     yum makecache
@@ -32,6 +33,6 @@ export LIBRARY_PATH=/home/lixq/toolchains/llvm/lib
 export LD_LIBRARY_PATH=/home/lixq/toolchains/llvm/lib
 export LD_RUN_PATH=/home/lixq/toolchains/llvm/lib
 export LDFLAGS="-Wl,-rpath,/home/lixq/toolchains/llvm/lib:/home/lixq/toolchains/Anaconda3/lib"
-until python3 install.py --system-libclang --clang-completer --cs-completer --rust-completer --java-completer --ts-completer; do
+until python3 install.py --system-libclang --clang-completer; do
     sleep 1
 done
