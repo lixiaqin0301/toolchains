@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for d in /home/lixq/toolchains/FlameGraph/ /home/lixq/toolchains/github.com/*/*/; do
+find /home/lixq/toolchains/*/ -name .git -exec dirname {} \; | sort -u | while read -r d; do
     cd $d || continue
     pwd
     git restore .
