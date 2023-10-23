@@ -6,7 +6,7 @@ export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 . /opt/rh/devtoolset-11/enable
 
 if [[ ! -f /home/lixq/src/gdb-${ver}.tar.gz ]]; then
-    echo "wget http://mirrors.ustc.edu.cn/gnu/gdb/gdb-${ver}.tar.gz -O /home/lixq/src/gdb-${ver}.tar.gz"
+    echo "wget https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/gdb-${ver}.tar.gz -O /home/lixq/src/gdb-${ver}.tar.gz"
     exit 1
 fi
 

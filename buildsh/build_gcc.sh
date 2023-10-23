@@ -9,24 +9,28 @@ isl='isl-0.24.tar.bz2'
 
 [[ -d /home/lixq/src ]] || mkdir -p /home/lixq/src
 
+need_exit=no
 if [[ ! -f /home/lixq/src/gcc-${ver}.tar.gz ]]; then
-    echo "wget http://mirrors.ustc.edu.cn/gnu/gcc/gcc-${ver}/gcc-${ver}.tar.gz -O /home/lixq/src/gcc-${ver}.tar.gz"
-    exit 1
+    echo "wget https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/gcc-${ver}/gcc-${ver}.tar.gz -O /home/lixq/src/gcc-${ver}.tar.gz"
+    need_exit=yes
 fi
 if [[ ! -f /home/lixq/src/${gmp} ]]; then
-    echo "wget http://mirrors.ustc.edu.cn/gnu/gmp/${gmp} -O /home/lixq/src/${gmp}"
-    exit 1
+    echo "wget https://mirrors.tuna.tsinghua.edu.cn/gnu/gmp/${gmp} -O /home/lixq/src/${gmp}"
+    need_exit=yes
 fi
 if [[ ! -f /home/lixq/src/${mpfr} ]]; then
-    echo "wget http://mirrors.ustc.edu.cn/gnu/mpfr/${mpfr} -O /home/lixq/src/${mpfr}"
-    exit 1
+    echo "wget https://mirrors.tuna.tsinghua.edu.cn/gnu/mpfr/${mpfr} -O /home/lixq/src/${mpfr}"
+    need_exit=yes
 fi
 if [[ ! -f /home/lixq/src/${mpc} ]]; then
-    echo "wget http://mirrors.ustc.edu.cn/gnu/mpc/${mpc} -O /home/lixq/src/${mpc}"
-    exit 1
+    echo "wget https://mirrors.tuna.tsinghua.edu.cn/gnu/mpc/${mpc} -O /home/lixq/src/${mpc}"
+    need_exit=yes
 fi
 if [[ ! -f /home/lixq/src/${isl} ]]; then
     echo "wget https://gcc.gnu.org/pub/gcc/infrastructure/${isl} -O /home/lixq/src/${isl}"
+    need_exit=yes
+fi
+if [[ "$need_exit" == "yes" ]]; then
     exit 1
 fi
 

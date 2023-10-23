@@ -1,27 +1,31 @@
 #!/bin/bash
 
-ver=17.0.2
+ver=17.0.3
 
 export PATH=/home/lixq/toolchains/cmake/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 . /opt/rh/devtoolset-11/enable
 
+need_exit=no
 if [[ ! -f /home/lixq/src/llvm-${ver}.src.tar.xz ]]; then
-    echo "wget https://github.com/llvm/llvm-project/releases/download/llvmorg-${ver}/llvm-${ver}.src.tar.xz -O /home/lixq/src/llvm-${ver}.src.tar.xz"
-    exit 1
+    echo "wget https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LLVM%20${ver}/llvm-${ver}.src.tar.xz -O /home/lixq/src/llvm-${ver}.src.tar.xz"
+    need_exit=yes
 fi
 
 if [[ ! -f /home/lixq/src/clang-${ver}.src.tar.xz ]]; then
-    echo "wget https://github.com/llvm/llvm-project/releases/download/llvmorg-${ver}/clang-${ver}.src.tar.xz -O /home/lixq/src/clang-${ver}.src.tar.xz"
-    exit 1
+    echo "wget https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LLVM%20${ver}/clang-${ver}.src.tar.xz -O /home/lixq/src/clang-${ver}.src.tar.xz"
+    need_exit=yes
 fi
 
 if [[ ! -f  /home/lixq/src/cmake-${ver}.src.tar.xz ]]; then
-    echo "wget https://github.com/llvm/llvm-project/releases/download/llvmorg-${ver}/cmake-${ver}.src.tar.xz -O /home/lixq/src/cmake-${ver}.src.tar.xz"
-    exit 1
+    echo "wget https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LLVM%20${ver}/cmake-${ver}.src.tar.xz -O /home/lixq/src/cmake-${ver}.src.tar.xz"
+    need_exit=yes
 fi
 
 if [[ ! -f /home/lixq/src/third-party-${ver}.src.tar.xz ]]; then
-    echo "wget https://github.com/llvm/llvm-project/releases/download/llvmorg-${ver}/third-party-${ver}.src.tar.xz -O /home/lixq/src/third-party-${ver}.src.tar.xz"
+    echo "wget https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LLVM%20${ver}/third-party-${ver}.src.tar.xz -O /home/lixq/src/third-party-${ver}.src.tar.xz"
+    need_exit=yes
+fi
+if [[ "$need_exit" == yes ]]; then
     exit 1
 fi
 
