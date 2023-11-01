@@ -27,6 +27,13 @@ elif command -v yum; then
     yum upgrade -y --skip-broken
 fi
 
+cd /home/lixq/src || exit 1
+rm -f nvim-linux64.tar.gz
+wget https://hub.yzuu.cf/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
+cd /home/lixq/toolchains || exit 1
+rm -rf nvim-linux64
+tar -xf /home/lixq/src/nvim-linux64.tar.gz
+
 cd /home/lixq/toolchains/github.com/Valloric/YouCompleteMe || exit 1
 export CPATH=/home/lixq/toolchains/llvm/include
 export LIBRARY_PATH=/home/lixq/toolchains/llvm/lib
