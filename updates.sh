@@ -4,12 +4,12 @@ if [[ -d /home/lixq/toolchains ]]; then
     tdir=/home/lixq/toolchains
     cd $tdir || exit 1
     rm nvim-*.tar.gz
-    wget https://hub.nuaa.cf/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
+    wget https://hub.njuu.cf/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
 else
     tdir=~/toolchains
     cd $tdir || exit 1
     rm nvim-*.tar.gz
-    wget https://hub.nuaa.cf/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz
+    wget https://hub.njuu.cf/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz
     cp SpaceVim.d/autoload/config.vim ~/Downloads/config.vim
     git restore .
 fi
