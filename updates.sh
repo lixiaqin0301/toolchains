@@ -18,10 +18,10 @@ else
     git restore .
 fi
 cd $tdir || exit 1
-if [[ -f nvim-*.tar.gz ]]; do
+if [[ -f nvim-*.tar.gz ]]; then
     rm -rf nvim-*/
     tar -xf nvim-*.tar.gz
-done
+fi
 pwd
 until git pull; do
     sleep 1
