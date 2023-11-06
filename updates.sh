@@ -18,10 +18,10 @@ else
     git restore .
 fi
 cd $tdir || exit 1
-if [[ -f nvim-*.tar.gz ]]; then
+for f in ./nvim-*.tar.gz; do
     rm -rf nvim-*/
     tar -xf nvim-*.tar.gz
-fi
+done
 pwd
 until git pull; do
     sleep 1
@@ -30,8 +30,8 @@ if [[ ! -d /home/lixq/toolchains ]]; then
     cp ~/Downloads/config.vim $tdir/SpaceVim.d/autoload/config.vim
 fi
 
-for d in $tdir/github.com/*/*/; do
-    cd $d || continue
+find $tdir -name .git | while read -r d; do
+    cd "$(dirname "$d")" || continue
     pwd
     until git pull; do
         sleep 1
