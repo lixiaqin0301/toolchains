@@ -2,38 +2,54 @@
 
 if [[ -d /home/lixq/toolchains ]]; then
     tdir=/home/lixq/toolchains
-    cd $tdir || exit 1
-    rm nvim-*.tar.gz
-    until wget -c https://hub.njuu.cf/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz; do
-        sleep 1
-    done
+    sdir=/home/lixq/src
+    nvimtar=nvim-linux64.tar.gz
+    [[ -d "$sdir" ]] || mkdir -p "$sdir"
 else
     tdir=~/toolchains
+    sdir=~/src
+    nvimtar=nvim-macos.tar.gz
+    [[ -d "$sdir" ]] || mkdir -p "$sdir"
+    cp $tdir/SpaceVim.d/autoload/config.vim $sdir/
     cd $tdir || exit 1
-    rm nvim-*.tar.gz
-    until wget -c https://hub.njuu.cf/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz; do
-        sleep 1
-    done
-    cp SpaceVim.d/autoload/config.vim ~/Downloads/config.vim
     git restore .
 fi
-cd $tdir || exit 1
-for f in ./nvim-*.tar.gz; do
-    rm -rf nvim-*/
-    tar -xf nvim-*.tar.gz
+
+function recover() {
+    [[ -f $sdir/config.vim ]] && mv $sdir/config.vim SpaceVim.d/autoload/config.vim
+}
+trap recover EXIT
+
+cd "$sdir" || exit 1
+rm -f nightly nightly.*
+until wget https://hub.nuaa.cf/neovim/neovim/releases/tag/nightly; do
+    rm -f nightly nightly.*
 done
+expnvimsha256=$(grep -oE "[[:xdigit:]]{64}[[:space:]]*$nvimtar" nightly | awk '{print $1}' | head -n 1)
+realnvimsha256=
+if [[ -f "$nvimtar" ]]; then
+    realnvimsha256=$(sha256sum $nvimtar | awk '{print $1}')
+fi
+if [[ "$realnvimsha256" != "$expnvimsha256" ]]; then
+    rm -f $nvimtar $nvimtar.*
+    until wget -c https://hub.njuu.cf/neovim/neovim/releases/download/nightly/$nvimtar; do
+        sleep 1
+    done
+    cd $tdir || exit 1
+    rm -rf nvim-*
+    tar -xf $sdir/$nvimtar
+fi
+
+cd $tdir || exit 1
 pwd
 until git pull; do
     sleep 1
 done
-if [[ ! -d /home/lixq/toolchains ]]; then
-    cp ~/Downloads/config.vim $tdir/SpaceVim.d/autoload/config.vim
-fi
 
-find $tdir -name .git | while read -r d; do
+find $tdir/*/ -name .git | while read -r d; do
     cd "$(dirname "$d")" || continue
     pwd
-    git remote set-url origin "$(git remote -v | awk '{print $2}' | head -n 1 | sed 's/github.com/hub.njuu.cf/g')"
+    git remote set-url origin "$(git remote -v | awk '{print $2}' | head -n 1 | sed 's;github.com;hub.njuu.cf;')"
     if git branch | grep detache; then
         git checkout "$(git branch -la | awk '{print $1}' | grep -E 'remotes/origin/(master|hg|main)' | head -n 1 | cut -b 16-)"
     fi
