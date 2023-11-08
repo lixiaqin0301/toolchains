@@ -33,6 +33,10 @@ fi
 find $tdir -name .git | while read -r d; do
     cd "$(dirname "$d")" || continue
     pwd
+    git remote set-url origin "$(git remote -v | awk '{print $2}' | head -n 1 | sed 's/github.com/hub.njuu.cf/g')"
+    if git branch | grep detache; then
+        git checkout "$(git branch -la | awk '{print $1}' | grep -E 'remotes/origin/(master|hg|main)' | head -n 1 | cut -b 16-)"
+    fi
     until git pull; do
         sleep 1
     done
