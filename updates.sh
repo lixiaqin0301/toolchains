@@ -17,6 +17,7 @@ fi
 
 function recover() {
     [[ -f $sdir/config.vim ]] && mv $sdir/config.vim SpaceVim.d/autoload/config.vim
+    [[ -f $sdir/ycmd_cpp_CMakeLists.txt ]] && mv $sdir/ycmd_cpp_CMakeLists.txt $tdir/github.com/Valloric/YouCompleteMe/third_party/ycmd/cpp/CMakeLists.txt
 }
 trap recover EXIT
 
@@ -79,6 +80,8 @@ elif command -v yum; then
 fi
 
 cd $tdir/github.com/Valloric/YouCompleteMe || exit 1
+cp $tdir/github.com/Valloric/YouCompleteMe/third_party/ycmd/cpp/CMakeLists.txt $sdir/ycmd_cpp_CMakeLists.txt
+sed -i 's;github.com;hub.njuu.cf;' third_party/ycmd/cpp/CMakeLists.txt
 if [[ -d /home/lixq/toolchains/llvm/include ]]; then
     export CPATH=/home/lixq/toolchains/llvm/include
     export LIBRARY_PATH=/home/lixq/toolchains/llvm/lib
