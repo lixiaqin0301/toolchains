@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver=1.21.4.2
+ver=1.21.4.3
 
 export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 
