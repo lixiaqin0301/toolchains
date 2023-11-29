@@ -13,13 +13,16 @@ fc-cache -fv
 ln -sf /home/lixq/toolchains/github.com "$HOME/.cache/vimfiles/repos/github.com"
 
 /bin/rm -rfv "$HOME/.config/nvim" "$HOME/.vim"
-ln -sf /home/lixq/toolchains/SpaceVim-2.2.0 "$HOME/.config/nvim"
+ln -sf /home/lixq/toolchains/SpaceVim "$HOME/.config/nvim"
 
 /bin/rm -rfv "$HOME/.SpaceVim.d"
 ln -sf /home/lixq/toolchains/SpaceVim.d "$HOME/.SpaceVim.d"
 
 /bin/rm -rfv "$HOME/.zshrc"
 ln -sf /home/lixq/toolchains/zshrc "$HOME/.zshrc"
+
+/bin/rm -rfv "$HOME/.vscode-server"
+ln -sf /home/lixq/toolchains/vscode-server "$HOME/.vscode-server"
 
 /bin/rm -rfv /etc/profile.d/fcitx.sh
 ln -sf /home/lixq/toolchains/fcitx.sh /etc/profile.d
