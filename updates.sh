@@ -4,6 +4,7 @@
 # https://hub.njuu.cf/
 # https://hub.yzuu.cf/
 # https://hub.nuaa.cf/
+mirrorhost=hub.yzuu.cf
 
 if [[ -d /home/lixq/toolchains ]]; then
     tdir=/home/lixq/toolchains
@@ -29,14 +30,14 @@ trap recover EXIT
 cd "${sdir}" || exit 1
 if [[ -d /home/lixq/src/neovim ]]; then
     cd /home/lixq/src/neovim || exit 1
-    git remote set-url origin "$(git remote -v | awk '{print $2}' | head -n 1 | sed 's;github.com;hub.njuu.cf;' || true)"
+    git remote set-url origin "$(git remote get-url origin | sed "s;github.com;${mirrorhost};" || true)"
     until git pull; do
         sleep 1
     done
     make install
 else
     rm -f nightly nightly.*
-    wget https://hub.njuu.cf/neovim/neovim/releases/tag/nightly
+    wget "https://${mirrorhost}/neovim/neovim/releases/tag/nightly"
     expnvimsha256=$(grep -oE "[[:xdigit:]]{64}[[:space:]]*${nvimtar}" nightly | awk '{print $1}' | head -n 1 || true)
     realnvimsha256=
     if [[ -f "${nvimtar}" ]]; then
@@ -44,7 +45,7 @@ else
     fi
     if [[ "${realnvimsha256}" != "${expnvimsha256}" ]]; then
         rm -f "${nvimtar}" "${nvimtar}".*
-        until wget -c "https://hub.njuu.cf/neovim/neovim/releases/download/nightly/${nvimtar}"; do
+        until wget -c "https://${mirrorhost}/neovim/neovim/releases/download/nightly/${nvimtar}"; do
             sleep 1
         done
         cd "${tdir}" || exit 1
@@ -62,7 +63,7 @@ done
 while read -r d; do
     cd "$(dirname "${d}")" || continue
     pwd
-    git remote set-url origin "$(git remote -v | awk '{print $2}' | head -n 1 | sed 's;github.com;hub.njuu.cf;' || true)"
+    git remote set-url origin "$(git remote get-url origin | sed "s;github.com;${mirrorhost};" || true)"
     git checkout "$(git branch -la | awk '{print $1}' | grep -E 'remotes/origin/(master|hg|main)' | head -n 1 | cut -b 16- || true)"
     until git pull; do
         sleep 1
@@ -91,7 +92,8 @@ fi
 
 cd "${tdir}/github.com/Valloric/YouCompleteMe" || exit 1
 cp "${tdir}/github.com/Valloric/YouCompleteMe/third_party/ycmd/cpp/CMakeLists.txt" "${sdir}/ycmd_cpp_CMakeLists.txt"
-sed -i '' 's;github.com;hub.njuu.cf;' third_party/ycmd/cpp/CMakeLists.txt
+sed "s;github.com;${mirrorhost};" third_party/ycmd/cpp/CMakeLists.txt > "${sdir}/t.txt"
+cp -f "${sdir}/t.txt" third_party/ycmd/cpp/CMakeLists.txt
 if [[ -d /home/lixq/toolchains/llvm/include ]]; then
     export CPATH=/home/lixq/toolchains/llvm/include
     export LIBRARY_PATH=/home/lixq/toolchains/llvm/lib

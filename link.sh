@@ -24,6 +24,12 @@ ln -sf /home/lixq/toolchains/zshrc "$HOME/.zshrc"
 /bin/rm -rfv "$HOME/.vscode-server"
 ln -sf /home/lixq/toolchains/vscode-server "$HOME/.vscode-server"
 
+/bin/rm -rfv "$HOME/.condarc"
+ln -sf /home/lixq/toolchains/condarc "$HOME/.condarc"
+
+/bin/rm -rfv "$HOME/go"
+ln -sf /home/lixq/toolchains/go "$HOME/go"
+
 /bin/rm -rfv /etc/profile.d/fcitx.sh
 ln -sf /home/lixq/toolchains/fcitx.sh /etc/profile.d
 

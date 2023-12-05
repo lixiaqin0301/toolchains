@@ -1,0 +1,13 @@
+show_channel_urls: true
+default_channels:
+  - https://repo.haplat.net/anaconda/pkgs/main
+  - https://repo.haplat.net/anaconda/pkgs/r
+  - https://repo.haplat.net/anaconda/pkgs/msys2
+custom_channels:
+  conda-forge: https://repo.haplat.net/anaconda/cloud
+  msys2: https://repo.haplat.net/anaconda/cloud
+  bioconda: https://repo.haplat.net/anaconda/cloud
+  menpo: https://repo.haplat.net/anaconda/cloud
+  pytorch: https://repo.haplat.net/anaconda/cloud
+  simpleitk: https://repo.haplat.net/anaconda/cloud
+report_errors: false
