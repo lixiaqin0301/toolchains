@@ -31,27 +31,20 @@ cd "${sdir}" || exit 1
 if [[ -d /home/lixq/src/neovim ]]; then
     cd /home/lixq/src/neovim || exit 1
     git remote set-url origin "$(git remote get-url origin | sed "s;github.com;${mirrorhost};" || true)"
+    git restore .
     until git pull; do
         sleep 1
     done
+    sed -i 's/github.com/hub.yzuu.cf/' cmake.deps/deps.txt
     make install
 else
-    rm -f nightly nightly.*
-    wget "https://${mirrorhost}/neovim/neovim/releases/tag/nightly"
-    expnvimsha256=$(grep -oE "[[:xdigit:]]{64}[[:space:]]*${nvimtar}" nightly | awk '{print $1}' | head -n 1 || true)
-    realnvimsha256=
-    if [[ -f "${nvimtar}" ]]; then
-        realnvimsha256=$(sha256sum "${nvimtar}" | awk '{print $1}' || true)
-    fi
-    if [[ "${realnvimsha256}" != "${expnvimsha256}" ]]; then
-        rm -f "${nvimtar}" "${nvimtar}".*
-        until wget -c "https://${mirrorhost}/neovim/neovim/releases/download/nightly/${nvimtar}"; do
-            sleep 1
-        done
-        cd "${tdir}" || exit 1
-        rm -rf nvim-*
-        tar -xf "${sdir}/${nvimtar}"
-    fi
+    rm -f "${nvimtar}" "${nvimtar}".*
+    until wget -c "https://${mirrorhost}/neovim/neovim-releases/releases/download/nightly/${nvimtar}"; do
+        sleep 1
+    done
+    cd "${tdir}" || exit 1
+    rm -rf nvim-*
+    tar -xf "${sdir}/${nvimtar}"
 fi
 
 cd "${tdir}" || exit 1
