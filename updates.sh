@@ -6,26 +6,40 @@
 # https://hub.nuaa.cf/
 mirrorhost=hub.yzuu.cf
 
-if [[ -d /home/lixq/toolchains ]]; then
-    tdir=/home/lixq/toolchains
-    sdir=/home/lixq/src
-    nvimtar=nvim-linux64.tar.gz
-    [[ -d "${sdir}" ]] || mkdir -p "${sdir}"
-else
-    tdir=~/toolchains
-    sdir=~/src
-    nvimtar=nvim-macos.tar.gz
-    [[ -d "${sdir}" ]] || mkdir -p "${sdir}"
-    cp "${tdir}/SpaceVim.d/autoload/config.vim" "${sdir}"
-    cd "${tdir}" || exit 1
-    git restore .
-fi
-
 function recover() {
     [[ -f ${sdir}/config.vim ]] && mv "${sdir}/config.vim" "${tdir}/SpaceVim.d/autoload/config.vim"
     [[ -f ${sdir}/ycmd_cpp_CMakeLists.txt ]] && mv "${sdir}/ycmd_cpp_CMakeLists.txt" "${tdir}/github.com/Valloric/YouCompleteMe/third_party/ycmd/cpp/CMakeLists.txt"
 }
 trap recover EXIT
+
+if [[ -d /home/lixq/toolchains ]]; then
+    tdir=/home/lixq/toolchains
+    sdir=/home/lixq/src
+    [[ -d "${sdir}" ]] || mkdir -p "${sdir}"
+    cd "${sdir}" || exit 1
+    rm -f nvim-linux64.tar.gz nvim-linux64.tar.gz.*
+    until wget -c "https://${mirrorhost}/neovim/neovim-releases/releases/download/nightly/nvim-linux64.tar.gz"; do
+        sleep 1
+    done
+    cd "${tdir}" || exit 1
+    rm -rf nvim-*
+    tar -xf "${sdir}/nvim-linux64.tar.gz"
+else
+    tdir=~/toolchains
+    sdir=~/src
+    [[ -d "${sdir}" ]] || mkdir -p "${sdir}"
+    cp "${tdir}/SpaceVim.d/autoload/config.vim" "${sdir}"
+    cd "${tdir}" || exit 1
+    git restore .
+    cd "${sdir}" || exit 1
+    rm -f nvim-macos.tar.gz nvim-macos.tar.gz.*
+    until wget -c "https://${mirrorhost}/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz"; do
+        sleep 1
+    done
+    cd "${tdir}" || exit 1
+    rm -rf nvim-*
+    tar -xf "${sdir}/nvim-macos.tar.gz"
+fi
 
 cd "${sdir}" || exit 1
 if [[ -d /home/lixq/src/neovim ]]; then
@@ -37,14 +51,6 @@ if [[ -d /home/lixq/src/neovim ]]; then
     done
     sed -i 's/github.com/hub.yzuu.cf/' cmake.deps/deps.txt
     make install
-else
-    rm -f "${nvimtar}" "${nvimtar}".*
-    until wget -c "https://${mirrorhost}/neovim/neovim-releases/releases/download/nightly/${nvimtar}"; do
-        sleep 1
-    done
-    cd "${tdir}" || exit 1
-    rm -rf nvim-*
-    tar -xf "${sdir}/${nvimtar}"
 fi
 
 cd "${tdir}" || exit 1
