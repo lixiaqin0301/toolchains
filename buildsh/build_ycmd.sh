@@ -1,7 +1,10 @@
 #!/bin/bash
 
+# shellcheck disable=SC1091
 export PATH=/home/lixq/toolchains/Anaconda3/bin:/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/llvm/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
-. /opt/rh/devtoolset-11/enable
+if [[ -x /opt/rh/devtoolset-11/enable ]]; then
+    . /opt/rh/devtoolset-11/enable
+fi
 
 function recover() {
     cd /home/lixq/toolchains/github.com/Valloric/YouCompleteMe/third_party/ycmd/cpp || exit 1
@@ -33,4 +36,4 @@ export LIBRARY_PATH=/home/lixq/toolchains/llvm/lib
 export LD_LIBRARY_PATH=/home/lixq/toolchains/llvm/lib
 export LD_RUN_PATH=/home/lixq/toolchains/llvm/lib
 export LDFLAGS="-Wl,-rpath,/home/lixq/toolchains/llvm/lib:/home/lixq/toolchains/Anaconda3/lib"
-python3 install.py --clang-completer --system-libclang --verbose
+python3 install.py --clang-completer --system-libclang --go-completer --verbose

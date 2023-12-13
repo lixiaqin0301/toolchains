@@ -100,11 +100,11 @@ if [[ -d /home/lixq/toolchains/llvm/include ]]; then
     export LD_RUN_PATH=/home/lixq/toolchains/llvm/lib
     export LDFLAGS="-Wl,-rpath,/home/lixq/toolchains/llvm/lib:/home/lixq/toolchains/Anaconda3/lib"
 fi
-until python3 install.py --system-libclang --clang-completer; do
+until python3 install.py --system-libclang --clang-completer --go-completer; do
     sleep 1
 done
 if [[ -d /usr/local/Cellar/llvm ]]; then
-    cd "${tdir}/github.com/Valloric/YouCompleteMe/third_party/ycmd/third_party/clang/lib "|| exit 1
+    cd "${tdir}/github.com/Valloric/YouCompleteMe/third_party/ycmd/third_party/clang/lib" || exit 1
     for f in /usr/local/Cellar/llvm/*/lib/libclang.dylib; do
         ln -sf "${f}" .
         break
