@@ -30,6 +30,8 @@
     <referencedLibrary type="PYTHON" name="Squid" path="/home/lixq/wstest/shark-test/lib/wsbot/olib/Squid.py" dynamic="false"/>
     <referencedLibrary type="PYTHON" name="util" path="/home/lixq/wstest/shark-test/lib/wsbot/olib/util.py" dynamic="false"/>
     <referencedLibrary type="PYTHON" name="WSTestListener" path="/home/lixq/wstest/shark-test/lib/WSTestListener.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="Env" path="/home/lixq/wstest/shark-test/lib/Env.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="Sh" path="/home/lixq/wstest/shark-test/lib/Sh.py" dynamic="false"/>
     <pythonpath/>
     <classpath/>
     <variableFiles path="/home/lixq/shark-test/lib/wsbot/nlib/Globals.py"/>
