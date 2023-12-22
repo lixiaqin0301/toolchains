@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # shellcheck disable=SC1091
-export PATH=/home/lixq/toolchains/Anaconda3/bin:/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/bin/go:/home/lixq/toolchains/llvm/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
+export PATH=/home/lixq/toolchains/Anaconda3/bin:/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/golang/bin:/home/lixq/toolchains/go/bin:/home/lixq/toolchains/llvm/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 if [[ -x /opt/rh/devtoolset-11/enable ]]; then
     . /opt/rh/devtoolset-11/enable
 fi
