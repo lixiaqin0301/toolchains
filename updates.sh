@@ -100,7 +100,7 @@ if [[ -d /home/lixq/toolchains/llvm/include ]]; then
     export LD_RUN_PATH=/home/lixq/toolchains/llvm/lib
     export LDFLAGS="-Wl,-rpath,/home/lixq/toolchains/llvm/lib:/home/lixq/toolchains/Anaconda3/lib"
 fi
-until python3 install.py --system-libclang --clang-completer --go-completer; do
+until python3 install.py --system-libclang --clang-completer --go-completer --verbose; do
     sleep 1
 done
 if [[ -d /usr/local/Cellar/llvm ]]; then
