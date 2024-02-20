@@ -1,14 +1,7 @@
 #!/bin/bash
 
-# github mirror
-# https://hub.njuu.cf/
-# https://hub.yzuu.cf/
-# https://hub.nuaa.cf/
-mirrorhost=hub.yzuu.cf
-
 function recover() {
     [[ -f ${sdir}/config.vim ]] && mv "${sdir}/config.vim" "${tdir}/SpaceVim.d/autoload/config.vim"
-    [[ -f ${sdir}/ycmd_cpp_CMakeLists.txt ]] && mv "${sdir}/ycmd_cpp_CMakeLists.txt" "${tdir}/github.com/Valloric/YouCompleteMe/third_party/ycmd/cpp/CMakeLists.txt"
 }
 trap recover EXIT
 
@@ -18,7 +11,7 @@ if [[ -d /home/lixq/toolchains ]]; then
     [[ -d "${sdir}" ]] || mkdir -p "${sdir}"
     cd "${sdir}" || exit 1
     rm -f nvim-linux64.tar.gz nvim-linux64.tar.gz.*
-    until wget -c "https://${mirrorhost}/neovim/neovim-releases/releases/download/nightly/nvim-linux64.tar.gz"; do
+    until wget -T 10 -c "https://github.com/neovim/neovim-releases/releases/download/nightly/nvim-linux64.tar.gz"; do
         sleep 1
     done
     cd "${tdir}" || exit 1
@@ -33,7 +26,7 @@ else
     git restore .
     cd "${sdir}" || exit 1
     rm -f nvim-macos.tar.gz nvim-macos.tar.gz.*
-    until wget -c "https://${mirrorhost}/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz"; do
+    until wget -T 10 -c "https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz"; do
         sleep 1
     done
     cd "${tdir}" || exit 1
@@ -44,7 +37,6 @@ fi
 cd "${sdir}" || exit 1
 if [[ -d /home/lixq/src/neovim ]]; then
     cd /home/lixq/src/neovim || exit 1
-    git remote set-url origin "$(git remote get-url origin | sed "s;github.com;${mirrorhost};" || true)"
     git restore .
     until git pull; do
         sleep 1
@@ -62,7 +54,6 @@ done
 while read -r d; do
     cd "$(dirname "${d}")" || continue
     pwd
-    git remote set-url origin "$(git remote get-url origin | sed "s;github.com;${mirrorhost};" || true)"
     git checkout "$(git branch -la | awk '{print $1}' | grep -E 'remotes/origin/(master|hg|main)' | head -n 1 | cut -b 16- || true)"
     until git pull; do
         sleep 1
@@ -90,9 +81,6 @@ elif command -v yum; then
 fi
 
 cd "${tdir}/github.com/Valloric/YouCompleteMe" || exit 1
-cp "${tdir}/github.com/Valloric/YouCompleteMe/third_party/ycmd/cpp/CMakeLists.txt" "${sdir}/ycmd_cpp_CMakeLists.txt"
-sed "s;github.com;${mirrorhost};" third_party/ycmd/cpp/CMakeLists.txt > "${sdir}/t.txt"
-cp -f "${sdir}/t.txt" third_party/ycmd/cpp/CMakeLists.txt
 if [[ -d /home/lixq/toolchains/llvm/include ]]; then
     export CPATH=/home/lixq/toolchains/llvm/include
     export LIBRARY_PATH=/home/lixq/toolchains/llvm/lib
