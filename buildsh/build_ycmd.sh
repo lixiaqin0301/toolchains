@@ -24,7 +24,7 @@ fi
 
 cd /home/lixq/toolchains/github.com/Valloric/YouCompleteMe/third_party/ycmd/cpp || exit 1
 cp CMakeLists.txt CMakeLists.txt.bak
-sed -i '/include( FetchContent )/,/add_subdirectory( absl )/c\  add_subdirectory( absl )' CMakeLists.txt
+sed -i '/include( FetchContent )/,/FetchContent_MakeAvailable( absl )/c\  add_subdirectory( absl )' CMakeLists.txt
 cd /home/lixq/toolchains/github.com/Valloric/YouCompleteMe/third_party/ycmd || exit 1
 cp build.py build.py.bak
 sed -i '/if not OnWindows() and os.geteuid() == 0:/,/This script should not be run with root privileges./d' build.py
