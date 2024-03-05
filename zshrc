@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=/home/lixq/go/bin:/home/lixq/toolchains/bin:/home/lixq/toolchains/Anaconda3/bin:/home/lixq/toolchains/bashdb/bin:/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/gdb/bin:/home/lixq/toolchains/git/bin:/home/lixq/toolchains/golang/bin:/home/lixq/toolchains/go/bin:/home/lixq/toolchains/jdk/bin:/home/lixq/toolchains/lcov/bin:/home/lixq/toolchains/llvm/bin:/home/lixq/toolchains/nvim/bin:/home/lixq/toolchains/shellcheck:/home/lixq/toolchains/tcpflow/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/home/lixq/bin
+export PATH=/home/lixq/go/bin:/home/lixq/toolchains/bin:/home/lixq/toolchains/Anaconda3/bin:/home/lixq/toolchains/bashdb/bin:/home/lixq/toolchains/cargo/bin:/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/gdb/bin:/home/lixq/toolchains/git/bin:/home/lixq/toolchains/golang/bin:/home/lixq/toolchains/go/bin:/home/lixq/toolchains/jdk/bin:/home/lixq/toolchains/lcov/bin:/home/lixq/toolchains/llvm/bin:/home/lixq/toolchains/nvim/bin:/home/lixq/toolchains/shellcheck:/home/lixq/toolchains/tcpflow/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/home/lixq/bin
 export PYTHONPATH=
 
 # Path to your oh-my-zsh installation.
