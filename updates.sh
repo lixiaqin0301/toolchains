@@ -25,7 +25,7 @@ else
     cd "${tdir}" || exit 1
     git restore .
     cd "${sdir}" || exit 1
-    rm -f nvim-macos.tar.gz nvim-macos.tar.gz.*
+    rm -f nvim-macos-x86_64.tar.gz nvim-macos-x86_64.tar.gz.*
     until wget -T 10 -c "https://github.com/neovim/neovim/releases/download/nightly/nvim-macos-x86_64.tar.gz"; do
         sleep 1
     done
