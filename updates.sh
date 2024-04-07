@@ -80,6 +80,10 @@ elif command -v yum; then
     yum upgrade -y --skip-broken
 fi
 
+if command -v rustup; then
+    rustup update
+fi
+
 cd "${tdir}/github.com/Valloric/YouCompleteMe" || exit 1
 if [[ -d /home/lixq/toolchains/llvm/include ]]; then
     export CPATH=/home/lixq/toolchains/llvm/include
