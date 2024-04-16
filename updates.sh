@@ -11,7 +11,8 @@ if [[ -d /home/lixq/toolchains ]]; then
     [[ -d "${sdir}" ]] || mkdir -p "${sdir}"
     cd "${sdir}" || exit 1
     rm -f nvim-linux64.tar.gz nvim-linux64.tar.gz.*
-    until wget -T 10 -c "https://github.com/neovim/neovim-releases/releases/download/nightly/nvim-linux64.tar.gz"; do
+    #until wget -T 10 -c "https://github.com/neovim/neovim-releases/releases/download/nightly/nvim-linux64.tar.gz"; do
+    until wget -T 10 -c "https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz"; do
         sleep 1
     done
     cd "${tdir}" || exit 1
@@ -78,6 +79,10 @@ elif command -v yum; then
     yum clean all
     yum update -y --skip-broken
     yum upgrade -y --skip-broken
+fi
+
+if command -v rustup; then
+    rustup update
 fi
 
 cd "${tdir}/github.com/Valloric/YouCompleteMe" || exit 1
