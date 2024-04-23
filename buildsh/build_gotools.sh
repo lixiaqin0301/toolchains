@@ -35,14 +35,14 @@ read -rp "OK?"
 go install -v github.com/haya14busa/goplay/cmd/goplay@$ver
 echo
 
-ver=v1.21.0
+ver=v1.22.1
 curl -s https://repo.haplat.net/go/github.com/go-delve/delve/@v/ | grep 'v[0-9a-f.-]*info'
 echo "go install -v github.com/go-delve/delve/cmd/dlv@$ver"
 read -rp "OK?"
 go install -v github.com/go-delve/delve/cmd/dlv@$ver
 echo
 
-ver=v0.4.5
+ver=v0.4.7
 curl -s https://repo.haplat.net/go/honnef.co/go/tools/@v/ | grep 'v[0-9a-f.-]*info'
 echo "go install -v honnef.co/go/tools/cmd/staticcheck@$ver"
 read -rp "OK?"
