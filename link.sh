@@ -27,11 +27,6 @@ ln -sf /home/lixq/toolchains/vscode-server "$HOME/.vscode-server"
 /bin/rm -rfv "$HOME/.condarc"
 ln -sf /home/lixq/toolchains/condarc "$HOME/.condarc"
 
-/bin/rm -rfv "$HOME/go"
-ln -sf /home/lixq/toolchains/go "$HOME/go"
-cd /home/lixq/toolchains/github.com/Valloric/YouCompleteMe/third_party/ycmd/third_party
-ln -s /home/lixq/toolchains/go
-
 /bin/rm -rfv /etc/profile.d/fcitx.sh
 ln -sf /home/lixq/toolchains/fcitx.sh /etc/profile.d
 
