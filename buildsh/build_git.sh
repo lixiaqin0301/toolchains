@@ -1,12 +1,12 @@
 #!/bin/bash
 
-ver=2.44.0
+ver=2.45.0
 
 export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 . /opt/rh/devtoolset-11/enable
 
 if [[ ! -f /home/lixq/35share-rd/src/git-${ver}.tar.gz ]]; then
-    echo "wget https://github.com/git/git/archive/refs/tags/v${ver}.tar.gz -O /home/lixq/35share-rd/src/git-${ver}.tar.gz"
+    echo "wget https://github.com/git/git/archive/refs/tags/v${ver}.tar.gz -O git-${ver}.tar.gz"
     exit 1
 fi
 
