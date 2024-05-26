@@ -15,6 +15,9 @@ ln -sf /home/lixq/toolchains/github.com "$HOME/.cache/vimfiles/repos/github.com"
 /bin/rm -rfv "$HOME/.config/nvim" "$HOME/.vim"
 ln -sf /home/lixq/toolchains/SpaceVim "$HOME/.config/nvim"
 
+/bin/rm -rfv "$HOME/.config/gtk-3.0"
+ln -sf /home/lixq/toolchains/gtk-3.0 "$HOME/.config/gtk-3.0"
+
 /bin/rm -rfv "$HOME/.SpaceVim.d"
 ln -sf /home/lixq/toolchains/SpaceVim.d "$HOME/.SpaceVim.d"
 
