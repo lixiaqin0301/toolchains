@@ -24,6 +24,6 @@ if [[ -d /home/lixq/toolchains/glibc-${ver} ]]; then
     rm -f glibc
     ln -s glibc-${ver} glibc
     cd /home/lixq/toolchains/glibc/lib || exit 1
-    ln -s /home/lixq/toolchains/gcc/lib64/libstdc++.so.6.0.32 libstdc++.so.6
+    ln -s /home/lixq/toolchains/gcc/lib64/libstdc++.so.6
     ln -s /home/lixq/toolchains/gcc/lib64/libgcc_s.so.1
 fi

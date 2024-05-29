@@ -1,33 +1,39 @@
 #!/bin/bash
 
-ver=13.2.0
+ver=14.1.0
 
 gmp='gmp-6.2.1.tar.bz2'
 mpfr='mpfr-4.1.0.tar.bz2'
 mpc='mpc-1.2.1.tar.gz'
 isl='isl-0.24.tar.bz2'
+gettext='gettext-0.22.tar.gz'
 
 [[ -d /home/lixq/src ]] || mkdir -p /home/lixq/src
 
+cd /home/lixq/35share-rd/src || exit 1
 need_exit=no
-if [[ ! -f /home/lixq/src/gcc-${ver}.tar.gz ]]; then
-    echo "wget https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/gcc-${ver}/gcc-${ver}.tar.gz -O /home/lixq/src/gcc-${ver}.tar.gz"
+if [[ ! -f gcc-${ver}.tar.gz ]]; then
+    echo "wget https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/gcc-${ver}/gcc-${ver}.tar.gz -O gcc-${ver}.tar.gz"
     need_exit=yes
 fi
-if [[ ! -f /home/lixq/src/${gmp} ]]; then
-    echo "wget https://mirrors.tuna.tsinghua.edu.cn/gnu/gmp/${gmp} -O /home/lixq/src/${gmp}"
+if [[ ! -f ${gmp} ]]; then
+    echo "wget https://mirrors.tuna.tsinghua.edu.cn/gnu/gmp/${gmp} -O ${gmp}"
     need_exit=yes
 fi
-if [[ ! -f /home/lixq/src/${mpfr} ]]; then
-    echo "wget https://mirrors.tuna.tsinghua.edu.cn/gnu/mpfr/${mpfr} -O /home/lixq/src/${mpfr}"
+if [[ ! -f ${mpfr} ]]; then
+    echo "wget https://mirrors.tuna.tsinghua.edu.cn/gnu/mpfr/${mpfr} -O ${mpfr}"
     need_exit=yes
 fi
-if [[ ! -f /home/lixq/src/${mpc} ]]; then
-    echo "wget https://mirrors.tuna.tsinghua.edu.cn/gnu/mpc/${mpc} -O /home/lixq/src/${mpc}"
+if [[ ! -f ${mpc} ]]; then
+    echo "wget https://mirrors.tuna.tsinghua.edu.cn/gnu/mpc/${mpc} -O ${mpc}"
     need_exit=yes
 fi
-if [[ ! -f /home/lixq/src/${isl} ]]; then
-    echo "wget https://gcc.gnu.org/pub/gcc/infrastructure/${isl} -O /home/lixq/src/${isl}"
+if [[ ! -f ${isl} ]]; then
+    echo "wget https://gcc.gnu.org/pub/gcc/infrastructure/${isl} -O ${isl}"
+    need_exit=yes
+fi
+if [[ ! -f ${gettext} ]]; then
+    echo "wget https://mirrors.tuna.tsinghua.edu.cn/gnu/gettext/${gettext} -O ${gettext}"
     need_exit=yes
 fi
 if [[ "$need_exit" == "yes" ]]; then
@@ -36,12 +42,12 @@ fi
 
 cd /home/lixq/src || exit 1
 rm -rf gcc-${ver}
-tar -xvf gcc-${ver}.tar.gz
+tar -xvf /home/lixq/35share-rd/src/gcc-${ver}.tar.gz
 cd /home/lixq/src/gcc-${ver} || exit 1
-cp /home/lixq/src/${gmp} .
-cp /home/lixq/src/${mpfr} .
-cp /home/lixq/src/${mpc} .
-cp /home/lixq/src/${isl} .
+cp /home/lixq/35share-rd/src/${gmp} .
+cp /home/lixq/35share-rd/src/${mpfr} .
+cp /home/lixq/35share-rd/src/${mpc} .
+cp /home/lixq/35share-rd/src/${isl} .
 ./contrib/download_prerequisites
 mkdir -p /home/lixq/src/gcc-${ver}/build
 cd /home/lixq/src/gcc-${ver}/build || exit 1
