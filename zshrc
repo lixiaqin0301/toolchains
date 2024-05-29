@@ -79,7 +79,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
-export MANPATH="/home/lixq/toolchains/Anaconda3/man:/home/lixq/toolchains/Anaconda3/share/man:/home/lixq/toolchains/bashdb/share/man:/home/lixq/toolchains/cmake/man:/home/lixq/toolchains/curl/share/man:/home/lixq/toolchains/gcc/share/man:/home/lixq/toolchains/gdb/share/man:/home/lixq/toolchains/git/share/man:/home/lixq/toolchains/jdk/man:/home/lixq/toolchains/lcov/share/man:/home/lixq/toolchains/llvm/share/man:/home/lixq/toolchains/nvim-linux64/man:/home/lixq/toolchains/nvim-linux64/share/man:/home/lixq/toolchains/tcpflow/share/man:/home/lixq/toolchains/zsh/share/man:$MANPATH"
+export MANPATH="/home/lixq/toolchains/Anaconda3/man:/home/lixq/toolchains/Anaconda3/share/man:/home/lixq/toolchains/bashdb/share/man:/home/lixq/toolchains/cmake/man:/home/lixq/toolchains/curl/share/man:/home/lixq/toolchains/gcc/share/man:/home/lixq/toolchains/gdb/share/man:/home/lixq/toolchains/git/share/man:/home/lixq/toolchains/jdk/man:/home/lixq/toolchains/lcov/man:/home/lixq/toolchains/llvm/share/man:/home/lixq/toolchains/nvim-linux64/man:/home/lixq/toolchains/nvim-linux64/share/man:/home/lixq/toolchains/tcpflow/share/man:/home/lixq/toolchains/zsh/share/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
