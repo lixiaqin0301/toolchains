@@ -6,7 +6,7 @@ if [[ ! -f /home/lixq/35share-rd/src/git-${ver}.tar.gz ]]; then
     echo "wget https://github.com/git/git/archive/refs/tags/v${ver}.tar.gz -O git-${ver}.tar.gz"
     exit 1
 fi
-if ! wget http://docbook.sourceforge.net/release/xsl/current/html/docbook.xsl; then
+if ! wget http://docbook.sourceforge.net/release/xsl/current/html/docbook.xsl -O /tmp/docbook.xsl; then
     echo "get git doc"
     echo 1
 fi
