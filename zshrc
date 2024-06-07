@@ -79,7 +79,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
-export MANPATH="/home/lixq/toolchains/Anaconda3/man:/home/lixq/toolchains/bashdb/share/man:/home/lixq/toolchains/cmake/man:/home/lixq/toolchains/gdb/share/man:/home/lixq/toolchains/jdk/man:/home/lixq/toolchains/llvm/share/man:/home/lixq/toolchains/nvim/share/man:$MANPATH"
+export MANPATH="/home/lixq/toolchains/Anaconda3/man:/home/lixq/toolchains/Anaconda3/share/man:/home/lixq/toolchains/bashdb/share/man:/home/lixq/toolchains/cmake/man:/home/lixq/toolchains/curl/share/man:/home/lixq/toolchains/gcc/share/man:/home/lixq/toolchains/gdb/share/man:/home/lixq/toolchains/git/share/man:/home/lixq/toolchains/jdk/man:/home/lixq/toolchains/lcov/man:/home/lixq/toolchains/llvm/share/man:/home/lixq/toolchains/nvim-linux64/man:/home/lixq/toolchains/nvim-linux64/share/man:/home/lixq/toolchains/tcpflow/share/man:/home/lixq/toolchains/zsh/share/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -102,7 +102,11 @@ export MANPATH="/home/lixq/toolchains/Anaconda3/man:/home/lixq/toolchains/bashdb
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias bat="/home/lixq/toolchains/bat/bat --paging=never"
+if [[ -x /home/lixq/toolchains/bat/bat ]]; then
+    alias bat="/home/lixq/toolchains/bat/bat --paging=never"
+else
+    alias bat="batcat --paging=never"
+fi
 #export ASAN_OPTIONS=log_path=/tmp/asan.log:detect_leaks=false:abort_on_error=true:disable_coredump=false:detect_odr_violation=0
 export ASAN_OPTIONS=log_path=/tmp/asan.log:detect_leaks=false:detect_odr_violation=0
 # Invoke tab-completion script to be sourced with the Z shell.
