@@ -9,7 +9,7 @@ git clone -b v1.1.0 https://github.com/ngtcp2/nghttp3
 cd nghttp3 || exit 1
 git submodule update --init
 cd .. || exit 1
-tar -cJf nghttp3.tar.xz nghttpe
+tar -cJf nghttp3.tar.xz nghttp3
 
 rm -rf ngtcp2 ngtcp2.tar.xz
 git clone -b v1.2.0 https://github.com/ngtcp2/ngtcp2
