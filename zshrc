@@ -144,3 +144,4 @@ compctl -K _complete_invoke + -f invoke inv
 # vim: set ft=sh :
 
 export GOPROXY=https://repo.haplat.net/go
+export NODE_EXTRA_CA_CERTS="/home/lixq/toolchains/WangSu_Root_CA.pem"
