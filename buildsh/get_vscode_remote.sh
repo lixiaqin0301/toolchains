@@ -1,7 +1,7 @@
 #!/bin/bash
 
-version=1.90.1
-commit=611f9bfce64f25108829dd295f54a6894e87339d
+version=1.90.2
+commit=5437499feb04f7a586f677b155b039bc2b3669eb
 
 [[ -d /share-rd/lixq/vscode ]] || mkdir -p /share-rd/lixq/vscode
 if [[ ! -f "/share-rd/lixq/vscode/vscode-server-${version}.linux-x64.tar.gz" ]]; then
