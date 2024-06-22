@@ -107,8 +107,6 @@ if [[ -x /home/lixq/toolchains/bat/bat ]]; then
 else
     alias bat="batcat --paging=never"
 fi
-#export ASAN_OPTIONS=log_path=/tmp/asan.log:detect_leaks=false:abort_on_error=true:disable_coredump=false:detect_odr_violation=0
-export ASAN_OPTIONS=log_path=/tmp/asan.log:detect_leaks=false:detect_odr_violation=0
 # Invoke tab-completion script to be sourced with the Z shell.
 # Known to work on zsh 5.0.x, probably works on later 4.x releases as well (as
 # it uses the older compctl completion system).
@@ -143,4 +141,3 @@ compctl -K _complete_invoke + -f invoke inv
 
 # vim: set ft=sh :
 
-export GOPROXY=https://repo.haplat.net/go

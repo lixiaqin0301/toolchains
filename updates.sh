@@ -42,7 +42,6 @@ if [[ -d /home/lixq/src/neovim ]]; then
     until git pull; do
         sleep 1
     done
-    sed -i 's/github.com/hub.yzuu.cf/' cmake.deps/deps.txt
     make install
 fi
 
