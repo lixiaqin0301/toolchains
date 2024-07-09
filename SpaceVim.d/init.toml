@@ -44,7 +44,6 @@ default_height = 30
 
 [[layers]]
 name = "checkers"
-show_cursor_error = false
 
 [[layers]]
 name = "format"
@@ -60,3 +59,7 @@ name = "lang#go"
 
 [[layers]]
 name = "lang#lua"
+
+[[custom_plugins]]
+    repo = "github/copilot.vim.git"
+    merged = false
