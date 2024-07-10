@@ -1,13 +1,12 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=/home/lixq/go/bin:/home/lixq/toolchains/bin:/home/lixq/toolchains/Anaconda3/bin:/home/lixq/toolchains/bashdb/bin:/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/gdb/bin:/home/lixq/toolchains/git/bin:/home/lixq/toolchains/golang/bin:/home/lixq/toolchains/go/bin:/home/lixq/toolchains/jdk/bin:/home/lixq/toolchains/lcov/bin:/home/lixq/toolchains/llvm/bin:/home/lixq/toolchains/nvim/bin:/home/lixq/toolchains/shellcheck:/home/lixq/toolchains/tcpflow/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/home/lixq/bin
-export PYTHONPATH=
+export PATH=/home/lixq/toolchains/bin:/home/lixq/toolchains/Anaconda3/bin:/home/lixq/toolchains/bashdb/bin:/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/gdb/bin:/home/lixq/toolchains/git/bin:/home/lixq/toolchains/golang/bin:/home/lixq/toolchains/jdk/bin:/home/lixq/toolchains/lcov/bin:/home/lixq/toolchains/llvm/bin:/home/lixq/toolchains/nvim-linux64/bin:/home/lixq/toolchains/shellcheck:/home/lixq/toolchains/tcpflow/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/home/lixq/go/bin:/home/lixq/bin
 
-# Path to your oh-my-zsh installation.
+# Path to your Oh My Zsh installation.
 export ZSH="/home/lixq/toolchains/oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
+# load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="ys"
@@ -94,9 +93,12 @@ export MANPATH="/home/lixq/toolchains/Anaconda3/man:/home/lixq/toolchains/Anacon
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
