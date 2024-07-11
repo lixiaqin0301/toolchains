@@ -45,6 +45,8 @@ for _ in {0..9}; do
     python3 install.py --clang-completer --system-libclang --go-completer --verbose && break
 done
 
-cd /home/lixq || exit 1
-sudo rm -rf /mnt/d/toolchains.tar
-tar -cf /mnt/d/toolchains.tar toolchains
+if [[ -d /mnt/d/ ]]; then
+    cd /home/lixq || exit 1
+    sudo rm -rf /mnt/d/toolchains.tar
+    tar -cf /mnt/d/toolchains.tar toolchains
+fi
