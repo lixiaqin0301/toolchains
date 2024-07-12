@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver=v0.14.1
+ver=v0.15.3
 curl -s https://repo.haplat.net/go/golang.org/x/tools/gopls/@v/ | grep 'v[0-9a-f.-]*info'
 echo "go install -v golang.org/x/tools/gopls@$ver"
 read -rp "OK?"
