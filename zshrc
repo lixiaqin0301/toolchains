@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=/home/lixq/toolchains/bin:/home/lixq/toolchains/Anaconda3/bin:/home/lixq/toolchains/bashdb/bin:/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/gdb/bin:/home/lixq/toolchains/git/bin:/home/lixq/toolchains/golang/bin:/home/lixq/toolchains/jdk/bin:/home/lixq/toolchains/lcov/bin:/home/lixq/toolchains/llvm/bin:/home/lixq/toolchains/nvim-linux64/bin:/home/lixq/toolchains/shellcheck:/home/lixq/toolchains/tcpflow/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/home/lixq/go/bin:/home/lixq/bin
+export PATH=/home/lixq/toolchains/bin:/home/lixq/toolchains/Anaconda3/bin:/home/lixq/toolchains/bashdb/bin:/home/lixq/toolchains/Bear/bin:/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/gdb/bin:/home/lixq/toolchains/git/bin:/home/lixq/toolchains/golang/bin:/home/lixq/toolchains/jdk/bin:/home/lixq/toolchains/lcov/bin:/home/lixq/toolchains/llvm/bin:/home/lixq/toolchains/nvim-linux64/bin:/home/lixq/toolchains/rtags/bin:/home/lixq/toolchains/shellcheck:/home/lixq/toolchains/tcpflow/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin
 
 # Path to your Oh My Zsh installation.
 export ZSH="/home/lixq/toolchains/oh-my-zsh"
@@ -78,7 +78,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
-export MANPATH="/home/lixq/toolchains/Anaconda3/man:/home/lixq/toolchains/Anaconda3/share/man:/home/lixq/toolchains/bashdb/share/man:/home/lixq/toolchains/cmake/man:/home/lixq/toolchains/curl/share/man:/home/lixq/toolchains/gcc/share/man:/home/lixq/toolchains/gdb/share/man:/home/lixq/toolchains/git/share/man:/home/lixq/toolchains/jdk/man:/home/lixq/toolchains/lcov/man:/home/lixq/toolchains/llvm/share/man:/home/lixq/toolchains/nvim-linux64/man:/home/lixq/toolchains/nvim-linux64/share/man:/home/lixq/toolchains/tcpflow/share/man:/home/lixq/toolchains/zsh/share/man:$MANPATH"
+export MANPATH="/home/lixq/toolchains/Anaconda3/man:/home/lixq/toolchains/Anaconda3/share/man:/home/lixq/toolchains/bashdb/share/man:/home/lixq/toolchains/Bear/share/man:/home/lixq/toolchains/cmake/man:/home/lixq/toolchains/curl/share/man:/home/lixq/toolchains/gcc/share/man:/home/lixq/toolchains/gdb/share/man:/home/lixq/toolchains/git/share/man:/home/lixq/toolchains/jdk/man:/home/lixq/toolchains/lcov/man:/home/lixq/toolchains/llvm/share/man:/home/lixq/toolchains/nvim-linux64/man:/home/lixq/toolchains/nvim-linux64/share/man:/home/lixq/toolchains/rtags/share/man:/home/lixq/toolchains/tcpflow/share/man:/home/lixq/toolchains/zsh/share/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
