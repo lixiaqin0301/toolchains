@@ -61,5 +61,6 @@ name = "lang#go"
 name = "lang#lua"
 
 [[custom_plugins]]
-    repo = "github/copilot.vim.git"
-    merged = false
+name = "copilot"
+repo = "github/copilot.vim.git"
+merged = false
