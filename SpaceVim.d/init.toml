@@ -63,7 +63,3 @@ name = "lang#lua"
 [[custom_plugins]]
     repo = "github/copilot.vim.git"
     merged = false
-
-[[custom_plugins]]
-    repo = "marxin/neo-rtags"
-    merged = false
