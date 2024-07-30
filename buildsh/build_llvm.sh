@@ -14,6 +14,10 @@ if [[ ! -f /home/lixq/35share-rd/src/clang-${ver}.src.tar.xz ]]; then
     echo "wget https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LLVM%20${ver}/clang-${ver}.src.tar.xz"
     need_exit=yes
 fi
+if [[ ! -f /home/lixq/35share-rd/src/lldb-${ver}.src.tar.xz ]]; then
+    echo "wget https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LLVM%20${ver}/lldb-${ver}.src.tar.xz"
+    need_exit=yes
+fi
 if [[ ! -f  /home/lixq/35share-rd/src/cmake-${ver}.src.tar.xz ]]; then
     echo "wget https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LLVM%20${ver}/cmake-${ver}.src.tar.xz"
     need_exit=yes
@@ -42,14 +46,21 @@ rm -rf llvm-${ver}.src llvm
 tar -xf /home/lixq/35share-rd/src/llvm-${ver}.src.tar.xz
 mv llvm-${ver}.src llvm
 
-cd /home/lixq/src/llvm/tools || exit 1
+#cd /home/lixq/src/llvm/tools || exit 1
+cd /home/lixq/src || exit 1
 tar -xf /home/lixq/35share-rd/src/clang-${ver}.src.tar.xz
 mv clang-${ver}.src clang
+
+#cd /home/lixq/src/llvm/tools || exit 1
+cd /home/lixq/src || exit 1
+tar -xf /home/lixq/35share-rd/src/lldb-${ver}.src.tar.xz
+mv lldb-${ver}.src lldb
 
 mkdir /home/lixq/src/llvm/build
 cd /home/lixq/src/llvm/build || exit 1
 
-cmake -DCMAKE_BUILD_TYPE=MinSizeRel -DCMAKE_INSTALL_PREFIX=/home/lixq/toolchains/llvm-${ver} -DLLVM_TARGETS_TO_BUILD=X86 -DLLVM_BUILD_LLVM_DYLIB=1 -DLLVM_INCLUDE_BENCHMARKS=0 .. || exit 1
+#cmake -DCMAKE_BUILD_TYPE=MinSizeRel -DCMAKE_INSTALL_PREFIX=/home/lixq/toolchains/llvm-${ver} -DLLVM_TARGETS_TO_BUILD=X86 -DLLVM_BUILD_LLVM_DYLIB=1 -DLLVM_INCLUDE_BENCHMARKS=0 .. || exit 1
+cmake -DCMAKE_BUILD_TYPE=MinSizeRel -DCMAKE_INSTALL_PREFIX=/home/lixq/toolchains/llvm-${ver} -DLLVM_TARGETS_TO_BUILD=X86 -DLLVM_BUILD_LLVM_DYLIB=1 -DLLVM_INCLUDE_BENCHMARKS=0 -DLLVM_ENABLE_PROJECTS="clang;lldb" .. || exit 1
 make || exit 1
 rm -rf /home/lixq/toolchains/llvm-${ver}
 make install || exit 1
