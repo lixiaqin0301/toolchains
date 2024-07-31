@@ -26,6 +26,7 @@ rm -f nvim-linux64.tar.gz nvim-linux64.tar.gz.*
 for _ in {0..9}; do
     wget -c "https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz" && break
     rm -f nvim-linux64.tar.gz nvim-linux64.tar.gz.*
+    sleep 1
 done
 if [[ -f /home/lixq/src/nvim-linux64.tar.gz ]]; then
     cd "/home/lixq/toolchains" || exit 1
