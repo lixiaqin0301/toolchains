@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver=14.1.0
+ver=14.2.0
 
 gmp='gmp-6.2.1.tar.bz2'
 mpfr='mpfr-4.1.0.tar.bz2'

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver=2.39
+ver=2.40
 
 export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 . /opt/rh/devtoolset-11/enable

@@ -1,11 +1,11 @@
 #!/bin/bash
 
-ver=1.25.3.1
+ver=1.25.3.2
 
 export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 
 if [[ ! -f /home/lixq/35share-rd/src/openresty-${ver}.tar.gz ]]; then
-    echo "wget https://openresty.org/download/openresty-${ver}.tar.gz -O /home/lixq/35share-rd/src/openresty-${ver}.tar.gz"
+    echo "wget https://openresty.org/download/openresty-${ver}.tar.gz -O openresty-${ver}.tar.gz"
     exit 1
 fi
 
