@@ -15,6 +15,4 @@ rm -rf ngtcp2 ngtcp2.tar.xz
 git clone -b v1.2.0 https://github.com/ngtcp2/ngtcp2
 tar -cJf ngtcp2.tar.xz ngtcp2
 
-rm -rf curl curl.tar.xz
-git clone https://github.com/curl/curl
-tar -cJf curl.tar.xz curl
+wget https://github.com/curl/curl/releases/download/curl-8_9_1/curl-8.9.1.tar.xz

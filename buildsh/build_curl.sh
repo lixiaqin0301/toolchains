@@ -2,6 +2,8 @@
 
 # https://curl.se/docs/http3.html
 
+ver=8.9.1
+
 export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 . /opt/rh/devtoolset-11/enable
 
@@ -37,9 +39,9 @@ make || exit 1
 make install || exit 1
 
 cd /home/lixq/src || exit 1
-rm -rfv curl
-tar -xf /home/lixq/35share-rd/src/curl.tar.xz
-cd /home/lixq/src/curl || exit 1
+rm -rfv curl-${ver}
+tar -xf /home/lixq/35share-rd/src/curl-${ver}.tar.xz
+cd /home/lixq/src/curl-${ver} || exit 1
 autoreconf -fi || exit 1
 LDFLAGS="-Wl,-rpath,/home/lixq/toolchains/curl/libs/openssl/lib64" ./configure --prefix=/home/lixq/toolchains/curl --with-openssl=/home/lixq/toolchains/curl/libs/openssl --with-nghttp3=/home/lixq/toolchains/curl/libs/nghttp3 --with-ngtcp2=/home/lixq/toolchains/curl/libs/ngtcp2 || exit 1
 make || exit 1
