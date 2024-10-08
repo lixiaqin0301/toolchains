@@ -30,8 +30,8 @@ ln -sf /home/lixq/toolchains/vscode-server "$HOME/.vscode-server"
 /bin/rm -rfv "$HOME/.condarc"
 ln -sf /home/lixq/toolchains/condarc "$HOME/.condarc"
 
-/bin/rm -rfv /etc/profile.d/fcitx.sh
-ln -sf /home/lixq/toolchains/fcitx.sh /etc/profile.d
+/bin/rm -rfv /etc/profile.d/etc_profile_d.sh
+ln -sf /home/lixq/toolchains/etc_profile_d.sh /etc/profile.d/
 
 /bin/rm -rfv /etc/cron.d/vnc.conf
 ln -sf /home/lixq/toolchains/vnc.conf /etc/cron.d

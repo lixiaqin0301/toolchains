@@ -2,7 +2,7 @@
 
 # https://curl.se/docs/http3.html
 
-ver=8.9.1
+ver=8.10.1
 
 export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 . /opt/rh/devtoolset-11/enable

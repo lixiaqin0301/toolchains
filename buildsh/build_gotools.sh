@@ -10,7 +10,7 @@ go install -v github.com/cweill/gotests/gotests@v1.6.0
 go install -v github.com/fatih/gomodifytags@v1.16.0
 
 # https://repo.haplat.net/go/github.com/josharian/impl/@v/
-go install -v github.com/josharian/impl@v1.2.0
+go install -v github.com/josharian/impl@v1.3.0
 
 # https://repo.haplat.net/go/github.com/haya14busa/goplay/@v/
 go install -v github.com/haya14busa/goplay/cmd/goplay@v1.0.0

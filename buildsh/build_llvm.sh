@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver=18.1.8
+ver=19.1.1
 
 export PATH=/home/lixq/toolchains/cmake/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 . /opt/rh/devtoolset-11/enable
