@@ -7,5 +7,5 @@ func! config#before() abort
 endf
 
 func! config#after() abort
-    let g:python3_host_prog = '/home/lixq/toolchains/Anaconda3/bin/python3'
+    let g:python3_host_prog = '/home/lixq/toolchains/Miniforge3/bin/python3'
 endf

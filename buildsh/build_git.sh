@@ -11,18 +11,18 @@ if ! wget http://docbook.sourceforge.net/release/xsl/current/html/docbook.xsl -O
     echo 1
 fi
 
-export PATH=/home/lixq/toolchains/Anaconda3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
+export PATH=/home/lixq/toolchains/Miniforge3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 . /opt/rh/devtoolset-11/enable
-export CPATH="/home/lixq/toolchains/Anaconda3/include:$CPATH"
-export PKG_CONFIG_PATH="/home/lixq/toolchains/Anaconda3/lib/pkgconfig:$PKG_CONFIG_PATH"
-export LDFLAGS="-Wl,-rpath,/home/lixq/toolchains/Anaconda3/lib $LDFLAGS"
+export CPATH="/home/lixq/toolchains/Miniforge3/include:$CPATH"
+export PKG_CONFIG_PATH="/home/lixq/toolchains/Miniforge3/lib/pkgconfig:$PKG_CONFIG_PATH"
+export LDFLAGS="-Wl,-rpath,/home/lixq/toolchains/Miniforge3/lib $LDFLAGS"
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
 rm -rf git-${ver}
 tar -xvf /home/lixq/35share-rd/src/git-${ver}.tar.gz
 cd git-${ver} || exit 1
-sed -i 's;^\(GITLIBS = .*\);\1 /home/lixq/toolchains/Anaconda3/lib/libiconv.a;' Makefile
+sed -i 's;^\(GITLIBS = .*\);\1 /home/lixq/toolchains/Miniforge3/lib/libiconv.a;' Makefile
 make configure || exit 1
 ./configure --prefix=/home/lixq/toolchains/git-${ver} || exit 1
 make all doc || exit 1
