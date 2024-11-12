@@ -19,4 +19,4 @@ tar -cJf ngtcp2.tar.xz ngtcp2
 rm -rf ngtcp2
 
 wget https://github.com/nghttp2/nghttp2/releases/download/v1.64.0/nghttp2-1.64.0.tar.xz
-wget https://github.com/curl/curl/releases/download/curl-8_10_1/curl-8.10.1.tar.xz
+wget https://github.com/curl/curl/releases/download/curl-8_11_0/curl-8.11.0.tar.xz
