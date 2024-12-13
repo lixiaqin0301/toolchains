@@ -2,7 +2,7 @@
 
 # https://curl.se/docs/http3.html
 
-ver=8.11.0
+ver=8.11.1
 nghttp2ver=1.64.0
 
 export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
