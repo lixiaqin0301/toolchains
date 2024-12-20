@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver=19.1.5
+ver=19.1.6
 
 export PATH=/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/Miniforge3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 . /opt/rh/devtoolset-11/enable
