@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver=2.48.0
+ver=2.48.1
 
 if [[ ! -f /home/lixq/35share-rd/src/git-${ver}.tar.gz ]]; then
     echo "wget https://github.com/git/git/archive/refs/tags/v${ver}.tar.gz -O git-${ver}.tar.gz"

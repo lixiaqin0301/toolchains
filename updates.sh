@@ -22,16 +22,16 @@ sed -i 's/print("/ngx.log(ngx.ERR, "/' /home/lixq/toolchains/LuaPanda/Debugger/L
 
 [[ -d "/home/lixq/src" ]] || mkdir -p "/home/lixq/src"
 cd "/home/lixq/src" || exit 1
-rm -f nvim-linux64.tar.gz nvim-linux64.tar.gz.*
+rm -f nvim-linux-x86_64.tar.gz nvim-linux-x86_64.tar.gz.*
 for _ in {0..9}; do
-    wget -c "https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz" && break
-    rm -f nvim-linux64.tar.gz nvim-linux64.tar.gz.*
+    wget -c "https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_64.tar.gz" && break
+    rm -f nvim-linux-x86_64.tar.gz nvim-linux-x86_64.tar.gz.*
     sleep 1
 done
-if [[ -f /home/lixq/src/nvim-linux64.tar.gz ]]; then
+if [[ -f /home/lixq/src/nvim-linux-x86_64.tar.gz ]]; then
     cd "/home/lixq/toolchains" || exit 1
     rm -rf nvim-*
-    tar -xf /home/lixq/src/nvim-linux64.tar.gz
+    tar -xf /home/lixq/src/nvim-linux-x86_64.tar.gz
 fi
 
 sudo rm -rf /home/lixq/toolchains/github.com /tmp/t
