@@ -2,8 +2,10 @@
 
 # https://curl.se/docs/http3.html
 
-ver=8.11.1
+ver=8.12.1
 nghttp2ver=1.64.0
+nghttp3ver=1.8.0
+ngtcp2ver=1.11.0
 
 export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 . /opt/rh/devtoolset-11/enable
@@ -29,9 +31,9 @@ make || exit 1
 make install || exit 1
 
 cd /home/lixq/src || exit 1
-rm -rfv nghttp3
-tar -xf /home/lixq/35share-rd/src/nghttp3.tar.xz
-cd /home/lixq/src/nghttp3 || exit 1
+rm -rfv nghttp3-${nghttp3ver}
+tar -xf /home/lixq/35share-rd/src/nghttp3-${nghttp3ver}.tar.xz
+cd /home/lixq/src/nghttp3-${nghttp3ver} || exit 1
 autoreconf -fi || exit 1
 [[ -d /home/lixq/toolchains/curl/libs/nghttp3 ]] || mkdir -p /home/lixq/toolchains/curl/libs/nghttp3
 ./configure --prefix=/home/lixq/toolchains/curl/libs/nghttp3 --enable-lib-only || exit 1
@@ -39,9 +41,9 @@ make || exit 1
 make install || exit 1
 
 cd /home/lixq/src || exit 1
-rm -rfv ngtcp2
-tar -xf /home/lixq/35share-rd/src/ngtcp2.tar.xz
-cd /home/lixq/src/ngtcp2 || exit 1
+rm -rfv ngtcp2-${ngtcp2ver}
+tar -xf /home/lixq/35share-rd/src/ngtcp2-${ngtcp2ver}.tar.xz
+cd /home/lixq/src/ngtcp2-${ngtcp2ver} || exit 1
 autoreconf -fi || exit 1
 [[ -d /home/lixq/toolchains/curl/libs/ngtcp2 ]] || mkdir -p /home/lixq/toolchains/curl/libs/ngtcp2
 ./configure PKG_CONFIG_PATH=/home/lixq/toolchains/curl/libs/openssl/lib64/pkgconfig:/home/lixq/toolchains/curl/libs/nghttp3/lib/pkgconfig LDFLAGS="-Wl,-rpath,/home/lixq/toolchains/curl/libs/openssl/lib64" --prefix=/home/lixq/toolchains/curl/libs/ngtcp2 --enable-lib-only || exit 1
