@@ -16,7 +16,7 @@ go install -v github.com/josharian/impl@v1.4.0
 go install -v github.com/haya14busa/goplay/cmd/goplay@v1.0.0
 
 # https://repo.haplat.net/go/github.com/go-delve/delve/@v/
-go install -v github.com/go-delve/delve/cmd/dlv@v1.22.2-0.20240614213611-4b628b81cbef
+go install -v github.com/go-delve/delve/cmd/dlv@v1.23.0
 
 # https://repo.haplat.net/go/honnef.co/go/tools/@v/
 go install -v honnef.co/go/tools/cmd/staticcheck@v0.5.1
