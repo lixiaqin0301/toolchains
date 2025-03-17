@@ -36,4 +36,8 @@ export LIBRARY_PATH=/home/lixq/toolchains/llvm/lib
 export LD_LIBRARY_PATH=/home/lixq/toolchains/llvm/lib
 export LD_RUN_PATH=/home/lixq/toolchains/llvm/lib
 export LDFLAGS="-Wl,-rpath,/home/lixq/toolchains/llvm/lib:/home/lixq/toolchains/Miniforge3/lib"
-python3 install.py --clang-completer --system-libclang --go-completer --verbose
+if [[ -f /home/lixq/35share-rd/src/clangd-19.1.0-x86_64-unknown-linux-gnu.tar.bz2 ]]; then
+    mkdir -p /home/lixq/toolchains/github.com/Valloric/YouCompleteMe/third_party/ycmd/third_party/clangd/cache/
+    cp /home/lixq/35share-rd/src/clangd-19.1.0-x86_64-unknown-linux-gnu.tar.bz2 /home/lixq/toolchains/github.com/Valloric/YouCompleteMe/third_party/ycmd/third_party/clangd/cache/
+fi
+python3 install.py --clangd-completer --clang-completer --system-libclang --go-completer --verbose

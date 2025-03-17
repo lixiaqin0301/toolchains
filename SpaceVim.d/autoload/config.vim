@@ -4,6 +4,8 @@ func! config#before() abort
     let g:ycm_confirm_extra_conf = 0
     let g:ycm_global_ycm_extra_conf = '/home/lixq/toolchains/SpaceVim.d/.ycm_extra_conf.py'
     let g:ycm_semantic_triggers = { 'c,cpp,python,sh': ['re!\w{3}'] }
+    let g:ycm_clangd_uses_ycmd_caching = 0
+    let g:ycm_clangd_binary_path = exepath("clangd")
 endf
 
 func! config#after() abort

@@ -23,11 +23,15 @@ sed -i 's/print("/ngx.log(ngx.ERR, "/' /home/lixq/toolchains/LuaPanda/Debugger/L
 [[ -d "/home/lixq/src" ]] || mkdir -p "/home/lixq/src"
 cd "/home/lixq/src" || exit 1
 rm -f nvim-linux-x86_64.tar.gz nvim-linux-x86_64.tar.gz.*
-for _ in {0..9}; do
-    wget -c "https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_64.tar.gz" && break
-    rm -f nvim-linux-x86_64.tar.gz nvim-linux-x86_64.tar.gz.*
-    sleep 1
-done
+if [[ -f /home/lixq/35share-rd/src/nvim-linux-x86_64.tar.gz ]]; then
+    cp /home/lixq/35share-rd/src/nvim-linux-x86_64.tar.gz .
+else
+    for _ in {0..9}; do
+        wget -c "https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_64.tar.gz" && break
+        rm -f nvim-linux-x86_64.tar.gz nvim-linux-x86_64.tar.gz.*
+        sleep 1
+    done
+fi
 if [[ -f /home/lixq/src/nvim-linux-x86_64.tar.gz ]]; then
     cd "/home/lixq/toolchains" || exit 1
     rm -rf nvim-*
@@ -42,8 +46,12 @@ cd /home/lixq/toolchains/github.com/Valloric/YouCompleteMe/ || exit 1
 for _ in {0..9}; do
     git submodule update --init --recursive && break
 done
+if [[ -f /home/lixq/35share-rd/src/clangd-19.1.0-x86_64-unknown-linux-gnu.tar.bz2 ]]; then
+    mkdir -p /home/lixq/toolchains/github.com/Valloric/YouCompleteMe/third_party/ycmd/third_party/clangd/cache/
+    cp /home/lixq/35share-rd/src/clangd-19.1.0-x86_64-unknown-linux-gnu.tar.bz2 /home/lixq/toolchains/github.com/Valloric/YouCompleteMe/third_party/ycmd/third_party/clangd/cache/
+fi
 for _ in {0..9}; do
-    python3 install.py --clang-completer --system-libclang --go-completer --verbose && break
+    python3 install.py --clangd-completer --clang-completer --system-libclang --go-completer --verbose && break
 done
 
 if [[ -d /mnt/d/ ]]; then
