@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver=20.1.0
+ver=20.1.1
 
 export PATH=/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/Miniforge3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 . /opt/rh/devtoolset-11/enable
@@ -30,6 +30,10 @@ if [[ ! -f /home/lixq/35share-rd/src/third-party-${ver}.src.tar.xz ]]; then
     echo "wget https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LLVM%20${ver}/third-party-${ver}.src.tar.xz"
     need_exit=yes
 fi
+if [[ ! -f /home/lixq/35share-rd/src/lldb-${ver}.src.tar.xz ]]; then
+    echo "wget https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LLVM%20${ver}/lldb-${ver}.src.tar.xz"
+    need_exit=yes
+fi
 if [[ "$need_exit" == yes ]]; then
     exit 1
 fi
@@ -50,11 +54,13 @@ tar -xf /home/lixq/35share-rd/src/cmake-${ver}.src.tar.xz
 mv cmake-${ver}.src cmake
 tar -xf /home/lixq/35share-rd/src/third-party-${ver}.src.tar.xz
 mv third-party-${ver}.src third-party
+tar -xf /home/lixq/35share-rd/src/lldb-${ver}.src.tar.xz
+mv lldb-${ver}.src lldb
 
 mkdir /home/lixq/src/llvm-project/build
 cd /home/lixq/src/llvm-project/build || exit 1
 
-cmake -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_PROJECTS="clang" -DLLVM_ENABLE_RUNTIMES="compiler-rt" -DCMAKE_INSTALL_PREFIX=/home/lixq/toolchains/llvm-${ver} -G "Unix Makefiles" ../llvm
+cmake -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_PROJECTS="clang;lldb" -DLLVM_ENABLE_RUNTIMES="compiler-rt" -DCMAKE_INSTALL_PREFIX=/home/lixq/toolchains/llvm-${ver} -G "Unix Makefiles" ../llvm
 make || exit 1
 rm -rf /home/lixq/toolchains/llvm-${ver}
 make install || exit 1

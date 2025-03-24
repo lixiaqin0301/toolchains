@@ -3,7 +3,7 @@
 export PATH=/home/lixq/toolchains/cmake/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 . /opt/rh/devtoolset-11/enable
 
-ver=3.1.5
+ver=3.1.6
 # third_party/*/CMakeLists.txt
 fmtver=11.0.2
 googletestver=1.14.0
