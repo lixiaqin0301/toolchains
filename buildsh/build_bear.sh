@@ -3,13 +3,13 @@
 export PATH=/home/lixq/toolchains/cmake/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 . /opt/rh/devtoolset-11/enable
 
-ver=3.1.4
+ver=3.1.5
 # third_party/*/CMakeLists.txt
-fmtver=10.1.0
+fmtver=11.0.2
 googletestver=1.14.0
 grpcver=1.49.2
-nlohmannjsonver=3.11.2
-spdlogver=1.12.0
+nlohmannjsonver=3.11.3
+spdlogver=1.14.1
 
 need_exit=no
 if [[ ! -f /home/lixq/35share-rd/src/Bear-${ver}.tar.gz ]]; then
