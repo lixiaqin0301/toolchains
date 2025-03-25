@@ -2,7 +2,7 @@
 
 ver=20.1.1
 
-export PATH=/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/Miniforge3/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
+export PATH=/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/Miniforge3/bin:/home/lixq/toolchains/swig/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 . /opt/rh/devtoolset-11/enable
 
 need_exit=no
@@ -60,7 +60,15 @@ mv lldb-${ver}.src lldb
 mkdir /home/lixq/src/llvm-project/build
 cd /home/lixq/src/llvm-project/build || exit 1
 
-cmake -DCMAKE_BUILD_TYPE=Release -DLLVM_ENABLE_PROJECTS="clang;lldb" -DLLVM_ENABLE_RUNTIMES="compiler-rt" -DCMAKE_INSTALL_PREFIX=/home/lixq/toolchains/llvm-${ver} -G "Unix Makefiles" ../llvm
+cmake -DCMAKE_BUILD_TYPE=Release \
+    -DLLVM_ENABLE_PROJECTS="clang;lldb" \
+    -DLLDB_ENABLE_LIBEDIT=1 \
+    -DLLDB_ENABLE_CURSES=1 \
+    -DLLDB_ENABLE_LZMA=1 \
+    -DLLDB_ENABLE_LIBXML2=1 \
+    -DLLDB_ENABLE_PYTHON=1 \
+    -DLLVM_ENABLE_RUNTIMES="compiler-rt" \
+    -DCMAKE_INSTALL_PREFIX=/home/lixq/toolchains/llvm-${ver} -G "Unix Makefiles" ../llvm
 make || exit 1
 rm -rf /home/lixq/toolchains/llvm-${ver}
 make install || exit 1
