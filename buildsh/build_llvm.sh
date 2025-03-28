@@ -4,7 +4,24 @@ ver=20.1.1
 
 export PATH=/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/Miniforge3/bin:/home/lixq/toolchains/swig/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 . /opt/rh/devtoolset-11/enable
+export CPATH="/home/lixq/toolchains/Miniforge3/include:$CPATH"
 export PKG_CONFIG_PATH="/home/lixq/toolchains/Miniforge3/lib/pkgconfig:$PKG_CONFIG_PATH"
+export LDFLAGS="-Wl,-rpath,/home/lixq/toolchains/Miniforge3/lib $LDFLAGS"
+
+function recover() {
+    for f in /opt/rh/devtoolset-11/root/usr/lib/gcc/x86_64-redhat-linux/11/libstdc++.a \
+        /opt/rh/devtoolset-11/root/usr/lib/gcc/x86_64-redhat-linux/11/libstdc++.so; do
+        [[ -f ${f}.bak ]] && mv ${f}.bak ${f}
+    done
+}
+trap recover EXIT
+mv /opt/rh/devtoolset-11/root/usr/lib/gcc/x86_64-redhat-linux/11/libstdc++.a /opt/rh/devtoolset-11/root/usr/lib/gcc/x86_64-redhat-linux/11/libstdc++.a.bak
+ln -sf /home/lixq/toolchains/gcc/lib64/libstdc++.a /opt/rh/devtoolset-11/root/usr/lib/gcc/x86_64-redhat-linux/11/libstdc++.a
+rm -f /usr/lib64/libstdc++.so /usr/lib/libstdc++.so
+ln -sf /home/lixq/toolchains/Miniforge3/lib/libstdc++.so /usr/lib64/libstdc++.so
+ln -sf /home/lixq/toolchains/Miniforge3/lib/libstdc++.so /usr/lib/libstdc++.so
+cp /opt/rh/devtoolset-11/root/usr/lib/gcc/x86_64-redhat-linux/11/libstdc++.so /opt/rh/devtoolset-11/root/usr/lib/gcc/x86_64-redhat-linux/11/libstdc++.so.bak
+sed -i 's/libstdc++.so.6/libstdc++.so/' /opt/rh/devtoolset-11/root/usr/lib/gcc/x86_64-redhat-linux/11/libstdc++.so
 
 need_exit=no
 if [[ ! -f /home/lixq/35share-rd/src/llvm-${ver}.src.tar.xz ]]; then
@@ -61,10 +78,7 @@ mv lldb-${ver}.src lldb
 mkdir /home/lixq/src/llvm-project/build
 cd /home/lixq/src/llvm-project/build || exit 1
 
-#-DCLANG_DEFAULT_CXX_STDLIB="/home/lixq/toolchains/Miniforge3/lib/libstdc++.so"
 cmake -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INCLUDE_PATH="/home/lixq/toolchains/Miniforge3/include" \
-    -DCMAKE_LIBRARY_PATH="/home/lixq/toolchains/Miniforge3/lib" \
     -DLLVM_ENABLE_PROJECTS="clang;lldb" \
     -DLLDB_ENABLE_LIBEDIT=1 \
     -DLLDB_ENABLE_CURSES=1 \
