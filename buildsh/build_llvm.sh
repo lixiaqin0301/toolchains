@@ -2,11 +2,14 @@
 
 ver=20.1.1
 
-export PATH=/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/Miniforge3/bin:/home/lixq/toolchains/swig/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
+export PATH=/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/Miniforge3/bin:/home/lixq/toolchains/lua/bin:/home/lixq/toolchains/swig/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 . /opt/rh/devtoolset-11/enable
-export CPATH="/home/lixq/toolchains/Miniforge3/include:$CPATH"
-export PKG_CONFIG_PATH="/home/lixq/toolchains/Miniforge3/lib/pkgconfig:$PKG_CONFIG_PATH"
-export LDFLAGS="-Wl,-rpath,/home/lixq/toolchains/Miniforge3/lib $LDFLAGS"
+
+export PKG_CONFIG_PATH="/home/lixq/toolchains/Miniforge3/lib/pkgconfig"
+export CPATH="/home/lixq/toolchains/Miniforge3/include"
+export LIBRARY_PATH="/home/lixq/toolchains/Miniforge3/lib"
+export LD_RUN_PATH="/home/lixq/toolchains/Miniforge3/lib"
+export LD_LIBRARY_PATH="/home/lixq/toolchains/Miniforge3/lib"
 
 function recover() {
     for f in /opt/rh/devtoolset-11/root/usr/lib/gcc/x86_64-redhat-linux/11/libstdc++.a \
@@ -52,6 +55,10 @@ if [[ ! -f /home/lixq/35share-rd/src/lldb-${ver}.src.tar.xz ]]; then
     echo "wget https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LLVM%20${ver}/lldb-${ver}.src.tar.xz"
     need_exit=yes
 fi
+if [[ ! -f /home/lixq/35share-rd/src/clang-tools-extra-${ver}.src.tar.xz ]]; then
+    echo "wget https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LLVM%20${ver}/clang-tools-extra-${ver}.src.tar.xz"
+    need_exit=yes
+fi
 if [[ "$need_exit" == yes ]]; then
     exit 1
 fi
@@ -64,14 +71,16 @@ tar -xf /home/lixq/35share-rd/src/llvm-${ver}.src.tar.xz
 mv llvm-${ver}.src llvm
 tar -xf /home/lixq/35share-rd/src/clang-${ver}.src.tar.xz
 mv clang-${ver}.src clang
-tar -xf /home/lixq/35share-rd/src/compiler-rt-${ver}.src.tar.xz
-mv compiler-rt-${ver}.src compiler-rt
-tar -xf /home/lixq/35share-rd/src/runtimes-${ver}.src.tar.xz
-mv runtimes-${ver}.src runtimes
 tar -xf /home/lixq/35share-rd/src/cmake-${ver}.src.tar.xz
 mv cmake-${ver}.src cmake
 tar -xf /home/lixq/35share-rd/src/third-party-${ver}.src.tar.xz
 mv third-party-${ver}.src third-party
+tar -xf /home/lixq/35share-rd/src/compiler-rt-${ver}.src.tar.xz
+mv compiler-rt-${ver}.src compiler-rt
+tar -xf /home/lixq/35share-rd/src/runtimes-${ver}.src.tar.xz
+mv runtimes-${ver}.src runtimes
+tar -xf /home/lixq/35share-rd/src/clang-tools-extra-${ver}.src.tar.xz
+mv clang-tools-extra-${ver}.src clang-tools-extra
 tar -xf /home/lixq/35share-rd/src/lldb-${ver}.src.tar.xz
 mv lldb-${ver}.src lldb
 
@@ -79,12 +88,15 @@ mkdir /home/lixq/src/llvm-project/build
 cd /home/lixq/src/llvm-project/build || exit 1
 
 cmake -DCMAKE_BUILD_TYPE=Release \
-    -DLLVM_ENABLE_PROJECTS="clang;lldb" \
+    -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lldb" \
     -DLLDB_ENABLE_LIBEDIT=1 \
     -DLLDB_ENABLE_CURSES=1 \
     -DLLDB_ENABLE_LZMA=1 \
     -DLLDB_ENABLE_LIBXML2=1 \
     -DLLDB_ENABLE_PYTHON=1 \
+    -DLLDB_ENABLE_LUA=1 \
+    -DLUA_INCLUDE_DIR="/home/lixq/toolchains/lua/include" \
+    -DLUA_LIBRARIES="/home/lixq/toolchains/lua/lib/liblua.a" \
     -DLLVM_ENABLE_RUNTIMES="compiler-rt" \
     -DCMAKE_INSTALL_PREFIX=/home/lixq/toolchains/llvm-${ver} -G "Unix Makefiles" ../llvm
 make || exit 1
