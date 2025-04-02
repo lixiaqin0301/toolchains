@@ -10,8 +10,10 @@ export CPATH="/home/lixq/toolchains/Miniforge3/include"
 export LIBRARY_PATH="/home/lixq/toolchains/Miniforge3/lib"
 export LD_RUN_PATH="/home/lixq/toolchains/Miniforge3/lib"
 export LD_LIBRARY_PATH="/home/lixq/toolchains/Miniforge3/lib"
+export LDFLAGS="-Wl,-rpath,/home/lixq/toolchains/Miniforge3/lib"
 
 function recover() {
+    rm -f /usr/lib64/libstdc++.so /usr/lib/libstdc++.so
     for f in /opt/rh/devtoolset-11/root/usr/lib/gcc/x86_64-redhat-linux/11/libstdc++.a \
         /opt/rh/devtoolset-11/root/usr/lib/gcc/x86_64-redhat-linux/11/libstdc++.so; do
         [[ -f ${f}.bak ]] && mv ${f}.bak ${f}
