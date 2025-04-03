@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver=20.1.1
+ver=20.1.2
 
 export PATH=/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/Miniforge3/bin:/home/lixq/toolchains/lua/bin:/home/lixq/toolchains/swig/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 . /opt/rh/devtoolset-11/enable
@@ -37,20 +37,20 @@ if [[ ! -f /home/lixq/35share-rd/src/clang-${ver}.src.tar.xz ]]; then
     echo "wget https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LLVM%20${ver}/clang-${ver}.src.tar.xz"
     need_exit=yes
 fi
-if [[ ! -f /home/lixq/35share-rd/src/compiler-rt-${ver}.src.tar.xz ]]; then
-    echo "wget https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LLVM%20${ver}/compiler-rt-${ver}.src.tar.xz"
-    need_exit=yes
-fi
-if [[ ! -f /home/lixq/35share-rd/src/runtimes-${ver}.src.tar.xz ]]; then
-    echo "wget https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LLVM%20${ver}/runtimes-${ver}.src.tar.xz"
-    need_exit=yes
-fi
 if [[ ! -f  /home/lixq/35share-rd/src/cmake-${ver}.src.tar.xz ]]; then
     echo "wget https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LLVM%20${ver}/cmake-${ver}.src.tar.xz"
     need_exit=yes
 fi
 if [[ ! -f /home/lixq/35share-rd/src/third-party-${ver}.src.tar.xz ]]; then
     echo "wget https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LLVM%20${ver}/third-party-${ver}.src.tar.xz"
+    need_exit=yes
+fi
+if [[ ! -f /home/lixq/35share-rd/src/compiler-rt-${ver}.src.tar.xz ]]; then
+    echo "wget https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LLVM%20${ver}/compiler-rt-${ver}.src.tar.xz"
+    need_exit=yes
+fi
+if [[ ! -f /home/lixq/35share-rd/src/runtimes-${ver}.src.tar.xz ]]; then
+    echo "wget https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LLVM%20${ver}/runtimes-${ver}.src.tar.xz"
     need_exit=yes
 fi
 if [[ ! -f /home/lixq/35share-rd/src/lldb-${ver}.src.tar.xz ]]; then
