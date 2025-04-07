@@ -2,8 +2,8 @@
 
 # https://curl.se/docs/http3.html
 
-ver=8.12.1
-nghttp2ver=1.64.0
+ver=8.13.0
+nghttp2ver=1.65.0
 nghttp3ver=1.8.0
 ngtcp2ver=1.11.0
 
