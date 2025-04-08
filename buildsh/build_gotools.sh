@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # https://repo.haplat.net/go/golang.org/x/tools/gopls/@v/
-go install -v golang.org/x/tools/gopls@v0.15.3
+go install -v golang.org/x/tools/gopls@v0.18.1
 
 # https://repo.haplat.net/go/github.com/cweill/gotests/@v/
 go install -v github.com/cweill/gotests/gotests@v1.6.0
@@ -16,7 +16,7 @@ go install -v github.com/josharian/impl@v1.4.0
 go install -v github.com/haya14busa/goplay/cmd/goplay@v1.0.0
 
 # https://repo.haplat.net/go/github.com/go-delve/delve/@v/
-go install -v github.com/go-delve/delve/cmd/dlv@v1.23.0
+go install -v github.com/go-delve/delve/cmd/dlv@v1.24.2-0.20250317174742-6127756e3525
 
 # https://repo.haplat.net/go/honnef.co/go/tools/@v/
 go install -v honnef.co/go/tools/cmd/staticcheck@v0.5.1
