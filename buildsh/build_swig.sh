@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver=4.3.0
+ver=4.3.1
 
 export PATH=/home/lixq/toolchains/bison/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 . /opt/rh/devtoolset-11/enable
