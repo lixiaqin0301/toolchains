@@ -16,19 +16,16 @@ ln -sf /home/lixq/toolchains/github.com "$HOME/.cache/vimfiles/repos/github.com"
 ln -sf /home/lixq/toolchains/SpaceVim "$HOME/.config/nvim"
 
 /bin/rm -rfv "$HOME/.config/gtk-3.0"
-ln -sf /home/lixq/toolchains/gtk-3.0 "$HOME/.config/gtk-3.0"
+ln -sf /home/lixq/toolchains/data/gtk-3.0 "$HOME/.config/gtk-3.0"
 
 /bin/rm -rfv "$HOME/.SpaceVim.d"
 ln -sf /home/lixq/toolchains/SpaceVim.d "$HOME/.SpaceVim.d"
 
 /bin/rm -rfv "$HOME/.zshrc"
-ln -sf /home/lixq/toolchains/zshrc "$HOME/.zshrc"
-
-/bin/rm -rfv "$HOME/.vscode-server"
-ln -sf /home/lixq/toolchains/vscode-server "$HOME/.vscode-server"
+ln -sf /home/lixq/toolchains/data/zshrc "$HOME/.zshrc"
 
 /bin/rm -rfv /etc/profile.d/etc_profile_d.sh
-ln -sf /home/lixq/toolchains/etc_profile_d.sh /etc/profile.d/
+ln -sf /home/lixq/toolchains/data/etc_profile_d.sh /etc/profile.d/
 
 /bin/rm -rfv /etc/cron.d/vnc.conf
-ln -sf /home/lixq/toolchains/vnc.conf /etc/cron.d
+ln -sf /home/lixq/toolchains/data/vnc.conf /etc/cron.d
