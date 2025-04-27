@@ -1,12 +1,14 @@
 #!/bin/bash
 
-ver=14.2.0
+ver=15.1.0
 
 gmp='gmp-6.2.1.tar.bz2'
 mpfr='mpfr-4.1.0.tar.bz2'
 mpc='mpc-1.2.1.tar.gz'
 isl='isl-0.24.tar.bz2'
 gettext='gettext-0.22.tar.gz'
+
+. /opt/rh/devtoolset-11/enable
 
 [[ -d /home/lixq/src ]] || mkdir -p /home/lixq/src
 
@@ -48,6 +50,7 @@ cp /home/lixq/35share-rd/src/${gmp} .
 cp /home/lixq/35share-rd/src/${mpfr} .
 cp /home/lixq/35share-rd/src/${mpc} .
 cp /home/lixq/35share-rd/src/${isl} .
+cp /home/lixq/35share-rd/src/${gettext} .
 ./contrib/download_prerequisites
 mkdir -p /home/lixq/src/gcc-${ver}/build
 cd /home/lixq/src/gcc-${ver}/build || exit 1
