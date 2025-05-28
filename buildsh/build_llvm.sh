@@ -61,6 +61,18 @@ if [[ ! -f /home/lixq/35share-rd/src/clang-tools-extra-${ver}.src.tar.xz ]]; the
     echo "wget https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LLVM%20${ver}/clang-tools-extra-${ver}.src.tar.xz"
     need_exit=yes
 fi
+if [[ ! -f /home/lixq/35share-rd/src/libcxx-${ver}.src.tar.xz ]]; then
+    echo "wget https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LLVM%20${ver}/libcxx-${ver}.src.tar.xz"
+    need_exit=yes
+fi
+if [[ ! -f /home/lixq/35share-rd/src/libcxxabi-${ver}.src.tar.xz ]]; then
+    echo "wget https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LLVM%20${ver}/libcxxabi-${ver}.src.tar.xz"
+    need_exit=yes
+fi
+if [[ ! -f /home/lixq/35share-rd/src/libunwind-${ver}.src.tar.xz ]]; then
+    echo "wget https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LLVM%20${ver}/libunwind-${ver}.src.tar.xz"
+    need_exit=yes
+fi
 if [[ "$need_exit" == yes ]]; then
     exit 1
 fi
@@ -85,6 +97,12 @@ tar -xf /home/lixq/35share-rd/src/clang-tools-extra-${ver}.src.tar.xz
 mv clang-tools-extra-${ver}.src clang-tools-extra
 tar -xf /home/lixq/35share-rd/src/lldb-${ver}.src.tar.xz
 mv lldb-${ver}.src lldb
+tar -xf /home/lixq/35share-rd/src/libcxx-${ver}.src.tar.xz
+mv libcxx-${ver}.src libcxx
+tar -xf /home/lixq/35share-rd/src/libcxxabi-${ver}.src.tar.xz
+mv libcxxabi-${ver}.src libcxxabi
+tar -xf /home/lixq/35share-rd/src/libunwind-${ver}.src.tar.xz
+mv libunwind-${ver}.src libunwind
 
 mkdir /home/lixq/src/llvm-project/build
 cd /home/lixq/src/llvm-project/build || exit 1
@@ -99,7 +117,7 @@ cmake -DCMAKE_BUILD_TYPE=Release \
     -DLLDB_ENABLE_LUA=1 \
     -DLUA_INCLUDE_DIR="/home/lixq/toolchains/lua/include" \
     -DLUA_LIBRARIES="/home/lixq/toolchains/lua/lib/liblua.a" \
-    -DLLVM_ENABLE_RUNTIMES="compiler-rt" \
+    -DLLVM_ENABLE_RUNTIMES="compiler-rt;libcxx;libcxxabi;libunwind" \
     -DCMAKE_INSTALL_PREFIX=/home/lixq/toolchains/llvm-${ver} -G "Unix Makefiles" ../llvm
 make || exit 1
 rm -rf /home/lixq/toolchains/llvm-${ver}
