@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=/home/lixq/toolchains/bin:/home/lixq/toolchains/Miniforge3/bin:/home/lixq/toolchains/bashdb/bin:/home/lixq/toolchains/Bear/bin:/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/curl/bin:/home/lixq/toolchains/gdb/bin:/home/lixq/toolchains/git/bin:/home/lixq/toolchains/golang/bin:/home/lixq/toolchains/jdk/bin:/home/lixq/toolchains/lcov/bin:/home/lixq/toolchains/llvm/bin:/home/lixq/toolchains/nvim-linux-x86_64/bin:/home/lixq/toolchains/shellcheck:/home/lixq/toolchains/tcpflow/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin
+export PATH=/home/lixq/toolchains/bin:/home/lixq/toolchains/Miniforge3/bin:/home/lixq/toolchains/bashdb/bin:/home/lixq/toolchains/binutils/bin:/home/lixq/toolchains/Bear/bin:/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/curl/bin:/home/lixq/toolchains/gdb/bin:/home/lixq/toolchains/git/bin:/home/lixq/toolchains/golang/bin:/home/lixq/toolchains/jdk/bin:/home/lixq/toolchains/lcov/bin:/home/lixq/toolchains/llvm/bin:/home/lixq/toolchains/nvim-linux-x86_64/bin:/home/lixq/toolchains/shellcheck:/home/lixq/toolchains/tcpflow/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin
 
 # Path to your Oh My Zsh installation.
 export ZSH="/home/lixq/toolchains/oh-my-zsh"
