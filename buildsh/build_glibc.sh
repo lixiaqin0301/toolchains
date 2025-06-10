@@ -12,7 +12,7 @@ fi
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
 rm -rf glibc-${ver}
-tar -xvf /home/lixq/35share-rd/src/glibc-${ver}.tar.xz
+tar -xf /home/lixq/35share-rd/src/glibc-${ver}.tar.xz
 mkdir glibc-${ver}/build
 cd glibc-${ver}/build || exit 1
 ../configure --prefix=/home/lixq/toolchains/glibc-${ver} || exit 1
