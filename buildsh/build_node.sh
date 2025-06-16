@@ -21,7 +21,7 @@ cd /home/lixq/src || exit 1
 rm -rf node-${ver}
 tar -xf /home/lixq/35share-rd/src/node-${ver}.tar.gz
 cd node-${ver} || exit 1
-./configure --prefix=/home/lixq/toolchains/node-${ver} || exit 1
+./configure --prefix=/home/lixq/toolchains/node-${ver} --shared || exit 1
 make -v || exit 1
 rm -rf /home/lixq/toolchains/node-${ver}
 make install || exit 1
@@ -29,4 +29,6 @@ if [[ -d /home/lixq/toolchains/node-${ver} ]]; then
     cd /home/lixq/toolchains || exit 1
     rm -f node
     ln -s node-${ver} node
+    cd /home/lixq/toolchains/node/lib || exit 1
+    ln -s libnode.so.* libnode.so
 fi
