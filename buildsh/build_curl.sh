@@ -41,7 +41,8 @@ export CC="/home/lixq/toolchains/gcc/bin/gcc"
 export CXX="/home/lixq/toolchains/gcc/bin/g++"
 export CCAS="/home/lixq/toolchains/gcc/bin/gcc"
 export CPP="/home/lixq/toolchains/gcc/bin/cpp"
-export CPPFLAGS="-I/home/lixq/toolchains/binutils/include -I/home/lixq/toolchains/curl/libs/openssl/include -I/home/lixq/toolchains/curl/libs/nghttp3/include -I/home/lixq/toolchains/curl/libs/ngtcp2/include -I/home/lixq/toolchains/curl/libs/nghttp2/include -I/home/lixq/toolchains/curl/include"
+export CFLAGS="-I/home/lixq/toolchains/binutils/include -I/home/lixq/toolchains/curl/libs/openssl/include -I/home/lixq/toolchains/curl/libs/nghttp3/include -I/home/lixq/toolchains/curl/libs/ngtcp2/include -I/home/lixq/toolchains/curl/libs/nghttp2/include -I/home/lixq/toolchains/curl/include"
+export CXXFLAGS="-I/home/lixq/toolchains/binutils/include -I/home/lixq/toolchains/curl/libs/openssl/include -I/home/lixq/toolchains/curl/libs/nghttp3/include -I/home/lixq/toolchains/curl/libs/ngtcp2/include -I/home/lixq/toolchains/curl/libs/nghttp2/include -I/home/lixq/toolchains/curl/include"
 export LDFLAGS="-L/home/lixq/toolchains/gcc/lib64 -L/home/lixq/toolchains/binutils/lib -L/home/lixq/toolchains/curl/libs/openssl/lib -L/home/lixq/toolchains/curl/libs/nghttp3/lib -L/home/lixq/toolchains/curl/libs/ngtcp2/lib -L/home/lixq/toolchains/curl/libs/nghttp2/lib -L/home/lixq/toolchains/curl/lib -Wl,-rpath=/home/lixq/toolchains/gcc/lib64:/home/lixq/toolchains/binutils/lib:/home/lixq/toolchains/curl/libs/openssl/lib:/home/lixq/toolchains/curl/libs/nghttp3/lib:/home/lixq/toolchains/curl/libs/ngtcp2/lib:/home/lixq/toolchains/curl/libs/nghttp2/lib:/home/lixq/toolchains/curl/lib"
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
