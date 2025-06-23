@@ -2,7 +2,7 @@
 
 ver=v24.2.0
 
-export PATH="/home/lixq/toolchains/glibc/usr/sbin:/home/lixq/toolchains/glibc/usr/bin:/home/lixq/toolchains/glibc/sbin:/home/lixq/toolchains/gcc/bin:/home/lixq/toolchains/binutils/bin:/home/lixq/toolchains/Miniforge3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/home/lixq/toolchains/Bear/bin"
+export PATH="/home/lixq/toolchains/glibc/usr/sbin:/home/lixq/toolchains/glibc/usr/bin:/home/lixq/toolchains/glibc/sbin:/home/lixq/toolchains/gcc/bin:/home/lixq/toolchains/binutils/bin:/home/lixq/toolchains/Miniforge3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
 export PKG_CONFIG_PATH="/home/lixq/toolchains/Miniforge3/lib/pkgconfig"
 export CC="/home/lixq/toolchains/gcc/bin/gcc"
 export CXX="/home/lixq/toolchains/gcc/bin/g++"
@@ -16,13 +16,13 @@ if [[ ! -f /home/lixq/35share-rd/src/node-${ver}.tar.gz ]]; then
     echo "wget https://nodejs.org/dist/${ver}/node-${ver}.tar.gz"
     exit 1
 fi
-[[ -d /home/lixq/workspace-vscode ]] || mkdir /home/lixq/workspace-vscode
-cd /home/lixq/workspace-vscode || exit 1
+[[ -d /home/lixq/workspace-src ]] || mkdir /home/lixq/workspace-src
+cd /home/lixq/workspace-src || exit 1
 rm -rf node-${ver}
 tar -xf /home/lixq/35share-rd/src/node-${ver}.tar.gz
 cd node-${ver} || exit 1
 ./configure --prefix=/home/lixq/toolchains/node-${ver} --shared || exit 1
-bear -- make || exit 1
+make || exit 1
 rm -rf /home/lixq/toolchains/node-${ver}
 make install || exit 1
 if [[ -d /home/lixq/toolchains/node-${ver} ]]; then
