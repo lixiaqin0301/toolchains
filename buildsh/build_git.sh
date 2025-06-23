@@ -7,15 +7,50 @@ if [[ ! -f /home/lixq/35share-rd/src/git-${ver}.tar.gz ]]; then
     exit 1
 fi
 
-export PATH="/home/lixq/toolchains/glibc/usr/sbin:/home/lixq/toolchains/glibc/usr/bin:/home/lixq/toolchains/glibc/sbin:/home/lixq/toolchains/gcc/bin:/home/lixq/toolchains/binutils/bin:/home/lixq/toolchains/Miniforge3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
-export PKG_CONFIG_PATH="/home/lixq/toolchains/Miniforge3/lib/pkgconfig:/home/lixq/toolchains/zlib/lib/pkgconfig"
+extradirs=(
+    /home/lixq/toolchains/gcc
+    /home/lixq/toolchains/binutils
+    /home/lixq/toolchains/curl/libs/openssl
+    /home/lixq/toolchains/curl/libs/nghttp3
+    /home/lixq/toolchains/curl/libs/ngtcp2
+    /home/lixq/toolchains/curl/libs/nghttp2
+    /home/lixq/toolchains/curl
+    /home/lixq/toolchains/expat
+    /home/lixq/toolchains/zlib
+    /home/lixq/toolchains/Miniforge3
+)
+pat=""
+pkg=""
+inc=""
+ldl=""
+ldr=""
+for dir in "${extradirs[@]}"; do
+    [[ -d $dir/bin ]] && pat="$pat:$dir/bin"
+    [[ -d $dir/include ]] && inc="$inc -I$dir/include"
+    if [[ -d $dir/lib64 ]]; then
+        ldl="$ldl -L$dir/lib64"
+        ldr="$ldr:$dir/lib64"
+        [[ -d "$dir/lib64/pkgconfig" ]] && pkg="$pkg:$dir/lib64/pkgconfig"
+    elif [[ -d $dir/lib ]]; then
+        ldl="$ldl -L$dir/lib"
+        ldr="$ldr:$dir/lib"
+        [[ -d "$dir/lib/pkgconfig" ]] && pkg="$pkg:$dir/lib/pkgconfig"
+    fi
+done
+pat="${pat#:}"
+pkg="${pkg#:}"
+inc="${inc# }"
+ldl="${ldl# }"
+ldr="${ldr#:}"
+export PATH="/home/lixq/toolchains/glibc/usr/sbin:/home/lixq/toolchains/glibc/usr/bin:/home/lixq/toolchains/glibc/sbin:$pat:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
+export PKG_CONFIG_PATH="$pkg"
 export CC="/home/lixq/toolchains/gcc/bin/gcc"
 export CXX="/home/lixq/toolchains/gcc/bin/g++"
 export CCAS="/home/lixq/toolchains/gcc/bin/gcc"
 export CPP="/home/lixq/toolchains/gcc/bin/cpp"
-export CFLAGS="-I/home/lixq/src/git-${ver} -I/home/lixq/toolchains/binutils/include -I/home/lixq/toolchains/Miniforge3/include -I/home/lixq/toolchains/zlib/include --sysroot=/home/lixq/toolchains/glibc"
-export CXXFLAGS="-I/home/lixq/src/git-${ver} -I/home/lixq/toolchains/binutils/include -I/home/lixq/toolchains/Miniforge3/include -I/home/lixq/toolchains/zlib/include --sysroot=/home/lixq/toolchains/glibc"
-export LDFLAGS="-L/home/lixq/toolchains/glibc/lib64 -L/home/lixq/toolchains/gcc/lib64 -L/home/lixq/toolchains/binutils/lib -L/home/lixq/toolchains/Miniforge3/lib -L/home/lixq/toolchains/zlib/lib --sysroot=/home/lixq/toolchains/glibc -Wl,-rpath=/home/lixq/toolchains/glibc/lib64:/home/lixq/toolchains/gcc/lib64:/home/lixq/toolchains/binutils/lib:/home/lixq/toolchains/Miniforge3/lib:/home/lixq/toolchains/zlib/lib -Wl,--dynamic-linker=/home/lixq/toolchains/glibc/lib64/ld-linux-x86-64.so.2"
+export CFLAGS="-I/home/lixq/src/git-${ver} $inc --sysroot=/home/lixq/toolchains/glibc"
+export CXXFLAGS="-I/home/lixq/src/git-${ver} $inc --sysroot=/home/lixq/toolchains/glibc"
+export LDFLAGS="-L/home/lixq/toolchains/glibc/lib64 $ldl --sysroot=/home/lixq/toolchains/glibc -Wl,-rpath-link=/home/lixq/toolchains/glibc/lib64:$ldr -Wl,-rpath=/home/lixq/toolchains/glibc/lib64:$ldr -Wl,--dynamic-linker=/home/lixq/toolchains/glibc/lib64/ld-linux-x86-64.so.2"
 
 function recover() {
     [[ -f /etc/hosts.bak ]] && mv /etc/hosts.bak /etc/hosts
