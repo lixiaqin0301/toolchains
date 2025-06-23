@@ -2,14 +2,8 @@
 
 ver=v16.20.2
 
-export PATH="/home/lixq/toolchains/gcc/bin:/home/lixq/toolchains/binutils/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/home/lixq/toolchains/Bear/bin"
-export CC="/home/lixq/toolchains/gcc/bin/gcc"
-export CXX="/home/lixq/toolchains/gcc/bin/g++"
-export CCAS="/home/lixq/toolchains/gcc/bin/gcc"
-export CPP="/home/lixq/toolchains/gcc/bin/cpp"
-export CFLAGS="-g -I/home/lixq/toolchains/binutils/include"
-export CXXFLAGS="-g -I/home/lixq/toolchains/binutils/include"
-export LDFLAGS="-L/home/lixq/toolchains/gcc/lib64 -L/home/lixq/toolchains/binutils/lib -Wl,-rpath=/home/lixq/toolchains/gcc/lib64:/home/lixq/toolchains/binutils/lib"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin:/home/lixq/toolchains/Bear/bin"
+. /opt/rh/devtoolset-11/enable
 
 if [[ ! -f /home/lixq/35share-rd/src/node-${ver}.tar.gz ]]; then
     echo "wget https://nodejs.org/dist/${ver}/node-${ver}.tar.gz"
