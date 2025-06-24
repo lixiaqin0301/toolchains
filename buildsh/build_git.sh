@@ -7,50 +7,24 @@ if [[ ! -f /home/lixq/35share-rd/src/git-${ver}.tar.gz ]]; then
     exit 1
 fi
 
-extradirs=(
-    /home/lixq/toolchains/gcc
-    /home/lixq/toolchains/binutils
-    /home/lixq/toolchains/curl/libs/openssl
-    /home/lixq/toolchains/curl/libs/nghttp3
-    /home/lixq/toolchains/curl/libs/ngtcp2
-    /home/lixq/toolchains/curl/libs/nghttp2
-    /home/lixq/toolchains/curl
-    /home/lixq/toolchains/expat
-    /home/lixq/toolchains/zlib
+. "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" \
+    /home/lixq/toolchains/glibc \
+    /home/lixq/toolchains/gcc \
+    /home/lixq/toolchains/binutils \
+    /home/lixq/toolchains/openssl \
+    /home/lixq/toolchains/nghttp3 \
+    /home/lixq/toolchains/ngtcp2 \
+    /home/lixq/toolchains/nghttp2 \
+    /home/lixq/toolchains/libpsl \
+    /home/lixq/toolchains/libgsasl \
+    /home/lixq/toolchains/brotli \
+    /home/lixq/toolchains/zlib \
+    /home/lixq/toolchains/curl \
+    /home/lixq/toolchains/expat \
     /home/lixq/toolchains/Miniforge3
-)
-pat=""
-pkg=""
-inc=""
-ldl=""
-ldr=""
-for dir in "${extradirs[@]}"; do
-    [[ -d $dir/bin ]] && pat="$pat:$dir/bin"
-    [[ -d $dir/include ]] && inc="$inc -I$dir/include"
-    if [[ -d $dir/lib64 ]]; then
-        ldl="$ldl -L$dir/lib64"
-        ldr="$ldr:$dir/lib64"
-        [[ -d "$dir/lib64/pkgconfig" ]] && pkg="$pkg:$dir/lib64/pkgconfig"
-    elif [[ -d $dir/lib ]]; then
-        ldl="$ldl -L$dir/lib"
-        ldr="$ldr:$dir/lib"
-        [[ -d "$dir/lib/pkgconfig" ]] && pkg="$pkg:$dir/lib/pkgconfig"
-    fi
-done
-pat="${pat#:}"
-pkg="${pkg#:}"
-inc="${inc# }"
-ldl="${ldl# }"
-ldr="${ldr#:}"
-export PATH="/home/lixq/toolchains/glibc/usr/sbin:/home/lixq/toolchains/glibc/usr/bin:/home/lixq/toolchains/glibc/sbin:$pat:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
-export PKG_CONFIG_PATH="$pkg"
-export CC="/home/lixq/toolchains/gcc/bin/gcc"
-export CXX="/home/lixq/toolchains/gcc/bin/g++"
-export CCAS="/home/lixq/toolchains/gcc/bin/gcc"
-export CPP="/home/lixq/toolchains/gcc/bin/cpp"
-export CFLAGS="-I/home/lixq/src/git-${ver} $inc --sysroot=/home/lixq/toolchains/glibc"
-export CXXFLAGS="-I/home/lixq/src/git-${ver} $inc --sysroot=/home/lixq/toolchains/glibc"
-export LDFLAGS="-L/home/lixq/toolchains/glibc/lib64 $ldl --sysroot=/home/lixq/toolchains/glibc -Wl,-rpath-link=/home/lixq/toolchains/glibc/lib64:$ldr -Wl,-rpath=/home/lixq/toolchains/glibc/lib64:$ldr -Wl,--dynamic-linker=/home/lixq/toolchains/glibc/lib64/ld-linux-x86-64.so.2"
+
+export CFLAGS="-I/home/lixq/src/git-${ver} $CFLAGS"
+export CXXFLAGS="-I/home/lixq/src/git-${ver} $CXXFLAGS"
 
 function recover() {
     [[ -f /etc/hosts.bak ]] && mv /etc/hosts.bak /etc/hosts
