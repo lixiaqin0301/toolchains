@@ -2,6 +2,8 @@
 
 ver=2.50.0
 
+rm -rf /home/lixq/src/git_success
+
 if [[ ! -f /home/lixq/35share-rd/src/git-${ver}.tar.gz ]]; then
     echo "wget https://github.com/git/git/archive/refs/tags/v${ver}.tar.gz -O git-${ver}.tar.gz"
     exit 1
@@ -28,6 +30,9 @@ export CXXFLAGS="-I/home/lixq/src/git-${ver} $CXXFLAGS"
 
 function recover() {
     [[ -f /etc/hosts.bak ]] && mv /etc/hosts.bak /etc/hosts
+    killall nginx
+    killall nginx
+    test -f /home/lixq/src/git_success
 }
 trap recover EXIT
 cp /etc/hosts /etc/hosts.bak
@@ -81,4 +86,5 @@ if [[ -d /home/lixq/toolchains/git-${ver} ]]; then
     cd /home/lixq/toolchains || exit 1
     rm git
     ln -s git-${ver} git
+    touch /home/lixq/src/git_success
 fi

@@ -2,14 +2,7 @@
 
 ver=1.3.1
 
-export PATH="/home/lixq/toolchains/gcc/bin:/home/lixq/toolchains/binutils/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
-export CC="/home/lixq/toolchains/gcc/bin/gcc"
-export CXX="/home/lixq/toolchains/gcc/bin/g++"
-export CCAS="/home/lixq/toolchains/gcc/bin/gcc"
-export CPP="/home/lixq/toolchains/gcc/bin/cpp"
-export CFLAGS="-I/home/lixq/toolchains/binutils/include"
-export CXXFLAGS="-I/home/lixq/toolchains/binutils/include"
-export LDFLAGS="-L/home/lixq/toolchains/gcc/lib64 -L/home/lixq/toolchains/binutils/lib -Wl,-rpath=/home/lixq/toolchains/gcc/lib64:/home/lixq/toolchains/binutils/lib"
+. "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" /home/lixq/toolchains/gcc /home/lixq/toolchains/binutils
 
 if [[ ! -f /home/lixq/35share-rd/src/zlib-${ver}.tar.xz ]]; then
     echo "wget https://github.com/madler/zlib/releases/download/v${ver}/zlib-${ver}.tar.xz"

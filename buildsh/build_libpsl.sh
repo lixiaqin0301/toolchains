@@ -2,7 +2,7 @@
 
 ver=0.21.5
 
-. "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" /home/lixq/toolchains/gcc /home/lixq/toolchains/binutils
+. "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" /home/lixq/toolchains/gcc /home/lixq/toolchains/binutils /home/lixq/toolchains/libpsl
 
 if [[ ! -f /home/lixq/35share-rd/src/libpsl-${ver}.tar.gz ]]; then
     echo "wget https://github.com/rockdaboot/libpsl/releases/download/${ver}/libpsl-${ver}.tar.gz"

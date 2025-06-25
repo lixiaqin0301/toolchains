@@ -10,11 +10,11 @@ fi
 . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" /home/lixq/toolchains/gcc /home/lixq/toolchains/binutils /home/lixq/toolchains/openssl /home/lixq/toolchains/nghttp3
 
 cd /home/lixq/src || exit 1
-rm -rfv ngtcp2-${ver}
+rm -rf ngtcp2-${ver}
 tar -xf /home/lixq/35share-rd/src/ngtcp2-${ver}.tar.gz
 cd /home/lixq/src/ngtcp2-${ver} || exit 1
 autoreconf -fi || exit 1
-./configure --prefix=/home/lixq/toolchains/ngtcp2-${ver} --enable-lib-only --with-openssl || exit 1
+./configure --prefix=/home/lixq/toolchains/ngtcp2-${ver} --with-openssl || exit 1
 make || exit 1
 rm -rf /home/lixq/toolchains/ngtcp2-${ver}
 make install || exit 1
