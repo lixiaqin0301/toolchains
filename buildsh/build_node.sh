@@ -1,16 +1,8 @@
 #!/bin/bash
 
-ver=v24.2.0
+ver=v24.3.0
 
-export PATH="/home/lixq/toolchains/glibc/usr/sbin:/home/lixq/toolchains/glibc/usr/bin:/home/lixq/toolchains/glibc/sbin:/home/lixq/toolchains/gcc/bin:/home/lixq/toolchains/binutils/bin:/home/lixq/toolchains/Miniforge3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
-export PKG_CONFIG_PATH="/home/lixq/toolchains/Miniforge3/lib/pkgconfig"
-export CC="/home/lixq/toolchains/gcc/bin/gcc"
-export CXX="/home/lixq/toolchains/gcc/bin/g++"
-export CCAS="/home/lixq/toolchains/gcc/bin/gcc"
-export CPP="/home/lixq/toolchains/gcc/bin/cpp"
-export CFLAGS="-g -I/home/lixq/toolchains/binutils/include -I/home/lixq/toolchains/Miniforge3/include --sysroot=/home/lixq/toolchains/glibc"
-export CXXFLAGS="-g -I/home/lixq/toolchains/binutils/include -I/home/lixq/toolchains/Miniforge3/include --sysroot=/home/lixq/toolchains/glibc"
-export LDFLAGS="-L/home/lixq/toolchains/glibc/lib64 -L/home/lixq/toolchains/gcc/lib64 -L/home/lixq/toolchains/binutils/lib -L/home/lixq/toolchains/Miniforge3/lib --sysroot=/home/lixq/toolchains/glibc -Wl,-rpath=/home/lixq/toolchains/glibc/lib64:/home/lixq/toolchains/gcc/lib64:/home/lixq/toolchains/binutils/lib:/home/lixq/toolchains/Miniforge3/lib -Wl,--dynamic-linker=/home/lixq/toolchains/glibc/lib64/ld-linux-x86-64.so.2"
+. "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" /home/lixq/toolchains/glibc /home/lixq/toolchains/gcc /home/lixq/toolchains/binutils /home/lixq/toolchains/Miniforge3
 
 if [[ ! -f /home/lixq/35share-rd/src/node-${ver}.tar.gz ]]; then
     echo "wget https://nodejs.org/dist/${ver}/node-${ver}.tar.gz"
@@ -25,10 +17,8 @@ cd node-${ver} || exit 1
 make || exit 1
 rm -rf /home/lixq/toolchains/node-${ver}
 make install || exit 1
-if [[ -d /home/lixq/toolchains/node-${ver} ]]; then
-    cd /home/lixq/toolchains || exit 1
-    rm -f node
-    ln -s node-${ver} node
-    cd /home/lixq/toolchains/node/lib || exit 1
-    ln -s libnode.so.* libnode.so
-fi
+cd /home/lixq/toolchains/node-${ver}/lib || exit 1
+ln -s libnode.so.* libnode.so
+cd /home/lixq/toolchains || exit 1
+rm -f node
+ln -s node-${ver} node

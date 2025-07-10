@@ -1,9 +1,8 @@
 #!/bin/bash
 
-ver=5.4.7
+ver=5.4.8
 
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
-. /opt/rh/devtoolset-11/enable
+. "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" /home/lixq/toolchains/gcc /home/lixq/toolchains/binutils
 
 if [[ ! -f /home/lixq/35share-rd/src/lua-${ver}.tar.gz ]]; then
     echo "wget https://www.lua.org/ftp/lua-${ver}.tar.gz"

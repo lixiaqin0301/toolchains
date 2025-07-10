@@ -47,7 +47,7 @@ export CPP="/home/lixq/toolchains/gcc/bin/cpp"
 export CFLAGS="$inc"
 export CXXFLAGS="$inc"
 if [[ "$use_glibc" == "yes" ]]; then
-    export LDFLAGS="$ldl --sysroot=/home/lixq/toolchains/glibc -Wl,-rpath-link=$ldr -Wl,-rpath=$ldr -Wl,--dynamic-linker=/home/lixq/toolchains/glibc/lib64/ld-linux-x86-64.so.2"
+    export LDFLAGS="$ldl --sysroot=/home/lixq/toolchains/glibc -Wl,-rpath-link,$ldr -Wl,-rpath,$ldr -Wl,--dynamic-linker=/home/lixq/toolchains/glibc/lib64/ld-linux-x86-64.so.2"
 else
-    export LDFLAGS="$ldl -Wl,-rpath-link=$ldr -Wl,-rpath=$ldr"
+    export LDFLAGS="$ldl -Wl,-rpath-link,$ldr -Wl,-rpath,$ldr"
 fi

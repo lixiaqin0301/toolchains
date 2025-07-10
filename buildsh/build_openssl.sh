@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver=3.5.0
+ver=3.5.1
 
 if [[ ! -f /home/lixq/35share-rd/src/openssl-${ver}.tar.gz ]]; then
     echo "wget https://github.com/openssl/openssl/releases/download/openssl-${ver}/openssl-${ver}.tar.gz"
