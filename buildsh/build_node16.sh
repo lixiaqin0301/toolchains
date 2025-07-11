@@ -4,6 +4,8 @@ ver=v16.20.2
 
 . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" /home/lixq/toolchains/gcc /home/lixq/toolchains/binutils
 export PATH="$PATH:/home/lixq/toolchains/Bear/bin"
+export CFLAGS="-g $CFLAGS"
+export CXXFLAGS="-g $CXXFLAGS"
 if [[ ! -f /home/lixq/35share-rd/src/node-${ver}.tar.gz ]]; then
     echo "wget https://nodejs.org/dist/${ver}/node-${ver}.tar.gz"
     exit 1
