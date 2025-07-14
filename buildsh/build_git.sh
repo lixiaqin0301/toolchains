@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver=2.50.0
+ver=2.50.1
 
 rm -rf /home/lixq/src/git_success
 
@@ -18,7 +18,7 @@ fi
     /home/lixq/toolchains/ngtcp2 \
     /home/lixq/toolchains/nghttp2 \
     /home/lixq/toolchains/libpsl \
-    /home/lixq/toolchains/libgsasl \
+    /home/lixq/toolchains/gsasl \
     /home/lixq/toolchains/brotli \
     /home/lixq/toolchains/zlib \
     /home/lixq/toolchains/curl \

@@ -17,7 +17,7 @@ fi
     /home/lixq/toolchains/ngtcp2 \
     /home/lixq/toolchains/nghttp2 \
     /home/lixq/toolchains/libpsl \
-    /home/lixq/toolchains/libgsasl \
+    /home/lixq/toolchains/gsasl \
     /home/lixq/toolchains/brotli \
     /home/lixq/toolchains/zlib
 export CFLAGS="-pthread $CFLAGS"

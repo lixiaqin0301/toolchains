@@ -1,21 +1,18 @@
 #!/bin/bash
 
-ver=20.1.7
+ver=20.1.8
 
 if [[ ! -f /home/lixq/35share-rd/src/llvm-project-${ver}.src.tar.xz ]]; then
     echo "wget https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LLVM%20${ver}/llvm-project-${ver}.src.tar.xz"
     exit 1
 fi
 
-export PATH="/home/lixq/toolchains/gcc/bin:/home/lixq/toolchains/binutils/bin:/home/lixq/toolchains/Miniforge3/bin:/home/lixq/toolchains/lua/bin:/home/lixq/toolchains/swig/bin:/home/lixq/toolchains/cmake/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
-export PKG_CONFIG_PATH="/home/lixq/toolchains/Miniforge3/lib/pkgconfig"
-export CC="/home/lixq/toolchains/gcc/bin/gcc"
-export CXX="/home/lixq/toolchains/gcc/bin/g++"
-export CCAS="/home/lixq/toolchains/gcc/bin/gcc"
-export CPP="/home/lixq/toolchains/gcc/bin/cpp"
-export CFLAGS="-I/home/lixq/toolchains/binutils/include -I/home/lixq/toolchains/Miniforge3/include"
-export CXXFLAGS="-I/home/lixq/toolchains/binutils/include -I/home/lixq/toolchains/Miniforge3/include"
-export LDFLAGS="-L/home/lixq/toolchains/gcc/lib64 -L/home/lixq/toolchains/binutils/lib -L/home/lixq/toolchains/Miniforge3/lib -Wl,-rpath=/home/lixq/toolchains/gcc/lib64:/home/lixq/toolchains/binutils/lib:/home/lixq/toolchains/Miniforge3/lib"
+. "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" \
+    /home/lixq/toolchains/gcc \
+    /home/lixq/toolchains/binutils \
+    /home/lixq/toolchains/Miniforge3 \
+    /home/lixq/toolchains/lua \
+    /home/lixq/toolchains/swig
 
 [[ -d /home/lixq/src ]] || mkdir -p /home/lixq/src/
 cd /home/lixq/src/ || exit 1
