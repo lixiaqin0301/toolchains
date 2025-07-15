@@ -13,7 +13,7 @@ fi
     /home/lixq/toolchains/Miniforge3 \
     /home/lixq/toolchains/lua \
     /home/lixq/toolchains/swig
-
+export PATH=/home/lixq/toolchains/cmake/bin:$PATH
 [[ -d /home/lixq/src ]] || mkdir -p /home/lixq/src/
 cd /home/lixq/src/ || exit 1
 rm -rf llvm-project-*
