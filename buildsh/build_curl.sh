@@ -2,7 +2,7 @@
 
 # https://curl.se/docs/http3.html
 
-ver=8.14.1
+ver=8.15.0
 
 if [[ ! -f /home/lixq/35share-rd/src/curl-${ver}.tar.gz ]]; then
     echo "wget https://github.com/curl/curl/releases/download/curl-${ver//./_}/curl-${ver}.tar.gz"
