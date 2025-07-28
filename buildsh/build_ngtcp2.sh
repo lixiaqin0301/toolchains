@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver=1.13.0
+ver=1.14.0
 
 if [[ ! -f /home/lixq/35share-rd/src/ngtcp2-${ver}.tar.gz ]]; then
     echo "wget https://github.com/ngtcp2/ngtcp2/releases/download/v${ver}/ngtcp2-${ver}.tar.gz"

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver=1.10.1
+ver=1.11.0
 
 if [[ ! -f /home/lixq/35share-rd/src/nghttp3-${ver}.tar.gz ]]; then
     echo "wget https://github.com/ngtcp2/nghttp3/releases/download/v${ver}/nghttp3-${ver}.tar.gz"

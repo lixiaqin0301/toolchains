@@ -1,9 +1,8 @@
 #!/bin/bash
 
-ver=2.44
+ver=2.45
 
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
-. /opt/rh/devtoolset-11/enable
+. "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" /home/lixq/toolchains/gcc /home/lixq/toolchains/binutils
 
 if [[ ! -f /home/lixq/35share-rd/src/binutils-${ver}.tar.xz ]]; then
     echo "wget https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/binutils-${ver}.tar.xz"
