@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver=v24.4.1
+ver=v24.5.0
 
 . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" /home/lixq/toolchains/glibc /home/lixq/toolchains/gcc /home/lixq/toolchains/binutils /home/lixq/toolchains/Miniforge3
 
