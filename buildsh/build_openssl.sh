@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver=3.5.1
+ver=3.5.2
 
 if [[ ! -f /home/lixq/35share-rd/src/openssl-${ver}.tar.gz ]]; then
     echo "wget https://github.com/openssl/openssl/releases/download/openssl-${ver}/openssl-${ver}.tar.gz"
@@ -15,7 +15,7 @@ rm -rf openssl-${ver}
 tar -xf /home/lixq/35share-rd/src/openssl-${ver}.tar.gz
 cd /home/lixq/src/openssl-${ver} || exit 1
 ./config --prefix=/home/lixq/toolchains/openssl-${ver} --libdir=lib || exit 1
-make || exit 1
+make -j"$(nproc)" || exit 1
 rm -rf /home/lixq/toolchains/openssl-${ver}
 make install || exit 1
 if [[ -d /home/lixq/toolchains/openssl-${ver} ]]; then
