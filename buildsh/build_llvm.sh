@@ -22,6 +22,7 @@ mkdir /home/lixq/src/llvm-project-${ver}.src/build || exit 1
 cd /home/lixq/src/llvm-project-${ver}.src/build || exit 1
 
 cmake -DCMAKE_BUILD_TYPE=Release \
+    -DLLVM_TARGETS_TO_BUILD="BPF;X86" \
     -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lldb" \
     -DLLDB_ENABLE_LIBEDIT=1 \
     -DLLDB_ENABLE_CURSES=1 \
@@ -33,7 +34,7 @@ cmake -DCMAKE_BUILD_TYPE=Release \
     -DLUA_LIBRARIES="/home/lixq/toolchains/lua/lib/liblua.a" \
     -DLLVM_ENABLE_RUNTIMES="compiler-rt;libcxx;libcxxabi;libunwind" \
     -DCMAKE_INSTALL_PREFIX=/home/lixq/toolchains/llvm-${ver} -G "Unix Makefiles" ../llvm
-make || exit 1
+make -j "$(nproc)" || exit 1
 rm -rf /home/lixq/toolchains/llvm-${ver}
 make install || exit 1
 
