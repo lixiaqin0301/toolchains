@@ -60,5 +60,12 @@ if [[ -d "${DESTDIR}" ]]; then
         [[ -L "$p" ]] || cp "$p" .
         [[ -L "$p" ]] && ln -s "$(readlink "$p")" "$(basename "$p")"
     done
+    for f in ./lib*.so.[0-9]*; do
+        [[ -L "$f" ]] && continue
+        base=$(echo "$f" | sed -E 's/(\.so)\..*/\1/')
+        if [[ ! -e "$base" ]]; then
+            ln -s "$(basename "$f")" "$base"
+        fi
+    done
     cp /home/lixq/toolchains/gcc/lib64/libgcc* .
 fi

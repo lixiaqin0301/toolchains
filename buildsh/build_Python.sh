@@ -21,7 +21,7 @@ make -s -j"$(nproc)" || exit 1
 rm -rf "${DESTDIR}"
 make install || exit 1
 cd "${DESTDIR}" || exit 1
-if [[ "${DESTDIR}" == "/home/lixq/toolchains/glibc-${ver}" ]]; then
+if [[ "${DESTDIR}" == "/home/lixq/toolchains/Python-${ver}" ]]; then
     cd /home/lixq/toolchains || exit 1
     rm -f Python
     ln -s Python-${ver} Python
