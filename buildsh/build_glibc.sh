@@ -2,6 +2,9 @@
 
 ver=2.42
 kver=6.6
+DESTDIR=/home/lixq/toolchains/glibc-${ver}
+[[ -n "$1" ]] && DESTDIR="$1"
+
 if [[ ! -f /home/lixq/35share-rd/src/glibc-${ver}.tar.xz ]]; then
     echo "wget https://mirrors.ustc.edu.cn/gnu/glibc/glibc-${ver}.tar.xz"
     need_exit=yes
@@ -14,9 +17,15 @@ if [[ "$need_exit" == yes ]]; then
     exit 1
 fi
 
-DESTDIR=/home/lixq/toolchains/glibc-${ver}
-[[ -n "$1" ]] && DESTDIR="$1"
-export PATH="/home/lixq/toolchains/gcc/bin:/home/lixq/toolchains/binutils/bin:/home/lixq/toolchains/make/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
+if [[ ! -d "${DESTDIR}" ]]; then
+    export PATH="/home/lixq/toolchains/gcc/bin:/home/lixq/toolchains/binutils/bin:/home/lixq/toolchains/make/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+else
+    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" "$(basename "$DESTDIR")"
+    export PATH="/home/lixq/toolchains/make/bin:$PATH"
+    export CFLAGS="-O2 $CFLAGS"
+    export CXXFLAGS="-O2 $CXXFLAGS"
+fi
+
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
 rm -rf glibc-${ver}
@@ -24,11 +33,13 @@ tar -xf /home/lixq/35share-rd/src/glibc-${ver}.tar.xz
 mkdir -p /home/lixq/src/glibc-${ver}/glibc-${ver}/build/glibc
 cd /home/lixq/src/glibc-${ver}/glibc-${ver}/build/glibc || exit 1
 /home/lixq/src/glibc-${ver}/configure --prefix=/usr || exit 1
-make -j"$(nproc)" || exit 1
-rm -rf "${DESTDIR}"
-make install DESTDIR="${DESTDIR}" || exit 1
-make -j"$(nproc)" localedata/install-locales DESTDIR="${DESTDIR}" || exit 1
-make -j"$(nproc)" localedata/install-locale-files DESTDIR="${DESTDIR}" || exit 1
+make -s -j"$(nproc)" || exit 1
+[[ "${DESTDIR}" == */glibc* ]] && rm -rf "${DESTDIR}"
+make -s -j"$(nproc)" install DESTDIR="${DESTDIR}" || exit 1
+if [[ "$(basename "$(dirname "$DESTDIR")")" != mintoolset ]]; then
+    make -s -j"$(nproc)" localedata/install-locales DESTDIR="${DESTDIR}" || exit 1
+    make -s -j"$(nproc)" localedata/install-locale-files DESTDIR="${DESTDIR}" || exit 1
+fi
 
 cd /home/lixq/src || exit 1
 rm -rf linux-${kver}
@@ -36,36 +47,16 @@ tar -xf /home/lixq/35share-rd/src/linux-${kver}.tar.xz
 cd /home/lixq/src/linux-${kver} || exit 1
 make headers_install INSTALL_HDR_PATH="${DESTDIR}/usr" || exit 1
 
-if [[ -d "${DESTDIR}" ]]; then
-    if [[ "${DESTDIR}" == "/home/lixq/toolchains/glibc-${ver}" ]]; then
-        cd /home/lixq/toolchains || exit 1
-        rm -f glibc
-        ln -s glibc-${ver} glibc
-        for f in /home/lixq/toolchains/glibc/usr/sbin/* /home/lixq/toolchains/glibc/usr/bin/* /home/lixq/toolchains/glibc/sbin/*; do
-            if ldd "$f" | grep " /lib64/libc.so.6"; then
-                /home/lixq/toolchains/patchelf/bin/patchelf --set-rpath /home/lixq/toolchains/glibc/lib64:/home/lixq/toolchains/gcc/lib64:/lib64 "$f"
-                /home/lixq/toolchains/patchelf/bin/patchelf --set-interpreter /home/lixq/toolchains/glibc/lib64/ld-linux-x86-64.so.2 "$f"
-            fi
-        done
-    else
-        for f in "${DESTDIR}"/usr/sbin/* "${DESTDIR}"/usr/bin/* "${DESTDIR}"/sbin/*; do
-            if ldd "$f" | grep " /lib64/libc.so.6"; then
-                /home/lixq/toolchains/patchelf/bin/patchelf --set-rpath "${DESTDIR}/lib64:/lib64" "$f"
-                /home/lixq/toolchains/patchelf/bin/patchelf --set-interpreter "${DESTDIR}/lib64/ld-linux-x86-64.so.2" "$f"
-            fi
-        done
-    fi
-    cd "${DESTDIR}/lib64" || exit 1
-    for p in /home/lixq/toolchains/gcc/lib64/libstdc++.s*[0-9o]; do
-        [[ -L "$p" ]] || cp "$p" .
-        [[ -L "$p" ]] && ln -s "$(readlink "$p")" "$(basename "$p")"
-    done
-    for f in ./lib*.so.[0-9]*; do
-        [[ -L "$f" ]] && continue
-        base=$(echo "$f" | sed -E 's/(\.so)\..*/\1/')
-        if [[ ! -e "$base" ]]; then
-            ln -s "$(basename "$f")" "$base"
-        fi
-    done
-    cp /home/lixq/toolchains/gcc/lib64/libgcc* .
+cd "${DESTDIR}/lib64" || exit 1
+for p in /home/lixq/toolchains/gcc/lib64/libstdc++.s*[0-9o]; do
+    [[ -L "$p" ]] || cp "$p" .
+    [[ -L "$p" ]] && ln -sf "$(readlink "$p")" "$(basename "$p")"
+done
+cp /home/lixq/toolchains/gcc/lib64/libgcc* .
+
+if [[ "$(basename "${DESTDIR}")" == glibc-${ver} ]]; then
+    cd "${DESTDIR}" || exit 1
+    cd .. || exit 1
+    rm -f glibc
+    ln -s glibc-${ver} glibc
 fi

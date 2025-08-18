@@ -1,7 +1,12 @@
+glibc  2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
+gcc    15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
+
 bcc      https://github.com/iovisor/bcc/releases/
 bzip     https://sourceware.org/pub/bzip2/
 elfutils https://sourceware.org/elfutils/ftp/
 flex     https://github.com/westes/flex/releases/
+
+
 json-c   https://github.com/json-c/json-c/tags/
 libbpf   https://github.com/libbpf/libbpf/releases/
 libedit  https://thrysoee.dk/editline/
