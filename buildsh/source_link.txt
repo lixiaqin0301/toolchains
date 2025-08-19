@@ -1,6 +1,8 @@
 make      4.4.1   https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
 binutils  2.45    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
 gcc       15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
+openssl   3.5.2   https://github.com/openssl/openssl/releases/
+
 golang    1.25.0  https://go.dev/dl/
 
 

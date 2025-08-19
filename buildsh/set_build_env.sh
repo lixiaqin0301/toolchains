@@ -1,15 +1,16 @@
 #!/bin/bash
 if [[ "$1" == toolset || "$1" == mintoolset ]]; then
-    export PATH="/home/lixq/toolchains/gcc/bin:/home/lixq/toolchains/binutils/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-    #export PKG_CONFIG_PATH=
-    export CC="/home/lixq/toolchains/gcc/bin/gcc"
-    export CXX="/home/lixq/toolchains/gcc/bin/g++"
+    export PATH="/home/lixq/toolset/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    export PKG_CONFIG_PATH=/home/lixq/toolset/usr/lib/pkgconfig
+    export CC="/home/lixq/toolset/usr/bin/gcc"
+    export CXX="/home/lixq/toolset/usr/bin/g++"
+    r=/home/lixq/$1
     if [[ "$2" != sysroot ]]; then
-        export LDFLAGS="-L/home/lixq/$1/lib64 -L/home/lixq/$1/usr/lib64 -Wl,-rpath-link,/home/lixq/$1/lib64:/home/lixq/$1/usr/lib64 -Wl,-rpath,/home/lixq/$1/lib64:/home/lixq/$1/usr/lib64 -Wl,--dynamic-linker=/home/lixq/$1/lib64/ld-linux-x86-64.so.2"
+        export LDFLAGS="-L$r/lib64 -L$r/usr/lib64 -L$r/usr/lib -Wl,-rpath-link,$r/lib64:$r/usr/lib64:$r/usr/lib -Wl,-rpath,$r/lib64:$r/usr/lib64:$r/usr/lib"
     else
-        export CFLAGS="--sysroot=/home/lixq/$1"
-        export CXXFLAGS="--sysroot=/home/lixq/$1"
-        export LDFLAGS="-L/home/lixq/$1/lib64 -L/home/lixq/$1/usr/lib64 --sysroot=/home/lixq/$1 -Wl,-rpath-link,/home/lixq/$1/lib64:/home/lixq/$1/usr/lib64 -Wl,-rpath,/home/lixq/$1/lib64:/home/lixq/$1/usr/lib64 -Wl,--dynamic-linker=/home/lixq/$1/lib64/ld-linux-x86-64.so.2"
+        export CFLAGS="--sysroot=$r"
+        export CXXFLAGS="--sysroot=$r"
+        export LDFLAGS="-L$r/lib64 -L$r/usr/lib64 --sysroot=$r -Wl,-rpath-link,$r/lib64:$r/usr/lib64 -Wl,-rpath,$r/lib64:$r/usr/lib64 -Wl,--dynamic-linker=$r/lib64/ld-linux-x86-64.so.2"
     fi
 else
     use_gcc=no
