@@ -24,9 +24,6 @@ cd /home/lixq/src/openssl-${ver} || exit 1
 make -s -j"$(nproc)" || exit 1
 [[ "$DESTDIR" == */openssl-* ]] && rm -rf "$DESTDIR"
 make -s -j"$(nproc)" install DESTDIR="$DESTDIR" || exit 1
-if [[ -n "$2" ]]; then
-    make -s -j"$(nproc)" install DESTDIR="$2" || exit 1
-fi
 
 if [[ "$DESTDIR" == */openssl-* ]]; then
     cd "${DESTDIR}" || exit 1
