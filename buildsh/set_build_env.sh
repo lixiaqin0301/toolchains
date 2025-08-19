@@ -4,9 +4,13 @@ if [[ "$1" == toolset || "$1" == mintoolset ]]; then
     #export PKG_CONFIG_PATH=
     export CC="/home/lixq/toolchains/gcc/bin/gcc"
     export CXX="/home/lixq/toolchains/gcc/bin/g++"
-    export CFLAGS="--sysroot=/home/lixq/$1"
-    export CXXFLAGS="--sysroot=/home/lixq/$1"
-    export LDFLAGS="-L/home/lixq/$1/lib64 -L/home/lixq/$1/usr/lib64 --sysroot=/home/lixq/$1 -Wl,-rpath-link,/home/lixq/$1/lib64:/home/lixq/$1/usr/lib64 -Wl,-rpath,/home/lixq/$1/lib64:/home/lixq/$1/usr/lib64 -Wl,--dynamic-linker=/home/lixq/$1/lib64/ld-linux-x86-64.so.2"
+    if [[ "$2" != sysroot ]]; then
+        export LDFLAGS="-L/home/lixq/$1/lib64 -L/home/lixq/$1/usr/lib64 -Wl,-rpath-link,/home/lixq/$1/lib64:/home/lixq/$1/usr/lib64 -Wl,-rpath,/home/lixq/$1/lib64:/home/lixq/$1/usr/lib64 -Wl,--dynamic-linker=/home/lixq/$1/lib64/ld-linux-x86-64.so.2"
+    else
+        export CFLAGS="--sysroot=/home/lixq/$1"
+        export CXXFLAGS="--sysroot=/home/lixq/$1"
+        export LDFLAGS="-L/home/lixq/$1/lib64 -L/home/lixq/$1/usr/lib64 --sysroot=/home/lixq/$1 -Wl,-rpath-link,/home/lixq/$1/lib64:/home/lixq/$1/usr/lib64 -Wl,-rpath,/home/lixq/$1/lib64:/home/lixq/$1/usr/lib64 -Wl,--dynamic-linker=/home/lixq/$1/lib64/ld-linux-x86-64.so.2"
+    fi
 else
     use_gcc=no
     use_glibc=no
@@ -16,9 +20,7 @@ else
     ldr=""
     pkg=""
     for d in "$@"; do
-        if [[ "$d" == toolset ]]; then
-            continue
-        elif [[ "$d" == gcc ]]; then
+        if [[ "$d" == gcc ]]; then
             use_gcc=yes
             continue
         elif [[ "$d" == glibc ]]; then

@@ -1,12 +1,15 @@
-glibc  2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
-gcc    15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
+make      4.4.1   https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
+binutils  2.45    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
+gcc       15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
+golang    1.25.0  https://go.dev/dl/
+
+
+glibc     2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
 
 bcc      https://github.com/iovisor/bcc/releases/
 bzip     https://sourceware.org/pub/bzip2/
 elfutils https://sourceware.org/elfutils/ftp/
 flex     https://github.com/westes/flex/releases/
-
-
 json-c   https://github.com/json-c/json-c/tags/
 libbpf   https://github.com/libbpf/libbpf/releases/
 libedit  https://thrysoee.dk/editline/
