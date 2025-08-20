@@ -16,8 +16,9 @@ if [[ "$DESTDIR" == */curl-* ]]; then
 else
     . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" "$(basename "$DESTDIR")"
 fi
-export CFLAGS="-pthread $CFLAGS"
-export CXXFLAGS="-pthread $CXXFLAGS"
+export CPPFLAGS="$CFLAGS"
+export CFLAGS="-pthread"
+export CXXFLAGS="-pthread"
 export LDFLAGS="-pthread $LDFLAGS"
 
 cd /home/lixq/src || exit 1
@@ -28,7 +29,7 @@ autoreconf -fi || exit 1
 if [[ "$DESTDIR" == */curl-* ]]; then
     ./configure --prefix=/usr --with-openssl=/home/lixq/toolchains/openssl/usr --with-nghttp3=/home/lixq/toolchains/nghttp3/usr --with-ngtcp2=/home/lixq/toolchains/ngtcp2/usr --with-nghttp2=/home/lixq/toolchains/nghttp2/usr || exit 1
 else
-    ./configure --prefix=/usr || exit 1
+    ./configure --prefix=/usr --with-openssl="$DESTDIR/usr" --with-nghttp3="$DESTDIR/usr" --with-ngtcp2="$DESTDIR/usr" --with-nghttp2="$DESTDIR/usr" || exit 1
 fi
 make -s -j"$(nproc)" || exit 1
 [[ "$DESTDIR" == */curl-* ]] && rm -rf "$DESTDIR"
