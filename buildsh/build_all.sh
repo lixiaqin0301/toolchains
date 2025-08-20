@@ -61,11 +61,13 @@ done
 # step 3 curl
 # openssl  3.5.2   https://github.com/openssl/openssl/releases/
 # nghttp3  1.11.0  https://github.com/ngtcp2/nghttp3/releases/
+# nghttp2  1.66.0  https://github.com/nghttp2/nghttp2/releases/
 # ngtcp2   1.14.0  https://github.com/ngtcp2/ngtcp2/releases/
 # libpsl   0.21.5  https://github.com/rockdaboot/libpsl/releases/
 # gsasl    2.2.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/gsasl/
 # brotli   1.1.0   https://github.com/google/brotli/releases/
 # zlib     1.3.1   https://github.com/madler/zlib/releases/
+# libssh2  1.11.1  https://libssh2.org/
 # curl     8.15.0  https://github.com/curl/curl/releases/
 n=3
 cd /home/lixq || exit 1
@@ -74,7 +76,7 @@ for td in toolset mintoolset; do
     rm -rf /home/lixq/$td
     cd /home/lixq || exit 1
     [[ -s $td.tar.$((n-1)) ]] && tar -xf $td.tar.$((n-1))
-    for p in openssl nghttp3 ngtcp2 libpsl gsasl brotli zlib; do
+    for p in openssl nghttp3 ngtcp2 nghttp2 libpsl gsasl brotli zlib curl; do
         date "+%Y-%m-%d %H:%M:%S begin build $td $p" >> /tmp/build_all.log
         tb=$(date +%s)
         /home/lixq/35share-rd/toolchains/buildsh/build_$p.sh /home/lixq/$td || exit 1

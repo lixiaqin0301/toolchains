@@ -10,7 +10,7 @@ if [[ ! -f /home/lixq/35share-rd/src/ngtcp2-${ver}.tar.gz ]]; then
 fi
 
 if [[ "$DESTDIR" == */ngtcp2-* ]]; then
-    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" openssl nghttp3
+    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" openssl nghttp3 ngtcp2
 else
     . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" "$(basename "$DESTDIR")"
 fi
@@ -24,6 +24,7 @@ autoreconf -fi || exit 1
 make -s -j"$(nproc)" || exit 1
 [[ "$DESTDIR" == */ngtcp2-* ]] && rm -rf "$DESTDIR"
 make -s -j"$(nproc)" install DESTDIR="$DESTDIR" || exit 1
+sed -i "s; /usr/lib/libngtcp2.la; ${DESTDIR%-*}/usr/lib/libngtcp2.la;" "$DESTDIR/usr/lib/libngtcp2_crypto_ossl.la"
 
 if [[ "$DESTDIR" == */ngtcp2-* ]]; then
     cd "$DESTDIR" || exit 1

@@ -12,7 +12,7 @@ if [[ ! -f /home/lixq/35share-rd/src/curl-${ver}.tar.gz ]]; then
 fi
 
 if [[ "$DESTDIR" == */curl-* ]]; then
-    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" openssl nghttp3 ngtcp2 libpsl gsasl brotli zlib
+    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" openssl nghttp3 ngtcp2 libpsl gsasl brotli zlib curl
 else
     . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" "$(basename "$DESTDIR")"
 fi
@@ -29,7 +29,7 @@ autoreconf -fi || exit 1
 if [[ "$DESTDIR" == */curl-* ]]; then
     ./configure --prefix=/usr --with-openssl=/home/lixq/toolchains/openssl/usr --with-nghttp3=/home/lixq/toolchains/nghttp3/usr --with-ngtcp2=/home/lixq/toolchains/ngtcp2/usr --with-nghttp2=/home/lixq/toolchains/nghttp2/usr || exit 1
 else
-    ./configure --prefix=/usr --with-openssl="$DESTDIR/usr" --with-nghttp3="$DESTDIR/usr" --with-ngtcp2="$DESTDIR/usr" --with-nghttp2="$DESTDIR/usr" || exit 1
+    ./configure --prefix=/usr --with-openssl --with-nghttp3 --with-ngtcp2 --with-nghttp2 || exit 1
 fi
 make -s -j"$(nproc)" || exit 1
 [[ "$DESTDIR" == */curl-* ]] && rm -rf "$DESTDIR"

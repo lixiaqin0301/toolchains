@@ -10,7 +10,7 @@ if [[ ! -f /home/lixq/35share-rd/src/nghttp3-${ver}.tar.gz ]]; then
 fi
 
 if [[ "$DESTDIR" == */nghttp3-* ]]; then
-    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" gcc
+    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" gcc nghttp3
 else
     . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" "$(basename "$DESTDIR")"
 fi
