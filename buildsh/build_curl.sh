@@ -13,7 +13,7 @@ if [[ ! -f /home/lixq/35share-rd/src/${name}-${ver}.tar.gz ]]; then
 fi
 
 if [[ "$DESTDIR" == */${name} ]]; then
-    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" libpsl gsasl brotli zlib ${name}
+    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" openssl nghttp3 ngtcp2 nghttp2 libpsl gsasl brotli zlib ${name}
 else
     . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" "$(basename "$DESTDIR")"
 fi
