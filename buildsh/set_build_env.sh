@@ -1,10 +1,12 @@
 #!/bin/bash
 if [[ "$1" == toolset || "$1" == mintoolset ]]; then
-    export PATH="/home/lixq/toolset/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-    export PKG_CONFIG_PATH=/home/lixq/toolset/usr/lib/pkgconfig
     export CC="/home/lixq/toolset/usr/bin/gcc"
     export CXX="/home/lixq/toolset/usr/bin/g++"
     r=/home/lixq/$1
+    export PATH="$r/usr/bin:/home/lixq/toolset/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    export PKG_CONFIG_PATH="$r/usr/lib/pkgconfig"
+    export CFLAGS="-I/home/lixq/toolset/usr/include"
+    export CXXFLAGS="-I/home/lixq/toolset/usr/include"
     if [[ "$2" != sysroot ]]; then
         export LDFLAGS="-L$r/lib64 -L$r/usr/lib64 -L$r/usr/lib -Wl,-rpath-link,$r/lib64:$r/usr/lib64:$r/usr/lib -Wl,-rpath,$r/lib64:$r/usr/lib64:$r/usr/lib"
     else
@@ -59,9 +61,9 @@ else
 
     export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     if [[ "$use_gcc" == "yes" ]]; then
-        export PATH="/home/lixq/toolchains/gcc/bin:/home/lixq/toolchains/binutils/bin:$PATH"
-        export CC="/home/lixq/toolchains/gcc/bin/gcc"
-        export CXX="/home/lixq/toolchains/gcc/bin/g++"
+        export PATH="/home/lixq/toolset/usr/bin:$PATH"
+        export CC="/home/lixq/toolset/usr/bin/gcc"
+        export CXX="/home/lixq/toolset/usr/bin/g++"
     fi
     export PKG_CONFIG_PATH="$pkg"
 

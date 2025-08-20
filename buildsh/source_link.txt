@@ -1,13 +1,16 @@
-make      4.4.1   https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
 binutils  2.45    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
 gcc       15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
+
 openssl   3.5.2   https://github.com/openssl/openssl/releases/
+nghttp3   1.11.0  https://github.com/ngtcp2/nghttp3/releases/
+ngtcp2    1.14.0  https://github.com/ngtcp2/ngtcp2/releases/
+libpsl    0.21.5  https://github.com/rockdaboot/libpsl/releases/
+gsasl     2.2.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/gsasl/
+brotli    1.1.0   https://github.com/google/brotli/releases/
 
+make      4.4.1   https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
 golang    1.25.0  https://go.dev/dl/
-
-
 glibc     2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
-
 bcc      https://github.com/iovisor/bcc/releases/
 bzip     https://sourceware.org/pub/bzip2/
 elfutils https://sourceware.org/elfutils/ftp/

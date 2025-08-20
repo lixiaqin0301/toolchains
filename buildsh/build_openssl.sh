@@ -26,7 +26,7 @@ make -s -j"$(nproc)" || exit 1
 make -s -j"$(nproc)" install DESTDIR="$DESTDIR" || exit 1
 
 if [[ "$DESTDIR" == */openssl-* ]]; then
-    cd "${DESTDIR}" || exit 1
+    cd "$DESTDIR" || exit 1
     cd .. || exit 1
     rm  -rf openssl
     ln -s openssl-${ver} openssl
