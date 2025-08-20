@@ -5,8 +5,8 @@ if [[ "$1" == toolset || "$1" == mintoolset ]]; then
     r=/home/lixq/$1
     export PATH="$r/usr/bin:/home/lixq/toolset/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     export PKG_CONFIG_PATH="$r/usr/lib/pkgconfig"
-    export CFLAGS="-I/home/lixq/toolset/usr/include"
-    export CXXFLAGS="-I/home/lixq/toolset/usr/include"
+    export CFLAGS="-isystem /home/lixq/toolset/usr/include"
+    export CXXFLAGS="-isystem /home/lixq/toolset/usr/include"
     if [[ "$2" != sysroot ]]; then
         export LDFLAGS="-L$r/lib64 -L$r/usr/lib64 -L$r/usr/lib -Wl,-rpath-link,$r/lib64:$r/usr/lib64:$r/usr/lib -Wl,-rpath,$r/lib64:$r/usr/lib64:$r/usr/lib"
     else
@@ -43,7 +43,7 @@ else
                 [[ -d /home/lixq/toolchains/$d$m/lib ]] && libdir=/home/lixq/toolchains/$d$m/lib
             done
         fi
-        [[ -d "$incdir" ]] && inc="$inc -I$incdir"
+        [[ -d "$incdir" ]] && inc="$inc -isystem $incdir"
         if [[ -d "$libdir" ]]; then
             ldl="$ldl -L$libdir"
             ldr="$ldr:$libdir"
