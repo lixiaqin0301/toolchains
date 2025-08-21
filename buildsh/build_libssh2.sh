@@ -11,7 +11,7 @@ if [[ ! -f /home/lixq/35share-rd/src/${name}-${ver}.tar.gz ]]; then
 fi
 
 if [[ "$DESTDIR" == */${name} ]]; then
-    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh"
+    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" openssl
 else
     . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" "$(basename "$DESTDIR")"
 fi
