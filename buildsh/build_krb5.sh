@@ -10,7 +10,11 @@ if [[ ! -f /home/lixq/35share-rd/src/${name}-${ver}.tar.gz ]]; then
     exit 1
 fi
 
-. "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh"
+if [[ "$DESTDIR" == */${name} ]]; then
+    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" keyutils
+else
+    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" "$(basename "$DESTDIR")"
+fi
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
