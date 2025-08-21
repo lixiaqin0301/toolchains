@@ -61,7 +61,7 @@ for td in toolset mintoolset; do
     rm -rf /home/lixq/$td
     cd /home/lixq || exit 1
     [[ -s $td.tar.$((n-1)) ]] && tar -xf $td.tar.$((n-1))
-    for p in openssl nghttp3 ngtcp2 nghttp2 libssh2 zlib brotli krb5 libpsl gsasl curl; do
+    for p in openssl nghttp3 ngtcp2 nghttp2 libssh2 zlib brotli zstd krb5 libpsl gsasl curl; do
         date "+%Y-%m-%d %H:%M:%S begin build $td $p" >> /tmp/build_all.log
         tb=$(date +%s)
         /home/lixq/35share-rd/toolchains/buildsh/build_$p.sh /home/lixq/$td || exit 1
