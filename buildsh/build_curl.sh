@@ -13,7 +13,7 @@ if [[ ! -f /home/lixq/35share-rd/src/${name}-${ver}.tar.gz ]]; then
 fi
 
 if [[ "$DESTDIR" == */${name} ]]; then
-    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" openssl nghttp3 ngtcp2 nghttp2 zlib brotli zstd libpsl gsasl ${name}
+    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" openssl nghttp3 ngtcp2 nghttp2 zlib brotli zstd libpsl gsasl rtmpdump ${name}
 else
     . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" "$(basename "$DESTDIR")"
 fi
@@ -37,9 +37,10 @@ if [[ "$DESTDIR" == */${name} ]]; then
                 --with-gssapi=/home/lixq/toolchains/krb5/usr \
                 --with-libidn2=/home/lixq/toolchains/libidn2/usr \
                 --with-ldap=/home/lixq/toolchains/openldap/usr \
+                --with-librtmp=/home/lixq/toolchains/rtmpdump/usr \
                 || exit 1
 else
-    ./configure --prefix="$DESTDIR/usr" --with-openssl --with-nghttp3 --with-ngtcp2 --with-nghttp2 --with-libssh2 --with-zstd --with-gssapi --with-libidn2 --with-ldap || exit 1
+    ./configure --prefix="$DESTDIR/usr" --with-openssl --with-nghttp3 --with-ngtcp2 --with-nghttp2 --with-libssh2 --with-zstd --with-gssapi --with-libidn2 --with-ldap --with-librtmp || exit 1
 fi
 make -s -j"$(nproc)" || exit 1
 [[ "$DESTDIR" == */${name} ]] && rm -rf "$DESTDIR"
