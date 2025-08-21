@@ -34,9 +34,11 @@ if [[ "$DESTDIR" == */${name} ]]; then
                 --with-ngtcp2=/home/lixq/toolchains/ngtcp2/usr \
                 --with-nghttp2=/home/lixq/toolchains/nghttp2/usr \
                 --with-libssh2=/home/lixq/toolchains/libssh2/usr \
-                --with-gssapi=/home/lixq/toolchains/krb5/usr || exit 1
+                --with-gssapi=/home/lixq/toolchains/krb5/usr \
+                --with-libidn2=/home/lixq/toolchains/libidn2/usr \
+                || exit 1
 else
-    ./configure --prefix="$DESTDIR/usr" --with-openssl --with-nghttp3 --with-ngtcp2 --with-nghttp2 --with-libssh2 --with-zstd --with-gssapi || exit 1
+    ./configure --prefix="$DESTDIR/usr" --with-openssl --with-nghttp3 --with-ngtcp2 --with-nghttp2 --with-libssh2 --with-zstd --with-gssapi --with-libidn2 || exit 1
 fi
 make -s -j"$(nproc)" || exit 1
 [[ "$DESTDIR" == */${name} ]] && rm -rf "$DESTDIR"

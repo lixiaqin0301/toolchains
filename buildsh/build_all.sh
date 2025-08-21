@@ -51,6 +51,7 @@ done
 # brotli   1.1.0   https://github.com/google/brotli/releases/
 # zstd     1.5.7   https://github.com/facebook/zstd/releases/
 # krb5     1.22.1  https://web.mit.edu/kerberos/dist/
+# libidn2  2.3.8   https://mirrors.tuna.tsinghua.edu.cn/gnu/libidn/
 # libpsl   0.21.5  https://github.com/rockdaboot/libpsl/releases/
 # gsasl    2.2.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/gsasl/
 # curl     8.15.0  https://github.com/curl/curl/releases/
@@ -61,7 +62,7 @@ for td in toolset mintoolset; do
     rm -rf /home/lixq/$td
     cd /home/lixq || exit 1
     [[ -s $td.tar.$((n-1)) ]] && tar -xf $td.tar.$((n-1))
-    for p in openssl nghttp3 ngtcp2 nghttp2 libssh2 zlib brotli zstd krb5 libpsl gsasl curl; do
+    for p in openssl nghttp3 ngtcp2 nghttp2 libssh2 zlib brotli zstd krb5 libidn2 libpsl gsasl curl; do
         date "+%Y-%m-%d %H:%M:%S begin build $td $p" >> /tmp/build_all.log
         tb=$(date +%s)
         /home/lixq/35share-rd/toolchains/buildsh/build_$p.sh /home/lixq/$td || exit 1
