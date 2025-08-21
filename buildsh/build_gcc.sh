@@ -7,7 +7,7 @@ mpfr='mpfr-4.1.0.tar.bz2'
 mpc='mpc-1.2.1.tar.gz'
 isl='isl-0.24.tar.bz2'
 gettext='gettext-0.22.tar.gz'
-DESTDIR=/home/lixq/toolchains/${name}-${ver}
+DESTDIR=/home/lixq/toolchains/${name}
 [[ -n "$1" ]] && DESTDIR="$1"
 
 need_exit=no
