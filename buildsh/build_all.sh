@@ -38,27 +38,36 @@ tse=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   step $n ${pkgs[*]} use $((tse - tsb)) seconds" >> /tmp/build_all.log
 
 # step 2 cmake
-# cmake    4.1.0   https://cmake.org/download/
-cmakever=4.1.0
+# cmake  4.1.0  https://cmake.org/download/
+# Bear   3.1.6  https://github.com/rizsotto/Bear/
 n=2
-pkgs=(cmake)
+pkgs=(cmake Bear)
 tsb=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin step $n ${pkgs[*]}" >> /tmp/build_all.log
-for d in /home/lixq/toolchains/cmake /home/lixq/toolset/usr; do
-    [[ -x $d/bin/cmake ]] && continue
-    date "+%Y-%m-%d %H:%M:%S begin build $(basename "$(dirname "$d")") cmake" >> /tmp/build_all.log
+for p in "${pkgs[@]}"; do
+    [[ -d /home/lixq/toolchains/$p ]] && continue
+    date "+%Y-%m-%d %H:%M:%S begin build toolchains $p" >> /tmp/build_all.log
     tb=$(date +%s)
-    [[ -d $d ]] || mkdir -p $d
-    cd $d || exit 1
-    tar -xf /home/lixq/src/cmake-${cmakever}-linux-x86_64.tar.gz --strip-components=1 || exit 1
+    "/home/lixq/35share-rd/toolchains/buildsh/build_$p.sh" || exit 1
     te=$(date +%s)
-    date "+%Y-%m-%d %H:%M:%S end   build $(basename "$(dirname "$d")") cmake use $((te - tb)) seconds" >> /tmp/build_all.log
+    date "+%Y-%m-%d %H:%M:%S end   build toolchains $p use $((te - tb)) seconds" >> /tmp/build_all.log
 done
 [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
-if [[ ! -f /home/lixq/toolset.tar.$n ]]; then
+for td in toolset mintoolset; do
+    [[ -f /home/lixq/$td.tar.$n ]] && continue
+    rm -rf /home/lixq/$td
     cd /home/lixq || exit 1
-    tar -cf toolset.tar.$n toolset
-fi
+    [[ -s $td.tar.$((n-1)) ]] && tar -xf $td.tar.$((n-1))
+    for p in "${pkgs[@]}"; do
+        date "+%Y-%m-%d %H:%M:%S begin build $td $p" >> /tmp/build_all.log
+        tb=$(date +%s)
+        "/home/lixq/35share-rd/toolchains/buildsh/build_$p.sh" /home/lixq/$td || exit 1
+        te=$(date +%s)
+        date "+%Y-%m-%d %H:%M:%S end   build $td $p use $((te - tb)) seconds" >> /tmp/build_all.log
+    done
+    cd /home/lixq || exit 1
+    tar -cf $td.tar.$n $td
+done
 tse=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   step $n ${pkgs[*]} use $((tse - tsb)) seconds" >> /tmp/build_all.log
 
@@ -110,19 +119,17 @@ done
 tse=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   step $n ${pkgs[*]} use $((tse - tsb)) seconds" >> /tmp/build_all.log
 
-# step 4 bashdb bat Bear
+# step 4 bashdb bat
 # bashdb 4.4-1.0.1 https://sourceforge.net/projects/bashdb/files/bashdb/
 # bat    0.25.0    https://github.com/sharkdp/bat/releases/
-# Bear   3.1.6     https://github.com/rizsotto/Bear/
 n=4
-pkgs=(bashdb bat Bear)
+pkgs=(bashdb bat)
 tsb=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin step $n ${pkgs[*]}" >> /tmp/build_all.log
 for p in "${pkgs[@]}"; do
     [[ -d /home/lixq/toolchains/$p ]] && continue
     date "+%Y-%m-%d %H:%M:%S begin build toolchains $p" >> /tmp/build_all.log
     tb=$(date +%s)
-    "/home/lixq/35share-rd/toolchains/buildsh/build_$p.sh" || exit 1
     "/home/lixq/35share-rd/toolchains/buildsh/build_$p.sh" || exit 1
     te=$(date +%s)
     date "+%Y-%m-%d %H:%M:%S end   build toolchains $p use $((te - tb)) seconds" >> /tmp/build_all.log

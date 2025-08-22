@@ -8,7 +8,7 @@ DESTDIR=/home/lixq/toolchains/${name}
 
 if [[ "$DESTDIR" == */${name} ]]; then
     . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" ${name}
-    export PATH="/home/lixq/toolchains/cmake/bin:$PATH"
+    export PATH="/home/lixq/toolchains/cmake/usr/bin:$PATH"
     export CC="gcc"
 else
     . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" "$(basename "$DESTDIR")"

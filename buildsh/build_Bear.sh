@@ -31,7 +31,7 @@ fi
 
 if [[ "$DESTDIR" == */${name} ]]; then
     . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" gcc
-    export PATH="/home/lixq/toolchains/cmake/bin:$PATH"
+    export PATH="/home/lixq/toolchains/cmake/usr/bin:$PATH"
 else
     . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" "$(basename "$DESTDIR")"
 fi
