@@ -5,21 +5,32 @@ tab=$(date +%s)
 # step 1 gcc
 # binutils  2.45    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
 # gcc       15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
+pkgs=(binutils gcc)
 n=1
+for p in "${pkgs[@]}"; do
+    [[ -d /home/lixq/toolchains/$p ]] && continue
+    date "+%Y-%m-%d %H:%M:%S begin build toolchains $p" >> /tmp/build_all.log
+    tb=$(date +%s)
+    "/home/lixq/35share-rd/toolchains/buildsh/build_$p.sh" || exit 1
+    te=$(date +%s)
+    date "+%Y-%m-%d %H:%M:%S end   build toolchains $p use $((te - tb)) seconds" >> /tmp/build_all.log
+done
 touch /home/lixq/mintoolset.tar.$n
 for td in toolset mintoolset; do
     [[ -f /home/lixq/$td.tar.$n ]] && continue
     rm -rf /home/lixq/$td
-    for p in binutils gcc; do
+    for p in "${pkgs[@]}"; do
         date "+%Y-%m-%d %H:%M:%S begin build $td $p" >> /tmp/build_all.log
         tb=$(date +%s)
-        /home/lixq/35share-rd/toolchains/buildsh/build_$p.sh /home/lixq/$td || exit 1
+        "/home/lixq/35share-rd/toolchains/buildsh/build_$p.sh" /home/lixq/$td || exit 1
         te=$(date +%s)
         date "+%Y-%m-%d %H:%M:%S end   build $td $p use $((te - tb)) seconds" >> /tmp/build_all.log
     done
     cd /home/lixq || exit 1
     tar -cf $td.tar.$n $td
 done
+
+exit
 
 # step 2 cmake
 # cmake    4.1.0   https://cmake.org/download/
