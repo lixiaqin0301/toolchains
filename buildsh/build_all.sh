@@ -92,7 +92,40 @@ for p in "${pkgs[@]}"; do
     te=$(date +%s)
     date "+%Y-%m-%d %H:%M:%S end   build toolchains $p use $((te - tb)) seconds" >> /tmp/build_all.log
 done
-cd /home/lixq || exit 1
+for td in toolset mintoolset; do
+    [[ -f /home/lixq/$td.tar.$n ]] && continue
+    rm -rf /home/lixq/$td
+    cd /home/lixq || exit 1
+    [[ -s $td.tar.$((n-1)) ]] && tar -xf $td.tar.$((n-1))
+    for p in "${pkgs[@]}"; do
+        date "+%Y-%m-%d %H:%M:%S begin build $td $p" >> /tmp/build_all.log
+        tb=$(date +%s)
+        "/home/lixq/35share-rd/toolchains/buildsh/build_$p.sh" /home/lixq/$td || exit 1
+        te=$(date +%s)
+        date "+%Y-%m-%d %H:%M:%S end   build $td $p use $((te - tb)) seconds" >> /tmp/build_all.log
+    done
+    cd /home/lixq || exit 1
+    tar -cf $td.tar.$n $td
+done
+tse=$(date +%s)
+date "+%Y-%m-%d %H:%M:%S end   step $n ${pkgs[*]} use $((tse - tsb)) seconds" >> /tmp/build_all.log
+
+# step 4 bashdb
+# bashdb 4.4-1.0.1 https://sourceforge.net/projects/bashdb/files/bashdb/
+n=4
+pkgs=(bashdb)
+tsb=$(date +%s)
+date "+%Y-%m-%d %H:%M:%S begin step $n ${pkgs[*]}" >> /tmp/build_all.log
+for p in "${pkgs[@]}"; do
+    [[ -d /home/lixq/toolchains/$p ]] && continue
+    date "+%Y-%m-%d %H:%M:%S begin build toolchains $p" >> /tmp/build_all.log
+    tb=$(date +%s)
+    "/home/lixq/35share-rd/toolchains/buildsh/build_$p.sh" || exit 1
+    "/home/lixq/35share-rd/toolchains/buildsh/build_$p.sh" || exit 1
+    te=$(date +%s)
+    date "+%Y-%m-%d %H:%M:%S end   build toolchains $p use $((te - tb)) seconds" >> /tmp/build_all.log
+done
+cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
 for td in toolset mintoolset; do
     [[ -f /home/lixq/$td.tar.$n ]] && continue
     rm -rf /home/lixq/$td
