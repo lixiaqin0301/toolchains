@@ -4,7 +4,7 @@ ver=2.50.1
 
 rm -rf /home/lixq/src/git_success
 
-if [[ ! -f /home/lixq/35share-rd/src/git-${ver}.tar.gz ]]; then
+if [[ ! -f /home/lixq/src/git-${ver}.tar.gz ]]; then
     echo "wget https://github.com/git/git/archive/refs/tags/v${ver}.tar.gz -O git-${ver}.tar.gz"
     exit 1
 fi
@@ -43,7 +43,7 @@ cd /home/lixq/src/build-git-server/conf || exit 1
     echo "user root;"
     echo "events { }"
     echo "http {"
-    for d in /home/lixq/35share-rd/src/*/; do
+    for d in /home/lixq/src/*/; do
         host=$(basename "$d")
         echo -e "CN\nFuJian\nXiaMen\nWangSu\nCache\n$host\nlixq@wangsu.com\n\n" | openssl req -newkey rsa:2048 -nodes -keyout "${host}.key" -out "${host}.csr"
         openssl x509 -signkey "${host}.key" -in "${host}.csr" -req -days 3650 -out "${host}.crt"
@@ -75,7 +75,7 @@ fi
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
 rm -rf git-${ver}
-tar -xf /home/lixq/35share-rd/src/git-${ver}.tar.gz
+tar -xf /home/lixq/src/git-${ver}.tar.gz
 cd git-${ver} || exit 1
 make configure || exit 1
 ./configure --prefix=/home/lixq/toolchains/git-${ver} || exit 1

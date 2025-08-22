@@ -4,7 +4,7 @@ ver=0.35.0
 DESTDIR=/home/lixq/toolchains/bcc-${ver}
 [[ -n "$1" ]] && DESTDIR="$1"
 
-if [[ ! -f /home/lixq/35share-rd/src/bcc-src-with-submodule-${ver}.tar.gz ]]; then
+if [[ ! -f /home/lixq/src/bcc-src-with-submodule-${ver}.tar.gz ]]; then
     echo "wget https://github.com/iovisor/bcc/releases/download/v${ver}/bcc-src-with-submodule.tar.gz -O bcc-src-with-submodule-${ver}.tar.gz"
     exit 1
 fi
@@ -23,7 +23,7 @@ cp ../usr/lib64/libm.so .
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
 rm -rf bcc
-tar -xf /home/lixq/35share-rd/src/bcc-src-with-submodule-${ver}.tar.gz
+tar -xf /home/lixq/src/bcc-src-with-submodule-${ver}.tar.gz
 cd /home/lixq/src/bcc || exit 1
 sed -i "1a set(REVISION \"${ver}\")" cmake/version.cmake
 sed -i 's/ -bgd / -bg /' src/lua/CMakeLists.txt

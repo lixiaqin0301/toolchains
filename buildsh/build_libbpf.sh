@@ -4,7 +4,7 @@ ver=1.6.1
 DESTDIR=/home/lixq/toolchains/libbpf-${ver}
 [[ -n "$1" ]] && DESTDIR="$1"
 
-if [[ ! -f /home/lixq/35share-rd/src/libbpf-${ver}.tar.gz ]]; then
+if [[ ! -f /home/lixq/src/libbpf-${ver}.tar.gz ]]; then
     echo "wget https://github.com/libbpf/libbpf/archive/refs/tags/v${ver}.tar.gz -O libbpf-${ver}.tar.gz"
     exit 1
 fi
@@ -14,7 +14,7 @@ fi
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
 rm -rf libbpf-${ver}
-tar -xf /home/lixq/35share-rd/src/libbpf-${ver}.tar.gz
+tar -xf /home/lixq/src/libbpf-${ver}.tar.gz
 cd /home/lixq/src/libbpf-${ver}/src || exit 1
 make -s -j"$(nproc)" || exit 1
 rm -rf "${DESTDIR}"

@@ -2,7 +2,7 @@
 
 ver=20.1.8
 
-if [[ ! -f /home/lixq/35share-rd/src/llvm-project-${ver}.src.tar.xz ]]; then
+if [[ ! -f /home/lixq/src/llvm-project-${ver}.src.tar.xz ]]; then
     echo "wget https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/LLVM%20${ver}/llvm-project-${ver}.src.tar.xz"
     exit 1
 fi
@@ -17,7 +17,7 @@ export PATH=/home/lixq/toolchains/cmake/bin:$PATH
 [[ -d /home/lixq/src ]] || mkdir -p /home/lixq/src/
 cd /home/lixq/src/ || exit 1
 rm -rf llvm-project-*
-tar -xf /home/lixq/35share-rd/src/llvm-project-${ver}.src.tar.xz
+tar -xf /home/lixq/src/llvm-project-${ver}.src.tar.xz
 mkdir /home/lixq/src/llvm-project-${ver}.src/build || exit 1
 cd /home/lixq/src/llvm-project-${ver}.src/build || exit 1
 

@@ -4,14 +4,14 @@ ver=5.8.1
 
 . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" /home/lixq/toolchains/gcc /home/lixq/toolchains/binutils
 
-if [[ ! -f /home/lixq/35share-rd/src/xz-${ver}.tar.xz ]]; then
+if [[ ! -f /home/lixq/src/xz-${ver}.tar.xz ]]; then
     echo "wget https://github.com/tukaani-project/xz/releases/download/v${ver}/xz-${ver}.tar.xz"
     exit 1
 fi
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
 rm -rf xz-${ver}
-tar -xf /home/lixq/35share-rd/src/xz-${ver}.tar.xz
+tar -xf /home/lixq/src/xz-${ver}.tar.xz
 cd xz-${ver} || exit 1
 ./configure --prefix=/home/lixq/toolchains/xz-${ver} || exit 1
 make -j"$(nproc)" || exit 1

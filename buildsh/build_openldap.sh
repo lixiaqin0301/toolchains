@@ -5,7 +5,7 @@ ver=2.6.10
 DESTDIR=/home/lixq/toolchains/${name}
 [[ -n "$1" ]] && DESTDIR="$1"
 
-if [[ ! -f /home/lixq/35share-rd/src/${name}-${ver}.tgz ]]; then
+if [[ ! -f /home/lixq/src/${name}-${ver}.tgz ]]; then
     echo "wget https://mirror-hk.koddos.net/OpenLDAP/openldap-release/${name}-${ver}.tgz"
     exit 1
 fi
@@ -20,7 +20,7 @@ fi
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
 rm -rf ${name}-${ver}
-tar -xf /home/lixq/35share-rd/src/${name}-${ver}.tgz
+tar -xf /home/lixq/src/${name}-${ver}.tgz
 cd ${name}-${ver} || exit 1
 ./configure --prefix="$DESTDIR/usr" --with-tls=openssl || exit 1
 make -s -j"$(nproc)" || exit 1

@@ -4,7 +4,7 @@ ver=2.1.ROLLING
 DESTDIR=/home/lixq/toolchains/LuaJIT-${ver}
 [[ -n "$1" ]] && DESTDIR="$1"
 
-if [[ ! -f /home/lixq/35share-rd/src/LuaJIT-${ver}.tar.gz ]]; then
+if [[ ! -f /home/lixq/src/LuaJIT-${ver}.tar.gz ]]; then
     echo "wget https://github.com/LuaJIT/LuaJIT/archive/refs/tags/v2.1.ROLLING.tar.gz -O LuaJIT-2.1.ROLLING.tar.gz"
     exit 1
 fi
@@ -14,7 +14,7 @@ fi
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
 rm -rf LuaJIT-${ver}
-tar -xf /home/lixq/35share-rd/src/LuaJIT-${ver}.tar.gz
+tar -xf /home/lixq/src/LuaJIT-${ver}.tar.gz
 cd /home/lixq/src/LuaJIT-${ver} || exit 1
 make -s -j"$(nproc)" || exit 1
 rm -rf "${DESTDIR}"

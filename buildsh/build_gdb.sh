@@ -5,14 +5,14 @@ ver=16.3
 export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 . /opt/rh/devtoolset-11/enable
 
-if [[ ! -f /home/lixq/35share-rd/src/gdb-${ver}.tar.xz ]]; then
+if [[ ! -f /home/lixq/src/gdb-${ver}.tar.xz ]]; then
     echo "wget https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/gdb-${ver}.tar.xz"
     exit 1
 fi
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
 rm -rf gdb-${ver}
-tar -xvf /home/lixq/35share-rd/src/gdb-${ver}.tar.xz
+tar -xvf /home/lixq/src/gdb-${ver}.tar.xz
 mkdir gdb-${ver}/build
 cd gdb-${ver}/build || exit 1
 ../configure --prefix=/home/lixq/toolchains/gdb-${ver} --with-lzma || exit 1

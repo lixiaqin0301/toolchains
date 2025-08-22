@@ -34,7 +34,7 @@ for td in toolset mintoolset; do
     date "+%Y-%m-%d %H:%M:%S begin build $td cmake" >> /tmp/build_all.log
     tb=$(date +%s)
     cd /home/lixq/$td/usr || exit 1
-    tar -xf /home/lixq/35share-rd/src/cmake-${cmakever}-linux-x86_64.tar.gz --strip-components=1
+    tar -xf /home/lixq/src/cmake-${cmakever}-linux-x86_64.tar.gz --strip-components=1
     te=$(date +%s)
     date "+%Y-%m-%d %H:%M:%S end   build $td cmake use $((te - tb)) seconds" >> /tmp/build_all.log
     cd /home/lixq || exit 1

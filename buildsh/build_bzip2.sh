@@ -4,7 +4,7 @@ ver=1.0.8
 DESTDIR=/home/lixq/toolchains/bzip2-${ver}
 [[ -n "$1" ]] && DESTDIR="$1"
 
-if [[ ! -f /home/lixq/35share-rd/src/bzip2-${ver}.tar.gz ]]; then
+if [[ ! -f /home/lixq/src/bzip2-${ver}.tar.gz ]]; then
     echo "wget https://sourceware.org/pub/bzip2/bzip2-${ver}.tar.gz"
     exit 1
 fi
@@ -14,7 +14,7 @@ fi
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
 rm -rf bzip2-${ver}
-tar -xf /home/lixq/35share-rd/src/bzip2-${ver}.tar.gz
+tar -xf /home/lixq/src/bzip2-${ver}.tar.gz
 cd /home/lixq/src/bzip2-${ver} || exit 1
 sed -i -e "s;CFLAGS=;CFLAGS=$CFLAGS ;" -e "s;LDFLAGS=;LDFLAGS=$LDFLAGS;" Makefile
 sed -i -e "/CC=/a LDFLAGS=$LDFLAGS" -e "s;LDFLAGS=;LDFLAGS=$LDFLAGS;" -e "s;\$(CC) \$(CFLAGS) -o;\$(CC) \$(CFLAGS) \$(LDFLAGS) -o;" -e "s;\$(CC) -shared;\$(CC) \$(LDFLAGS) -shared;" Makefile-libbz2_so

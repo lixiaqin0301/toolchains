@@ -6,7 +6,7 @@ DESTDIR=/home/lixq/toolchains/make-${ver}
 
 . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh"
 
-if [[ ! -f /home/lixq/35share-rd/src/make-${ver}.tar.gz ]]; then
+if [[ ! -f /home/lixq/src/make-${ver}.tar.gz ]]; then
     echo "wget https://mirrors.tuna.tsinghua.edu.cn/gnu/make/make-${ver}.tar.gz"
     exit 1
 fi
@@ -14,7 +14,7 @@ fi
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
 rm -rf make-${ver}
-tar -xf /home/lixq/35share-rd/src/make-${ver}.tar.gz
+tar -xf /home/lixq/src/make-${ver}.tar.gz
 cd make-${ver} || exit 1
 ./configure --prefix=/usr || exit 1
 make -j"$(nproc)" || exit 1

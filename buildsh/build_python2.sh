@@ -4,14 +4,14 @@ ver=2.7.18
 
 export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
 
-if [[ ! -f /home/lixq/35share-rd/src/Python-${ver}.tar.xz ]]; then
+if [[ ! -f /home/lixq/src/Python-${ver}.tar.xz ]]; then
     echo "wget https://www.python.org/ftp/python/${ver}/Python-${ver}.tar.xz"
     exit 1
 fi
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
 rm -rf Python-${ver}
-tar -xf /home/lixq/35share-rd/src/Python-${ver}.tar.xz
+tar -xf /home/lixq/src/Python-${ver}.tar.xz
 cd Python-${ver} || exit 1
 ./configure --prefix=/home/lixq/toolchains/Python-${ver} --with-ensurepip=install || exit 1
 make || exit 1

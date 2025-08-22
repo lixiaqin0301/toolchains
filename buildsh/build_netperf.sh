@@ -4,7 +4,7 @@ ver=2.7.0
 DESTDIR=/home/lixq/toolchains/netperf-${ver}
 [[ -n "$1" ]] && DESTDIR="$1"
 
-if [[ ! -f /home/lixq/35share-rd/src/netperf-${ver}.tar.gz ]]; then
+if [[ ! -f /home/lixq/src/netperf-${ver}.tar.gz ]]; then
     echo "wget https://github.com/HewlettPackard/netperf/archive/refs/tags/netperf-${ver}.tar.gz"
     exit 1
 fi
@@ -14,7 +14,7 @@ fi
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
 rm -rf netperf-netperf-${ver}
-tar -xf /home/lixq/35share-rd/src/netperf-${ver}.tar.gz
+tar -xf /home/lixq/src/netperf-${ver}.tar.gz
 cd /home/lixq/src/netperf-netperf-${ver} || exit 1
 ./configure || exit 1
 make -s -j"$(nproc)" || exit 1

@@ -4,7 +4,7 @@ ver=2.6.4
 DESTDIR=/home/lixq/toolchains/flex-${ver}
 [[ -n "$1" ]] && DESTDIR="$1"
 
-if [[ ! -f /home/lixq/35share-rd/src/flex-${ver}.tar.gz ]]; then
+if [[ ! -f /home/lixq/src/flex-${ver}.tar.gz ]]; then
     echo "wget https://github.com/westes/flex/releases/download/v${ver}/flex-${ver}.tar.gz"
     exit 1
 fi
@@ -14,7 +14,7 @@ fi
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
 rm -rf flex-${ver}
-tar -xf /home/lixq/35share-rd/src/flex-${ver}.tar.gz
+tar -xf /home/lixq/src/flex-${ver}.tar.gz
 cd /home/lixq/src/flex-${ver} || exit 1
 ./configure || exit 1
 make -s -j"$(nproc)" || exit 1

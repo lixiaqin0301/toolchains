@@ -4,7 +4,7 @@ ver=0.18-20240915
 DESTDIR=/home/lixq/toolchains/json-c-${ver}
 [[ -n "$1" ]] && DESTDIR="$1"
 
-if [[ ! -f /home/lixq/35share-rd/src/json-c-${ver}.tar.gz ]]; then
+if [[ ! -f /home/lixq/src/json-c-${ver}.tar.gz ]]; then
     echo "wget https://github.com/json-c/json-c/archive/refs/tags/json-c-${ver}.tar.gz"
     exit 1
 fi
@@ -15,7 +15,7 @@ export PATH="/home/lixq/toolchains/cmake/bin:$PATH"
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
 rm -rf json-c-json-c-${ver}
-tar -xf /home/lixq/35share-rd/src/json-c-${ver}.tar.gz
+tar -xf /home/lixq/src/json-c-${ver}.tar.gz
 cd /home/lixq/src/json-c-json-c-${ver} || exit 1
 mkdir json-c-build
 cd /home/lixq/src/json-c-json-c-${ver}/json-c-build || exit 1

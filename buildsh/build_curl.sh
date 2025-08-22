@@ -7,7 +7,7 @@ ver=8.15.0
 DESTDIR=/home/lixq/toolchains/${name}
 [[ -n "$1" ]] && DESTDIR="$1"
 
-if [[ ! -f /home/lixq/35share-rd/src/${name}-${ver}.tar.gz ]]; then
+if [[ ! -f /home/lixq/src/${name}-${ver}.tar.gz ]]; then
     echo "wget https://github.com/curl/curl/releases/download/${name}-${ver//./_}/${name}-${ver}.tar.gz"
     exit 1
 fi
@@ -24,7 +24,7 @@ export LDFLAGS="-pthread $LDFLAGS"
 
 cd /home/lixq/src || exit 1
 rm -rf ${name}-${ver}
-tar -xf /home/lixq/35share-rd/src/${name}-${ver}.tar.gz
+tar -xf /home/lixq/src/${name}-${ver}.tar.gz
 cd /home/lixq/src/${name}-${ver} || exit 1
 autoreconf -fi || exit 1
 if [[ "$DESTDIR" == */${name} ]]; then

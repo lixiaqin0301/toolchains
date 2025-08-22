@@ -6,14 +6,14 @@ ver=v16.20.2
 export PATH="$PATH:/home/lixq/toolchains/Bear/bin"
 export CFLAGS="-g $CFLAGS"
 export CXXFLAGS="-g $CXXFLAGS"
-if [[ ! -f /home/lixq/35share-rd/src/node-${ver}.tar.gz ]]; then
+if [[ ! -f /home/lixq/src/node-${ver}.tar.gz ]]; then
     echo "wget https://nodejs.org/dist/${ver}/node-${ver}.tar.gz"
     exit 1
 fi
 [[ -d /home/lixq/workspace-vscode ]] || mkdir /home/lixq/workspace-vscode
 cd /home/lixq/workspace-vscode || exit 1
 rm -rf node-${ver}
-tar -xf /home/lixq/35share-rd/src/node-${ver}.tar.gz
+tar -xf /home/lixq/src/node-${ver}.tar.gz
 cd /home/lixq/workspace-vscode/node-${ver} || exit 1
 sed -i '/#include <unordered_set>/a #include <cstdint>' src/inspector/worker_inspector.h
 ./configure --prefix=/home/lixq/toolchains/node16-${ver} --shared || exit 1

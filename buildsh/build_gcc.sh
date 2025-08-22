@@ -2,6 +2,7 @@
 
 name=gcc
 ver=15.2.0
+srcpath=/home/lixq/src/${name}-${ver}.tar.gz
 gmp='gmp-6.2.1.tar.bz2'
 mpfr='mpfr-4.1.0.tar.bz2'
 mpc='mpc-1.2.1.tar.gz'
@@ -9,35 +10,6 @@ isl='isl-0.24.tar.bz2'
 gettext='gettext-0.22.tar.gz'
 DESTDIR=/home/lixq/toolchains/${name}
 [[ -n "$1" ]] && DESTDIR="$1"
-
-need_exit=no
-if [[ ! -f /home/lixq/35share-rd/src/${name}-${ver}.tar.gz ]]; then
-    echo "wget https://mirrors.tuna.tsinghua.edu.cn/gnu/${name}/${name}-${ver}/${name}-${ver}.tar.gz -O ${name}-${ver}.tar.gz"
-    need_exit=yes
-fi
-if [[ ! -f /home/lixq/35share-rd/src/${gmp} ]]; then
-    echo "wget https://mirrors.tuna.tsinghua.edu.cn/gnu/gmp/${gmp} -O ${gmp}"
-    need_exit=yes
-fi
-if [[ ! -f /home/lixq/35share-rd/src/${mpfr} ]]; then
-    echo "wget https://mirrors.tuna.tsinghua.edu.cn/gnu/mpfr/${mpfr} -O ${mpfr}"
-    need_exit=yes
-fi
-if [[ ! -f /home/lixq/35share-rd/src/${mpc} ]]; then
-    echo "wget https://mirrors.tuna.tsinghua.edu.cn/gnu/mpc/${mpc} -O ${mpc}"
-    need_exit=yes
-fi
-if [[ ! -f /home/lixq/35share-rd/src/${isl} ]]; then
-    echo "wget https://gcc.gnu.org/pub/gcc/infrastructure/${isl} -O ${isl}"
-    need_exit=yes
-fi
-if [[ ! -f /home/lixq/35share-rd/src/${gettext} ]]; then
-    echo "wget https://mirrors.tuna.tsinghua.edu.cn/gnu/gettext/${gettext} -O ${gettext}"
-    need_exit=yes
-fi
-if [[ "$need_exit" == "yes" ]]; then
-    exit 1
-fi
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 if [[  -x /home/lixq/toolset/usr/bin/gcc ]]; then
@@ -53,13 +25,13 @@ fi
 [[ -d /home/lixq/src ]] || mkdir -p /home/lixq/src
 cd /home/lixq/src || exit 1
 rm -rf ${name}-${ver}
-tar -xf /home/lixq/35share-rd/src/${name}-${ver}.tar.gz
+tar -xf $srcpath || exit 1
 cd /home/lixq/src/${name}-${ver} || exit 1
-cp /home/lixq/35share-rd/src/${gmp} .
-cp /home/lixq/35share-rd/src/${mpfr} .
-cp /home/lixq/35share-rd/src/${mpc} .
-cp /home/lixq/35share-rd/src/${isl} .
-cp /home/lixq/35share-rd/src/${gettext} .
+cp /home/lixq/src/${gmp} . || exit 1
+cp /home/lixq/src/${mpfr} . || exit 1
+cp /home/lixq/src/${mpc} . || exit 1
+cp /home/lixq/src/${isl} . || exit 1
+cp /home/lixq/src/${gettext} . || exit 1
 ./contrib/download_prerequisites
 mkdir -p /home/lixq/src/${name}-${ver}/build
 cd /home/lixq/src/${name}-${ver}/build || exit 1

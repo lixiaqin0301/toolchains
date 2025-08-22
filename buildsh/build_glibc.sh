@@ -6,15 +6,15 @@ patchelfver=0.18.0
 DESTDIR=/home/lixq/toolchains/glibc-${ver}
 [[ -n "$1" ]] && DESTDIR="$1"
 
-if [[ ! -f /home/lixq/35share-rd/src/glibc-${ver}.tar.xz ]]; then
+if [[ ! -f /home/lixq/src/glibc-${ver}.tar.xz ]]; then
     echo "wget https://mirrors.ustc.edu.cn/gnu/glibc/glibc-${ver}.tar.xz"
     need_exit=yes
 fi
-if [[ ! -f /home/lixq/35share-rd/src/linux-${kernelver}.tar.xz ]]; then
+if [[ ! -f /home/lixq/src/linux-${kernelver}.tar.xz ]]; then
     echo "wget https://mirrors.tuna.tsinghua.edu.cn/kernel/v$(echo ${kver} | awk -F '.' '{print $1}').x/linux-${kernelver}.tar.xz"
     need_exit=yes
 fi
-if [[ ! -f /home/lixq/35share-rd/src/patchelf-${patchelfver}-x86_64.tar.gz ]]; then
+if [[ ! -f /home/lixq/src/patchelf-${patchelfver}-x86_64.tar.gz ]]; then
     echo "wget https://github.com/NixOS/patchelf/releases/download/${patchelfver}/patchelf-${patchelfver}-x86_64.tar.gz"
     need_exit=yes
 fi
@@ -27,7 +27,7 @@ export PATH="/home/lixq/toolchains/gcc/bin:/home/lixq/toolchains/binutils/bin:/h
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
 rm -rf glibc-${ver}
-tar -xf /home/lixq/35share-rd/src/glibc-${ver}.tar.xz
+tar -xf /home/lixq/src/glibc-${ver}.tar.xz
 mkdir -p /home/lixq/src/glibc-${ver}/glibc-${ver}/build/glibc
 cd /home/lixq/src/glibc-${ver}/glibc-${ver}/build/glibc || exit 1
 /home/lixq/src/glibc-${ver}/configure --prefix=/usr || exit 1
@@ -41,7 +41,7 @@ fi
 
 cd /home/lixq/src || exit 1
 rm -rf linux-${kernelver}
-tar -xf /home/lixq/35share-rd/src/linux-${kernelver}.tar.xz
+tar -xf /home/lixq/src/linux-${kernelver}.tar.xz
 cd /home/lixq/src/linux-${kernelver} || exit 1
 make -s -j"$(nproc)" headers_install INSTALL_HDR_PATH="$DESTDIR/usr" || exit 1
 
@@ -55,7 +55,7 @@ if [[ "$DESTDIR" == */mintoolset ]]; then
 fi
 
 cd "${DESTDIR}/usr" || exit 1
-tar -xf /home/lixq/35share-rd/src/patchelf-${patchelfver}-x86_64.tar.gz || exit 1
+tar -xf /home/lixq/src/patchelf-${patchelfver}-x86_64.tar.gz || exit 1
 for f in "$DESTDIR"/sbin/* "$DESTDIR"/usr/sbin/* "$DESTDIR"/usr/bin/* "$DESTDIR"/lib64/*; do
     if ldd "$f" 2>&1 | grep -q "libc.so.6 => /lib64/libc.so.6"; then
         "$DESTDIR/usr/bin/patchelf" --set-rpath "$DESTDIR/lib64:$DESTDIR/usr/lib64:/lib64" "$f" 

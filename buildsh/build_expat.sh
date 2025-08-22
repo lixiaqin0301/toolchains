@@ -2,7 +2,7 @@
 
 ver=2.7.1
 
-if [[ ! -f /home/lixq/35share-rd/src/expat-${ver}.tar.xz ]]; then
+if [[ ! -f /home/lixq/src/expat-${ver}.tar.xz ]]; then
     echo "wget https://github.com/libexpat/libexpat/releases/download/R_${ver//./_}/expat-${ver}.tar.xz"
     exit 1
 fi
@@ -39,7 +39,7 @@ export LDFLAGS="$ldl -Wl,-rpath-link=$ldr -Wl,-rpath=$ldr"
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
 rm -rf expat-${ver}
-tar -xf /home/lixq/35share-rd/src/expat-${ver}.tar.xz
+tar -xf /home/lixq/src/expat-${ver}.tar.xz
 cd expat-${ver} || exit 1
 ./configure --prefix=/home/lixq/toolchains/expat-${ver} || exit 1
 make || exit 1
