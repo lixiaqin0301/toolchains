@@ -54,7 +54,7 @@ for d in /home/lixq/toolchains/cmake /home/lixq/toolset/usr; do
     te=$(date +%s)
     date "+%Y-%m-%d %H:%M:%S end   build $(basename "$(dirname "$d")") cmake use $((te - tb)) seconds" >> /tmp/build_all.log
 done
-cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
+[[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
 if [[ ! -f /home/lixq/toolset.tar.$n ]]; then
     cd /home/lixq || exit 1
     tar -cf toolset.tar.$n toolset
@@ -112,8 +112,9 @@ date "+%Y-%m-%d %H:%M:%S end   step $n ${pkgs[*]} use $((tse - tsb)) seconds" >>
 
 # step 4 bashdb
 # bashdb 4.4-1.0.1 https://sourceforge.net/projects/bashdb/files/bashdb/
+# bat    0.25.0    https://github.com/sharkdp/bat/releases/
 n=4
-pkgs=(bashdb)
+pkgs=(bashdb bat)
 tsb=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin step $n ${pkgs[*]}" >> /tmp/build_all.log
 for p in "${pkgs[@]}"; do
@@ -125,7 +126,7 @@ for p in "${pkgs[@]}"; do
     te=$(date +%s)
     date "+%Y-%m-%d %H:%M:%S end   build toolchains $p use $((te - tb)) seconds" >> /tmp/build_all.log
 done
-cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
+[[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
 for td in toolset mintoolset; do
     [[ -f /home/lixq/$td.tar.$n ]] && continue
     rm -rf /home/lixq/$td
