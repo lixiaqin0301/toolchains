@@ -110,11 +110,12 @@ done
 tse=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   step $n ${pkgs[*]} use $((tse - tsb)) seconds" >> /tmp/build_all.log
 
-# step 4 bashdb
+# step 4 bashdb bat Bear
 # bashdb 4.4-1.0.1 https://sourceforge.net/projects/bashdb/files/bashdb/
 # bat    0.25.0    https://github.com/sharkdp/bat/releases/
+# Bear   3.1.6     https://github.com/rizsotto/Bear/
 n=4
-pkgs=(bashdb bat)
+pkgs=(bashdb bat Bear)
 tsb=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin step $n ${pkgs[*]}" >> /tmp/build_all.log
 for p in "${pkgs[@]}"; do

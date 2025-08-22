@@ -50,6 +50,14 @@ else
             [[ -d $libdir/pkgconfig ]] && pkg=$pkg:$libdir/pkgconfig
         fi
     done
+    export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    if [[ "$use_gcc" == "yes" ]]; then
+        export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/usr/bin:$PATH"
+        export CC="/home/lixq/toolchains/gcc/usr/bin/gcc"
+        export CXX="/home/lixq/toolchains/gcc/usr/bin/g++"
+        ldl="-L/home/lixq/toolchains/gcc/usr/lib64 $ldl"
+        ldr="/home/lixq/toolchains/gcc/usr/lib64:$ldr"
+    fi
     inc="${inc# }"
     inc="${inc% }"
     ldl="${ldl# }"
@@ -59,12 +67,7 @@ else
     pkg="${pkg#:}"
     pkg="${pkg%:}"
 
-    export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-    if [[ "$use_gcc" == "yes" ]]; then
-        export PATH="/home/lixq/toolset/usr/bin:$PATH"
-        export CC="/home/lixq/toolset/usr/bin/gcc"
-        export CXX="/home/lixq/toolset/usr/bin/g++"
-    fi
+    
     export PKG_CONFIG_PATH="$pkg"
 
     if [[ "$use_glibc" == "yes" ]]; then
