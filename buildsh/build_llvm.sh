@@ -1,14 +1,14 @@
 #!/bin/bash
 
-name=llvm-project
+name=llvm
 ver=20.1.8
-srcpath=/home/lixq/src/${name}-${ver}.tar.xz
+srcpath=/home/lixq/src/${name}-project-${ver}.src.tar.xz
 DESTDIR=/home/lixq/toolchains/${name}
 [[ -n "$1" ]] && DESTDIR="$1"
 
 if [[ "$DESTDIR" == */${name} ]]; then
-    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" gcc Python lua
-    export PATH=/home/lixq/toolchains/cmake/usr/bin:/home/lixq/toolchains/swig/usr/bin:$PATH
+    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" gcc swig Python lua
+    export PATH=/home/lixq/toolchains/cmake/usr/bin:/home/lixq/toolchains/swig/usr/bin:/home/lixq/toolchains/Python/usr/bin:/home/lixq/toolchains/lua/usr/bin:$PATH
     lua_include_dir="$(dirname "$DESTDIR")/lua/usr/include"
     lua_libraries="$(dirname "$DESTDIR")/lua/usr/lib/liblua.a"
 else
@@ -19,10 +19,10 @@ fi
 
 [[ -d /home/lixq/src ]] || mkdir -p /home/lixq/src/
 cd /home/lixq/src/ || exit 1
-rm -rf ${name}-${ver}.arc
+rm -rf ${name}-project-${ver}.src
 tar -xf $srcpath || exit 1
-mkdir /home/lixq/src/${name}-${ver}.src/build || exit 1
-cd /home/lixq/src/${name}-${ver}.src/build || exit 1
+mkdir /home/lixq/src/${name}-project-${ver}.src/build || exit 1
+cd /home/lixq/src/${name}-project-${ver}.src/build || exit 1
 cmake -DCMAKE_BUILD_TYPE=Release \
     -DLLVM_TARGETS_TO_BUILD="BPF;X86" \
     -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lldb" \

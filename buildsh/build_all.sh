@@ -74,12 +74,14 @@ build_packages $n cmake Bear
 build_packages 3 openssl nghttp3 ngtcp2 nghttp2 libssh2 zlib brotli zstd keyutils krb5 libidn2 openldap libunistring libpsl gsasl curl
 
 # step 4 llvm
-# Python  3.13.7  https://www.python.org/ftp/python/
-# lua     5.4.8   https://www.lua.org/ftp/
+# bison   3.8.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
 # swig    4.3.1   https://github.com/swig/swig/
+# lua     5.4.8   https://www.lua.org/ftp/
+# Python  3.13.7  https://www.python.org/ftp/python/
+# llvm    20.1.8  https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
 n=4
 [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
-build_packages $n Python lua swig llvm
+build_packages $n bison swig lua Python llvm
 
 # # step 5 bashdb bat gdb
 # # bashdb 4.4-1.0.1 https://sourceforge.net/projects/bashdb/files/bashdb/

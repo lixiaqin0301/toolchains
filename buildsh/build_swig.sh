@@ -1,10 +1,17 @@
 #!/bin/bash
 
-name=lua
+name=swig
 ver=4.3.1
-srcpath=/home/lixq/src/${name}-${ver}.tar.xz
+srcpath=/home/lixq/src/${name}-${ver}.tar.gz
 DESTDIR=/home/lixq/toolchains/${name}
 [[ -n "$1" ]] && DESTDIR="$1"
+
+if [[ "$DESTDIR" == */${name} ]]; then
+    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" gcc
+    export PATH=/home/lixq/toolchains/bison/usr/bin:$PATH
+else
+    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" "$(basename "$DESTDIR")"
+fi
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
