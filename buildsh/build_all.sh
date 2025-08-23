@@ -33,7 +33,7 @@ function build_packages() {
         tar -cf $td.tar.$n $td
     done
     tse=$(date +%s)
-    date "+%Y-%m-%d %H:%M:%S end   step $n ${pkgs[*]} use $((tse - tsb)) seconds" >> /tmp
+    date "+%Y-%m-%d %H:%M:%S end   step $n ${pkgs[*]} use $((tse - tsb)) seconds" >> /tmp/build_all.log
 }
 
 date "+%Y-%m-%d %H:%M:%S begin" > /tmp/build_all.log
@@ -71,7 +71,7 @@ build_packages $n cmake Bear
 # libpsl        0.21.5  https://github.com/rockdaboot/libpsl/releases/
 # gsasl         2.2.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/gsasl/
 # curl          8.15.0  https://github.com/curl/curl/releases/
-build_packages 3 nghttp3 ngtcp2 nghttp2 libssh2 zlib brotli zstd keyutils krb5 libidn2 openldap libunistring libpsl gsasl curl
+build_packages 3 openssl nghttp3 ngtcp2 nghttp2 libssh2 zlib brotli zstd keyutils krb5 libidn2 openldap libunistring libpsl gsasl curl
 
 # step 4 bashdb bat gdb
 # bashdb 4.4-1.0.1 https://sourceforge.net/projects/bashdb/files/bashdb/
