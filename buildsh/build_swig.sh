@@ -1,26 +1,18 @@
 #!/bin/bash
 
+name=lua
 ver=4.3.1
+srcpath=/home/lixq/src/${name}-${ver}.tar.xz
+DESTDIR=/home/lixq/toolchains/${name}
+[[ -n "$1" ]] && DESTDIR="$1"
 
-export PATH=/home/lixq/toolchains/bison/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
-. /opt/rh/devtoolset-11/enable
-
-if [[ ! -f /home/lixq/src/swig-${ver}.tar.gz ]]; then
-    echo "wget https://github.com/swig/swig/archive/refs/tags/v${ver}.tar.gz -O swig-${ver}.tar.gz"
-    exit 1
-fi
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
-rm -rf swig-${ver}
-tar -xvf /home/lixq/src/swig-${ver}.tar.gz
-cd swig-${ver} || exit 1
+rm -rf ${name}-${ver}
+tar -xf $srcpath || exit 1
+cd ${name}-${ver} || exit 1
 ./autogen.sh || exit 1
-./configure --prefix=/home/lixq/toolchains/swig-${ver} || exit 1
-make || exit 1
-rm -rf /home/lixq/toolchains/swig-${ver}
-make install || exit 1
-if [[ -d /home/lixq/toolchains/swig-${ver} ]]; then
-    cd /home/lixq/toolchains || exit 1
-    rm -f swig
-    ln -s swig-${ver} swig
-fi
+./configure --prefix="$DESTDIR/usr" || exit 1
+make -s -j"$(nproc)" || exit 1
+[[ "$DESTDIR" == */${name} ]] && rm -rf "$DESTDIR"
+make -s -j"$(nproc)" install || exit 1

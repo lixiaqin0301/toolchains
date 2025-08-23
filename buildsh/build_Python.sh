@@ -1,28 +1,24 @@
 #!/bin/bash
 
-ver=3.13.6
-DESTDIR=/home/lixq/toolchains/Python-${ver}
+name=Python
+ver=3.13.7
+srcpath=/home/lixq/src/${name}-${ver}.tar.xz
+DESTDIR=/home/lixq/toolchains/${name}
 [[ -n "$1" ]] && DESTDIR="$1"
 
-if [[ ! -f /home/lixq/src/Python-${ver}.tar.xz ]]; then
-    echo "wget https://www.python.org/ftp/python/${ver}/Python-${ver}.tar.xz"
-    exit 1
+if [[ "$DESTDIR" == */${name} ]]; then
+    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" openssl ${name}
+else
+    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" "$(basename "$DESTDIR")"
 fi
 
-. "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" /home/lixq/toolchains/gcc "${DESTDIR%-*}"
-export PATH="/home/lixq/toolchains/binutils/bin:$PATH"
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
-rm -rf Python-${ver}
-tar -xf /home/lixq/src/Python-${ver}.tar.xz
-cd /home/lixq/src/Python-${ver} || exit 1
-./configure --prefix="${DESTDIR}" --enable-shared || exit 1
+rm -rf ${name}-${ver}
+tar -xf $srcpath || exit 1
+cd ${name}-${ver} || exit 1
+./configure --prefix="${DESTDIR}/usr" --enable-shared || exit 1
 make -s -j"$(nproc)" || exit 1
-rm -rf "${DESTDIR}"
-make install || exit 1
-cd "${DESTDIR}" || exit 1
-if [[ "${DESTDIR}" == "/home/lixq/toolchains/Python-${ver}" ]]; then
-    cd /home/lixq/toolchains || exit 1
-    rm -f Python
-    ln -s Python-${ver} Python
-fi
+[[ "$DESTDIR" == */${name} ]] && rm -rf "$DESTDIR"
+make -s -j"$(nproc)" install || exit 1
+"${DESTDIR}/usr/bin/pip3" install setuptools || exit 1

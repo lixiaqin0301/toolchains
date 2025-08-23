@@ -1,25 +1,20 @@
 #!/bin/bash
 
+name=lua
 ver=5.4.8
+srcpath=/home/lixq/src/${name}-${ver}.tar.xz
+DESTDIR=/home/lixq/toolchains/${name}
+[[ -n "$1" ]] && DESTDIR="$1"
 
-. "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" /home/lixq/toolchains/gcc /home/lixq/toolchains/binutils
+. "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh"
 
-if [[ ! -f /home/lixq/src/lua-${ver}.tar.gz ]]; then
-    echo "wget https://www.lua.org/ftp/lua-${ver}.tar.gz"
-    exit 1
-fi
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
-rm -rf lua-${ver}
-tar -xf /home/lixq/src/lua-${ver}.tar.gz
-cd lua-${ver} || exit 1
-sed -i "/^INSTALL_TOP/c INSTALL_TOP= /home/lixq/toolchains/lua-${ver}" Makefile
+rm -rf ${name}-${ver}
+tar -xf $srcpath || exit 1
+cd ${name}-${ver} || exit 1
+sed -i "/^INSTALL_TOP/c INSTALL_TOP= $DESTDIR/usr" Makefile
 sed -i "s;^\(CFLAGS= .*\);\1 -fPIC;" src/Makefile
-make all test || exit 1
-rm -rf /home/lixq/toolchains/lua-${ver}
-make install || exit 1
-if [[ -d /home/lixq/toolchains/lua-${ver} ]]; then
-    cd /home/lixq/toolchains || exit 1
-    rm -f lua
-    ln -s lua-${ver} lua
-fi
+make -s -j"$(nproc)" || exit 1
+[[ "$DESTDIR" == */${name} ]] && rm -rf "$DESTDIR"
+make -s -j"$(nproc)" install || exit 1

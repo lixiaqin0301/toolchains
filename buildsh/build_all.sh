@@ -73,13 +73,21 @@ build_packages $n cmake Bear
 # curl          8.15.0  https://github.com/curl/curl/releases/
 build_packages 3 openssl nghttp3 ngtcp2 nghttp2 libssh2 zlib brotli zstd keyutils krb5 libidn2 openldap libunistring libpsl gsasl curl
 
-# step 4 bashdb bat gdb
-# bashdb 4.4-1.0.1 https://sourceforge.net/projects/bashdb/files/bashdb/
-# bat    0.25.0    https://github.com/sharkdp/bat/releases/
-# gdb    16.3      https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/
+# step 4 llvm
+# Python  3.13.7  https://www.python.org/ftp/python/
+# lua     5.4.8   https://www.lua.org/ftp/
+# swig    4.3.1   https://github.com/swig/swig/
 n=4
 [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
-build_packages $n bashdb bat gdb
+build_packages $n Python lua swig llvm
+
+# # step 5 bashdb bat gdb
+# # bashdb 4.4-1.0.1 https://sourceforge.net/projects/bashdb/files/bashdb/
+# # bat    0.25.0    https://github.com/sharkdp/bat/releases/
+# # gdb    16.3      https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/
+# n=5
+# [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
+# build_packages $n bashdb bat gdb
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" >> /tmp/build_all.log
