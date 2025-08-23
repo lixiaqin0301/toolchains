@@ -2,7 +2,7 @@
 
 name=lua
 ver=5.4.8
-srcpath=/home/lixq/src/${name}-${ver}.tar.xz
+srcpath=/home/lixq/src/${name}-${ver}.tar.gz
 DESTDIR=/home/lixq/toolchains/${name}
 [[ -n "$1" ]] && DESTDIR="$1"
 
