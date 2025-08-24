@@ -39,68 +39,68 @@ function build_packages() {
 date "+%Y-%m-%d %H:%M:%S begin" > /tmp/build_all.log
 tab=$(date +%s)
 
-# step 1 gcc
-# binutils  2.45    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
-# make      4.4.1   https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
-# patchelf  0.18.0  https://github.com/NixOS/patchelf/releases/
-# ./contrib/download_prerequisites https://gcc.gnu.org/pub/gcc/infrastructure/
-# gcc       15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
-n=1
-touch /home/lixq/mintoolset.tar.$n
-build_packages $n binutils make patchelf gcc
-
-# step 2 Python glibc
-# Python  3.13.7  https://www.python.org/ftp/python/
+# step 1 glibc
 # glibc   2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
-build_packages 2 Python glibc
+build_packages 1 glibc glibc
 
-# step 3 cmake Bear
-# cmake  4.1.0  https://cmake.org/download/
-# Bear   3.1.6  https://github.com/rizsotto/Bear/
-n=3
-[[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
-build_packages $n cmake Bear
+# # step 2 gcc
+# # binutils  2.45    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
+# # make      4.4.1   https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
+# # patchelf  0.18.0  https://github.com/NixOS/patchelf/releases/
+# # ./contrib/download_prerequisites https://gcc.gnu.org/pub/gcc/infrastructure/
+# # gcc       15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
+# n=2
+# [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
+# build_packages $n binutils make patchelf gcc
 
-# step 4 curl
-# openssl       3.5.2   https://github.com/openssl/openssl/releases/
-# nghttp3       1.11.0  https://github.com/ngtcp2/nghttp3/releases/
-# ngtcp2        1.14.0  https://github.com/ngtcp2/ngtcp2/releases/
-# nghttp2       1.66.0  https://github.com/nghttp2/nghttp2/releases/
-# libssh2       1.11.1  https://libssh2.org/
-# zlib          1.3.1   https://github.com/madler/zlib/releases/
-# brotli        1.1.0   https://github.com/google/brotli/releases/
-# zstd          1.5.7   https://github.com/facebook/zstd/releases/
-# keyutils      1.6.3   https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git/
-# krb5          1.22.1  https://web.mit.edu/kerberos/dist/
-# libidn2       2.3.8   https://mirrors.tuna.tsinghua.edu.cn/gnu/libidn/
-# openldap      2.6.10  https://www.openldap.org/software/download/
-# libunistring  1.3     https://mirrors.tuna.tsinghua.edu.cn/gnu/libunistring/
-# libpsl        0.21.5  https://github.com/rockdaboot/libpsl/releases/
-# gsasl         2.2.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/gsasl/
-# curl          8.15.0  https://github.com/curl/curl/releases/
-build_packages 4 openssl nghttp3 ngtcp2 nghttp2 libssh2 zlib brotli zstd keyutils krb5 libidn2 openldap libunistring libpsl gsasl curl
+# # step 3 cmake Bear
+# # cmake  4.1.0  https://cmake.org/download/
+# # Bear   3.1.6  https://github.com/rizsotto/Bear/
+# n=3
+# [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
+# build_packages $n cmake Bear
 
-# step 5 llvm
-# bison   3.8.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
-# swig    4.3.1   https://github.com/swig/swig/
-# lua     5.4.8   https://www.lua.org/ftp/
-# llvm    20.1.8  https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
-n=5
-[[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
-build_packages $n bison swig lua llvm
+# # step 4 curl
+# # openssl       3.5.2   https://github.com/openssl/openssl/releases/
+# # nghttp3       1.11.0  https://github.com/ngtcp2/nghttp3/releases/
+# # ngtcp2        1.14.0  https://github.com/ngtcp2/ngtcp2/releases/
+# # nghttp2       1.66.0  https://github.com/nghttp2/nghttp2/releases/
+# # libssh2       1.11.1  https://libssh2.org/
+# # zlib          1.3.1   https://github.com/madler/zlib/releases/
+# # brotli        1.1.0   https://github.com/google/brotli/releases/
+# # zstd          1.5.7   https://github.com/facebook/zstd/releases/
+# # keyutils      1.6.3   https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git/
+# # krb5          1.22.1  https://web.mit.edu/kerberos/dist/
+# # libidn2       2.3.8   https://mirrors.tuna.tsinghua.edu.cn/gnu/libidn/
+# # openldap      2.6.10  https://www.openldap.org/software/download/
+# # libunistring  1.3     https://mirrors.tuna.tsinghua.edu.cn/gnu/libunistring/
+# # libpsl        0.21.5  https://github.com/rockdaboot/libpsl/releases/
+# # gsasl         2.2.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/gsasl/
+# # curl          8.15.0  https://github.com/curl/curl/releases/
+# build_packages 4 openssl nghttp3 ngtcp2 nghttp2 libssh2 zlib brotli zstd keyutils krb5 libidn2 openldap libunistring libpsl gsasl curl
 
-# step 6 bashdb bat gdb shellcheck tcpflow git
-# bashdb      4.4-1.0.1 https://sourceforge.net/projects/bashdb/files/bashdb/
-# bat         0.25.0    https://github.com/sharkdp/bat/releases/
-# gdb         16.3      https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/
-# git         2.51.0    https://github.com/git/git/tags
-# Shellcheck  0.11.0    https://github.com/koalaman/shellcheck/releases
-# boost       1.89.0    https://www.boost.org/releases/latest/
-# tcpflow     1.6.1     https://github.com/simsong/tcpflow/releases/
-# zsh         5.9       https://www.zsh.org/
-n=6
-[[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
-build_packages $n bashdb bat gdb shellcheck boost tcpflow zsh git
+# # step 5 llvm
+# # bison   3.8.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
+# # swig    4.3.1   https://github.com/swig/swig/
+# # Python  3.13.7  https://www.python.org/ftp/python/
+# # lua     5.4.8   https://www.lua.org/ftp/
+# # llvm    20.1.8  https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
+# n=5
+# [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
+# build_packages $n bison swig lua Python llvm
+
+# # step 6 bashdb bat gdb shellcheck tcpflow git
+# # bashdb      4.4-1.0.1 https://sourceforge.net/projects/bashdb/files/bashdb/
+# # bat         0.25.0    https://github.com/sharkdp/bat/releases/
+# # gdb         16.3      https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/
+# # git         2.51.0    https://github.com/git/git/tags
+# # Shellcheck  0.11.0    https://github.com/koalaman/shellcheck/releases
+# # boost       1.89.0    https://www.boost.org/releases/latest/
+# # tcpflow     1.6.1     https://github.com/simsong/tcpflow/releases/
+# # zsh         5.9       https://www.zsh.org/
+# n=6
+# [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
+# build_packages $n bashdb bat gdb shellcheck boost tcpflow zsh git
 
 # for f in /home/lixq/*toolset/usr/*bin/*; do
 #     r="$(dirname "$(dirname "$(dirname "$f")")")"
