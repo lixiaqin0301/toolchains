@@ -27,6 +27,15 @@ mkdir -p /home/lixq/src/${name}-${ver}/${name}-${ver}/build/glibc
 cd /home/lixq/src/${name}-${ver}/${name}-${ver}/build/glibc || exit 1
 /home/lixq/src/${name}-${ver}/configure --prefix=/usr || exit 1
 make -s -j"$(nproc)" || exit 1
+if ! /home/lixq/src/${name}-${ver}/${name}-${ver}/build/glibc/elf/ldconfig --version; then
+    rm -f /home/lixq/src/${name}-${ver}/${name}-${ver}/build/glibc/elf/ldconfig || exit 1
+    export LDFLAGS=""
+    make -s -j"$(nproc)" || exit 1
+    export LDFLAGS="-L$DESTDIR/usr/lib64 -Wl,-rpath-link,$DESTDIR/usr/lib64 -Wl,-rpath,$DESTDIR/usr/lib64 -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
+fi
+if ! /home/lixq/src/${name}-${ver}/${name}-${ver}/build/glibc/elf/ldconfig --version; then
+   exit 1
+fi
 [[ "$DESTDIR" == */${name}-* ]] && rm -rf "$DESTDIR"
 make -s -j"$(nproc)" install DESTDIR="$DESTDIR" || exit 1
 if [[ "$DESTDIR" != */mintoolset ]]; then
