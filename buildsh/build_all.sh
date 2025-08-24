@@ -52,7 +52,7 @@ build_packages $n binutils make patchelf gcc
 # step 2 Python glibc
 # Python  3.13.7  https://www.python.org/ftp/python/
 # glibc   2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
-build_packages 2 Python glibc Python
+build_packages 2 Python glibc
 
 # step 3 cmake Bear
 # cmake  4.1.0  https://cmake.org/download/
