@@ -12,6 +12,7 @@ if [[ "$DESTDIR" == */${name} ]]; then
     export PATH="/home/lixq/toolchains/make/usr/bin:/home/lixq/toolchains/patchelf/usr/bin:$PATH"
 else
     . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" "$(basename "$DESTDIR")"
+    export PATH="/home/lixq/toolchains/patchelf/usr/bin:$PATH"
 fi
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
