@@ -90,10 +90,11 @@ build_packages $n bison swig lua Python llvm
 # patchelf    0.18.0    https://github.com/NixOS/patchelf/releases/
 # Shellcheck  0.11.0    https://github.com/koalaman/shellcheck/releases
 # boost       1.89.0    https://www.boost.org/releases/latest/
-# tcpflow     1.6.1     
+# tcpflow     1.6.1     https://github.com/simsong/tcpflow/releases/
+# zsh         5.9       https://www.zsh.org/
 n=5
 [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
-build_packages $n bashdb bat gdb patchelf shellcheck boost
+build_packages $n bashdb bat gdb patchelf shellcheck boost tcpflow zsh
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" >> /tmp/build_all.log
