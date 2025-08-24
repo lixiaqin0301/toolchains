@@ -11,6 +11,14 @@ export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/us
 export CC="/home/lixq/toolchains/gcc/usr/bin/gcc"
 export CXX="/home/lixq/toolchains/gcc/usr/bin/g++"
 
+if [[ -d "$DESTDIR/usr/lib64" ]]; then
+    export LDFLAGS="-L$DESTDIR/usr/lib64 -Wl,-rpath-link,$DESTDIR/usr/lib64 -Wl,-rpath,$DESTDIR/usr/lib64 -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
+fi
+echo "PATH=$PATH"
+echo "CC=$CC"
+echo "CXX=$CXX"
+echo "LDFLAGS=$LDFLAGS"
+
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
 rm -rf ${name}-${ver}
