@@ -15,7 +15,7 @@ fi
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
 rm -rf ${name}-${ver}
-tar -xf /home/lixq/src/${name}-${ver}.tar.gz || exit 1
+tar -xf $srcpath || exit 1
 mkdir ${name}-${ver}/build
 cd ${name}-${ver}/build || exit 1
 ../configure --prefix="$DESTDIR/usr" || exit 1

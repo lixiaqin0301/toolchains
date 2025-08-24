@@ -1,27 +1,25 @@
 #!/bin/bash
 
-ver=1_88_0
+name=boost
+ver=1_89_0
+srcpath=/home/lixq/src/${name}_${ver}.tar.gz
+DESTDIR=/home/lixq/toolchains/${name}
+[[ -n "$1" ]] && DESTDIR="$1"
 
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
-. /opt/rh/devtoolset-11/enable
-
-if [[ ! -f /home/lixq/src/boost_${ver}.tar.gz ]]; then
-    echo "wget https://boostorg.jfrog.io/artifactory/main/release/${ver//_/.}/source/boost_${ver}.tar.gz -O boost_${ver}.tar.gz"
-    exit 1
+if [[ "$DESTDIR" == */${name} ]]; then
+    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" gcc
+    export PATH="/home/lixq/toolchains/patchelf/usr/bin:$PATH"
+else
+    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" "$(basename "$DESTDIR")"
 fi
 
 [[ -d /home/lixq/src ]] || mkdir -p /home/lixq/src
 cd /home/lixq/src || exit 1
-rm -rf boost_${ver}
-tar -xvf /home/lixq/src/boost_${ver}.tar.gz
-cd boost_${ver} || exit 1
-./bootstrap.sh --prefix=/home/lixq/toolchains/boost_${ver} || exit 1
-./b2 || exit 1
-rm -rfv /home/lixq/toolchains/boost_${ver}
-./b2 install || exit 1
-
-if [[ -d /home/lixq/toolchains/boost_${ver} ]]; then
-    cd /home/lixq/toolchains || exit 1
-    rm -f boost
-    ln -s boost_${ver} boost
-fi
+rm -rf ${name}_${ver}
+tar -xf $srcpath || exit 1
+cd ${name}_${ver} || exit 1
+./bootstrap.sh --prefix="$DESTDIR/usr" || exit 1
+patchelf --set-rpath /home/lixq/toolchains/gcc/usr/lib64:lib64 ./b2 || exit 1
+./b2 cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -s -j"$(nproc)" || exit 1
+[[ "$DESTDIR" == */${name} ]] && rm -rf "$DESTDIR"
+./b2 cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" -s -j"$(nproc)" install || exit 1

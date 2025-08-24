@@ -83,13 +83,17 @@ n=4
 [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
 build_packages $n bison swig lua Python llvm
 
-# # step 5 bashdb bat gdb
-# # bashdb 4.4-1.0.1 https://sourceforge.net/projects/bashdb/files/bashdb/
-# # bat    0.25.0    https://github.com/sharkdp/bat/releases/
-# # gdb    16.3      https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/
-# n=5
-# [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
-# build_packages $n bashdb bat gdb
+# step 5 bashdb bat gdb patchelf shellcheck tcpflow
+# bashdb      4.4-1.0.1 https://sourceforge.net/projects/bashdb/files/bashdb/
+# bat         0.25.0    https://github.com/sharkdp/bat/releases/
+# gdb         16.3      https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/
+# patchelf    0.18.0    https://github.com/NixOS/patchelf/releases/
+# Shellcheck  0.11.0    https://github.com/koalaman/shellcheck/releases
+# boost       1.89.0    https://www.boost.org/releases/latest/
+# tcpflow     1.6.1     
+n=5
+[[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
+build_packages $n bashdb bat gdb patchelf shellcheck boost
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" >> /tmp/build_all.log
