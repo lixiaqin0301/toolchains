@@ -41,16 +41,17 @@ tab=$(date +%s)
 
 # step 1 gcc
 # binutils  2.45    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
+# make      4.4.1   https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
+# patchelf  0.18.0  https://github.com/NixOS/patchelf/releases/
 # ./contrib/download_prerequisites https://gcc.gnu.org/pub/gcc/infrastructure/
 # gcc       15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
-# make      4.4.1   https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
 n=1
 touch /home/lixq/mintoolset.tar.$n
-build_packages $n binutils gcc make
+build_packages $n binutils make patchelf gcc
 
 # step 2 Python glibc
 # Python  3.13.7  https://www.python.org/ftp/python/
-# glibc   2.42  https://mirrors.ustc.edu.cn/gnu/glibc/
+# glibc   2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 2 Python glibc Python
 
 # step 3 cmake Bear
@@ -58,7 +59,7 @@ build_packages 2 Python glibc Python
 # Bear   3.1.6  https://github.com/rizsotto/Bear/
 n=3
 [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
-build_packages $n make glibc cmake Bear
+build_packages $n cmake Bear
 
 # step 4 curl
 # openssl       3.5.2   https://github.com/openssl/openssl/releases/
@@ -88,32 +89,26 @@ n=5
 [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
 build_packages $n bison swig lua llvm
 
-# step 6 bashdb bat gdb patchelf shellcheck tcpflow
+# step 6 bashdb bat gdb shellcheck tcpflow git
 # bashdb      4.4-1.0.1 https://sourceforge.net/projects/bashdb/files/bashdb/
 # bat         0.25.0    https://github.com/sharkdp/bat/releases/
 # gdb         16.3      https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/
-# patchelf    0.18.0    https://github.com/NixOS/patchelf/releases/
+# git         2.51.0    https://github.com/git/git/tags
 # Shellcheck  0.11.0    https://github.com/koalaman/shellcheck/releases
 # boost       1.89.0    https://www.boost.org/releases/latest/
 # tcpflow     1.6.1     https://github.com/simsong/tcpflow/releases/
 # zsh         5.9       https://www.zsh.org/
 n=6
 [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
-build_packages $n bashdb bat gdb patchelf shellcheck boost tcpflow zsh
+build_packages $n bashdb bat gdb shellcheck boost tcpflow zsh git
 
-# step 7 git
-# git  2.51.0  https://github.com/git/git/tags
-n=7
-[[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
-build_packages $n git
-
-for f in /home/lixq/*toolset/usr/*bin/*; do
-    r="$(dirname "$(dirname "$(dirname "$f")")")"
-    if ldd "$f" 2>&1 | grep -q ": version .GLIBC.* not found"; then
-        patchelf --set-rpath "$r/lib64:$r/usr/lib64:/lib64" "$f" 
-        patchelf --set-interpreter "$r/lib64/ld-linux-x86-64.so.2" "$f"   
-    fi
-done                                                              
+# for f in /home/lixq/*toolset/usr/*bin/*; do
+#     r="$(dirname "$(dirname "$(dirname "$f")")")"
+#     if ldd "$f" 2>&1 | grep -q ": version .GLIBC.* not found"; then
+#         patchelf --set-rpath "$r/lib64:$r/usr/lib64:/lib64" "$f"
+#         patchelf --set-interpreter "$r/lib64/ld-linux-x86-64.so.2" "$f"
+#     fi
+# done
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" >> /tmp/build_all.log
