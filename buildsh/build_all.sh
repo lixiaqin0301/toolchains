@@ -92,9 +92,14 @@ build_packages $n bison swig lua Python llvm
 # boost       1.89.0    https://www.boost.org/releases/latest/
 # tcpflow     1.6.1     https://github.com/simsong/tcpflow/releases/
 # zsh         5.9       https://www.zsh.org/
+# make        4.4.1     https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
 n=5
 [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
-build_packages $n bashdb bat gdb patchelf shellcheck boost tcpflow zsh
+build_packages $n bashdb bat gdb patchelf shellcheck boost tcpflow zsh make
+
+# step 6 glibc
+# glibc  2.42   https://mirrors.ustc.edu.cn/gnu/glibc/
+build_packages 6 glibc
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" >> /tmp/build_all.log

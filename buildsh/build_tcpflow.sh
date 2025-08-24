@@ -15,7 +15,7 @@ fi
 
 cd /home/lixq/src || exit 1
 rm -rf ${name}-${ver}
-tar -xf ${name}-${ver}.tar.gz || exit 1
+tar -xf $srcpath || exit 1
 cd ${name}-${ver} || exit 1
 ./configure --prefix="$DESTDIR/usr" || exit 1
 make -s -j"$(nproc)" || exit 1
