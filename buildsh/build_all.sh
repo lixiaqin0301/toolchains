@@ -110,7 +110,7 @@ build_packages $n git
 for f in /home/lixq/*toolset/usr/*bin/*; do
     r="$(dirname "$(dirname "$(dirname "$f")")")"
     if ldd "$f" 2>&1 | grep -q ": version .GLIBC.* not found"; then
-        #patchelf --set-rpath "$r/lib64:$r/usr/lib64:/lib64" "$f" 
+        patchelf --set-rpath "$r/lib64:$r/usr/lib64:/lib64" "$f" 
         patchelf --set-interpreter "$r/lib64/ld-linux-x86-64.so.2" "$f"   
     fi
 done                                                              
