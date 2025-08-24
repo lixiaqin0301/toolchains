@@ -20,7 +20,7 @@ export LDFLAGS="-pthread $LDFLAGS"
 
 cd /home/lixq/src || exit 1
 rm -rf ${name}-${ver}
-tar -xf /home/lixq/src/${name}-${ver}.tar.gz
+tar -xf $srcpath || exit 1
 cd /home/lixq/src/${name}-${ver} || exit 1
 autoreconf -fi || exit 1
 if [[ "$DESTDIR" == */${name} ]]; then

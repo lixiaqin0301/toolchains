@@ -12,7 +12,7 @@ DESTDIR=/home/lixq/toolchains/${name}
 [[ -n "$1" ]] && DESTDIR="$1"
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-if [[  -x /home/lixq/toolset/usr/bin/gcc ]]; then
+if [[ -x /home/lixq/toolset/usr/bin/gcc ]]; then
     export PATH="/home/lixq/toolset/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
     export CC="/home/lixq/toolset/usr/bin/gcc"
     export CXX="/home/lixq/toolset/usr/bin/g++"

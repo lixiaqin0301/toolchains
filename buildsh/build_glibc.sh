@@ -7,13 +7,9 @@ kernelver=6.6
 DESTDIR=/home/lixq/toolchains/glibc
 [[ -n "$1" ]] && DESTDIR="$1"
 
-if [[ "$DESTDIR" == */${name} ]]; then
-    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" gcc glibc
-    export PATH="/home/lixq/toolchains/make/usr/bin:/home/lixq/toolchains/patchelf/usr/bin:$PATH"
-else
-    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" "$(basename "$DESTDIR")" sysroot
-    export PATH="/home/lixq/toolchains/patchelf/usr/bin:$PATH"
-fi
+export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/usr/bin:/home/lixq/toolchains/make/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export CC="/home/lixq/toolchains/gcc/usr/bin/gcc"
+export CXX="/home/lixq/toolchains/gcc/usr/bin/g++"
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
@@ -38,16 +34,9 @@ make -s -j"$(nproc)" headers_install INSTALL_HDR_PATH="$DESTDIR/usr" || exit 1
 
 if [[ "$DESTDIR" == */mintoolset ]]; then
     cd "${DESTDIR}/lib64" || exit 1
-    for p in /home/lixq/toolchains/gcc/lib64/libstdc++.s*[0-9o]; do
+    for p in /home/lixq/toolchains/gcc/usr/lib64/libstdc++.s*[0-9o]; do
         [[ -L "$p" ]] || cp "$p" .
         [[ -L "$p" ]] && ln -sf "$(readlink "$p")" "$(basename "$p")"
     done
-    cp /home/lixq/toolchains/gcc/lib64/libgcc* .
+    cp /home/lixq/toolchains/gcc/usr/lib64/libgcc* .
 fi
-
-for f in "$DESTDIR"/sbin/* "$DESTDIR"/usr/sbin/* "$DESTDIR"/usr/bin/* "$DESTDIR"/lib64/*; do
-    if ldd "$f" 2>&1 | grep -q ": /lib64/libc.so.6: version.*GLIBC.*not found"; then
-        patchelf --set-rpath "$DESTDIR/lib64:$DESTDIR/usr/lib64:/lib64" "$f" 
-        patchelf --set-interpreter "$DESTDIR/lib64/ld-linux-x86-64.so.2" "$f"   
-    fi
-done                                                              

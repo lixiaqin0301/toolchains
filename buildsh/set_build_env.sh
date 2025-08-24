@@ -12,7 +12,10 @@ if [[ "$1" == toolset || "$1" == mintoolset ]]; then
     else
         export CFLAGS="--sysroot=$r"
         export CXXFLAGS="--sysroot=$r"
-        export LDFLAGS="-L$r/lib64 -L$r/usr/lib64 --sysroot=$r -Wl,-rpath-link,$r/lib64:$r/usr/lib64 -Wl,-rpath,$r/lib64:$r/usr/lib64 -Wl,--dynamic-linker=$r/lib64/ld-linux-x86-64.so.2"
+        export LDFLAGS="-L$r/lib64 -L$r/usr/lib64 --sysroot=$r -Wl,-rpath-link,$r/lib64:$r/usr/lib64 -Wl,-rpath,$r/lib64:$r/usr/lib64"
+    fi
+    if [[ -f $r/lib64/ld-linux-x86-64.so.2 ]]; then
+        export LDFLAGS="$LDFLAGS -Wl,--dynamic-linker=$r/lib64/ld-linux-x86-64.so.2"
     fi
 else
     use_gcc=no

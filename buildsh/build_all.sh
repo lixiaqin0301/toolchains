@@ -40,21 +40,27 @@ date "+%Y-%m-%d %H:%M:%S begin" > /tmp/build_all.log
 tab=$(date +%s)
 
 # step 1 gcc
-# gcc       15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
 # binutils  2.45    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
 # ./contrib/download_prerequisites https://gcc.gnu.org/pub/gcc/infrastructure/
+# gcc       15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
+# make      4.4.1   https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
 n=1
 touch /home/lixq/mintoolset.tar.$n
-build_packages $n gcc binutils
+build_packages $n binutils gcc make
 
-# step 2 cmake Bear
+# step 2 Python glibc
+# Python  3.13.7  https://www.python.org/ftp/python/
+# glibc   2.42  https://mirrors.ustc.edu.cn/gnu/glibc/
+build_packages 2 Python glibc Python
+
+# step 3 cmake Bear
 # cmake  4.1.0  https://cmake.org/download/
 # Bear   3.1.6  https://github.com/rizsotto/Bear/
-n=2
+n=3
 [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
-build_packages $n cmake Bear
+build_packages $n make glibc cmake Bear
 
-# step 3 curl
+# step 4 curl
 # openssl       3.5.2   https://github.com/openssl/openssl/releases/
 # nghttp3       1.11.0  https://github.com/ngtcp2/nghttp3/releases/
 # ngtcp2        1.14.0  https://github.com/ngtcp2/ngtcp2/releases/
@@ -71,19 +77,18 @@ build_packages $n cmake Bear
 # libpsl        0.21.5  https://github.com/rockdaboot/libpsl/releases/
 # gsasl         2.2.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/gsasl/
 # curl          8.15.0  https://github.com/curl/curl/releases/
-build_packages 3 openssl nghttp3 ngtcp2 nghttp2 libssh2 zlib brotli zstd keyutils krb5 libidn2 openldap libunistring libpsl gsasl curl
+build_packages 4 openssl nghttp3 ngtcp2 nghttp2 libssh2 zlib brotli zstd keyutils krb5 libidn2 openldap libunistring libpsl gsasl curl
 
-# step 4 llvm
+# step 5 llvm
 # bison   3.8.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
 # swig    4.3.1   https://github.com/swig/swig/
 # lua     5.4.8   https://www.lua.org/ftp/
-# Python  3.13.7  https://www.python.org/ftp/python/
 # llvm    20.1.8  https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
-n=4
+n=5
 [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
-build_packages $n bison swig lua Python llvm
+build_packages $n bison swig lua llvm
 
-# step 5 bashdb bat gdb patchelf shellcheck tcpflow
+# step 6 bashdb bat gdb patchelf shellcheck tcpflow
 # bashdb      4.4-1.0.1 https://sourceforge.net/projects/bashdb/files/bashdb/
 # bat         0.25.0    https://github.com/sharkdp/bat/releases/
 # gdb         16.3      https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/
@@ -92,14 +97,23 @@ build_packages $n bison swig lua Python llvm
 # boost       1.89.0    https://www.boost.org/releases/latest/
 # tcpflow     1.6.1     https://github.com/simsong/tcpflow/releases/
 # zsh         5.9       https://www.zsh.org/
-# make        4.4.1     https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
-n=5
+n=6
 [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
-build_packages $n bashdb bat gdb patchelf shellcheck boost tcpflow zsh make
+build_packages $n bashdb bat gdb patchelf shellcheck boost tcpflow zsh
 
-# step 6 glibc
-# glibc  2.42   https://mirrors.ustc.edu.cn/gnu/glibc/
-build_packages 6 glibc
+# step 7 git
+# git  2.51.0  https://github.com/git/git/tags
+n=7
+[[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
+build_packages $n git
+
+for f in /home/lixq/*toolset/usr/*bin/*; do
+    r="$(dirname "$(dirname "$(dirname "$f")")")"
+    if ldd "$f" 2>&1 | grep -q ": version .GLIBC.* not found"; then
+        #patchelf --set-rpath "$r/lib64:$r/usr/lib64:/lib64" "$f" 
+        patchelf --set-interpreter "$r/lib64/ld-linux-x86-64.so.2" "$f"   
+    fi
+done                                                              
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" >> /tmp/build_all.log
