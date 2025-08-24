@@ -8,10 +8,10 @@ DESTDIR=/home/lixq/toolchains/glibc
 [[ -n "$1" ]] && DESTDIR="$1"
 
 if [[ "$DESTDIR" == */${name} ]]; then
-    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" gcc
+    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" gcc glibc
     export PATH="/home/lixq/toolchains/make/usr/bin:/home/lixq/toolchains/patchelf/usr/bin:$PATH"
 else
-    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" "$(basename "$DESTDIR")"
+    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" "$(basename "$DESTDIR")" sysroot
     export PATH="/home/lixq/toolchains/patchelf/usr/bin:$PATH"
 fi
 
