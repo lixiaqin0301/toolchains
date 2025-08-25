@@ -42,8 +42,8 @@ tab=$(date +%s)
 rm -rf /home/lixq/toolset /home/lixq/toolset.tar.1
 export SET_BUILD_ENV_SETTED=yes
 /home/lixq/35share-rd/toolchains/buildsh/build_glibc.sh /home/lixq/toolset || exit 1
-export CFLAGS="--sysroot=/home/lixq/toolset"
-export CXXFLAGS="--sysroot=/home/lixq/toolset"
+export CFLAGS="--sysroot=/home/lixq/toolset -O2"
+export CXXFLAGS="--sysroot=/home/lixq/toolset -O2"
 export LDFLAGS="--sysroot=/home/lixq/toolset"
 /home/lixq/35share-rd/toolchains/buildsh/build_glibc.sh /home/lixq/toolset || exit 1
 cd /home/lixq || exit 1
