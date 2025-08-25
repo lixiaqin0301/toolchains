@@ -50,7 +50,7 @@ build_packages 1 glibc
 # gcc       15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
 n=2
 [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
-build_packages $n binutils patchelf gcc
+build_packages $n binutils gcc
 
 # # step 3 cmake Bear
 # # cmake  4.1.0  https://cmake.org/download/
