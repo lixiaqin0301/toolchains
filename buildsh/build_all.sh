@@ -30,7 +30,7 @@ function build_packages() {
             date "+%Y-%m-%d %H:%M:%S end   build $td $p use $((te - tb)) seconds" >> /tmp/build_all.log
         done
         cd /home/lixq || exit 1
-        tar -cf $td.tar.$n $td
+        tar -cf "$td.tar.$n" $td
     done
     tse=$(date +%s)
     date "+%Y-%m-%d %H:%M:%S end   step $n ${pkgs[*]} use $((tse - tsb)) seconds" >> /tmp/build_all.log
@@ -39,18 +39,27 @@ function build_packages() {
 date "+%Y-%m-%d %H:%M:%S begin" > /tmp/build_all.log
 tab=$(date +%s)
 
-# step 1 glibc
-# make    4.4.1  https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
-# glibc   2.42   https://mirrors.ustc.edu.cn/gnu/glibc/
-build_packages 1 glibc
+rm -rf /home/lixq/toolset /home/lixq/toolset.tar.1
+export SET_BUILD_ENV_SETTED=yes
+/home/lixq/35share-rd/toolchains/buildsh/build_glibc.sh /home/lixq/toolset || exit 1
+export CFLAGS="--sysroot=/home/lixq/toolset"
+export CXXFLAGS="--sysroot=/home/lixq/toolset"
+export LDFLAGS="--sysroot=/home/lixq/toolset"
+/home/lixq/35share-rd/toolchains/buildsh/build_glibc.sh /home/lixq/toolset || exit 1
+cd /home/lixq || exit 1
+tar -cf toolset.tar.1 toolset
+# # step 1 glibc
+# # make    4.4.1  https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
+# # glibc   2.42   https://mirrors.ustc.edu.cn/gnu/glibc/
+# build_packages 1 glibc
 
-# step 2 gcc
-# binutils  2.45    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
-# ./contrib/download_prerequisites https://gcc.gnu.org/pub/gcc/infrastructure/
-# gcc       15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
-n=2
-[[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
-build_packages $n binutils gcc
+# # step 2 gcc
+# # binutils  2.45    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
+# # ./contrib/download_prerequisites https://gcc.gnu.org/pub/gcc/infrastructure/
+# # gcc       15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
+# n=2
+# [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
+# build_packages $n binutils gcc
 
 # # step 3 cmake Bear
 # # cmake  4.1.0  https://cmake.org/download/

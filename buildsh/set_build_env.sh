@@ -1,4 +1,7 @@
 #!/bin/bash
+
+[[ -n "$SET_BUILD_ENV_SETTED" ]] && exit 0
+
 if [[ "$1" == toolset || "$1" == mintoolset ]]; then
     export CC="/home/lixq/toolset/usr/bin/gcc"
     export CXX="/home/lixq/toolset/usr/bin/g++"

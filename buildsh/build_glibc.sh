@@ -41,10 +41,10 @@ if [[ "$DESTDIR" == */mintoolset ]]; then
     cp /home/lixq/toolchains/gcc/usr/lib64/libgcc* .
 fi
 
-for f in "$DESTDIR"/usr/*bin/* "$DESTDIR"/*bin/* "$DESTDIR"/lib*/lib*.so*; do
-    [[ -L "$f" ]] && continue
-    ldd "$f" 2>&1 | grep -q ': version .GLIBC_.* not found' || continue
-    patchelf --set-rpath "$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/usr/lib" "$f"
-    file "$f" | grep -q 'uses shared libs' || continue
-    patchelf --set-interpreter "$DESTDIR"/lib64/ld-linux-x86-64.so.2 "$f"
-done
+# for f in "$DESTDIR"/usr/*bin/* "$DESTDIR"/*bin/* "$DESTDIR"/lib*/lib*.so*; do
+#     [[ -L "$f" ]] && continue
+#     ldd "$f" 2>&1 | grep -q ': version .GLIBC_.* not found' || continue
+#     patchelf --set-rpath "$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/usr/lib" "$f"
+#     file "$f" | grep -q 'uses shared libs' || continue
+#     patchelf --set-interpreter "$DESTDIR"/lib64/ld-linux-x86-64.so.2 "$f"
+# done
