@@ -36,7 +36,7 @@ fi
 if ! /home/lixq/src/${name}-${ver}/${name}-${ver}/build/glibc/elf/ldconfig --version; then
    exit 1
 fi
-[[ "$DESTDIR" == */${name}-* ]] && rm -rf "$DESTDIR"
+[[ "$DESTDIR" == */${name}* ]] && rm -rf "$DESTDIR"
 make -s -j"$(nproc)" install DESTDIR="$DESTDIR" || exit 1
 if [[ "$DESTDIR" != */mintoolset ]]; then
     make -s -j"$(nproc)" localedata/install-locales DESTDIR="$DESTDIR" || exit 1
