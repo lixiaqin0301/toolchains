@@ -41,11 +41,19 @@ tab=$(date +%s)
 
 rm -rf /home/lixq/toolset /home/lixq/toolset.tar.1
 export SET_BUILD_ENV_SETTED=yes
-/home/lixq/35share-rd/toolchains/buildsh/build_glibc.sh /home/lixq/toolset || exit 1
+DESTDIR=/home/lixq/toolset
+/home/lixq/35share-rd/toolchains/buildsh/build_glibc.sh "$DESTDIR" || exit 1
 export CFLAGS="--sysroot=/home/lixq/toolset -O2"
 export CXXFLAGS="--sysroot=/home/lixq/toolset -O2"
 export LDFLAGS="--sysroot=/home/lixq/toolset"
-/home/lixq/35share-rd/toolchains/buildsh/build_glibc.sh /home/lixq/toolset || exit 1
+/home/lixq/35share-rd/toolchains/buildsh/build_glibc.sh "$DESTDIR" || exit 1
+for f in "$DESTDIR"/usr/*bin/* "$DESTDIR"/*bin/* "$DESTDIR"/lib*/lib*.so*; do
+    [[ -L "$f" ]] && continue
+    ldd "$f" 2>&1 | grep -q ': version .GLIBC_.* not found' || continue
+    patchelf --set-rpath "$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/usr/lib" "$f"
+    file "$f" | grep -q 'uses shared libs' || continue
+    patchelf --set-interpreter "$DESTDIR"/lib64/ld-linux-x86-64.so.2 "$f"
+done
 cd /home/lixq || exit 1
 tar -cf toolset.tar.1 toolset
 # # step 1 glibc
