@@ -40,18 +40,17 @@ date "+%Y-%m-%d %H:%M:%S begin" > /tmp/build_all.log
 tab=$(date +%s)
 
 # step 1 glibc
-# glibc   2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
+# make    4.4.1  https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
+# glibc   2.42   https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 1 glibc
 
-# # step 2 gcc
-# # binutils  2.45    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
-# # make      4.4.1   https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
-# # patchelf  0.18.0  https://github.com/NixOS/patchelf/releases/
-# # ./contrib/download_prerequisites https://gcc.gnu.org/pub/gcc/infrastructure/
-# # gcc       15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
-# n=2
-# [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
-# build_packages $n binutils make patchelf gcc
+# step 2 gcc
+# binutils  2.45    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
+# ./contrib/download_prerequisites https://gcc.gnu.org/pub/gcc/infrastructure/
+# gcc       15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
+n=2
+[[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
+build_packages $n binutils patchelf gcc
 
 # # step 3 cmake Bear
 # # cmake  4.1.0  https://cmake.org/download/
@@ -98,17 +97,10 @@ build_packages 1 glibc
 # # boost       1.89.0    https://www.boost.org/releases/latest/
 # # tcpflow     1.6.1     https://github.com/simsong/tcpflow/releases/
 # # zsh         5.9       https://www.zsh.org/
+# # patchelf  0.18.0  https://github.com/NixOS/patchelf/releases/
 # n=6
 # [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
-# build_packages $n bashdb bat gdb shellcheck boost tcpflow zsh git
-
-# for f in /home/lixq/*toolset/usr/*bin/*; do
-#     r="$(dirname "$(dirname "$(dirname "$f")")")"
-#     if ldd "$f" 2>&1 | grep -q ": version .GLIBC.* not found"; then
-#         patchelf --set-rpath "$r/lib64:$r/usr/lib64:/lib64" "$f"
-#         patchelf --set-interpreter "$r/lib64/ld-linux-x86-64.so.2" "$f"
-#     fi
-# done
+# build_packages $n bashdb bat gdb shellcheck boost tcpflow zsh git patchelf
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" >> /tmp/build_all.log

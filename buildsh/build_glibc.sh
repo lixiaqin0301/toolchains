@@ -43,6 +43,6 @@ fi
 
 for f in "$DESTDIR"/usr/sbin/* "$DESTDIR"/usr/bin/* "$DESTDIR"/sbin/*; do 
     ldd "$f" 2>&1 | grep -q ': version .GLIBC_.* not found' || continue
-    patchelf --set-rpath "$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/usr/lib" /home/lixq/src/glibc-2.42/glibc-2.42/build/glibc/locale/localedef
+    patchelf --set-rpath "$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/usr/lib" "$f"
     patchelf --set-interpreter "$DESTDIR"/lib64/ld-linux-x86-64.so.2 "$f"
 done
