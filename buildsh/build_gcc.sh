@@ -11,16 +11,17 @@ gettext='gettext-0.22.tar.gz'
 DESTDIR=/home/lixq/toolchains/${name}
 [[ -n "$1" ]] && DESTDIR="$1"
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-if [[ -x /home/lixq/toolset/usr/bin/gcc ]]; then
-    export PATH="/home/lixq/toolset/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-    export CC="/home/lixq/toolset/usr/bin/gcc"
-    export CXX="/home/lixq/toolset/usr/bin/g++"
-else
-    export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-    export CC="/home/lixq/toolchains/gcc/usr/bin/gcc"
-    export CXX="/home/lixq/toolchains/gcc/usr/bin/g++"
+export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export CC="/home/lixq/toolchains/gcc/usr/bin/gcc"
+export CXX="/home/lixq/toolchains/gcc/usr/bin/g++"
+
+if [[ "$DESTDIR" == */toolset ]]; then
+    export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/usr/lib -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/usr/lib -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
 fi
+echo "PATH=$PATH"
+echo "CC=$CC"
+echo "CXX=$CXX"
+echo "LDFLAGS=$LDFLAGS"
 
 [[ -d /home/lixq/src ]] || mkdir -p /home/lixq/src
 cd /home/lixq/src || exit 1
