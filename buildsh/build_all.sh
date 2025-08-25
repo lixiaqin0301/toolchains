@@ -41,7 +41,7 @@ tab=$(date +%s)
 
 # step 1 glibc
 # glibc   2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
-build_packages 1 glibc glibc
+build_packages 1 glibc
 
 # # step 2 gcc
 # # binutils  2.45    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
