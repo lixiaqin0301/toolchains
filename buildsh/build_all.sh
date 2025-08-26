@@ -155,19 +155,19 @@ export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/
 te=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   build toolset libselinux use $((te - tb)) seconds" >> /tmp/build_all.log
 
-# date "+%Y-%m-%d %H:%M:%S begin build toolset glibc 2" >> /tmp/build_all.log
-# tb=$(date +%s)
-# export SET_BUILD_ENV_SETTED=yes
-# export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/usr/bin:/home/lixq/toolchains/make/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-# export PKG_CONFIG_PATH="$DESTDIR/usr/lib64/pkgconfig:$DESTDIR/usr/lib/pkgconfig"
-# export CC="/home/lixq/toolchains/gcc/usr/bin/gcc"
-# export CXX="/home/lixq/toolchains/gcc/usr/bin/g++"
-# export CFLAGS="--sysroot=/home/lixq/toolset -O2"
-# export CXXFLAGS="--sysroot=/home/lixq/toolset -O2"
-# export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/usr/lib --sysroot=/home/lixq/toolset -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
-# /home/lixq/35share-rd/toolchains/buildsh/build_glibc.sh "$DESTDIR" || exit 1
-# te=$(date +%s)
-# date "+%Y-%m-%d %H:%M:%S end   build toolset glibc 2 use $((te - tb)) seconds" >> /tmp/build_all.log
+date "+%Y-%m-%d %H:%M:%S begin build toolset glibc 2" >> /tmp/build_all.log
+tb=$(date +%s)
+export SET_BUILD_ENV_SETTED=yes
+export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/usr/bin:/home/lixq/toolchains/make/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export PKG_CONFIG_PATH="$DESTDIR/usr/lib64/pkgconfig:$DESTDIR/usr/lib/pkgconfig"
+export CC="/home/lixq/toolchains/gcc/usr/bin/gcc"
+export CXX="/home/lixq/toolchains/gcc/usr/bin/g++"
+export CFLAGS="--sysroot=/home/lixq/toolset -O2"
+export CXXFLAGS="--sysroot=/home/lixq/toolset -O2"
+export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/usr/lib --sysroot=/home/lixq/toolset -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
+/home/lixq/35share-rd/toolchains/buildsh/build_glibc.sh "$DESTDIR" || exit 1
+te=$(date +%s)
+date "+%Y-%m-%d %H:%M:%S end   build toolset glibc 2 use $((te - tb)) seconds" >> /tmp/build_all.log
 
 
 
