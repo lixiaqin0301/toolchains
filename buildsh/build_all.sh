@@ -127,6 +127,20 @@ DESTDIR=/home/lixq/toolset
 # te=$(date +%s)
 # date "+%Y-%m-%d %H:%M:%S end   build toolset libcap use $((te - tb)) seconds" >> /tmp/build_all.log
 
+date "+%Y-%m-%d %H:%M:%S begin build toolset libcap-ng" >> /tmp/build_all.log
+tb=$(date +%s)
+export SET_BUILD_ENV_SETTED=""
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export PKG_CONFIG_PATH=""
+export CC=""
+export CXX=""
+export CFLAGS=""
+export CXXFLAGS=""
+export LDFLAGS=""
+/home/lixq/35share-rd/toolchains/buildsh/build_libcap-ng.sh "$DESTDIR" || exit 1
+te=$(date +%s)
+date "+%Y-%m-%d %H:%M:%S end   build toolset libcap-ng use $((te - tb)) seconds" >> /tmp/build_all.log
+
 date "+%Y-%m-%d %H:%M:%S begin build toolset selinux" >> /tmp/build_all.log
 tb=$(date +%s)
 export SET_BUILD_ENV_SETTED=yes
