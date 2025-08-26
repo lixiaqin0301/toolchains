@@ -113,19 +113,33 @@ DESTDIR=/home/lixq/toolset
 # te=$(date +%s)
 # date "+%Y-%m-%d %H:%M:%S end   build toolset Linux-PAM use $((te - tb)) seconds" >> /tmp/build_all.log
 
-# date "+%Y-%m-%d %H:%M:%S begin build toolset selinux" >> /tmp/build_all.log
+# date "+%Y-%m-%d %H:%M:%S begin build toolset libcap" >> /tmp/build_all.log
 # tb=$(date +%s)
-# export SET_BUILD_ENV_SETTED=yes
-# export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+# export SET_BUILD_ENV_SETTED=""
+# export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 # export PKG_CONFIG_PATH=""
-# export CC="/home/lixq/toolchains/gcc/usr/bin/gcc"
-# export CXX="/home/lixq/toolchains/gcc/usr/bin/g++"
-# export CFLAGS="--sysroot=/home/lixq/toolset"
-# export CXXFLAGS="--sysroot=/home/lixq/toolset"
-# export LDFLAGS="-L$DESTDIR/lib64 --sysroot=/home/lixq/toolset -Wl,-rpath-link,$DESTDIR/lib64 -Wl,-rpath,$DESTDIR/lib64 -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
-# /home/lixq/35share-rd/toolchains/buildsh/build_selinux.sh "$DESTDIR" || exit 1
+# export CC=""
+# export CXX=""
+# export CFLAGS=""
+# export CXXFLAGS=""
+# export LDFLAGS=""
+# /home/lixq/35share-rd/toolchains/buildsh/build_libcap.sh "$DESTDIR" || exit 1
 # te=$(date +%s)
-# date "+%Y-%m-%d %H:%M:%S end   build toolset selinux use $((te - tb)) seconds" >> /tmp/build_all.log
+# date "+%Y-%m-%d %H:%M:%S end   build toolset libcap use $((te - tb)) seconds" >> /tmp/build_all.log
+
+date "+%Y-%m-%d %H:%M:%S begin build toolset selinux" >> /tmp/build_all.log
+tb=$(date +%s)
+export SET_BUILD_ENV_SETTED=yes
+export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export PKG_CONFIG_PATH=""
+export CC="/home/lixq/toolchains/gcc/usr/bin/gcc"
+export CXX="/home/lixq/toolchains/gcc/usr/bin/g++"
+export CFLAGS="-DHAVE_REALLOCARRAY --sysroot=/home/lixq/toolset"
+export CXXFLAGS="-DHAVE_REALLOCARRAY --sysroot=/home/lixq/toolset"
+export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/usr/lib --sysroot=/home/lixq/toolset -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
+/home/lixq/35share-rd/toolchains/buildsh/build_selinux.sh "$DESTDIR" || exit 1
+te=$(date +%s)
+date "+%Y-%m-%d %H:%M:%S end   build toolset selinux use $((te - tb)) seconds" >> /tmp/build_all.log
 
 # date "+%Y-%m-%d %H:%M:%S begin build toolset glibc 2" >> /tmp/build_all.log
 # tb=$(date +%s)
@@ -175,15 +189,18 @@ DESTDIR=/home/lixq/toolset
 #     file "$f" | grep -q 'uses shared libs' || continue
 #     patchelf --set-interpreter "$DESTDIR"/lib64/ld-linux-x86-64.so.2 "$f"
 # done
-cd /home/lixq || exit 1
-tar -cf toolset.tar.1 toolset
+# cd /home/lixq || exit 1
+# tar -cf toolset.tar.1 toolset
 # # step 1 glibc
-# # pcre2       10.45  https://github.com/PCRE2Project/pcre2/releases
-# # bzip2       1.0.8  https://sourceware.org/pub/bzip2/
-# # audit       4.1.1  https://github.com/linux-audit/audit-userspace/releases/
-# # libselinux  3.9    https://github.com/SELinuxProject/selinux/tags
-# # make        4.4.1  https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
-# # glibc       2.42   https://mirrors.ustc.edu.cn/gnu/glibc/
+# # pcre2       10.45   https://github.com/PCRE2Project/pcre2/releases
+# # bzip2       1.0.8   https://sourceware.org/pub/bzip2/
+# # audit       4.1.1   https://github.com/linux-audit/audit-userspace/releases/
+# # Linux-PAM   1.17.1  https://github.com/linux-pam/linux-pam/releases/
+# # libcap      2.76    https://git.kernel.org/pub/scm/libs/libcap/libcap.git/snapshot/
+# # libcap-ng   0.8.5   https://github.com/stevegrubb/libcap-ng/releases/
+# # libselinux  3.9     https://github.com/SELinuxProject/selinux/tags
+# # make        4.4.1   https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
+# # glibc       2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
 # build_packages 1 glibc
 
 # # step 2 gcc
