@@ -85,19 +85,33 @@ DESTDIR=/home/lixq/toolset
 # te=$(date +%s)
 # date "+%Y-%m-%d %H:%M:%S end   build toolset bzip2 use $((te - tb)) seconds" >> /tmp/build_all.log
 
-date "+%Y-%m-%d %H:%M:%S begin build toolset audit-userspace" >> /tmp/build_all.log
-tb=$(date +%s)
-export SET_BUILD_ENV_SETTED="yes"
-export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-export PKG_CONFIG_PATH=""
-export CC="/home/lixq/toolchains/gcc/usr/bin/gcc"
-export CXX="/home/lixq/toolchains/gcc/usr/bin/g++"
-export CFLAGS=""
-export CXXFLAGS=""
-export LDFLAGS=""
-/home/lixq/35share-rd/toolchains/buildsh/build_audit-userspace.sh "$DESTDIR" || exit 1
-te=$(date +%s)
-date "+%Y-%m-%d %H:%M:%S end   build toolset audit-userspace use $((te - tb)) seconds" >> /tmp/build_all.log
+# date "+%Y-%m-%d %H:%M:%S begin build toolset audit-userspace" >> /tmp/build_all.log
+# tb=$(date +%s)
+# export SET_BUILD_ENV_SETTED="yes"
+# export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+# export PKG_CONFIG_PATH=""
+# export CC="/home/lixq/toolchains/gcc/usr/bin/gcc"
+# export CXX="/home/lixq/toolchains/gcc/usr/bin/g++"
+# export CFLAGS=""
+# export CXXFLAGS=""
+# export LDFLAGS=""
+# /home/lixq/35share-rd/toolchains/buildsh/build_audit-userspace.sh "$DESTDIR" || exit 1
+# te=$(date +%s)
+# date "+%Y-%m-%d %H:%M:%S end   build toolset audit-userspace use $((te - tb)) seconds" >> /tmp/build_all.log
+
+# date "+%Y-%m-%d %H:%M:%S begin build toolset Linux-PAM" >> /tmp/build_all.log
+# tb=$(date +%s)
+# export SET_BUILD_ENV_SETTED="yes"
+# export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/usr/bin:/home/lixq/toolchains/Miniforge3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+# export PKG_CONFIG_PATH=""
+# export CC="/home/lixq/toolchains/gcc/usr/bin/gcc"
+# export CXX="/home/lixq/toolchains/gcc/usr/bin/g++"
+# export CFLAGS=""
+# export CXXFLAGS=""
+# export LDFLAGS=""
+# /home/lixq/35share-rd/toolchains/buildsh/build_Linux-PAM.sh "$DESTDIR" || exit 1
+# te=$(date +%s)
+# date "+%Y-%m-%d %H:%M:%S end   build toolset Linux-PAM use $((te - tb)) seconds" >> /tmp/build_all.log
 
 # date "+%Y-%m-%d %H:%M:%S begin build toolset selinux" >> /tmp/build_all.log
 # tb=$(date +%s)
