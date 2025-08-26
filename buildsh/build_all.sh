@@ -59,6 +59,7 @@ DESTDIR=/home/lixq/toolset
 
 # date "+%Y-%m-%d %H:%M:%S begin build toolset glibc 2" >> /tmp/build_all.log
 # tb=$(date +%s)
+# export SET_BUILD_ENV_SETTED=yes
 # export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/usr/bin:/home/lixq/toolchains/make/usr/bin:/home/lixq/toolchains/patchelf/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 # export PKG_CONFIG_PATH=""
 # export CC="/home/lixq/toolchains/gcc/usr/bin/gcc"
@@ -70,18 +71,33 @@ DESTDIR=/home/lixq/toolset
 # te=$(date +%s)
 # date "+%Y-%m-%d %H:%M:%S end   build toolset glibc 2 use $((te - tb)) seconds" >> /tmp/build_all.log
 
-date "+%Y-%m-%d %H:%M:%S begin build toolset glibc 3" >> /tmp/build_all.log
+date "+%Y-%m-%d %H:%M:%S begin build toolset selinux" >> /tmp/build_all.log
 tb=$(date +%s)
-export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/usr/bin:/home/lixq/toolchains/make/usr/bin:/home/lixq/toolchains/patchelf/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export SET_BUILD_ENV_SETTED=yes
+export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export PKG_CONFIG_PATH=""
 export CC="/home/lixq/toolchains/gcc/usr/bin/gcc"
 export CXX="/home/lixq/toolchains/gcc/usr/bin/g++"
-export CFLAGS="--sysroot=/home/lixq/toolset -O2"
-export CXXFLAGS="--sysroot=/home/lixq/toolset -O2"
+export CFLAGS="--sysroot=/home/lixq/toolset"
+export CXXFLAGS="--sysroot=/home/lixq/toolset"
 export LDFLAGS="-L$DESTDIR/lib64 --sysroot=/home/lixq/toolset -Wl,-rpath-link,$DESTDIR/lib64 -Wl,-rpath,$DESTDIR/lib64 -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
-/home/lixq/35share-rd/toolchains/buildsh/build_glibc.sh "$DESTDIR" || exit 1
+/home/lixq/35share-rd/toolchains/buildsh/build_selinux.sh "$DESTDIR" || exit 1
 te=$(date +%s)
-date "+%Y-%m-%d %H:%M:%S end   build toolset glibc 2 use $((te - tb)) seconds" >> /tmp/build_all.log
+date "+%Y-%m-%d %H:%M:%S end   build toolset selinux use $((te - tb)) seconds" >> /tmp/build_all.log
+
+# date "+%Y-%m-%d %H:%M:%S begin build toolset glibc 3" >> /tmp/build_all.log
+# tb=$(date +%s)
+# export SET_BUILD_ENV_SETTED=yes
+# export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/usr/bin:/home/lixq/toolchains/make/usr/bin:/home/lixq/toolchains/patchelf/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+# export PKG_CONFIG_PATH=""
+# export CC="/home/lixq/toolchains/gcc/usr/bin/gcc"
+# export CXX="/home/lixq/toolchains/gcc/usr/bin/g++"
+# export CFLAGS="--sysroot=/home/lixq/toolset -O2"
+# export CXXFLAGS="--sysroot=/home/lixq/toolset -O2"
+# export LDFLAGS="-L$DESTDIR/lib64 --sysroot=/home/lixq/toolset -Wl,-rpath-link,$DESTDIR/lib64 -Wl,-rpath,$DESTDIR/lib64 -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
+# /home/lixq/35share-rd/toolchains/buildsh/build_glibc.sh "$DESTDIR" || exit 1
+# te=$(date +%s)
+# date "+%Y-%m-%d %H:%M:%S end   build toolset glibc 3 use $((te - tb)) seconds" >> /tmp/build_all.log
 
 # export CFLAGS="--sysroot=/home/lixq/toolset -O2"
 # export CXXFLAGS="--sysroot=/home/lixq/toolset -O2"
@@ -102,6 +118,7 @@ date "+%Y-%m-%d %H:%M:%S end   build toolset glibc 2 use $((te - tb)) seconds" >
 cd /home/lixq || exit 1
 tar -cf toolset.tar.1 toolset
 # # step 1 glibc
+# # libselinux 3.9 https://github.com/SELinuxProject/selinux/tags
 # # make    4.4.1  https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
 # # glibc   2.42   https://mirrors.ustc.edu.cn/gnu/glibc/
 # build_packages 1 glibc

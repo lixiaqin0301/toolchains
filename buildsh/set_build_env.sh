@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[[ -n "$SET_BUILD_ENV_SETTED" ]] && exit 0
+if [[ -z "$SET_BUILD_ENV_SETTED" ]]; then
 
 if [[ "$1" == toolset || "$1" == mintoolset ]]; then
     export CC="/home/lixq/toolset/usr/bin/gcc"
@@ -106,3 +106,5 @@ echo "CXX=$CXX"
 echo "CFLAGS=$CFLAGS"
 echo "CXXFLAGS=$CXXFLAGS"
 echo "LDFLAGS=$LDFLAGS"
+
+fi
