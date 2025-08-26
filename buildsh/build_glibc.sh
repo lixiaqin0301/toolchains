@@ -7,9 +7,11 @@ kernelver=6.6
 DESTDIR=/home/lixq/toolchains/glibc
 [[ -n "$1" ]] && DESTDIR="$1"
 
-export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/usr/bin:/home/lixq/toolchains/make/usr/bin:/home/lixq/toolchains/patchelf/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-export CC="/home/lixq/toolchains/gcc/usr/bin/gcc"
-export CXX="/home/lixq/toolchains/gcc/usr/bin/g++"
+if [[ -z "$CC" ]]; then
+    export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/usr/bin:/home/lixq/toolchains/make/usr/bin:/home/lixq/toolchains/patchelf/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    export CC="/home/lixq/toolchains/gcc/usr/bin/gcc"
+    export CXX="/home/lixq/toolchains/gcc/usr/bin/g++"
+fi
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
