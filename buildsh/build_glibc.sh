@@ -20,6 +20,14 @@ tar -xf $srcpath || exit 1
 mkdir -p /home/lixq/src/${name}-${ver}/${name}-${ver}/build/glibc
 cd /home/lixq/src/${name}-${ver}/${name}-${ver}/build/glibc || exit 1
 /home/lixq/src/${name}-${ver}/configure --prefix=/usr || exit 1
+make -s -j"$(nproc)" -k
+if ! ./elf/ldconfig --version; then
+    rm ./elf/ldconfig
+    export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/usr/lib --sysroot=/home/lixq/toolset"
+    make
+    export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/usr/lib --sysroot=/home/lixq/toolset -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
+fi
+./elf/ldconfig --version || exit 1
 make -s -j"$(nproc)" || exit 1
 [[ "$DESTDIR" == */${name} ]] && rm -rf "$DESTDIR"
 make -s -j"$(nproc)" install DESTDIR="$DESTDIR" || exit 1
