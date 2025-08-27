@@ -14,6 +14,9 @@ DESTDIR=/home/lixq/toolchains/${name}
 export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export CC="/home/lixq/toolchains/gcc/usr/bin/gcc"
 export CXX="/home/lixq/toolchains/gcc/usr/bin/g++"
+if [[ -f "$DESTDIR"/usr/lib64/libc.so ]]; then
+    export LDFLAGS="--sysroot=$DESTDIR"
+fi
 
 [[ -d /home/lixq/src ]] || mkdir -p /home/lixq/src
 cd /home/lixq/src || exit 1
