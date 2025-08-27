@@ -15,6 +15,8 @@ export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/us
 export CC="/home/lixq/toolchains/gcc/usr/bin/gcc"
 export CXX="/home/lixq/toolchains/gcc/usr/bin/g++"
 if [[ -f "$DESTDIR"/usr/lib64/libc.so ]]; then
+    export CFLAGS="--sysroot=$DESTDIR"
+    export CXXFLAGS="--sysroot=$DESTDIR"
     export LDFLAGS="--sysroot=$DESTDIR"
 fi
 
