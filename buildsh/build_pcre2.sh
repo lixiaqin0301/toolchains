@@ -6,7 +6,7 @@ srcpath=/home/lixq/src/${name}-${ver}.tar.gz
 DESTDIR=/home/lixq/toolchains/${name}
 [[ -n "$1" ]] && DESTDIR="$1"
 
-. "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1

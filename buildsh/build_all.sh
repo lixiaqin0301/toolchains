@@ -3,7 +3,7 @@
 function build_packages() {
     n="$1"
     shift
-    DESTDIR="$2"
+    DESTDIR="$1"
     shift
     pkgs=("$@")
     [[ -f "$DESTDIR.tar.$n" ]] && return
@@ -20,7 +20,7 @@ function build_packages() {
         date "+%Y-%m-%d %H:%M:%S end   build $DESTDIR $p use $((te - tb)) seconds" | tee -a /tmp/build_all.log
     done
     cd /home/lixq || exit 1
-    tar -cf "$DESTDIR.tar.$n" "$DESTDIR"
+    tar -cf "$(basename "$DESTDIR").tar.$n" "$(basename "$DESTDIR")"
     tse=$(date +%s)
     date "+%Y-%m-%d %H:%M:%S end   step $n $DESTDIR ${pkgs[*]} use $((tse - tsb)) seconds" | tee -a /tmp/build_all.log
 }
@@ -28,27 +28,33 @@ function build_packages() {
 date "+%Y-%m-%d %H:%M:%S begin" > /tmp/build_all.log
 tab=$(date +%s)
 
-build_packages 1 /home/lixq/toolset glibc
+# step 1 glibc
+# make             4.4.1  https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
+# pcre2            10.45  https://github.com/PCRE2Project/pcre2/releases/
+# audit-userspace  4.1.1  https://github.com/linux-audit/audit-userspace/releases/
+# libcap           2.76   https://git.kernel.org/pub/scm/libs/libcap/libcap.git/snapshot/
+# libselinux       3.9    https://github.com/SELinuxProject/selinux/tags
+# glibc            2.42   https://mirrors.ustc.edu.cn/gnu/glibc/
+build_packages 1 /home/lixq/toolset pcre2 audit-userspace libcap libselinux glibc
+
+# step 2 gcc
+# binutils  2.45    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
+# ./contrib/download_prerequisites https://gcc.gnu.org/pub/gcc/infrastructure/
+# gcc       15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
+build_packages 2 /home/lixq/toolset binutils
 
 # # step 1 glibc
-# # pcre2       10.45   https://github.com/PCRE2Project/pcre2/releases
+# 
 # # bzip2       1.0.8   https://sourceware.org/pub/bzip2/
-# # audit       4.1.1   https://github.com/linux-audit/audit-userspace/releases/
+
 # # Linux-PAM   1.17.1  https://github.com/linux-pam/linux-pam/releases/
-# # libcap      2.76    https://git.kernel.org/pub/scm/libs/libcap/libcap.git/snapshot/
+# 
 # # libcap-ng   0.8.5   https://github.com/stevegrubb/libcap-ng/releases/
-# # libselinux  3.9     https://github.com/SELinuxProject/selinux/tags
-# # make        4.4.1   https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
-# # glibc       2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
+# 
+
 # build_packages 1 glibc
 
-# # step 2 gcc
-# # binutils  2.45    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
-# # ./contrib/download_prerequisites https://gcc.gnu.org/pub/gcc/infrastructure/
-# # gcc       15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
-# n=2
-# [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
-# build_packages $n binutils gcc
+
 
 # # step 3 cmake Bear
 # # cmake  4.1.0  https://cmake.org/download/
