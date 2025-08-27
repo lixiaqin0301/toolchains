@@ -17,7 +17,7 @@ export CXX="/home/lixq/toolchains/gcc/usr/bin/g++"
 if [[ -f "$DESTDIR"/usr/lib64/libc.so ]]; then
     export CFLAGS="--sysroot=$DESTDIR"
     export CXXFLAGS="--sysroot=$DESTDIR"
-    export LDFLAGS="--sysroot=$DESTDIR"
+    export LDFLAGS="-L$DESTDIR/usr/lib64 --sysroot=/home/lixq/toolset -Wl,-rpath,$DESTDIR/lib64 -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
 fi
 
 [[ -d /home/lixq/src ]] || mkdir -p /home/lixq/src
