@@ -63,3 +63,5 @@ cd /home/lixq/src/${name}-${ver}/build || exit 1
 make -s -j"$(nproc)" || exit 1
 [[ "$DESTDIR" == */${name} ]] && rm -rf "$DESTDIR"
 make -s -j"$(nproc)" install || exit 1
+cd "$DESTDIR/usr/bin" || exit 1
+ln -s gcc cc
