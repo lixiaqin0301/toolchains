@@ -2,12 +2,12 @@
 sdir="$(dirname "${BASH_SOURCE[0]}")"
 
 function build_packages() {
-    ver="$1"
+    ver=$1
     shift
-    DESTDIR="$1"
+    DESTDIR=$1
     shift
     pkgs=("$@")
-    [[ -f "$DESTDIR.tar.gz" ]] && return
+    [[ -f $(basename "$DESTDIR")-${ver}.tar.gz ]] && return
     tsb=$(date +%s)
     date "+%Y-%m-%d %H:%M:%S begin $DESTDIR ${pkgs[*]}" | tee -a /tmp/build_all.log
     for p in "${pkgs[@]}"; do
@@ -18,7 +18,7 @@ function build_packages() {
         date "+%Y-%m-%d %H:%M:%S end   build $DESTDIR $p use $((te - tb)) seconds" | tee -a /tmp/build_all.log
     done
     cd "$(dirname "$DESTDIR")" || exit 1
-    tar -czf "$(basename "$DESTDIR")-${ver}.tar.gz" "$(basename "$DESTDIR")"
+    tar -czf "$(basename "$DESTDIR")-$ver.tar.gz" "$(basename "$DESTDIR")"
     tse=$(date +%s)
     date "+%Y-%m-%d %H:%M:%S end   $DESTDIR ${pkgs[*]} use $((tse - tsb)) seconds" | tee -a /tmp/build_all.log
 }
@@ -26,21 +26,21 @@ function build_packages() {
 # binutils https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
 build_packages 2.45 /home/lixq/toolchains/binutils binutils
 
-# # make  4.4.1  https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
-# build_packages 4.4.1 /home/lixq/toolchains/make make
+# make https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
+build_packages 4.4.1 /home/lixq/toolchains/make make
 
-# # cmake  4.1.0  https://cmake.org/download/
-# build_packages 4.1.0 /home/lixq/toolchains/cmake cmake
+# cmake https://cmake.org/download/
+build_packages 4.1.0 /home/lixq/toolchains/cmake cmake
 
-# # bashdb  4.4-1.0.1  https://sourceforge.net/projects/bashdb/files/bashdb/
-# build_packages /home/lixq/toolchains/bashdb bashdb
+# bashdb https://sourceforge.net/projects/bashdb/files/bashdb/
+build_packages 4.4-1.0.1 /home/lixq/toolchains/bashdb bashdb
 
-# # bat  0.25.0  https://github.com/sharkdp/bat/releases/
-# build_packages /home/lixq/toolchains/bat bat
+# bat https://github.com/sharkdp/bat/releases/
+build_packages 0.25.0 /home/lixq/toolchains/bat bat
 
+# gcc https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
+build_packages 15.2.0 /home/lixq/toolchains/gcc gcc
 
-# step 2 gcc
-# gcc  15.2.0                       https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
 # ./contrib/download_prerequisites  https://gcc.gnu.org/pub/gcc/infrastructure/
 #build_packages /home/lixq/toolchains/gcc gcc
 
