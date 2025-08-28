@@ -2,17 +2,12 @@
 sdir="$(dirname "${BASH_SOURCE[0]}")"
 
 function build_packages() {
-    n="$1"
-    shift
     DESTDIR="$1"
     shift
     pkgs=("$@")
-    [[ -f "$DESTDIR.tar.$n" ]] && return
+    [[ -f "$DESTDIR.tar.gz" ]] && return
     tsb=$(date +%s)
-    date "+%Y-%m-%d %H:%M:%S begin step $n $DESTDIR ${pkgs[*]}" | tee -a /tmp/build_all.log
-    rm -rf "$DESTDIR"
-    cd /home/lixq || exit 1
-    [[ -s "$DESTDIR.tar.$((n-1))" ]] && tar -xf "$DESTDIR.tar.$((n-1))"
+    date "+%Y-%m-%d %H:%M:%S begin $DESTDIR ${pkgs[*]}" | tee -a /tmp/build_all.log
     for p in "${pkgs[@]}"; do
         date "+%Y-%m-%d %H:%M:%S begin build $DESTDIR $p" | tee -a /tmp/build_all.log
         tb=$(date +%s)
@@ -20,14 +15,14 @@ function build_packages() {
         te=$(date +%s)
         date "+%Y-%m-%d %H:%M:%S end   build $DESTDIR $p use $((te - tb)) seconds" | tee -a /tmp/build_all.log
     done
-    cd /home/lixq || exit 1
-    tar -cf "$(basename "$DESTDIR").tar.$n" "$(basename "$DESTDIR")"
+    cd "$(dirname "$DESTDIR")" || exit 1
+    tar -czf "$(basename "$DESTDIR").tar.gz" "$(basename "$DESTDIR")"
     tse=$(date +%s)
-    date "+%Y-%m-%d %H:%M:%S end   step $n $DESTDIR ${pkgs[*]} use $((tse - tsb)) seconds" | tee -a /tmp/build_all.log
+    date "+%Y-%m-%d %H:%M:%S end   $DESTDIR ${pkgs[*]} use $((tse - tsb)) seconds" | tee -a /tmp/build_all.log
 }
 
-date "+%Y-%m-%d %H:%M:%S begin" > /tmp/build_all.log
-tab=$(date +%s)
+# gcc
+build_packages /home/lixq/toolchains binutils
 
 # step 1 glibc
 # make             4.4.1  https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
@@ -36,13 +31,13 @@ tab=$(date +%s)
 # libcap           2.76   https://git.kernel.org/pub/scm/libs/libcap/libcap.git/snapshot/
 # libselinux       3.9    https://github.com/SELinuxProject/selinux/tags
 # glibc            2.42   https://mirrors.ustc.edu.cn/gnu/glibc/
-build_packages 1 /home/lixq/toolset pcre2 audit-userspace libcap glibc libselinux glibc
+# build_packages 1 /home/lixq/toolset pcre2 audit-userspace libcap glibc libselinux glibc
 
 # step 2 gcc
 # binutils  2.45                    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
 # ./contrib/download_prerequisites  https://gcc.gnu.org/pub/gcc/infrastructure/
 # gcc       15.2.0                  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
-build_packages 2 /home/lixq/toolset gcc binutils
+# build_packages 2 /home/lixq/toolset gcc binutils
 
 # # bzip2       1.0.8   https://sourceware.org/pub/bzip2/
 # # Linux-PAM   1.17.1  https://github.com/linux-pam/linux-pam/releases/
@@ -98,5 +93,3 @@ build_packages 2 /home/lixq/toolset gcc binutils
 # [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
 # build_packages $n bashdb bat gdb shellcheck boost tcpflow zsh git patchelf
 
-tae=$(date +%s)
-date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" >> /tmp/build_all.log
