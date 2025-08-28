@@ -34,6 +34,11 @@ cp /home/lixq/src/${gettext} . || exit 1
 mkdir -p /home/lixq/src/${name}-${ver}/build
 cd /home/lixq/src/${name}-${ver}/build || exit 1
 ../configure --prefix="$DESTDIR/usr" --disable-multilib || exit 1
+make configure-gmp || exit 1
+make configure-mpfr || exit 1
+make configure-mpc || exit 
+make configure-isl || exit 1
+make configure-gettext || exit 1
 if ! make -k -s -j"$(nproc)"; then
     if [[ -d /home/lixq/src/${name}-${ver}/build/x86_64-pc-linux-gnu/libsanitizer/asan ]]; then
         cd /home/lixq/src/${name}-${ver}/build/x86_64-pc-linux-gnu/libsanitizer/asan || exit 1
