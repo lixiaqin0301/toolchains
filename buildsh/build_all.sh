@@ -2,6 +2,8 @@
 sdir="$(dirname "${BASH_SOURCE[0]}")"
 
 function build_packages() {
+    ver="$1"
+    shift
     DESTDIR="$1"
     shift
     pkgs=("$@")
@@ -11,21 +13,38 @@ function build_packages() {
     for p in "${pkgs[@]}"; do
         date "+%Y-%m-%d %H:%M:%S begin build $DESTDIR $p" | tee -a /tmp/build_all.log
         tb=$(date +%s)
-        "$sdir/build_$p.sh" "$DESTDIR" || exit 1
+        "$sdir/build_$p.sh" "$ver" "$DESTDIR" || exit 1
         te=$(date +%s)
         date "+%Y-%m-%d %H:%M:%S end   build $DESTDIR $p use $((te - tb)) seconds" | tee -a /tmp/build_all.log
     done
     cd "$(dirname "$DESTDIR")" || exit 1
-    tar -czf "$(basename "$DESTDIR").tar.gz" "$(basename "$DESTDIR")"
+    tar -czf "$(basename "$DESTDIR")-${ver}.tar.gz" "$(basename "$DESTDIR")"
     tse=$(date +%s)
     date "+%Y-%m-%d %H:%M:%S end   $DESTDIR ${pkgs[*]} use $((tse - tsb)) seconds" | tee -a /tmp/build_all.log
 }
 
-# gcc
-build_packages /home/lixq/toolchains binutils
+# binutils https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
+build_packages 2.45 /home/lixq/toolchains/binutils binutils
+
+# # make  4.4.1  https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
+# build_packages 4.4.1 /home/lixq/toolchains/make make
+
+# # cmake  4.1.0  https://cmake.org/download/
+# build_packages 4.1.0 /home/lixq/toolchains/cmake cmake
+
+# # bashdb  4.4-1.0.1  https://sourceforge.net/projects/bashdb/files/bashdb/
+# build_packages /home/lixq/toolchains/bashdb bashdb
+
+# # bat  0.25.0  https://github.com/sharkdp/bat/releases/
+# build_packages /home/lixq/toolchains/bat bat
+
+
+# step 2 gcc
+# gcc  15.2.0                       https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
+# ./contrib/download_prerequisites  https://gcc.gnu.org/pub/gcc/infrastructure/
+#build_packages /home/lixq/toolchains/gcc gcc
 
 # step 1 glibc
-# make             4.4.1  https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
 # pcre2            10.45  https://github.com/PCRE2Project/pcre2/releases/
 # audit-userspace  4.1.1  https://github.com/linux-audit/audit-userspace/releases/
 # libcap           2.76   https://git.kernel.org/pub/scm/libs/libcap/libcap.git/snapshot/
@@ -33,18 +52,12 @@ build_packages /home/lixq/toolchains binutils
 # glibc            2.42   https://mirrors.ustc.edu.cn/gnu/glibc/
 # build_packages 1 /home/lixq/toolset pcre2 audit-userspace libcap glibc libselinux glibc
 
-# step 2 gcc
-# binutils  2.45                    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
-# ./contrib/download_prerequisites  https://gcc.gnu.org/pub/gcc/infrastructure/
-# gcc       15.2.0                  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
-# build_packages 2 /home/lixq/toolset gcc binutils
 
 # # bzip2       1.0.8   https://sourceware.org/pub/bzip2/
 # # Linux-PAM   1.17.1  https://github.com/linux-pam/linux-pam/releases/
 # # libcap-ng   0.8.5   https://github.com/stevegrubb/libcap-ng/releases/
 
 # # step 3 cmake Bear
-# # cmake  4.1.0  https://cmake.org/download/
 # # Bear   3.1.6  https://github.com/rizsotto/Bear/
 # n=3
 # [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
@@ -80,8 +93,6 @@ build_packages /home/lixq/toolchains binutils
 # build_packages $n bison swig lua Python llvm
 
 # # step 6 bashdb bat gdb shellcheck tcpflow git
-# # bashdb      4.4-1.0.1 https://sourceforge.net/projects/bashdb/files/bashdb/
-# # bat         0.25.0    https://github.com/sharkdp/bat/releases/
 # # gdb         16.3      https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/
 # # git         2.51.0    https://github.com/git/git/tags
 # # Shellcheck  0.11.0    https://github.com/koalaman/shellcheck/releases
