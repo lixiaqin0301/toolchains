@@ -15,8 +15,8 @@ export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/us
 export CC="/home/lixq/toolchains/gcc/usr/bin/gcc"
 export CXX="/home/lixq/toolchains/gcc/usr/bin/g++"
 if [[ -f "$DESTDIR"/usr/lib64/libc.so ]]; then
-    export CFLAGS="-DHAVE_REALLOCARRAY --sysroot=$DESTDIR"
-    export CXXFLAGS="-DHAVE_REALLOCARRAY --sysroot=$DESTDIR"
+    export CFLAGS="--sysroot=$DESTDIR"
+    export CXXFLAGS="--sysroot=$DESTDIR"
     export LDFLAGS="-L$DESTDIR/usr/lib64 --sysroot=/home/lixq/toolset -Wl,-rpath,$DESTDIR/lib64 -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
 fi
 
