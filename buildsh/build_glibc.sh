@@ -10,12 +10,6 @@ DESTDIR=/home/lixq/toolchains/glibc
 export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/usr/bin:/home/lixq/toolchains/make/usr/bin:/home/lixq/toolchains/patchelf/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export CC="/home/lixq/toolchains/gcc/usr/bin/gcc"
 export CXX="/home/lixq/toolchains/gcc/usr/bin/g++"
-if [[ -f "$DESTDIR"/usr/lib64/libc.so ]]; then
-    export CFLAGS="-O2 --sysroot=$DESTDIR"
-    export CXXFLAGS="-O2 --sysroot=$DESTDIR"
-    export CPPFLAGS="-O2 --sysroot=$DESTDIR"
-    export LDFLAGS="-L$DESTDIR/usr/lib64 --sysroot=/home/lixq/toolset -Wl,-rpath,$DESTDIR/lib64 -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
-fi
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
@@ -25,14 +19,7 @@ tar -xf /home/lixq/src/linux-${kernelver}.tar.xz || exit 1
 mkdir -p /home/lixq/src/${name}-${ver}/${name}-${ver}/build/glibc
 cd /home/lixq/src/${name}-${ver}/${name}-${ver}/build/glibc || exit 1
 /home/lixq/src/${name}-${ver}/configure --prefix=/usr || exit 1
-if ! make -k -s -j"$(nproc)"; then
-    export LDFLAGS=""
-    rm -rf ./elf/ldconfig ./elf/ldd ./elf/ld.so ./elf/sln ./elf/sotruss-lib.so
-    make -k -s -j"$(nproc)"
-    export LDFLAGS="-L$DESTDIR/usr/lib64 --sysroot=/home/lixq/toolset -Wl,-rpath,$DESTDIR/lib64 -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
-fi
 make -s -j"$(nproc)" || exit 1
-[[ "$DESTDIR" == */${name} ]] && rm -rf "$DESTDIR"
 make -s -j"$(nproc)" install DESTDIR="$DESTDIR" || exit 1
 if [[ "$DESTDIR" != */mintoolset ]]; then
     make -s -j"$(nproc)" localedata/install-locales DESTDIR="$DESTDIR" || exit 1
@@ -51,11 +38,10 @@ else
     done
 fi
 
-#for f in "$DESTDIR"/usr/*bin/* "$DESTDIR"/*bin/* "$DESTDIR"/lib*/lib*.so*; do
-# for f in "$DESTDIR"/usr/*bin/* "$DESTDIR"/*bin/*; do
-#     [[ -L "$f" ]] && continue
-#     ldd "$f" 2>&1 | grep -q ': version .GLIBC_.* not found' || continue
-#     patchelf --set-rpath "$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib" "$f"
-#     file "$f" | grep -q 'uses shared libs' || continue
-#     patchelf --set-interpreter "$DESTDIR"/lib64/ld-linux-x86-64.so.2 "$f"
-# done
+for f in "$DESTDIR"/usr/*bin/* "$DESTDIR"/*bin/*; do
+    [[ -L "$f" ]] && continue
+    ldd "$f" 2>&1 | grep -q ': version .GLIBC_.* not found' || continue
+    patchelf --set-rpath "$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib" "$f"
+    file "$f" | grep -q 'uses shared libs' || continue
+    patchelf --set-interpreter "$DESTDIR"/lib64/ld-linux-x86-64.so.2 "$f"
+done
