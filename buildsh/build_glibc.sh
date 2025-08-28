@@ -39,7 +39,8 @@ else
     done
 fi
 
-for f in "$DESTDIR"/usr/*bin/* "$DESTDIR"/*bin/* "$DESTDIR"/lib*/lib*.so*; do
+#for f in "$DESTDIR"/usr/*bin/* "$DESTDIR"/*bin/* "$DESTDIR"/lib*/lib*.so*; do
+for f in "$DESTDIR"/usr/*bin/* "$DESTDIR"/*bin/*; do
     [[ -L "$f" ]] && continue
     ldd "$f" 2>&1 | grep -q ': version .GLIBC_.* not found' || continue
     patchelf --set-rpath "$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib" "$f"

@@ -1,4 +1,5 @@
 #!/bin/bash
+sdir="$(dirname "${BASH_SOURCE[0]}")"
 
 function build_packages() {
     n="$1"
@@ -15,7 +16,7 @@ function build_packages() {
     for p in "${pkgs[@]}"; do
         date "+%Y-%m-%d %H:%M:%S begin build $DESTDIR $p" | tee -a /tmp/build_all.log
         tb=$(date +%s)
-        "/home/lixq/35share-rd/toolchains/buildsh/build_$p.sh" "$DESTDIR" || exit 1
+        "$sdir/build_$p.sh" "$DESTDIR" || exit 1
         te=$(date +%s)
         date "+%Y-%m-%d %H:%M:%S end   build $DESTDIR $p use $((te - tb)) seconds" | tee -a /tmp/build_all.log
     done
@@ -35,7 +36,7 @@ tab=$(date +%s)
 # libcap           2.76   https://git.kernel.org/pub/scm/libs/libcap/libcap.git/snapshot/
 # libselinux       3.9    https://github.com/SELinuxProject/selinux/tags
 # glibc            2.42   https://mirrors.ustc.edu.cn/gnu/glibc/
-build_packages 1 /home/lixq/toolset pcre2 audit-userspace libcap libselinux glibc
+build_packages 1 /home/lixq/toolset pcre2 audit-userspace libcap glibc libselinux glibc
 
 # step 2 gcc
 # binutils  2.45                    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
