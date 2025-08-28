@@ -34,7 +34,7 @@ cp /home/lixq/src/${gettext} . || exit 1
 ./contrib/download_prerequisites
 mkdir -p /home/lixq/src/${name}-${ver}/build
 cd /home/lixq/src/${name}-${ver}/build || exit 1
-../configure --prefix="$DESTDIR/usr" --disable-multilib || exit 1
+../configure --prefix="$DESTDIR/usr" --disable-multilib --enable-ld || exit 1
 make -s -j"$(nproc)" configure-gettext || exit 1
 sed -i 's; -DHAVE_CONFIG_H; --sysroot=/home/lixq/toolset -DHAVE_CONFIG_H;' ./gettext/Makefile ./gettext/*/Makefile  ./gettext/*/*/Makefile || exit 1
 make -s -j"$(nproc)" || exit 1
