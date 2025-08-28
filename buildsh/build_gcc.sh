@@ -17,6 +17,7 @@ export CXX="/home/lixq/toolchains/gcc/usr/bin/g++"
 if [[ -f "$DESTDIR"/usr/lib64/libc.so ]]; then
     export CFLAGS="--sysroot=$DESTDIR"
     export CXXFLAGS="--sysroot=$DESTDIR"
+    export CPPFLAGS="--sysroot=$DESTDIR"
     export LDFLAGS="-L$DESTDIR/usr/lib64 --sysroot=/home/lixq/toolset -Wl,-rpath,$DESTDIR/lib64 -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
 fi
 
@@ -34,11 +35,9 @@ cp /home/lixq/src/${gettext} . || exit 1
 mkdir -p /home/lixq/src/${name}-${ver}/build
 cd /home/lixq/src/${name}-${ver}/build || exit 1
 ../configure --prefix="$DESTDIR/usr" --disable-multilib || exit 1
-make configure-gmp || exit 1
-make configure-mpfr || exit 1
-make configure-mpc || exit 
-make configure-isl || exit 1
-make configure-gettext || exit 1
+make -s -j"$(nproc)" configure-gettext || exit 1
+sed -i 's; -DHAVE_CONFIG_H; --sysroot=/home/lixq/toolset -DHAVE_CONFIG_H;' ./gettext/Makefile ./gettext/*/Makefile  ./gettext/*/*/Makefile || exit 1
+make -s -j"$(nproc)" || exit 1
 if ! make -k -s -j"$(nproc)"; then
     if [[ -d /home/lixq/src/${name}-${ver}/build/x86_64-pc-linux-gnu/libsanitizer/asan ]]; then
         cd /home/lixq/src/${name}-${ver}/build/x86_64-pc-linux-gnu/libsanitizer/asan || exit 1

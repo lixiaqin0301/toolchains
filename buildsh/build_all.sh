@@ -41,7 +41,7 @@ build_packages 1 /home/lixq/toolset pcre2 audit-userspace libcap libselinux glib
 # binutils  2.45                    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
 # ./contrib/download_prerequisites  https://gcc.gnu.org/pub/gcc/infrastructure/
 # gcc       15.2.0                  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
-build_packages 2 /home/lixq/toolset binutils gcc
+build_packages 2 /home/lixq/toolset gcc binutils
 
 # # bzip2       1.0.8   https://sourceware.org/pub/bzip2/
 # # Linux-PAM   1.17.1  https://github.com/linux-pam/linux-pam/releases/
