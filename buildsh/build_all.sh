@@ -7,13 +7,13 @@ function build_packages() {
     DESTDIR=$1
     shift
     pkgs=("$@")
-    [[ -f $(basename "$DESTDIR")-${ver}.tar.gz ]] && return
+    [[ -f "$DESTDIR-$ver.tar.gz" ]] && return
     tsb=$(date +%s)
     date "+%Y-%m-%d %H:%M:%S begin $DESTDIR ${pkgs[*]}" | tee -a /tmp/build_all.log
     for p in "${pkgs[@]}"; do
         date "+%Y-%m-%d %H:%M:%S begin build $DESTDIR $p" | tee -a /tmp/build_all.log
         tb=$(date +%s)
-        "$sdir/build_$p.sh" "$ver" "$DESTDIR" || exit 1
+        "$sdir/build_$p.sh" "$DESTDIR" || exit 1
         te=$(date +%s)
         date "+%Y-%m-%d %H:%M:%S end   build $DESTDIR $p use $((te - tb)) seconds" | tee -a /tmp/build_all.log
     done
@@ -23,23 +23,30 @@ function build_packages() {
     date "+%Y-%m-%d %H:%M:%S end   $DESTDIR ${pkgs[*]} use $((tse - tsb)) seconds" | tee -a /tmp/build_all.log
 }
 
-# binutils https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
+tab=$(date +%s)
+date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
+
+# binutils  2.45    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
 build_packages 2.45 /home/lixq/toolchains/binutils binutils
 
-# make https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
-build_packages 4.4.1 /home/lixq/toolchains/make make
+# gcc       15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
+build_packages 15.2.0 /home/lixq/toolchains/gcc gcc binutils
 
-# cmake https://cmake.org/download/
-build_packages 4.1.0 /home/lixq/toolchains/cmake cmake
+tae=$(date +%s)
+date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
 
-# bashdb https://sourceforge.net/projects/bashdb/files/bashdb/
-build_packages 4.4-1.0.1 /home/lixq/toolchains/bashdb bashdb
+# # make https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
+# build_packages 4.4.1 /home/lixq/toolchains/make make
 
-# bat https://github.com/sharkdp/bat/releases/
-build_packages 0.25.0 /home/lixq/toolchains/bat bat
+# # cmake https://cmake.org/download/
+# build_packages 4.1.0 /home/lixq/toolchains/cmake cmake
 
-# gcc https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
-build_packages 15.2.0 /home/lixq/toolchains/gcc gcc
+# # bashdb https://sourceforge.net/projects/bashdb/files/bashdb/
+# build_packages 4.4-1.0.1 /home/lixq/toolchains/bashdb bashdb
+
+# # bat https://github.com/sharkdp/bat/releases/
+# build_packages 0.25.0 /home/lixq/toolchains/bat bat
+
 
 # ./contrib/download_prerequisites  https://gcc.gnu.org/pub/gcc/infrastructure/
 #build_packages /home/lixq/toolchains/gcc gcc

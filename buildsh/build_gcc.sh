@@ -2,8 +2,8 @@
 
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=$1
-DESTDIR=$2
+ver=15.2.0
+DESTDIR=$1
 srcpath=/home/lixq/src/$name-$ver.tar.gz
 gmp='gmp-6.2.1.tar.bz2'
 mpfr='mpfr-4.1.0.tar.bz2'
@@ -11,13 +11,15 @@ mpc='mpc-1.2.1.tar.gz'
 isl='isl-0.24.tar.bz2'
 gettext='gettext-0.22.tar.gz'
 
-[[ -n $ver ]] || exit 1
 [[ -n $DESTDIR ]] || exit 1
 [[ -f $srcpath ]] || exit 1
+[[ -f /home/lixq/src/$gmp     ]] || exit 1
+[[ -f /home/lixq/src/$mpfr    ]] || exit 1
+[[ -f /home/lixq/src/$mpc     ]] || exit 1
+[[ -f /home/lixq/src/$isl     ]] || exit 1
+[[ -f /home/lixq/src/$gettext ]] || exit 1
 
 export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-export CC="/home/lixq/toolchains/gcc/usr/bin/gcc"
-export CXX="/home/lixq/toolchains/gcc/usr/bin/g++"
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
@@ -32,7 +34,7 @@ cp /home/lixq/src/$gettext . || exit 1
 ./contrib/download_prerequisites
 mkdir build
 cd build || exit 1
-../configure --prefix="$DESTDIR/usr" --disable-multilib --enable-ld || exit 1
+../configure --prefix="$DESTDIR/usr" --disable-multilib || exit 1
 if ! make -k -s -j"$(nproc)"; then
     if [[ -d /home/lixq/src/$name-$ver/build/x86_64-pc-linux-gnu/libsanitizer/asan ]]; then
         cd "/home/lixq/src/$name-$ver/build/x86_64-pc-linux-gnu/libsanitizer/asan" || exit 1
