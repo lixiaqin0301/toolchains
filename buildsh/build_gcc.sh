@@ -19,8 +19,13 @@ gettext='gettext-0.22.tar.gz'
 [[ -f /home/lixq/src/$isl     ]] || exit 1
 [[ -f /home/lixq/src/$gettext ]] || exit 1
 
-export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-export LDFLAGS="-L/home/lixq/toolchains/gcc/usr/lib64 -Wl,-rpath-link,/home/lixq/toolchains/gcc/usr/lib64 -Wl,-rpath,/home/lixq/toolchains/gcc/usr/lib64"
+if [[ $DESTDIR == /opt/gcc ]]; then
+    export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    export LDFLAGS="-L/home/lixq/toolchains/gcc/usr/lib64 -Wl,-rpath-link,/home/lixq/toolchains/gcc/usr/lib64 -Wl,-rpath,/opt/gcc/usr/lib64"
+else
+    export PATH="/opt/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    export LDFLAGS="-L/opt/gcc/usr/lib64 -Wl,-rpath-link,/opt/gcc/usr/lib64 -Wl,-rpath,/home/lixq/toolchains/gcc/usr/lib64"
+fi
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
@@ -35,7 +40,7 @@ cp /home/lixq/src/$gettext . || exit 1
 ./contrib/download_prerequisites
 mkdir build
 cd build || exit 1
-../configure --prefix="$DESTDIR/usr" --disable-multilib || exit 1
+../configure --prefix="$DESTDIR/usr" --disable-multilib --enable-ld || exit 1
 if ! make -k -s -j"$(nproc)"; then
     if [[ -d /home/lixq/src/$name-$ver/build/x86_64-pc-linux-gnu/libsanitizer/asan ]]; then
         cd "/home/lixq/src/$name-$ver/build/x86_64-pc-linux-gnu/libsanitizer/asan" || exit 1

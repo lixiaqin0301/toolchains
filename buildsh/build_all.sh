@@ -26,10 +26,13 @@ function build_packages() {
 tab=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 
-# binutils  2.45  https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
-build_packages 2.45 /home/lixq/toolchains/binutils binutils
 
-# gcc  15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
+#build_packages 2.45 /home/lixq/toolchains/binutils binutils
+
+# gcc     15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
+# ./contrib/download_prerequisites  https://gcc.gnu.org/pub/gcc/infrastructure/
+# binutils  2.45  https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
+build_packages 15.2.0 /opt/gcc gcc binutils
 build_packages 15.2.0 /home/lixq/toolchains/gcc gcc binutils
 
 # cmake  4.1.0  https://cmake.org/download/
@@ -53,7 +56,7 @@ date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_a
 # build_packages 0.25.0 /home/lixq/toolchains/bat bat
 
 
-# ./contrib/download_prerequisites  https://gcc.gnu.org/pub/gcc/infrastructure/
+
 #build_packages /home/lixq/toolchains/gcc gcc
 
 # step 1 glibc
