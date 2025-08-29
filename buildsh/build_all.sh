@@ -26,11 +26,17 @@ function build_packages() {
 tab=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 
-# binutils  2.45    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
+# binutils  2.45  https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
 build_packages 2.45 /home/lixq/toolchains/binutils binutils
 
-# gcc       15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
+# gcc  15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
 build_packages 15.2.0 /home/lixq/toolchains/gcc gcc binutils
+
+# cmake  4.1.0  https://cmake.org/download/
+build_packages  4.1.0  /home/lixq/toolchains/cmake cmake
+
+# Bear   3.1.6  https://github.com/rizsotto/Bear/
+build_packages 4.1.0 /home/lixq/toolchains/Bear Bear
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
@@ -38,8 +44,7 @@ date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_a
 # # make https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
 # build_packages 4.4.1 /home/lixq/toolchains/make make
 
-# # cmake https://cmake.org/download/
-# build_packages 4.1.0 /home/lixq/toolchains/cmake cmake
+
 
 # # bashdb https://sourceforge.net/projects/bashdb/files/bashdb/
 # build_packages 4.4-1.0.1 /home/lixq/toolchains/bashdb bashdb
@@ -65,7 +70,7 @@ date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_a
 # # libcap-ng   0.8.5   https://github.com/stevegrubb/libcap-ng/releases/
 
 # # step 3 cmake Bear
-# # Bear   3.1.6  https://github.com/rizsotto/Bear/
+# 
 # n=3
 # [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
 # build_packages $n cmake Bear
