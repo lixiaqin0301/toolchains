@@ -20,6 +20,7 @@ gettext='gettext-0.22.tar.gz'
 [[ -f /home/lixq/src/$gettext ]] || exit 1
 
 export PATH="/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/binutils/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export LDFLAGS="-L/home/lixq/toolchains/gcc/usr/lib64 -Wl,-rpath-link,/home/lixq/toolchains/gcc/usr/lib64 -Wl,-rpath,/home/lixq/toolchains/gcc/usr/lib64"
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
