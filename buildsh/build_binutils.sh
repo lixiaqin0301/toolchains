@@ -6,7 +6,6 @@ ver=2.45
 DESTDIR=$1
 srcpath=/home/lixq/src/$name-$ver.tar.gz
 
-[[ -n $ver ]] || exit 1
 [[ -n $DESTDIR ]] || exit 1
 [[ -f $srcpath ]] || exit 1
 
