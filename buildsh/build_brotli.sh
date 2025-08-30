@@ -1,29 +1,28 @@
 #!/bin/bash
 
-name=brotli
+name=$(basename "${BASH_SOURCE[0]}" .sh)
+name=${name#build_}
 ver=1.1.0
-srcpath=/home/lixq/src/${name}-${ver}.tar.gz
-DESTDIR=/home/lixq/toolchains/${name}
-[[ -n "$1" ]] && DESTDIR="$1"
+DESTDIR=$1
+srcpath=/home/lixq/src/$name-$ver.tar.gz
 
-if [[ "$DESTDIR" == */${name} ]]; then
-    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" ${name}
-    export PATH="/home/lixq/toolchains/cmake/usr/bin:$PATH"
-    export CC="gcc"
-else
-    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" "$(basename "$DESTDIR")"
-fi
+[[ -n $DESTDIR ]] || exit 1
+[[ -f $srcpath ]] || exit 1
+
+export PATH="/home/lixq/toolchains/cmake/usr/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig"
+export CFLAGS="-isystem $DESTDIR/usr/include"
+export CXXFLAGS="-isystem $DESTDIR/usr/include"
+export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -static-libgcc -static-libstdc++ -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
-rm -rf ${name}-${ver}
-tar -xf $srcpath || exit 1
-mkdir ${name}-${ver}/out
-cd /home/lixq/src/${name}-${ver}/out || exit 1
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$DESTDIR/usr" \
-    -DCMAKE_C_COMPILER="$CC" \
-    -DCMAKE_C_FLAGS="$CFLAGS $LDFLAGS" \
-    -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS" \
+rm -rf "$name-$ver"
+tar -xf "$srcpath" || exit 1
+mkdir "$name-$ver/out"
+cd "$name-$ver/out" || exit 1
+cmake -DCMAKE_BUILD_TYPE=Release "-DCMAKE_INSTALL_PREFIX=$DESTDIR/usr" \
+    "-DCMAKE_C_FLAGS=$CFLAGS $LDFLAGS" \
+    "-DCMAKE_EXE_LINKER_FLAGS=$LDFLAGS" \
     .. || exit 1
-[[ "$DESTDIR" == */${name} ]] && rm -rf "$DESTDIR"
 cmake --build . --config Release --target install || exit 1
