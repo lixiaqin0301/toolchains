@@ -1,25 +1,23 @@
 #!/bin/bash
 
-name=swig
+name=$(basename "${BASH_SOURCE[0]}" .sh)
+name=${name#build_}
 ver=4.3.1
-srcpath=/home/lixq/src/${name}-${ver}.tar.gz
-DESTDIR=/home/lixq/toolchains/${name}
-[[ -n "$1" ]] && DESTDIR="$1"
+DESTDIR=$1
+srcpath=/home/lixq/src/$name-$ver.tar.gz
 
-if [[ "$DESTDIR" == */${name} ]]; then
-    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" gcc
-    export PATH=/home/lixq/toolchains/bison/usr/bin:$PATH
-else
-    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" "$(basename "$DESTDIR")"
-fi
+[[ -n $DESTDIR ]] || exit 1
+[[ -f $srcpath ]] || exit 1
+
+export PATH="/home/lixq/toolchains/bison/usr/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export LDFLAGS="-static-libgcc -static-libstdc++"
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
-rm -rf ${name}-${ver}
-tar -xf $srcpath || exit 1
-cd ${name}-${ver} || exit 1
+rm -rf "$name-$ver"
+tar -xf "$srcpath" || exit 1
+cd "$name-$ver" || exit 1
 ./autogen.sh || exit 1
-./configure --prefix="$DESTDIR/usr" || exit 1
-make -s -j"$(nproc)" || exit 1
-[[ "$DESTDIR" == */${name} ]] && rm -rf "$DESTDIR"
-make -s -j"$(nproc)" install || exit 1
+./configure "--prefix=$DESTDIR/usr" || exit 1
+make -s "-j$(nproc)" || exit 1
+make -s "-j$(nproc)" install || exit 1

@@ -7,8 +7,6 @@ name=${name#build_}
 ver=8.15.0
 DESTDIR=$1
 srcpath=/home/lixq/src/${name}-${ver}.tar.gz
-DESTDIR=/home/lixq/toolchains/${name}
-[[ -n "$1" ]] && DESTDIR="$1"
 
 [[ -n $DESTDIR ]] || exit 1
 [[ -f $srcpath ]] || exit 1

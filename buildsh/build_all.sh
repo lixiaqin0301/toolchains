@@ -75,6 +75,30 @@ build_packages 2.42 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap gli
 # curl          8.15.0  https://github.com/curl/curl/releases/
 build_packages 8.15.0 /home/lixq/toolchains/curl keyutils libidn2 libunistring zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 brotli krb5 openldap libpsl gsasl curl
 
+# bison  3.8.2  https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
+build_packages 4.3.1 /home/lixq/toolchains/bison bison
+
+# swig  4.3.1  https://github.com/swig/swig/
+build_packages 4.3.1 /home/lixq/toolchains/swig swig
+
+# libedit  20250104-3.1  https://thrysoee.dk/editline/
+# ncurses  6.3           https://invisible-island.net/ncurses/
+# xz       5.8.1         https://tukaani.org/xz/
+# libxml2  2.14.5        https://gitlab.gnome.org/GNOME/libxml2/-/releases
+# Python   3.13.7        https://www.python.org/ftp/python/
+build_packages 20.1.8 /home/lixq/toolchains/llvm libedit ncurses xz libxml2 openssl Python llvm
+
+# lua    5.4.8   https://www.lua.org/ftp/
+# llvm   20.1.8  https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
+# # step 5 llvm
+# 
+
+# 
+
+# n=5
+# [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
+# build_packages $n bison swig lua Python llvm
+
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
 
@@ -83,15 +107,7 @@ date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_a
 # # libcap-ng   0.8.5   https://github.com/stevegrubb/libcap-ng/releases/
 
 
-# # step 5 llvm
-# # bison   3.8.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
-# # swig    4.3.1   https://github.com/swig/swig/
-# # Python  3.13.7  https://www.python.org/ftp/python/
-# # lua     5.4.8   https://www.lua.org/ftp/
-# # llvm    20.1.8  https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
-# n=5
-# [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
-# build_packages $n bison swig lua Python llvm
+
 
 # # step 6 bashdb bat gdb shellcheck tcpflow git
 # # gdb         16.3      https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/
