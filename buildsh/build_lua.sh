@@ -5,7 +5,6 @@ name=${name#build_}
 ver=5.4.8
 DESTDIR=$1
 srcpath=/home/lixq/src/$name-$ver.tar.gz
-DESTDIR=/home/lixq/toolchains/${name}
 
 [[ -n $DESTDIR ]] || exit 1
 [[ -f $srcpath ]] || exit 1
