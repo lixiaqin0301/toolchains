@@ -9,12 +9,12 @@ srcpath=/home/lixq/src/$name-project-$ver.src.tar.xz
 [[ -n $DESTDIR ]] || exit 1
 [[ -f $srcpath ]] || exit 1
 
-export PATH="/home/lixq/toolchains/cmake/usr/bin:/home/lixq/toolchains/swig/usr/bin:/home/lixq/toolchains/Miniforge3/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export PATH="/home/lixq/toolchains/cmake/usr/bin:/home/lixq/toolchains/gcc/usr/bin:$DESTDIR/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig"
-export CFLAGS="-isystem $DESTDIR/usr/include -pthread"
-export CXXFLAGS="-isystem $DESTDIR/usr/include -pthread"
+export CFLAGS="-isystem $DESTDIR/usr/include"
+export CXXFLAGS="-isystem $DESTDIR/usr/include"
 export CPPFLAGS="-isystem $DESTDIR/usr/include"
-export LDFLAGS="-pthread -L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -static-libgcc -static-libstdc++ -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
+export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -static-libgcc -static-libstdc++ -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
 
 [[ -d /home/lixq/src ]] || mkdir -p /home/lixq/src/
 cd /home/lixq/src/ || exit 1
@@ -22,7 +22,8 @@ rm -rf "$name-project-$ver.src"
 tar -xf "$srcpath" || exit 1
 mkdir "$name-project-$ver.src/build" || exit 1
 cd "$name-project-$ver.src/build" || exit 1
-cmake -DCMAKE_BUILD_TYPE=Release \
+cmake -DCMAKE_C_FLAGS="$CFLAGS" -DCMAKE_CXX_FLAGS="$CXXFLAGS" -DDCMAKE_CPP_FLAGS="$CPPFLAGS" -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS" \
+    -DCMAKE_BUILD_TYPE=Release \
     -DLLVM_TARGETS_TO_BUILD="BPF;X86" \
     -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lldb" \
     -DLLDB_ENABLE_LIBEDIT=1 \
