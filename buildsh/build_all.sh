@@ -73,7 +73,7 @@ build_packages 2.42 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap gli
 # libpsl        0.21.5  https://github.com/rockdaboot/libpsl/releases/
 # gsasl         2.2.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/gsasl/
 # curl          8.15.0  https://github.com/curl/curl/releases/
-build_packages 8.15.0 /home/lixq/toolchains/curl keyutils zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 brotli krb5 #   libidn2 openldap libunistring libpsl gsasl curl
+build_packages 8.15.0 /home/lixq/toolchains/curl keyutils libidn2 zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 brotli krb5 #    openldap libunistring libpsl gsasl curl
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
