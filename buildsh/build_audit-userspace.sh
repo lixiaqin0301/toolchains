@@ -21,5 +21,4 @@ autoreconf -fi || exit 1
 ./configure "--prefix=$DESTDIR/usr" --disable-zos-remote --with-python3=no  || exit 1
 cp -ar "src/test/\${top_srcdir}/src/.deps" src || exit 1
 make -s "-j$(nproc)" || exit 1
-[[ $DESTDIR == */$name ]] && rm -rf "$DESTDIR"
 make -s "-j$(nproc)" install || exit 1

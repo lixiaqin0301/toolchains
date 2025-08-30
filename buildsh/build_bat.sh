@@ -15,7 +15,6 @@ rm -rf /tmp/tb
 mkdir /tmp/tb
 cd /tmp/tb || exit 1
 tar -xf "$srcpath" --strip-components=1 || exit 1
-[[ $DESTDIR == */$name ]] && rm -rf "$DESTDIR"
 [[ -d $DESTDIR/usr/bin ]] || mkdir -p "$DESTDIR/usr/bin"
 cp -a "$name" "$DESTDIR/usr/bin"
 [[ -d $DESTDIR/usr/man/man1 ]] || mkdir -p "$DESTDIR/usr/man/man1"

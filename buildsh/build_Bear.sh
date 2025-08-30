@@ -44,7 +44,6 @@ mkdir -p build
 cd build || exit 1
 cmake -DCMAKE_INSTALL_PREFIX="$DESTDIR/usr" .. || exit 1
 make -s "-j$(nproc)" || exit 1
-[[ $DESTDIR == */$name ]] && rm -rf "$DESTDIR"
 make -s "-j$(nproc)" install || exit 1
 
 # git clone --depth 1 https://github.com/grpc/grpc -b v1.49.2 grpc-v1.49.2

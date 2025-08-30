@@ -8,6 +8,7 @@ function build_packages() {
     shift
     pkgs=("$@")
     [[ -f "$DESTDIR-$ver.tar.gz" ]] && return
+    rm -rf "$DESTDIR"
     tsb=$(date +%s)
     date "+%Y-%m-%d %H:%M:%S begin $DESTDIR ${pkgs[*]}" | tee -a /tmp/build_all.log
     for p in "${pkgs[@]}"; do
@@ -30,9 +31,7 @@ date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 # ./contrib/download_prerequisites  https://gcc.gnu.org/pub/gcc/infrastructure/
 # binutils  2.45  https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
 gccver=15.2.0
-[[ -f /opt/gcc-$gccver.tar.gz ]] || rm -rf /opt/gcc
 build_packages $gccver /opt/gcc gcc binutils
-[[ -f /home/lixq/toolchains/gcc-$gccver.tar.gz ]] || rm -rf /home/lixq/toolchains/gcc
 build_packages $gccver /home/lixq/toolchains/gcc gcc binutils
 
 # cmake  4.1.0  https://cmake.org/download/
@@ -52,12 +51,29 @@ build_packages 0.25.0 /home/lixq/toolchains/bat bat
 # pcre2            10.45   https://github.com/PCRE2Project/pcre2/releases/
 # audit-userspace  4.1.1   https://github.com/linux-audit/audit-userspace/releases/
 # libcap           2.76    https://git.kernel.org/pub/scm/libs/libcap/libcap.git/snapshot/
-# libselinux       3.9     https://github.com/SELinuxProject/selinux/tags
 # glibc            2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
+# libselinux       3.9     https://github.com/SELinuxProject/selinux/tags
 build_packages 4.4.1 /home/lixq/toolchains/make make
 build_packages 0.18.0 /home/lixq/toolchains/patchelf patchelf
-rm -rf /home/lixq/toolchains/glibc
 build_packages 2.42 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap glibc libselinux
+
+# openssl       3.5.2   https://github.com/openssl/openssl/releases/
+# nghttp3       1.11.0  https://github.com/ngtcp2/nghttp3/releases/
+# ngtcp2        1.14.0  https://github.com/ngtcp2/ngtcp2/releases/
+# nghttp2       1.66.0  https://github.com/nghttp2/nghttp2/releases/
+# libssh2       1.11.1  https://libssh2.org/
+# zlib          1.3.1   https://github.com/madler/zlib/releases/
+# brotli        1.1.0   https://github.com/google/brotli/releases/
+# zstd          1.5.7   https://github.com/facebook/zstd/releases/
+# keyutils      1.6.3   https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git/
+# krb5          1.22.1  https://web.mit.edu/kerberos/dist/
+# libidn2       2.3.8   https://mirrors.tuna.tsinghua.edu.cn/gnu/libidn/
+# openldap      2.6.10  https://www.openldap.org/software/download/
+# libunistring  1.3     https://mirrors.tuna.tsinghua.edu.cn/gnu/libunistring/
+# libpsl        0.21.5  https://github.com/rockdaboot/libpsl/releases/
+# gsasl         2.2.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/gsasl/
+# curl          8.15.0  https://github.com/curl/curl/releases/
+build_packages 8.15.0 /home/lixq/toolchains/curl openssl nghttp3 ngtcp2 # nghttp2 libssh2 zlib brotli zstd keyutils krb5 libidn2 openldap libunistring libpsl gsasl curl
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
@@ -66,24 +82,6 @@ date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_a
 # # Linux-PAM   1.17.1  https://github.com/linux-pam/linux-pam/releases/
 # # libcap-ng   0.8.5   https://github.com/stevegrubb/libcap-ng/releases/
 
-# # step 4 curl
-# # openssl       3.5.2   https://github.com/openssl/openssl/releases/
-# # nghttp3       1.11.0  https://github.com/ngtcp2/nghttp3/releases/
-# # ngtcp2        1.14.0  https://github.com/ngtcp2/ngtcp2/releases/
-# # nghttp2       1.66.0  https://github.com/nghttp2/nghttp2/releases/
-# # libssh2       1.11.1  https://libssh2.org/
-# # zlib          1.3.1   https://github.com/madler/zlib/releases/
-# # brotli        1.1.0   https://github.com/google/brotli/releases/
-# # zstd          1.5.7   https://github.com/facebook/zstd/releases/
-# # keyutils      1.6.3   https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git/
-# # krb5          1.22.1  https://web.mit.edu/kerberos/dist/
-# # libidn2       2.3.8   https://mirrors.tuna.tsinghua.edu.cn/gnu/libidn/
-# # openldap      2.6.10  https://www.openldap.org/software/download/
-# # libunistring  1.3     https://mirrors.tuna.tsinghua.edu.cn/gnu/libunistring/
-# # libpsl        0.21.5  https://github.com/rockdaboot/libpsl/releases/
-# # gsasl         2.2.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/gsasl/
-# # curl          8.15.0  https://github.com/curl/curl/releases/
-# build_packages 4 openssl nghttp3 ngtcp2 nghttp2 libssh2 zlib brotli zstd keyutils krb5 libidn2 openldap libunistring libpsl gsasl curl
 
 # # step 5 llvm
 # # bison   3.8.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/

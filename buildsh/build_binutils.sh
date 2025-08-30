@@ -18,5 +18,4 @@ tar -xf "$srcpath" || exit 1
 cd "$name-$ver" || exit 1
 ./configure "--prefix=$DESTDIR/usr" || exit 1
 make -s "-j$(nproc)" || exit 1
-[[ $DESTDIR == */$name ]] && rm -rf "$DESTDIR"
 make -s "-j$(nproc)" install || exit 1
