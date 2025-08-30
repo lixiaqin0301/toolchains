@@ -4,7 +4,7 @@ name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
 ver=1.66.0
 DESTDIR=$1
-srcpath=/home/lixq/src/${name}-${ver}.tar.gz
+srcpath=/home/lixq/src/$name-$ver.tar.gz
 
 [[ -n $DESTDIR ]] || exit 1
 [[ -f $srcpath ]] || exit 1
