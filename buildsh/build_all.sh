@@ -57,7 +57,7 @@ build_packages 0.25.0 /home/lixq/toolchains/bat bat
 build_packages 4.4.1 /home/lixq/toolchains/make make
 build_packages 0.18.0 /home/lixq/toolchains/patchelf patchelf
 rm -rf /home/lixq/toolchains/glibc
-build_packages 2.42 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap glibc libselinux glibc
+build_packages 2.42 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap glibc libselinux
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
