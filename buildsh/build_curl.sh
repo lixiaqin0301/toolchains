@@ -2,43 +2,29 @@
 
 # https://curl.se/docs/http3.html
 
-name=curl
+name=$(basename "${BASH_SOURCE[0]}" .sh)
+name=${name#build_}
 ver=8.15.0
+DESTDIR=$1
 srcpath=/home/lixq/src/${name}-${ver}.tar.gz
 DESTDIR=/home/lixq/toolchains/${name}
 [[ -n "$1" ]] && DESTDIR="$1"
 
-if [[ "$DESTDIR" == */${name} ]]; then
-    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" openssl nghttp3 ngtcp2 nghttp2 zlib keyutils krb5 brotli zstd libpsl gsasl ${name}
-else
-    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" "$(basename "$DESTDIR")"
-fi
-export CPPFLAGS="$CFLAGS"
-export CFLAGS="-pthread"
-export CXXFLAGS="-pthread"
-export LDFLAGS="-pthread $LDFLAGS"
+[[ -n $DESTDIR ]] || exit 1
+[[ -f $srcpath ]] || exit 1
+
+export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig"
+export CFLAGS="-isystem $DESTDIR/usr/include -pthread"
+export CXXFLAGS="-isystem $DESTDIR/usr/include -pthread"
+export CPPFLAGS="-isystem $DESTDIR/usr/include"
+export LDFLAGS="-pthread -L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -static-libgcc -static-libstdc++ -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
 
 cd /home/lixq/src || exit 1
-rm -rf ${name}-${ver}
-tar -xf $srcpath || exit 1
-cd /home/lixq/src/${name}-${ver} || exit 1
+rm -rf "$name-$ver"
+tar -xf "$srcpath" || exit 1
+cd "$name-$ver" || exit 1
 autoreconf -fi || exit 1
-if [[ "$DESTDIR" == */${name} ]]; then
-    ./configure --prefix="$DESTDIR/usr" \
-                --with-openssl=/home/lixq/toolchains/openssl/usr \
-                --with-nghttp3=/home/lixq/toolchains/nghttp3/usr \
-                --with-ngtcp2=/home/lixq/toolchains/ngtcp2/usr \
-                --with-nghttp2=/home/lixq/toolchains/nghttp2/usr \
-                --with-libssh2=/home/lixq/toolchains/libssh2/usr \
-                --with-gssapi=/home/lixq/toolchains/krb5/usr \
-                --with-libidn2=/home/lixq/toolchains/libidn2/usr \
-                --with-ldap=/home/lixq/toolchains/openldap/usr \
-                --enable-httpsrr \
-                --enable-ssls-export \
-                || exit 1
-else
-    ./configure --prefix="$DESTDIR/usr" --with-openssl --with-nghttp3 --with-ngtcp2 --with-nghttp2 --with-libssh2 --with-zstd --with-gssapi --with-libidn2 --with-ldap --enable-httpsrr --enable-ssls-export || exit 1
-fi
-make -s -j"$(nproc)" || exit 1
-[[ "$DESTDIR" == */${name} ]] && rm -rf "$DESTDIR"
-make -s -j"$(nproc)" install || exit 1
+./configure "--prefix=$DESTDIR/usr" --with-openssl --with-nghttp3 --with-ngtcp2 --with-nghttp2 --with-libssh2 --with-zstd --with-gssapi --with-libidn2 --with-ldap --enable-httpsrr --enable-ssls-export || exit 1
+make -s "-j$(nproc)" || exit 1
+make -s "-j$(nproc)" install || exit 1

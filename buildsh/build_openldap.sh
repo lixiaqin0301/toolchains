@@ -5,15 +5,15 @@ name=${name#build_}
 ver=2.6.10
 DESTDIR=$1
 srcpath=/home/lixq/src/$name-$ver.tgz
-DESTDIR=/home/lixq/toolchains/${name}
 
 [[ -n $DESTDIR ]] || exit 1
 [[ -f $srcpath ]] || exit 1
 
-export PATH="/home/lixq/toolchains/cmake/usr/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig"
 export CFLAGS="-isystem $DESTDIR/usr/include"
 export CXXFLAGS="-isystem $DESTDIR/usr/include"
+export CPPFLAGS="-isystem $DESTDIR/usr/include"
 export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -static-libgcc -static-libstdc++ -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src

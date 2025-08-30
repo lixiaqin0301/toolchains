@@ -1,24 +1,27 @@
 #!/bin/bash
 
-name=libpsl
+name=$(basename "${BASH_SOURCE[0]}" .sh)
+name=${name#build_}
 ver=0.21.5
-srcpath=/home/lixq/src/${name}-${ver}.tar.gz
-DESTDIR=/home/lixq/toolchains/${name}
-[[ -n "$1" ]] && DESTDIR="$1"
+DESTDIR=$1
+srcpath=/home/lixq/src/$name-$ver.tar.gz
 
-if [[ "$DESTDIR" == */${name} ]]; then
-    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" ${name}
-else
-    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" "$(basename "$DESTDIR")"
-fi
+[[ -n $DESTDIR ]] || exit 1
+[[ -f $srcpath ]] || exit 1
+
+export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig"
+export CFLAGS="-isystem $DESTDIR/usr/include"
+export CXXFLAGS="-isystem $DESTDIR/usr/include"
+export CPPFLAGS="-isystem $DESTDIR/usr/include"
+export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -static-libgcc -static-libstdc++ -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
-rm -rf ${name}-${ver}
-tar -xf $srcpath || exit 1
-mkdir ${name}-${ver}/build
-cd /home/lixq/src/${name}-${ver}/build || exit 1
-../configure --prefix="$DESTDIR/usr" || exit 1
-make -s -j"$(nproc)" || exit 1
-[[ "$DESTDIR" == */${name} ]] && rm -rf "$DESTDIR"
-make -s -j"$(nproc)" install || exit 1
+rm -rf "$name-$ver"
+tar -xf "$srcpath" || exit 1
+mkdir "$name-$ver/build"
+cd "$name-$ver/build" || exit 1
+../configure "--prefix=$DESTDIR/usr" || exit 1
+make -s "-j$(nproc)" || exit 1
+make -s "-j$(nproc)" install || exit 1
