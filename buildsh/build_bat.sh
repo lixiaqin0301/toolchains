@@ -2,11 +2,10 @@
 
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=$1
-DESTDIR=$2
+ver=0.25.0
+DESTDIR=$1
 srcpath=/home/lixq/src/$name-v$ver-x86_64-unknown-linux-gnu.tar.gz
 
-[[ -n $ver ]] || exit 1
 [[ -n $DESTDIR ]] || exit 1
 [[ -f $srcpath ]] || exit 1
 
@@ -17,7 +16,7 @@ mkdir /tmp/tb
 cd /tmp/tb || exit 1
 tar -xf "$srcpath" --strip-components=1 || exit 1
 [[ $DESTDIR == */$name ]] && rm -rf "$DESTDIR"
-[[ -d "$DESTDIR/usr/bin" ]] || mkdir -p "$DESTDIR/usr/bin"
+[[ -d $DESTDIR/usr/bin ]] || mkdir -p "$DESTDIR/usr/bin"
 cp -a "$name" "$DESTDIR/usr/bin"
-[[ -d "$DESTDIR/usr/man/man1" ]] || mkdir -p "$DESTDIR/usr/man/man1"
+[[ -d $DESTDIR/usr/man/man1 ]] || mkdir -p "$DESTDIR/usr/man/man1"
 cp -a "$name.1" "$DESTDIR/usr/man/man1"
