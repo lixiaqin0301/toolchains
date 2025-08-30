@@ -22,7 +22,7 @@ rm -rf "$name-project-$ver.src"
 tar -xf "$srcpath" || exit 1
 mkdir "$name-project-$ver.src/build" || exit 1
 cd "$name-project-$ver.src/build" || exit 1
-cmake -DCMAKE_C_FLAGS="$CFLAGS" -DCMAKE_CXX_FLAGS="$CXXFLAGS" -DDCMAKE_CPP_FLAGS="$CPPFLAGS" -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS" \
+cmake "-DCMAKE_INCLUDE_PATH=$DESTDIR/usr/include" "-DCMAKE_LIBRARY_PATH=$DESTDIR/usr/lib" \
     -DCMAKE_BUILD_TYPE=Release \
     -DLLVM_TARGETS_TO_BUILD="BPF;X86" \
     -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lldb" \
