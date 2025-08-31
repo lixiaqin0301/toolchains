@@ -1,52 +1,19 @@
 #!/bin/bash
 
+name=$(basename "${BASH_SOURCE[0]}" .sh)
+name=${name#build_}
 ver=2.7.1
+DESTDIR=$1
+srcpath=/home/lixq/src/$name-$ver.tar.gz
 
-if [[ ! -f /home/lixq/src/expat-${ver}.tar.xz ]]; then
-    echo "wget https://github.com/libexpat/libexpat/releases/download/R_${ver//./_}/expat-${ver}.tar.xz"
-    exit 1
-fi
-
-extradirs=(/home/lixq/toolchains/gcc /home/lixq/toolchains/binutils)
-pat=""
-inc=""
-ldl=""
-ldr=""
-for dir in "${extradirs[@]}"; do
-    [[ -d $dir/bin ]] && pat="$pat:$dir/bin"
-    [[ -d $dir/include ]] && inc="$inc -I$dir/include"
-    if [[ -d $dir/lib64 ]]; then
-        ldl="$ldl -L$dir/lib64"
-        ldr="$ldr:$dir/lib64"
-    elif [[ -d $dir/lib ]]; then
-        ldl="$ldl -L$dir/lib"
-        ldr="$ldr:$dir/lib"
-    fi
-done
-pat="${pat#:}"
-inc="${inc# }"
-ldl="${ldl# }"
-ldr="${ldr#:}"
-export PATH="$pat:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
-export CC="/home/lixq/toolchains/gcc/bin/gcc"
-export CXX="/home/lixq/toolchains/gcc/bin/g++"
-export CCAS="/home/lixq/toolchains/gcc/bin/gcc"
-export CPP="/home/lixq/toolchains/gcc/bin/cpp"
-export CFLAGS="$inc"
-export CXXFLAGS="$inc"
-export LDFLAGS="$ldl -Wl,-rpath-link=$ldr -Wl,-rpath=$ldr"
+export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export LDFLAGS="-static-libgcc -static-libstdc++"
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
-rm -rf expat-${ver}
-tar -xf /home/lixq/src/expat-${ver}.tar.xz
-cd expat-${ver} || exit 1
-./configure --prefix=/home/lixq/toolchains/expat-${ver} || exit 1
-make || exit 1
-rm -rf /home/lixq/toolchains/expat-${ver}
-make install || exit 1
-if [[ -d /home/lixq/toolchains/expat-${ver} ]]; then
-    cd /home/lixq/toolchains || exit 1
-    rm -f expat
-    ln -s expat-${ver} expat
-fi
+rm -rf "$name-$ver"
+tar -xf "$srcpath" || exit 1
+cd "$name-$ver" || exit 1
+./configure "--prefix=$DESTDIR/usr" || exit 1
+make -s "-j$(nproc)" || exit 1
+make -s "-j$(nproc)" install || exit 1

@@ -33,8 +33,6 @@ build_packages 4.1.0 /home/lixq/toolchains/cmake cmake
 # Shellcheck  0.11.0  https://github.com/koalaman/shellcheck/releases
 build_packages 0.11.0 /home/lixq/toolchains/shellcheck shellcheck
 
-
-
 # gcc     15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
 # ./contrib/download_prerequisites  https://gcc.gnu.org/pub/gcc/infrastructure/
 # binutils  2.45  https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
@@ -97,6 +95,16 @@ build_packages 20.1.8 /home/lixq/toolchains/llvm bison swig ncurses libedit xz z
 # zsh  5.9  https://www.zsh.org/
 build_packages 5.9 /home/lixq/toolchains/zsh zsh
 
+# boost  1.89.0  https://www.boost.org/releases/latest/
+build_packages 1.89.0 /home/lixq/toolchains/boost boost
+
+# tcpflow  1.6.1  https://github.com/simsong/tcpflow/releases/
+build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
+
+# expat 2.7.1  https://github.com/libexpat/libexpat/releases/
+# git  2.51.0  https://github.com/git/git/tags
+build_packages 2.2.51.0 /home/lixq/toolchains/git pcre2 audit-userspace libcap glibc libselinux keyutils libidn2 libunistring zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 brotli krb5 openldap libpsl gsasl curl expat git
+
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
 
@@ -104,10 +112,10 @@ date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_a
 # # Linux-PAM   1.17.1  https://github.com/linux-pam/linux-pam/releases/
 # # libcap-ng   0.8.5   https://github.com/stevegrubb/libcap-ng/releases/
 # 
-# # git         2.51.0    https://github.com/git/git/tags
 # 
-# # boost       1.89.0    https://www.boost.org/releases/latest/
-# # tcpflow     1.6.1     https://github.com/simsong/tcpflow/releases/
+# 
+# 
+# 
 # 
 # 
 # n=6

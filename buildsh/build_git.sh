@@ -1,12 +1,22 @@
 #!/bin/bash
 
-name=git
+name=$(basename "${BASH_SOURCE[0]}" .sh)
+name=${name#build_}
 ver=2.51.0
-srcpath=/home/lixq/src/${name}-${ver}.tar.gz
-DESTDIR=/home/lixq/toolchains/${name}
-[[ -n "$1" ]] && DESTDIR="$1"
+DESTDIR=$1
+srcpath=/home/lixq/src/$name-$ver.tar.gz
 
 rm -rf /home/lixq/src/git_success
+
+[[ -n $DESTDIR ]] || exit 1
+[[ -f $srcpath ]] || exit 1
+
+export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig"
+export CFLAGS="-isystem $DESTDIR/usr/include"
+export CXXFLAGS="-isystem $DESTDIR/usr/include"
+export CPPFLAGS="-isystem $DESTDIR/usr/include"
+export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -static-libgcc -static-libstdc++ -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
 
 if [[ "$DESTDIR" == */${name} ]]; then
     . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" gcc glibc openssl nghttp3 ngtcp2 nghttp2 libssh2 zlib brotli zstd keyutils krb5 libidn2 openldap libunistring libpsl gsasl curl expat
