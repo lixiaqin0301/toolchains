@@ -14,16 +14,10 @@ rm -rf /home/lixq/src/git_success
 
 export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig"
-export CFLAGS="-I/home/lixq/src/$name-$ver --sysroot=$DESTDIR"
-export CXXFLAGS="-I/home/lixq/src/$name-$ver --sysroot=$DESTDIR"
-export CPPFLAGS="-I/home/lixq/src/$name-$ver --sysroot=$DESTDIR"
+export CFLAGS="-I/home/lixq/src/$name-$ver -I$DESTDIR/usr/include --sysroot=$DESTDIR"
+export CXXFLAGS="-I/home/lixq/src/$name-$ver -I$DESTDIR/usr/include --sysroot=$DESTDIR"
+export CPPFLAGS="-I/home/lixq/src/$name-$ver -I$DESTDIR/usr/include --sysroot=$DESTDIR"
 export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -static-libgcc -static-libstdc++ -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
-
-if [[ "$DESTDIR" == */${name} ]]; then
-    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" gcc glibc openssl nghttp3 ngtcp2 nghttp2 libssh2 zlib brotli zstd keyutils krb5 libidn2 openldap libunistring libpsl gsasl curl expat
-else
-    . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" "$(basename "$DESTDIR")" sysroot
-fi
 
 function recover() {
     [[ -f /etc/hosts.bak ]] && mv /etc/hosts.bak /etc/hosts

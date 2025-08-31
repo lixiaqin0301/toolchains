@@ -13,16 +13,27 @@ srcpath=/home/lixq/src/${name}-${ver}.tar.gz
 
 export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig"
-export CFLAGS="-isystem $DESTDIR/usr/include -pthread"
-export CXXFLAGS="-isystem $DESTDIR/usr/include -pthread"
-export CPPFLAGS="-isystem $DESTDIR/usr/include"
-export LDFLAGS="-pthread -L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -static-libgcc -static-libstdc++ -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
+if [[ -f $DESTDIR/lib64/ld-linux-x86-64.so.2 ]]; then
+    export CFLAGS="-pthread -I$DESTDIR/usr/include --sysroot=$DESTDIR"
+    export CXXFLAGS="-pthread -I$DESTDIR/usr/include --sysroot=$DESTDIR"
+    export CPPFLAGS="-pthread -I$DESTDIR/usr/include --sysroot=$DESTDIR"
+    export LDFLAGS="-pthread -L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -static-libgcc -static-libstdc++ --sysroot=$DESTDIR -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
+else
+    export CFLAGS="-pthread -isystem $DESTDIR/usr/include"
+    export CXXFLAGS="-pthread -isystem $DESTDIR/usr/include"
+    export CPPFLAGS="-pthread -isystem $DESTDIR/usr/include"
+    export LDFLAGS="-pthread -L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -static-libgcc -static-libstdc++ -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
+fi
 
 cd /home/lixq/src || exit 1
 rm -rf "$name-$ver"
 tar -xf "$srcpath" || exit 1
 cd "$name-$ver" || exit 1
 autoreconf -fi || exit 1
-./configure "--prefix=$DESTDIR/usr" --with-openssl --with-nghttp3 --with-ngtcp2 --with-nghttp2 --with-libssh2 --with-zstd --with-gssapi --with-libidn2 --with-ldap --enable-httpsrr --enable-ssls-export || exit 1
+if [[ -f $DESTDIR/lib64/ld-linux-x86-64.so.2 ]]; then
+    ./configure "--prefix=$DESTDIR/usr" --with-openssl || exit 1
+else
+    ./configure "--prefix=$DESTDIR/usr" --with-openssl --with-nghttp3 --with-ngtcp2 --with-nghttp2 --with-libssh2 --with-zstd --with-gssapi --with-libidn2 --with-ldap --enable-httpsrr --enable-ssls-export || exit 1
+fi
 make -s "-j$(nproc)" || exit 1
 make -s "-j$(nproc)" install || exit 1

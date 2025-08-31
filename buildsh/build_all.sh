@@ -103,7 +103,7 @@ build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 
 # expat 2.7.1  https://github.com/libexpat/libexpat/releases/
 # git  2.51.0  https://github.com/git/git/tags
-build_packages 2.2.51.0 /home/lixq/toolchains/git pcre2 audit-userspace libcap glibc libselinux keyutils libidn2 libunistring zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 brotli krb5 openldap libpsl gsasl curl expat git
+build_packages 2.2.51.0 /home/lixq/toolchains/git pcre2 audit-userspace libcap glibc libselinux openssl libpsl curl expat git
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
