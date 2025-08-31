@@ -10,12 +10,13 @@ rm -rf /home/lixq/src/git_success
 
 [[ -n $DESTDIR ]] || exit 1
 [[ -f $srcpath ]] || exit 1
+[[ -f /home/lixq/src/docbook.sourceforge.net.tar.gz ]] || exit 1
 
 export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig"
-export CFLAGS="-isystem $DESTDIR/usr/include"
-export CXXFLAGS="-isystem $DESTDIR/usr/include"
-export CPPFLAGS="-isystem $DESTDIR/usr/include"
+export CFLAGS="-I/home/lixq/src/$name-$ver --sysroot=$DESTDIR"
+export CXXFLAGS="-I/home/lixq/src/$name-$ver --sysroot=$DESTDIR"
+export CPPFLAGS="-I/home/lixq/src/$name-$ver --sysroot=$DESTDIR"
 export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -static-libgcc -static-libstdc++ -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
 
 if [[ "$DESTDIR" == */${name} ]]; then
@@ -23,9 +24,6 @@ if [[ "$DESTDIR" == */${name} ]]; then
 else
     . "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" "$(basename "$DESTDIR")" sysroot
 fi
-
-export CFLAGS="-I/home/lixq/src/${name}-${ver} $CFLAGS"
-export CXXFLAGS="-I/home/lixq/src/${name}-${ver} $CXXFLAGS"
 
 function recover() {
     [[ -f /etc/hosts.bak ]] && mv /etc/hosts.bak /etc/hosts
@@ -74,11 +72,10 @@ fi
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
-rm -rf ${name}-${ver}
-tar -xf $srcpath || exit 1
-cd ${name}-${ver} || exit 1
+rm -rf "$name-$ver"
+tar -xf "$srcpath" || exit 1
+cd "$name-$ver" || exit 1
 make configure || exit 1
-./configure --prefix="$DESTDIR/usr" || exit 1
-make -s -j"$(nproc)" all doc || exit 1
-[[ "$DESTDIR" == */${name} ]] && rm -rf "$DESTDIR"
-make -s -j"$(nproc)" install install-doc install-html || exit 1
+./configure "--prefix=$DESTDIR/usr" || exit 1
+make -s "-j$(nproc)" all doc || exit 1
+make -s "-j$(nproc)" install install-doc install-html || exit 1
