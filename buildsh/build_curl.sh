@@ -13,7 +13,7 @@ srcpath=/home/lixq/src/${name}-${ver}.tar.gz
 
 export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig"
-export LDFLAGS="-static-libgcc -static-libstdc++ -Wl,-rpath,$DESTDIR/usr/lib"
+export LDFLAGS="-L/home/lixq/toolchains/gcc/usr/lib64 -static-libgcc -static-libstdc++ -Wl,-rpath,$DESTDIR/usr/lib"
 
 cd /home/lixq/src || exit 1
 rm -rf "$name-$ver"
