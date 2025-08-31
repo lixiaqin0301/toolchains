@@ -27,6 +27,14 @@ function build_packages() {
 tab=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 
+# cmake  4.1.0  https://cmake.org/download/
+build_packages 4.1.0 /home/lixq/toolchains/cmake cmake
+
+# Shellcheck  0.11.0  https://github.com/koalaman/shellcheck/releases
+build_packages 0.11.0 /home/lixq/toolchains/shellcheck shellcheck
+
+
+
 # gcc     15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
 # ./contrib/download_prerequisites  https://gcc.gnu.org/pub/gcc/infrastructure/
 # binutils  2.45  https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
@@ -34,11 +42,11 @@ gccver=15.2.0
 build_packages $gccver /opt/gcc gcc binutils
 build_packages $gccver /home/lixq/toolchains/gcc gcc binutils
 
-# cmake  4.1.0  https://cmake.org/download/
-build_packages  4.1.0  /home/lixq/toolchains/cmake cmake
+# gdb  16.3  https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/
+build_packages 16.3 /home/lixq/toolchains/gdb gdb
 
-# Bear   3.1.6  https://github.com/rizsotto/Bear/
-build_packages 4.1.0 /home/lixq/toolchains/Bear Bear
+# Bear  3.1.6  https://github.com/rizsotto/Bear/
+build_packages 3.1.6 /home/lixq/toolchains/Bear Bear
 
 # bashdb  4.4-1.0.1  https://sourceforge.net/projects/bashdb/files/bashdb/
 build_packages 4.4-1.0.1 /home/lixq/toolchains/bashdb bashdb
@@ -75,26 +83,19 @@ build_packages 2.42 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap gli
 # curl          8.15.0  https://github.com/curl/curl/releases/
 build_packages 8.15.0 /home/lixq/toolchains/curl keyutils libidn2 libunistring zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 brotli krb5 openldap libpsl gsasl curl
 
-# bison  3.8.2  https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
-# swig  4.3.1  https://github.com/swig/swig/
+# bison    3.8.2         https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
+# swig     4.3.1         https://github.com/swig/swig/
 # libedit  20250104-3.1  https://thrysoee.dk/editline/
 # ncurses  6.3           https://invisible-island.net/ncurses/
 # xz       5.8.1         https://tukaani.org/xz/
 # libxml2  2.14.5        https://gitlab.gnome.org/GNOME/libxml2/-/releases
 # Python   3.13.7        https://www.python.org/ftp/python/
 # lua      5.4.8         https://www.lua.org/ftp/
+# llvm     20.1.8        https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
 build_packages 20.1.8 /home/lixq/toolchains/llvm bison swig ncurses libedit xz zlib libxml2 openssl Python lua llvm
 
-
-# llvm   20.1.8  https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
-# # step 5 llvm
-# 
-
-# 
-
-# n=5
-# [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
-# build_packages $n bison swig lua Python llvm
+# zsh  5.9  https://www.zsh.org/
+build_packages 5.9 /home/lixq/toolchains/zsh zsh
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
@@ -102,17 +103,12 @@ date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_a
 # # bzip2       1.0.8   https://sourceware.org/pub/bzip2/
 # # Linux-PAM   1.17.1  https://github.com/linux-pam/linux-pam/releases/
 # # libcap-ng   0.8.5   https://github.com/stevegrubb/libcap-ng/releases/
-
-
-
-
-# # step 6 bashdb bat gdb shellcheck tcpflow git
-# # gdb         16.3      https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/
+# 
 # # git         2.51.0    https://github.com/git/git/tags
-# # Shellcheck  0.11.0    https://github.com/koalaman/shellcheck/releases
+# 
 # # boost       1.89.0    https://www.boost.org/releases/latest/
 # # tcpflow     1.6.1     https://github.com/simsong/tcpflow/releases/
-# # zsh         5.9       https://www.zsh.org/
+# 
 # 
 # n=6
 # [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
