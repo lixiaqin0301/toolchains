@@ -23,7 +23,7 @@ cd "/home/lixq/src/$name-$ver/$name-$ver/build/glibc" || exit 1
 "/home/lixq/src/$name-$ver/configure" --prefix=/usr || exit 1
 make -s "-j$(nproc)" || exit 1
 make -s "-j$(nproc)" install "DESTDIR=$DESTDIR" || exit 1
-if [[ $DESTDIR != */mintoolset ]]; then
+if [[ $DESTDIR == */$name ]]; then
     make -s "-j$(nproc)" localedata/install-locales "DESTDIR=$DESTDIR" || exit 1
     make -s "-j$(nproc)" localedata/install-locale-files "DESTDIR=$DESTDIR" || exit 1
     cd /home/lixq/src || exit 1
