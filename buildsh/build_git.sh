@@ -12,12 +12,14 @@ rm -rf /home/lixq/src/git_success
 [[ -f $srcpath ]] || exit 1
 [[ -f /home/lixq/src/docbook.sourceforge.net.tar.gz ]] || exit 1
 
-export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export PATH="$DESTDIR/usr/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig"
 export CPPFLAGS="-I/home/lixq/src/$name-$ver -I$DESTDIR/include --sysroot=$DESTDIR"
-export LDFLAGS="-L$DESTDIR/usr/lib64 -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/usr/lib64:$DESTDIR/usr/lib -static-libgcc -static-libstdc++ -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
+#export LDFLAGS="-L$DESTDIR/usr/lib64 -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/usr/lib64:$DESTDIR/usr/lib -static-libgcc -static-libstdc++ -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
+export LDFLAGS="-L$DESTDIR/usr/lib64 -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib --sysroot=$DESTDIR -Wl,-rpath,$DESTDIR/lib64 -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
 
 function recover() {
+    [[ -f /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/include-fixed/openssl/bn.h.bak ]] && mv /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/include-fixed/openssl/bn.h.bak /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/include-fixed/openssl/bn.h
     [[ -f /etc/hosts.bak ]] && mv /etc/hosts.bak /etc/hosts
     killall nginx
     killall nginx
@@ -62,6 +64,7 @@ if ! wget http://docbook.sourceforge.net/release/xsl/current/html/docbook.xsl -O
     echo 1
 fi
 
+mv /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/include-fixed/openssl/bn.h /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/include-fixed/openssl/bn.h.bak
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
 rm -rf "$name-$ver"
