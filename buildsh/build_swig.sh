@@ -9,7 +9,7 @@ srcpath=/home/lixq/src/$name-$ver.tar.gz
 [[ -n $DESTDIR ]] || exit 1
 [[ -f $srcpath ]] || exit 1
 
-export PATH="/home/lixq/toolchains/bison/usr/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export PATH="$DESTDIR/usr/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export LDFLAGS="-static-libgcc -static-libstdc++"
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
