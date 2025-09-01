@@ -4,12 +4,12 @@ name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
 ver=0.25.0
 DESTDIR=$1
-srcpath=/home/lixq/src/$name-v$ver-x86_64-unknown-linux-gnu.tar.gz
+srcpath=/home/lixq/src/$name-v$ver-x86_64-unknown-linux-musl.tar.gz
 
 [[ -n $DESTDIR ]] || exit 1
 [[ -f $srcpath ]] || exit 1
 
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 rm -rf /tmp/tb
 mkdir /tmp/tb
