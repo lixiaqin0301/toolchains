@@ -14,6 +14,10 @@ srcpath=/home/lixq/src/${name}-${ver}.tar.gz
 export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig"
 export LDFLAGS="-L/home/lixq/toolchains/gcc/usr/lib64 -static-libgcc -static-libstdc++ -Wl,-rpath,$DESTDIR/usr/lib"
+if [[ -f $DESTDIR/lib64/ld-linux-x86-64.so.2 ]]; then
+    export CPPFLAGS="-I$DESTDIR/include --sysroot=$DESTDIR"
+    export LDFLAGS="-L$DESTDIR/usr/lib64 -Wl,-rpath-link,$DESTDIR/lib64 --sysroot=$DESTDIR -Wl,-rpath,$DESTDIR/lib64 -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
+fi
 
 cd /home/lixq/src || exit 1
 rm -rf "$name-$ver"
