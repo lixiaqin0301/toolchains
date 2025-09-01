@@ -106,7 +106,7 @@ build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 build_packages 2.51.0 /home/lixq/toolchains/git expat libpsl zlib openssl curl glibc git
 
 # node  24.7.0  https://nodejs.org/dist
-build_packages 24.7.0 /home/lixq/toolchains/node node
+build_packages 24.7.0 /home/lixq/toolchains/node glibc node
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log

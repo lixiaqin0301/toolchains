@@ -9,7 +9,7 @@ kernelver=6.6
 
 [[ -n $DESTDIR ]] || exit 1
 [[ -f $srcpath ]] || exit 1
-[[ -f /home/lixq/src/linux-$kernelver.tar.xz ]] || exit 1
+[[ -f /home/lixq/src/linux-$kernelver.tar.gz ]] || exit 1
 
 export PATH="/home/lixq/toolchains/patchelf/usr/bin:/home/lixq/toolchains/make/usr/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export LDFLAGS="-static-libgcc -static-libstdc++"
@@ -40,7 +40,7 @@ fi
 
 cd /home/lixq/src || exit 1
 rm -rf linux-$kernelver
-tar -xf /home/lixq/src/linux-$kernelver.tar.xz || exit 1
+tar -xf /home/lixq/src/linux-$kernelver.tar.gz || exit 1
 cd linux-${kernelver} || exit 1
 make -s "-j$(nproc)" headers_install "INSTALL_HDR_PATH=$DESTDIR/usr" || exit 1
 
