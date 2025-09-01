@@ -10,8 +10,9 @@ srcpath=/home/lixq/src/$name-$ver.tar.gz
 [[ -f $srcpath ]] || exit 1
 
 export PATH="/home/lixq/toolchains/Miniforge3/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-export LDFLAGS="-static-libgcc -static-libstdc++"
-#. "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" /home/lixq/toolchains/glibc /home/lixq/toolchains/gcc /home/lixq/toolchains/binutils /home/lixq/toolchains/Miniforge3
+export CPPFLAGS="-I$DESTDIR/include --sysroot=$DESTDIR"
+export LDFLAGS="-L$DESTDIR/usr/lib64 -L$DESTDIR/lib64 -Wl,-rpath-link,$DESTDIR/usr/lib64:$DESTDIR/lib64 --sysroot=$DESTDIR -Wl,-rpath,$DESTDIR/lib64 -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
+export LIBRARY_PATH="$DESTDIR/usr/lib64:$DESTDIR/lib64"
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
