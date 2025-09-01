@@ -82,7 +82,7 @@ build_packages 2.42 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap gli
 build_packages 8.15.0 /home/lixq/toolchains/curl keyutils libidn2 libunistring zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 brotli krb5 openldap libpsl gsasl curl
 
 # bison    3.8.2         https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
-# swig     4.3.1         https://github.com/swig/swig/
+# swig     4.3.1         https://github.com/swig/swig/tags
 # libedit  20250104-3.1  https://thrysoee.dk/editline/
 # ncurses  6.3           https://invisible-island.net/ncurses/
 # xz       5.8.1         https://tukaani.org/xz/
