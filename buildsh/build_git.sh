@@ -14,10 +14,8 @@ rm -rf /home/lixq/src/git_success
 
 export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig"
-export CFLAGS="-I/home/lixq/src/$name-$ver -I$DESTDIR/usr/include --sysroot=$DESTDIR"
-export CXXFLAGS="-I/home/lixq/src/$name-$ver -I$DESTDIR/usr/include --sysroot=$DESTDIR"
-export CPPFLAGS="-I/home/lixq/src/$name-$ver -I$DESTDIR/usr/include --sysroot=$DESTDIR"
-export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -static-libgcc -static-libstdc++ --sysroot=$DESTDIR -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
+export CPPFLAGS="-I/home/lixq/src/$name-$ver -I$DESTDIR/include --sysroot=$DESTDIR"
+export LDFLAGS="-L$DESTDIR/usr/lib64 -Wl,-rpath-link,$DESTDIR/usr/lib64 -static-libgcc -static-libstdc++ -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
 
 function recover() {
     [[ -f /etc/hosts.bak ]] && mv /etc/hosts.bak /etc/hosts
