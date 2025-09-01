@@ -18,19 +18,14 @@ export LDFLAGS="-static-libgcc -static-libstdc++"
 cd /home/lixq/src || exit 1
 rm -rf "$name-$ver" linux-${kernelver}
 tar -xf "$srcpath" || exit 1
-mkdir -p "/home/lixq/src/$name-$ver/$name-$ver/build/glibc"
-cd "/home/lixq/src/$name-$ver/$name-$ver/build/glibc" || exit 1
-"/home/lixq/src/$name-$ver/configure" --prefix=/usr || exit 1
+mkdir -p "$name-$ver/$name-$ver/build/glibc"
+cd "$name-$ver/$name-$ver/build/glibc" || exit 1
+../../../configure --prefix=/usr || exit 1
 make -s "-j$(nproc)" || exit 1
 make -s "-j$(nproc)" install "DESTDIR=$DESTDIR" || exit 1
 if [[ $DESTDIR == */$name ]]; then
     make -s "-j$(nproc)" localedata/install-locales "DESTDIR=$DESTDIR" || exit 1
     make -s "-j$(nproc)" localedata/install-locale-files "DESTDIR=$DESTDIR" || exit 1
-    cd /home/lixq/src || exit 1
-    rm -rf linux-$kernelver
-    tar -xf /home/lixq/src/linux-$kernelver.tar.xz || exit 1
-    cd /home/lixq/src/linux-${kernelver} || exit 1
-    make -s "-j$(nproc)" headers_install "INSTALL_HDR_PATH=$DESTDIR/usr" || exit 1
 else
     cd "$DESTDIR/lib64" || exit 1
     cp /home/lixq/toolchains/gcc/usr/lib64/libgcc* .
@@ -42,6 +37,12 @@ else
         fi
     done
 fi
+
+cd /home/lixq/src || exit 1
+rm -rf linux-$kernelver
+tar -xf /home/lixq/src/linux-$kernelver.tar.xz || exit 1
+cd linux-${kernelver} || exit 1
+make -s "-j$(nproc)" headers_install "INSTALL_HDR_PATH=$DESTDIR/usr" || exit 1
 
 for f in "$DESTDIR"/usr/*bin/* "$DESTDIR"/*bin/*; do
     [[ -L $f ]] && continue
