@@ -89,8 +89,8 @@ build_packages 8.15.0 /home/lixq/toolchains/curl keyutils libidn2 libunistring z
 # libxml2  2.14.5        https://gitlab.gnome.org/GNOME/libxml2/-/releases
 # Python   3.13.7        https://www.python.org/ftp/python/
 # lua      5.4.8         https://www.lua.org/ftp/
-# llvm     20.1.8        https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
-build_packages 20.1.8 /home/lixq/toolchains/llvm bison swig ncurses libedit xz zlib libxml2 openssl Python lua llvm
+# llvm     21.1.0        https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
+build_packages 21.1.0 /home/lixq/toolchains/llvm bison swig ncurses libedit xz zlib libxml2 openssl Python lua llvm
 
 # zsh  5.9  https://www.zsh.org/
 build_packages 5.9 /home/lixq/toolchains/zsh zsh
