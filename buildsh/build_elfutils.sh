@@ -1,29 +1,23 @@
 #!/bin/bash
 
+name=$(basename "${BASH_SOURCE[0]}" .sh)
+name=${name#build_}
 ver=0.193
-DESTDIR=/home/lixq/toolchains/elfutils-${ver}
-[[ -n "$1" ]] && DESTDIR="$1"
+DESTDIR=$1
+srcpath=/home/lixq/src/$name-$ver.tar.bz2
 
-if [[ ! -f /home/lixq/src/elfutils-${ver}.tar.bz2 ]]; then
-    echo "wget https://sourceware.org/elfutils/ftp/${ver}/elfutils-${ver}.tar.bz2"
-    exit 1
-fi
+[[ -n $DESTDIR ]] || exit 1
+[[ -f $srcpath ]] || exit 1
 
-. "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" gcc glibc openssl nghttp3 ngtcp2 nghttp2 libpsl gsasl brotli zlib curl bzip2 json-c xz elfutils
+export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig"
+export LDFLAGS="-static-libgcc -static-libstdc++ -Wl,-rpath,$DESTDIR/usr/lib"
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
-rm -rf elfutils-${ver}
-tar -xf /home/lixq/src/elfutils-${ver}.tar.bz2
-cd /home/lixq/src/elfutils-${ver} || exit 1
-./configure --enable-libdebuginfod || exit 1
-make -s -j"$(nproc)" || exit 1
-rm -rf "${DESTDIR}"
-make -s -j"$(nproc)" install DESTDIR="${DESTDIR}" || exit 1
-
-if [[ "$(basename "${DESTDIR}")" == elfutils-${ver} ]]; then
-    cd "${DESTDIR}" || exit 1
-    cd .. || exit 1
-    rm -f elfutils
-    ln -s elfutils-${ver} elfutils
-fi
+rm -rf "$name-$ver"
+tar -xf "$srcpath" || exit 1
+cd "$name-$ver" || exit 1
+./configure "--prefix=$DESTDIR/usr" --enable-libdebuginfod || exit 1
+make -s "-j$(nproc)" || exit 1
+make -s "-j$(nproc)" install || exit 1

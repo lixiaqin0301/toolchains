@@ -108,6 +108,13 @@ build_packages 2.51.0 /home/lixq/toolchains/git expat libpsl zlib openssl curl g
 # node  24.7.0  https://nodejs.org/dist
 build_packages 24.7.0 /home/lixq/toolchains/node glibc node
 
+# elfutils  0.193        https://sourceware.org/elfutils/ftp/
+# flex      2.6.4        https://github.com/westes/flex/releases/
+# LuaJIT    2.1.ROLLING  https://github.com/LuaJIT/LuaJIT/tags
+# netperf   2.7.0        https://github.com/HewlettPackard/netperf/tags
+# bcc       0.35.0       https://github.com/iovisor/bcc/releases/
+build_packages 24.7.0 /home/lixq/toolchains/bcc bison flex libedit libxml2 LuaJIT netperf xz zlib zstd curl elfutils glibc bcc
+
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
 
