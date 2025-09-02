@@ -108,18 +108,21 @@ build_packages 2.51.0 /home/lixq/toolchains/git expat libpsl zlib openssl curl g
 # node  24.7.0  https://nodejs.org/dist
 build_packages 24.7.0 /home/lixq/toolchains/node glibc node
 
-# elfutils  0.193        https://sourceware.org/elfutils/ftp/
-# flex      2.6.4        https://github.com/westes/flex/releases/
-# LuaJIT    2.1.ROLLING  https://github.com/LuaJIT/LuaJIT/tags
-# netperf   2.7.0        https://github.com/HewlettPackard/netperf/tags
-# libbpf    1.6.2        https://github.com/libbpf/libbpf/releases
-# bcc       0.35.0       https://github.com/iovisor/bcc/releases/
-build_packages 24.7.0 /home/lixq/toolchains/bcc bison flex libbpf libedit libffi libxml2 LuaJIT netperf openssl xz zlib zstd curl elfutils glibc Python bcc
+# bzip2     1.0.8          https://sourceware.org/pub/bzip2/
+# elfutils  0.193          https://sourceware.org/elfutils/ftp/
+# flex      2.6.4          https://github.com/westes/flex/releases/
+# icu4c     77.1           https://github.com/unicode-org/icu/
+# json-c    0.18-20240915  https://github.com/json-c/json-c/tags
+# LuaJIT    2.1.ROLLING    https://github.com/LuaJIT/LuaJIT/tags
+# netperf   2.7.0          https://github.com/HewlettPackard/netperf/tags
+# libbpf    1.6.2          https://github.com/libbpf/libbpf/releases
+# bcc       0.35.0         https://github.com/iovisor/bcc/releases/
+build_packages 24.7.0 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libpsl libxml2 LuaJIT netperf openssl xz zlib zstd curl elfutils Python glibc bcc
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
 
-# # bzip2       1.0.8   https://sourceware.org/pub/bzip2/
+# 
 # # Linux-PAM   1.17.1  https://github.com/linux-pam/linux-pam/releases/
 # # libcap-ng   0.8.5   https://github.com/stevegrubb/libcap-ng/releases/
 # 
