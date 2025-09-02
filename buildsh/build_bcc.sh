@@ -10,9 +10,12 @@ srcpath=/home/lixq/src/$name-src-with-submodule-$ver.tar.gz
 [[ -f $srcpath ]] || exit 1
 
 export PATH="/home/lixq/toolchains/cmake/usr/bin:$DESTDIR/usr/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig"
-export LDFLAGS="-static-libgcc -static-libstdc++ -Wl,-rpath,$DESTDIR/usr/lib"
-
+export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig:$DESTDIR/usr/lib64/pkgconfig"
+export CPPFLAGS="--sysroot=$DESTDIR"
+export CFLAGS="--sysroot=$DESTDIR"
+export CXXFLAGS="--sysroot=$DESTDIR"
+export LDFLAGS="-L$DESTDIR/usr/lib64 -L$DESTDIR/lib64 -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/usr/lib64:$DESTDIR/lib64:$DESTDIR/usr/lib --sysroot=$DESTDIR -Wl,-rpath,$DESTDIR/lib64 -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
+export LIBRARY_PATH="$DESTDIR/usr/lib64:$DESTDIR/lib64:$DESTDIR/usr/lib"
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
 rm -rf "$name"
@@ -30,8 +33,10 @@ cmake .. -DCMAKE_INSTALL_PREFIX="$DESTDIR" \
     "-DZLIB_ROOT=$DESTDIR/usr" \
     "-DLIBXML2_INCLUDE_DIR=$DESTDIR/usr/include/libxml2" \
     "-DLIBXML2_LIBRARY=$DESTDIR/usr/lib/libxml2.a" \
-    -DENABLE_LLVM_SHARED=0 -DLLVM_ROOT=/home/lixq/toolchains/llvm/usr
-
+    -DENABLE_LLVM_SHARED=0 -DLLVM_ROOT=/home/lixq/toolchains/llvm-20.1.8 \
+    -DCMAKE_USE_LIBBPF_PACKAGE=1 "-DLibBpf_ROOT=$DESTDIR/usr"
+make -s -j"$(nproc)" || exit 1
+make -s -j"$(nproc)" install || exit 1
 # ver=
 # DESTDIR=/home/lixq/toolchains/bcc-${ver}
 # [[ -n "$1" ]] && DESTDIR="$1"

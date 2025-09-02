@@ -1,28 +1,21 @@
 #!/bin/bash
 
-ver=1.6.1
-DESTDIR=/home/lixq/toolchains/libbpf-${ver}
-[[ -n "$1" ]] && DESTDIR="$1"
+name=$(basename "${BASH_SOURCE[0]}" .sh)
+name=${name#build_}
+ver=1.6.2
+DESTDIR=$1
+srcpath=/home/lixq/src/$name-$ver.tar.gz
 
-if [[ ! -f /home/lixq/src/libbpf-${ver}.tar.gz ]]; then
-    echo "wget https://github.com/libbpf/libbpf/archive/refs/tags/v${ver}.tar.gz -O libbpf-${ver}.tar.gz"
-    exit 1
-fi
+[[ -n $DESTDIR ]] || exit 1
+[[ -f $srcpath ]] || exit 1
 
-. "$(dirname "${BASH_SOURCE[0]}")/set_build_env.sh" gcc
+export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export LDFLAGS="-static-libgcc -static-libstdc++"
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
-rm -rf libbpf-${ver}
-tar -xf /home/lixq/src/libbpf-${ver}.tar.gz
-cd /home/lixq/src/libbpf-${ver}/src || exit 1
-make -s -j"$(nproc)" || exit 1
-rm -rf "${DESTDIR}"
-make -s -j"$(nproc)" install DESTDIR="${DESTDIR}" || exit 1
-
-if [[ "$(basename "${DESTDIR}")" == libbpf-${ver} ]]; then
-    cd "${DESTDIR}" || exit 1
-    cd .. || exit 1
-    rm -f libbpf
-    ln -s libbpf-${ver} libbpf
-fi
+rm -rf "$name-$ver"
+tar -xf "$srcpath" || exit 1
+cd "$name-$ver/src" || exit 1
+make -s "-j$(nproc)" PREFIX="$DESTDIR/usr" || exit 1
+make -s -j"$(nproc)" install PREFIX="$DESTDIR/usr" || exit 1
