@@ -14,7 +14,7 @@ export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig:$DESTDIR/usr/lib64/pkgconfig"
 export CPPFLAGS="--sysroot=$DESTDIR"
 export CFLAGS="--sysroot=$DESTDIR"
 export CXXFLAGS="--sysroot=$DESTDIR"
-export LDFLAGS="-L$DESTDIR/usr/lib64 -L$DESTDIR/lib64 -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/usr/lib64:$DESTDIR/lib64:$DESTDIR/usr/lib --sysroot=$DESTDIR -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/usr/lib -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
+export LDFLAGS="-L$DESTDIR/usr/lib64 -L$DESTDIR/lib64 -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/usr/lib64:$DESTDIR/lib64:$DESTDIR/usr/lib --sysroot=$DESTDIR -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
 export LIBRARY_PATH="$DESTDIR/usr/lib64:$DESTDIR/lib64:$DESTDIR/usr/lib"
 
 "$DESTDIR/usr/bin/pip3" install setuptools || exit 1
