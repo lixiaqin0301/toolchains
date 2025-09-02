@@ -119,6 +119,8 @@ build_packages 24.7.0 /home/lixq/toolchains/node glibc node
 # bcc       0.35.0         https://github.com/iovisor/bcc/releases/
 build_packages 0.35.0 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT ncurses netperf openssl xz zlib zstd curl elfutils glibc Python bcc
 
+build_packages curl8.15.0-bcc0.35.0 /home/lixq/toolchains/sys keyutils libidn2 libunistring zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 brotli krb5 openldap libpsl gsasl curl bison bzip2 flex icu4c json-c libbpf libedit libffi libxml2 LuaJIT ncurses netperf xz elfutils glibc Python bcc
+
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
 
