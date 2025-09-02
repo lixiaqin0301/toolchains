@@ -39,8 +39,8 @@ cmake .. -DCMAKE_INSTALL_PREFIX="$DESTDIR" \
     -DCMAKE_USE_LIBBPF_PACKAGE=1 "-DLibBpf_ROOT=$DESTDIR/usr"
 make -s -j"$(nproc)" || exit 1
 make -s -j"$(nproc)" install || exit 1
-patchelf --set-rpath "$DESTDIR/lib64:$DESTDIR/lib:$DESTDIR/usr/lib" "$DESTDIR/usr/bin/python3"
-patchelf --set-interpreter "$DESTDIR/lib64/ld-linux-x86-64.so.2" "$DESTDIR/usr/bin/python3"
+# patchelf --set-rpath "$DESTDIR/lib64:$DESTDIR/lib:$DESTDIR/usr/lib" "$DESTDIR/usr/bin/python3"
+# patchelf --set-interpreter "$DESTDIR/lib64/ld-linux-x86-64.so.2" "$DESTDIR/usr/bin/python3"
 cd "/home/lixq/src/$name/bcc-build/src/python/bcc-python3" || exit 1
 "$DESTDIR/usr/bin/python3" setup.py install || exit 1
 for f in "$DESTDIR/share/bcc/tools/"*; do

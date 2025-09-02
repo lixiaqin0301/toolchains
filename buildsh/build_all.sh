@@ -117,7 +117,7 @@ build_packages 24.7.0 /home/lixq/toolchains/node glibc node
 # netperf   2.7.0          https://github.com/HewlettPackard/netperf/tags
 # libbpf    1.6.2          https://github.com/libbpf/libbpf/releases
 # bcc       0.35.0         https://github.com/iovisor/bcc/releases/
-build_packages 0.35.0 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT netperf openssl xz zlib zstd curl elfutils Python glibc bcc
+build_packages 0.35.0 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT ncurses netperf openssl xz zlib zstd curl elfutils glibc Python bcc
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log

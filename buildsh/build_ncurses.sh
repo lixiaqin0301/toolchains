@@ -16,6 +16,10 @@ cd /home/lixq/src || exit 1
 rm -rf "$name-$ver"
 tar -xf "$srcpath" || exit 1
 cd "$name-$ver" || exit 1
-./configure "--prefix=$DESTDIR/usr" --with-shared || exit 1
+./configure "--prefix=$DESTDIR/usr" --with-shared --enable-widec --without-ada || exit 1
 make -s "-j$(nproc)" || exit 1
 make -s "-j$(nproc)" install || exit 1
+cd "$DESTDIR/usr/include/" || exit 1
+for f in ncursesw/*.h; do
+    ln -s "$f" .
+done
