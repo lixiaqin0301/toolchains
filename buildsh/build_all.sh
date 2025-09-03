@@ -108,6 +108,9 @@ build_packages 2.51.0 /home/lixq/toolchains/git expat libpsl zlib openssl curl g
 # node  24.7.0  https://nodejs.org/dist
 build_packages 24.7.0 /home/lixq/toolchains/node glibc node
 
+# bpftrace  0.23.5 https://github.com/bpftrace/bpftrace/releases
+build_packages  0.23.5  /home/lixq/toolchains/bpftrace bpftrace
+
 # bzip2     1.0.8          https://sourceware.org/pub/bzip2/
 # elfutils  0.193          https://sourceware.org/elfutils/ftp/
 # flex      2.6.4          https://github.com/westes/flex/releases/
