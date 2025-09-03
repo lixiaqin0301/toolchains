@@ -44,7 +44,7 @@ tar -xf /home/lixq/src/linux-$kernelver.tar.gz || exit 1
 cd linux-${kernelver} || exit 1
 make -s "-j$(nproc)" headers_install "INSTALL_HDR_PATH=$DESTDIR/usr" || exit 1
 
-for f in "$DESTDIR"/usr/*bin/* "$DESTDIR"/*bin/* "$DESTDIR"/usr/*lib/* "$DESTDIR"/*lib/*; do
+for f in "$DESTDIR"/usr/*bin/* "$DESTDIR"/*bin/* "$DESTDIR"/usr/*lib/* "$DESTDIR"/lib*/*; do
     [[ -L $f ]] && continue
     ldd "$f" | grep ' => ' || continue
     patchelf --set-rpath "$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib" "$f"
