@@ -12,7 +12,6 @@ kernelver=6.6
 [[ -f /home/lixq/src/linux-$kernelver.tar.gz ]] || exit 1
 
 export PATH="/home/lixq/toolchains/patchelf/usr/bin:/home/lixq/toolchains/make/usr/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-export LD_RUN_PATH="$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
@@ -45,10 +44,10 @@ tar -xf /home/lixq/src/linux-$kernelver.tar.gz || exit 1
 cd linux-${kernelver} || exit 1
 make -s "-j$(nproc)" headers_install "INSTALL_HDR_PATH=$DESTDIR/usr" || exit 1
 
-# for f in "$DESTDIR"/usr/*bin/* "$DESTDIR"/*bin/*; do
-#     [[ -L $f ]] && continue
-#     ldd "$f" 2>&1 | grep -q ': version .GLIBC_.* not found' || continue
-#     patchelf --set-rpath "$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib" "$f"
-#     file "$f" | grep -q 'uses shared libs' || continue
-#     patchelf --set-interpreter "$DESTDIR/lib64/ld-linux-x86-64.so.2" "$f"
-# done
+for f in "$DESTDIR"/usr/*bin/* "$DESTDIR"/*bin/* "$DESTDIR"/usr/*lib/* "$DESTDIR"/*lib/*; do
+    [[ -L $f ]] && continue
+    ldd "$f" | grep ' => ' || continue
+    patchelf --set-rpath "$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib" "$f"
+    file "$f" | grep 'uses shared libs' || continue
+    patchelf --set-interpreter "$DESTDIR/lib64/ld-linux-x86-64.so.2" "$f"
+done

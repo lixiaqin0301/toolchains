@@ -123,7 +123,7 @@ build_packages  0.23.5  /home/lixq/toolchains/bpftrace bpftrace
 build_packages 0.35.0 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT ncurses netperf openssl xz zlib zstd curl elfutils glibc Python bcc
 
 # systemtap  5.3  https://sourceware.org/systemtap/ftp/releases/
-build_packages 5.3 /home/lixq/toolchains/systemtap binutils patchelf gcc_10.4.0 glibc systemtap
+build_packages 5.3 /home/lixq/toolchains/systemtap glibc binutils patchelf gcc_10.4.0 systemtap
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
