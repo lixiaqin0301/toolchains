@@ -26,3 +26,9 @@ make -s "-j$(nproc)" install || exit 1
 
 [[ -d $DESTDIR/usr/lib ]] || mkdir -p "$DESTDIR/usr/lib"
 [[ -f $DESTDIR/usr/lib/libboost_system.so.1.88.0 ]] || cp /home/lixq/toolchains/boost_1_88_0/usr/lib/libboost_system.so.1.88.0 "$DESTDIR/usr/lib/libboost_system.so.1.88.0"
+for f in "$DESTDIR/usr/bin/stap" "$DESTDIR/usr/bin/stapbpf" "$DESTDIR/usr/bin/stap-merge" "$DESTDIR/usr/bin/staprun" "$DESTDIR/usr/bin/stapsh" "$DESTDIR/usr/libexec/systemtap/stapio"; do
+    patchelf --set-interpreter "$DESTDIR/lib64/ld-linux-x86-64.so.2" "$f"
+done
+
+sed "s;/home/lixq/toolchains/systemtap;$DESTDIR;" "$(dirname "${BASH_SOURCE[0]}")/stap.sh" > "$DESTDIR/usr/bin/stap.sh"
+chmod 755 "$DESTDIR/usr/bin/stap.sh"
