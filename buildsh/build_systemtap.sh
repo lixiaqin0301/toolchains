@@ -10,8 +10,8 @@ srcpath=/home/lixq/src/$name-$ver.tar.gz
 [[ -f $srcpath ]] || exit 1
 
 export PATH="$DESTDIR/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-export CPATH="/home/lixq/toolchains/boost_1_88_0/usr/include"
-export LIBRARY_PATH="/home/lixq/toolchains/boost_1_88_0/usr/lib"
+export CPATH="/home/lixq/toolchains/boost_1_88_0/usr/include:$DESTDIR/usr/include"
+export LIBRARY_PATH="/home/lixq/toolchains/boost_1_88_0/usr/lib:$DESTDIR/usr/lib"
 export LDFLAGS="-L$LIBRARY_PATH -Wl,-rpath-link,$LIBRARY_PATH"
 export LD_RUN_PATH="$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
 
