@@ -123,22 +123,42 @@ build_packages  0.23.5  /home/lixq/toolchains/bpftrace bpftrace
 build_packages 0.35.0 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT ncurses netperf openssl xz zlib zstd curl elfutils glibc Python bcc
 
 # systemtap  5.3  https://sourceware.org/systemtap/ftp/releases/
-build_packages 5.3 /home/lixq/toolchains/systemtap binutils gcc_10.4.0 systemtap glibc
+build_packages 5.3 /home/lixq/toolchains/systemtap binutils bzip2 elfutils ncurses gcc_10.4.0 xz systemtap glibc
+# DESTDIR=/home/lixq/toolchains/systemtap
+# patchbins=("$DESTDIR/usr/bin/stap" "$DESTDIR/usr/bin/stapbpf" "$DESTDIR/usr/bin/stap-merge" "$DESTDIR/usr/bin/staprun" "$DESTDIR/usr/bin/stapsh" "$DESTDIR/usr/libexec/systemtap/stapio")
+# [[ -d $DESTDIR/lib64 ]] || mkdir -p "$DESTDIR/lib64"
+# for f in "$DESTDIR/usr/bin/"* "$DESTDIR/usr/libexec/systemtap/stap"*; do
+#     ldd "$f" | grep ' => /[^h]' | awk '{print $3}' | while read -r lib; do
+#         if [[ ! -f $DESTDIR$lib ]]; then
+#             [[ -d $(dirname "$DESTDIR$lib") ]] || mkdir -p "$(dirname "$DESTDIR$lib")"
+#             if [[ -f /home/lixq/toolchains/glibc$lib ]]; then
+#                 cp "/home/lixq/toolchains/glibc$lib" "$DESTDIR$lib"
+#             else
+#                 cp "$lib" "$DESTDIR$lib"
+#             fi
+#         fi
+#         patchelf --set-rpath "$LD_RUN_PATH" "$DESTDIR$lib"
+#     done
+#     patchelf --set-interpreter "$DESTDIR/lib64/ld-linux-x86-64.so.2" "$f"
+# done
+# cp /home/lixq/toolchains/glibc/lib64/ld-linux-x86-64.so.2 "$DESTDIR/lib64"
+# for f in "$DESTDIR"/usr/*bin/* "$DESTDIR"/*bin/* "$DESTDIR"/usr/lib*/* "$DESTDIR"/lib*/* "$DESTDIR/usr/libexec/"*/*; do
+#     [[ -L $f ]] && continue
+#     [[ -d $f ]] && continue
+#     ldd "$f" 2>/dev/null | grep -q ' => ' || continue
+#     readelf -d "$f" | grep -q "$DESTDIR" || continue
+#     echo "$f"
+# done
 
+# while IFS= read -r f; do
+#     [[ -f "$DESTDIR$f" ]] || cp "$f" "$DESTDIR$f"
+# done < <(ldd "${patchbins[@]}" 2>&1 | grep ' => /[^h]' | awk '{print $3}' | sort -u)
+
+# while IFS= read -r f; do
+#     patchelf --set-rpath "$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib" "$f"
+# done < <(ldd "${patchbins[@]}" 2>&1 | grep ' => /h' | awk '{print $3}' | sort -u)
+    #patchelf --set-rpath "$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib" "$f"
+    #file "$f" | grep 'uses shared libs' || continue
+    #patchelf --set-interpreter "$DESTDIR/lib64/ld-linux-x86-64.so.2" "$f"
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
-
-# 
-# # Linux-PAM   1.17.1  https://github.com/linux-pam/linux-pam/releases/
-# # libcap-ng   0.8.5   https://github.com/stevegrubb/libcap-ng/releases/
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# n=6
-# [[ -f /home/lixq/mintoolset.tar.$n ]] || cp /home/lixq/mintoolset.tar.$((n-1)) /home/lixq/mintoolset.tar.$n
-# build_packages $n bashdb bat gdb shellcheck boost tcpflow zsh git patchelf
-
