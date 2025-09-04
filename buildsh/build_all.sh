@@ -124,7 +124,7 @@ build_packages 0.35.0 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c js
 
 # systemtap  5.3  https://sourceware.org/systemtap/ftp/releases/
 # readline   8.3  https://mirrors.tuna.tsinghua.edu.cn/gnu/readline/
-build_packages 5.3 /home/lixq/toolchains/systemtap binutils bzip2 elfutils ncurses gcc_10.4.0 readline xz zlib systemtap glibc
+build_packages 5.3 /home/lixq/toolchains/systemtap binutils bzip2 elfutils gcc_10.4.0 ncurses patchelf readline xz zlib systemtap glibc
 # DESTDIR=/home/lixq/toolchains/systemtap
 # patchbins=("$DESTDIR/usr/bin/stap" "$DESTDIR/usr/bin/stapbpf" "$DESTDIR/usr/bin/stap-merge" "$DESTDIR/usr/bin/staprun" "$DESTDIR/usr/bin/stapsh" "$DESTDIR/usr/libexec/systemtap/stapio")
 # [[ -d $DESTDIR/lib64 ]] || mkdir -p "$DESTDIR/lib64"
