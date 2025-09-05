@@ -56,6 +56,6 @@ done
 
 if [[ -d /mnt/d/ ]]; then
     cd /home/lixq || exit 1
-    sudo rm -rf /mnt/d/toolchains.tar
-    tar -cf /mnt/d/toolchains.tar toolchains
+    sudo rm -rf /mnt/d/toolchains.tar.gz
+    tar -czf /mnt/d/toolchains.tar.gz toolchains
 fi
