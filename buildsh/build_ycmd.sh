@@ -16,7 +16,7 @@ cp build.py build.py.bak
 sed -i '/if not OnWindows() and os.geteuid() == 0:/,/This script should not be run with root privileges./d' build.py
 
 cd /home/lixq/toolchains/github.com/Valloric/YouCompleteMe || exit 1
-export PATH="/home/lixq/toolchains/cmake/usr/bin:/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/golang/bin:/home/lixq/toolchains/llvm/usr/bin:$PATH"
+export PATH="/home/lixq/toolchains/cmake/usr/bin:/home/lixq/toolchains/gcc/usr/bin:/home/lixq/toolchains/golang/bin:/home/lixq/toolchains/Miniforge3/bin:/home/lixq/toolchains/llvm/usr/bin:$PATH"
 export LDFLAGS="-static-libgcc -static-libstdc++ -Wl,-rpath,/home/lixq/toolchains/llvm/usr/lib"
 if [[ -f /home/lixq/src/clangd-19.1.0-x86_64-unknown-linux-gnu.tar.bz2 ]]; then
     mkdir -p /home/lixq/toolchains/github.com/Valloric/YouCompleteMe/third_party/ycmd/third_party/clangd/cache/
