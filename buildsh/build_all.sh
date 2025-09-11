@@ -104,7 +104,7 @@ build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 
 # git  2.51.0  https://github.com/git/git/tags
 # expat 2.7.1  https://github.com/libexpat/libexpat/releases/
-build_packages 2.51.0 /home/lixq/toolchains/git expat libpsl zlib openssl curl glibc git
+build_packages 2.51.0 /home/lixq/toolchains/git expat libpsl zlib zstd openssl curl glibc git
 
 # node  24.7.0  https://nodejs.org/dist
 build_packages 24.7.0 /home/lixq/toolchains/node glibc node
