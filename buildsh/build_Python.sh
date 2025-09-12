@@ -15,7 +15,7 @@ if [[ -f $DESTDIR/lib64/ld-linux-x86-64.so.2 ]]; then
     export CPPFLAGS="--sysroot=$DESTDIR"
     export LDFLAGS="-L$DESTDIR/lib64 -Wl,-rpath-link,$DESTDIR/lib64 --sysroot=$DESTDIR -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
 else
-    export LDFLAGS="-static-libgcc -static-libstdc++ -Wl,-rpath,$DESTDIR/lib:$DESTDIR/usr/lib"
+    export LDFLAGS="-Wl,-rpath,$DESTDIR/lib:$DESTDIR/usr/lib"
 fi
 
 function recover() {

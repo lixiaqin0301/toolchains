@@ -17,8 +17,5 @@ rm -rf "$name-$ver"
 tar -xf "$srcpath" || exit 1
 mkdir "$name-$ver/out"
 cd "$name-$ver/out" || exit 1
-cmake -DCMAKE_BUILD_TYPE=Release "-DCMAKE_INSTALL_PREFIX=$DESTDIR/usr" \
-    "-DCMAKE_C_FLAGS=$CFLAGS $LDFLAGS" \
-    "-DCMAKE_EXE_LINKER_FLAGS=$LDFLAGS" \
-    .. || exit 1
+cmake -DCMAKE_BUILD_TYPE=Release "-DCMAKE_INSTALL_PREFIX=$DESTDIR/usr" .. || exit 1
 cmake --build . --config Release --target install || exit 1

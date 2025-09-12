@@ -64,11 +64,11 @@ build_packages 0.18.0 /home/lixq/toolchains/patchelf patchelf
 # libcap           2.76    https://git.kernel.org/pub/scm/libs/libcap/libcap.git/
 build_packages 2.42 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap glibc
 
-# curl          8.15.0  https://github.com/curl/curl/releases/
+# curl          8.16.0  https://github.com/curl/curl/releases/
 # openssl       3.5.2   https://github.com/openssl/openssl/releases/
 # nghttp3       1.11.0  https://github.com/ngtcp2/nghttp3/releases/
-# ngtcp2        1.14.0  https://github.com/ngtcp2/ngtcp2/releases/
-# nghttp2       1.66.0  https://github.com/nghttp2/nghttp2/releases/
+# ngtcp2        1.15.1  https://github.com/ngtcp2/ngtcp2/releases/
+# nghttp2       1.67.0  https://github.com/nghttp2/nghttp2/releases/
 # libssh2       1.11.1  https://libssh2.org/
 # zlib          1.3.1   https://github.com/madler/zlib/releases/
 # brotli        1.1.0   https://github.com/google/brotli/releases/
@@ -80,18 +80,19 @@ build_packages 2.42 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap gli
 # libunistring  1.3     https://mirrors.tuna.tsinghua.edu.cn/gnu/libunistring/
 # libpsl        0.21.5  https://github.com/rockdaboot/libpsl/releases/
 # gsasl         2.2.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/gsasl/
-build_packages 8.15.0 /home/lixq/toolchains/curl keyutils libidn2 libunistring zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 brotli krb5 openldap libpsl gsasl curl
+build_packages 8.16.0 /home/lixq/toolchains/curl brotli gsasl keyutils krb5 libidn2 libpsl libunistring zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 openldap curl
 
-# llvm     21.1.0        https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
+# llvm     21.1.1        https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
 # bison    3.8.2         https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
-# swig     4.3.1         https://github.com/swig/swig/tags
 # libedit  20250104-3.1  https://thrysoee.dk/editline/
 # ncurses  6.3           https://invisible-island.net/ncurses/
+# swig     4.3.1         https://github.com/swig/swig/tags
 # xz       5.8.1         https://tukaani.org/xz/
-# libxml2  2.14.5        https://gitlab.gnome.org/GNOME/libxml2/-/releases
+# zlib          1.3.1   https://github.com/madler/zlib/releases/
+# libxml2  2.14.6        https://gitlab.gnome.org/GNOME/libxml2/-/releases
 # Python   3.13.7        https://www.python.org/ftp/python/
 # lua      5.4.8         https://www.lua.org/ftp/
-build_packages 21.1.0 /home/lixq/toolchains/llvm bison swig ncurses libedit xz zlib libxml2 openssl Python lua llvm
+build_packages 21.1.1 /home/lixq/toolchains/llvm bison libedit libxml2 lua ncurses swig xz zlib openssl Python llvm
 
 # zsh  5.9  https://www.zsh.org/
 build_packages 5.9 /home/lixq/toolchains/zsh zsh
@@ -106,8 +107,8 @@ build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 # expat 2.7.1  https://github.com/libexpat/libexpat/releases/
 build_packages 2.51.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd openssl curl glibc git
 
-# node  24.7.0  https://nodejs.org/dist
-build_packages 24.7.0 /home/lixq/toolchains/node glibc node
+# node  24.8.0  https://nodejs.org/dist
+build_packages 24.8.0 /home/lixq/toolchains/node glibc node
 
 # bpftrace  0.23.5  https://github.com/bpftrace/bpftrace/releases
 build_packages  0.23.5  /home/lixq/toolchains/bpftrace bpftrace
