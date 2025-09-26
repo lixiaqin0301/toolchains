@@ -104,7 +104,7 @@ build_packages 1.89.0 /home/lixq/toolchains/boost boost
 # tcpflow  1.6.1  https://github.com/simsong/tcpflow/releases/
 build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 
-# git      2.51.0  https://github.com/git/git/tags
+# git      2.51.0  https://github.com/git/git/tags/
 # brotli   1.1.0   https://github.com/google/brotli/releases/
 # expat    2.7.1   https://github.com/libexpat/libexpat/releases/
 # libpsl   0.21.5  https://github.com/rockdaboot/libpsl/releases/
@@ -115,12 +115,12 @@ build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 # glibc    2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 2.51.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd openssl curl glibc git
 
-# node   24.8.0  https://nodejs.org/dist/
+# node   24.9.0  https://nodejs.org/dist/
 # glibc  2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
-build_packages 24.8.0 /home/lixq/toolchains/node glibc node
+build_packages 24.9.0 /home/lixq/toolchains/node glibc node
 
-# bpftrace  0.24.0  https://github.com/bpftrace/bpftrace/releases
-build_packages  0.24.0  /home/lixq/toolchains/bpftrace bpftrace
+# bpftrace  0.24.0  https://github.com/bpftrace/bpftrace/releases/
+build_packages 0.24.0 /home/lixq/toolchains/bpftrace bpftrace
 
 # bpfsnoop  0.5.2  https://github.com/bpfsnoop/bpfsnoop/tags
 build_packages  0.5.2  /home/lixq/toolchains/bpfsnoop bpfsnoop
