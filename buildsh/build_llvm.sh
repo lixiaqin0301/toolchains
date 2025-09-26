@@ -2,7 +2,7 @@
 
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=21.1.1
+ver=21.1.2
 DESTDIR=$1
 srcpath=/home/lixq/src/$name-project-$ver.src.tar.xz
 
@@ -15,6 +15,17 @@ export CFLAGS="-isystem $DESTDIR/usr/include"
 export CXXFLAGS="-isystem $DESTDIR/usr/include"
 export CPPFLAGS="-isystem $DESTDIR/usr/include"
 export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -static-libgcc -static-libstdc++ -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
+
+[[ -d $DESTDIR/usr/lib64 ]] || mkdir -p "$DESTDIR/usr/lib64"
+cd "$DESTDIR/usr/lib64" || exit 1
+for p in /home/lixq/toolchains/gcc/usr/lib64/libgcc* /home/lixq/toolchains/gcc/usr/lib64/libstdc++.s*[0-9o]; do
+    [[ -f $(basename "$p") ]] && continue
+    if [[ -L $p ]]; then
+        ln -sf "$(readlink "$p")" "$(basename "$p")"
+    else
+        cp "$p" .
+    fi
+done
 
 [[ -d /home/lixq/src ]] || mkdir -p /home/lixq/src/
 cd /home/lixq/src/ || exit 1

@@ -15,8 +15,19 @@ if [[ -f $DESTDIR/lib64/ld-linux-x86-64.so.2 ]]; then
     export CPPFLAGS="--sysroot=$DESTDIR"
     export LDFLAGS="-L$DESTDIR/lib64 -Wl,-rpath-link,$DESTDIR/lib64 --sysroot=$DESTDIR -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
 else
-    export LDFLAGS="-Wl,-rpath,$DESTDIR/lib:$DESTDIR/usr/lib"
+    export LDFLAGS="-Wl,-rpath,$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
 fi
+
+[[ -d $DESTDIR/usr/lib64 ]] || mkdir -p "$DESTDIR/usr/lib64"
+cd "$DESTDIR/usr/lib64" || exit 1
+for p in /home/lixq/toolchains/gcc/usr/lib64/libgcc* /home/lixq/toolchains/gcc/usr/lib64/libstdc++.s*[0-9o]; do
+    [[ -f $(basename "$p") ]] && continue
+    if [[ -L $p ]]; then
+        ln -sf "$(readlink "$p")" "$(basename "$p")"
+    else
+        cp "$p" .
+    fi
+done
 
 function recover() {
     [[ -f /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/include-fixed/openssl/bn.h.bak ]] && mv /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/include-fixed/openssl/bn.h.bak /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/include-fixed/openssl/bn.h
