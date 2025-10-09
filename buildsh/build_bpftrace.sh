@@ -2,7 +2,7 @@
 
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=0.24.0
+ver=0.24.1
 DESTDIR=$1
 srcpath=/home/lixq/src/$name-binary_tools_man-bundle-$ver.tar.xz
 
