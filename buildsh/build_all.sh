@@ -91,9 +91,10 @@ build_packages 8.16.0 /home/lixq/toolchains/curl brotli gsasl keyutils krb5 libi
 # swig     4.3.1         https://github.com/swig/swig/tags/
 # xz       5.8.1         https://tukaani.org/xz/
 # zlib     1.3.1         https://github.com/madler/zlib/releases/
+# zstd     1.5.7         https://github.com/facebook/zstd/releases/
 # openssl  3.6.0         https://github.com/openssl/openssl/releases/
 # Python   3.14.0        https://www.python.org/ftp/python/
-build_packages 21.1.3 /home/lixq/toolchains/llvm bison libedit libxml2 lua ncurses swig xz zlib openssl Python llvm
+build_packages 21.1.3 /home/lixq/toolchains/llvm bison libedit libxml2 lua ncurses swig xz zlib zstd openssl Python llvm
 
 # zsh  5.9  https://www.zsh.org/
 build_packages 5.9 /home/lixq/toolchains/zsh zsh
@@ -161,6 +162,13 @@ build_packages 0.35.0 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c js
 # zstd       1.5.7   https://github.com/facebook/zstd/releases/
 # glibc      2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 5.3 /home/lixq/toolchains/systemtap binutils bzip2 curl elfutils gcc_10.4.0 ncurses patchelf readline xz zlib zstd systemtap glibc
+
+# eclipse  2025-09   https://www.eclipse.org/downloads/packages/
+#                    https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
+# golang    1.25.2   https://mirrors.ustc.edu.cn/golang/go1.25.2.linux-amd64.tar.gz
+# jdk       25       https://www.oracle.com/java/technologies/downloads/
+# miniforge 25.3.1-0 https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
+# websocat  1.13.0   https://github.com/vi/websocat/releases
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
