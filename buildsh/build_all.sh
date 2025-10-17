@@ -118,13 +118,13 @@ build_packages 2.51.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd op
 
 # node   25.0.0  https://nodejs.org/dist/
 # glibc  2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
-build_packages 24.9.0 /home/lixq/toolchains/node glibc node
+build_packages 25.0.0 /home/lixq/toolchains/node glibc node
 
 # bpftrace  0.24.1  https://github.com/bpftrace/bpftrace/releases/
 build_packages 0.24.1 /home/lixq/toolchains/bpftrace bpftrace
 
-# bpfsnoop  0.5.2  https://github.com/bpfsnoop/bpfsnoop/tags
-build_packages  0.5.2  /home/lixq/toolchains/bpfsnoop bpfsnoop
+# bpfsnoop  0.5.3  https://github.com/bpfsnoop/bpfsnoop/tags
+build_packages  0.5.3  /home/lixq/toolchains/bpfsnoop bpfsnoop
 
 # bcc       0.35.0         https://github.com/iovisor/bcc/releases/
 # bison     3.8.2          https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
