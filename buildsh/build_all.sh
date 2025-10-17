@@ -116,7 +116,7 @@ build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 # glibc    2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 2.51.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd openssl curl glibc git
 
-# node   24.9.0  https://nodejs.org/dist/
+# node   25.0.0  https://nodejs.org/dist/
 # glibc  2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 24.9.0 /home/lixq/toolchains/node glibc node
 
@@ -165,7 +165,7 @@ build_packages 5.3 /home/lixq/toolchains/systemtap binutils bzip2 curl elfutils 
 
 # eclipse  2025-09   https://www.eclipse.org/downloads/packages/
 #                    https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
-# golang    1.25.2   https://mirrors.ustc.edu.cn/golang/go1.25.2.linux-amd64.tar.gz
+# golang    1.25.3   https://mirrors.ustc.edu.cn/golang/go1.25.3.linux-amd64.tar.gz
 # jdk       25       https://www.oracle.com/java/technologies/downloads/
 # miniforge 25.3.1-0 https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
 # websocat  1.13.0   https://github.com/vi/websocat/releases
