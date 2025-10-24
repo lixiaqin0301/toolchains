@@ -49,8 +49,8 @@ build_packages 3.1.6 /home/lixq/toolchains/Bear Bear
 # bashdb  4.4-1.0.1  https://sourceforge.net/projects/bashdb/files/bashdb/
 build_packages 4.4-1.0.1 /home/lixq/toolchains/bashdb bashdb
 
-# bat  0.25.0  https://github.com/sharkdp/bat/releases/
-build_packages 0.25.0 /home/lixq/toolchains/bat bat
+# bat  0.26.0  https://github.com/sharkdp/bat/releases/
+build_packages 0.26.0 /home/lixq/toolchains/bat bat
 
 # make  4.4.1  https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
 build_packages 4.4.1 /home/lixq/toolchains/make make

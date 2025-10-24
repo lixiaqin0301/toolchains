@@ -2,7 +2,7 @@
 
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=0.25.0
+ver=0.26.0
 DESTDIR=$1
 srcpath=/home/lixq/src/$name-v$ver-x86_64-unknown-linux-musl.tar.gz
 
