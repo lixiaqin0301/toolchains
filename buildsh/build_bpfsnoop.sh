@@ -14,4 +14,4 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 [[ -d $DESTDIR/usr/bin ]] || mkdir -p "$DESTDIR/usr/bin"
 cd "$DESTDIR/usr/bin" || exit 1
 tar -xf "$srcpath" || exit 1
-rm ./*.sha256sum
+rm -f ./*.sha256sum
