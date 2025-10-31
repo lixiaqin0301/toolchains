@@ -105,20 +105,20 @@ build_packages 1.89.0 /home/lixq/toolchains/boost boost
 # tcpflow  1.6.1  https://github.com/simsong/tcpflow/releases/
 build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 
-# git      2.51.0  https://github.com/git/git/tags/
-# brotli   1.1.0   https://github.com/google/brotli/releases/
-# expat    2.7.1   https://github.com/libexpat/libexpat/releases/
+# git      2.51.2  https://github.com/git/git/tags/
+# brotli   1.2.0   https://github.com/google/brotli/releases/
+# expat    2.7.3   https://github.com/libexpat/libexpat/releases/
 # libpsl   0.21.5  https://github.com/rockdaboot/libpsl/releases/
 # zlib     1.3.1   https://github.com/madler/zlib/releases/
 # zstd     1.5.7   https://github.com/facebook/zstd/releases/
 # openssl  3.6.0   https://github.com/openssl/openssl/releases/
 # curl     8.16.0  https://github.com/curl/curl/releases/
 # glibc    2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
-build_packages 2.51.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd openssl curl glibc git
+build_packages 2.51.2 /home/lixq/toolchains/git brotli expat libpsl zlib zstd openssl curl glibc git
 
-# node   25.0.0  https://nodejs.org/dist/
+# node   25.1.0  https://nodejs.org/dist/
 # glibc  2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
-build_packages 25.0.0 /home/lixq/toolchains/node glibc node
+build_packages 25.1.0 /home/lixq/toolchains/node glibc node
 
 # bpftrace  0.24.1  https://github.com/bpftrace/bpftrace/releases/
 build_packages 0.24.1 /home/lixq/toolchains/bpftrace bpftrace
@@ -161,12 +161,12 @@ build_packages 0.35.0 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c js
 # zlib       1.3.1   https://github.com/madler/zlib/releases/
 # zstd       1.5.7   https://github.com/facebook/zstd/releases/
 # glibc      2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
-build_packages 5.3 /home/lixq/toolchains/systemtap binutils bzip2 curl elfutils gcc_10.4.0 ncurses patchelf readline xz zlib zstd systemtap glibc
+build_packages 5.3 /home/lixq/toolchains/systemtap binutils bzip2 curl elfutils gcc ncurses patchelf readline xz zlib zstd systemtap glibc
 
 # eclipse  2025-09   https://www.eclipse.org/downloads/packages/
 #                    https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
 # golang    1.25.3   https://mirrors.ustc.edu.cn/golang/go1.25.3.linux-amd64.tar.gz
-# jdk       25       https://www.oracle.com/java/technologies/downloads/
+# jdk       25.0.1   https://www.oracle.com/java/technologies/downloads/
 # miniforge 25.3.1-0 https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
 # websocat  1.13.0   https://github.com/vi/websocat/releases
 
