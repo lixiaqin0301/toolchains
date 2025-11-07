@@ -64,25 +64,25 @@ build_packages 0.18.0 /home/lixq/toolchains/patchelf patchelf
 # libcap           2.76    https://git.kernel.org/pub/scm/libs/libcap/libcap.git/
 build_packages 2.42 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap glibc
 
-# curl          8.16.0  https://github.com/curl/curl/releases/
+# curl          8.17.0  https://github.com/curl/curl/releases/
 # openssl       3.6.0   https://github.com/openssl/openssl/releases/
-# nghttp3       1.11.0  https://github.com/ngtcp2/nghttp3/releases/
-# ngtcp2        1.15.1  https://github.com/ngtcp2/ngtcp2/releases/
-# nghttp2       1.67.0  https://github.com/nghttp2/nghttp2/releases/
+# nghttp3       1.12.0  https://github.com/ngtcp2/nghttp3/releases/
+# ngtcp2        1.17.0  https://github.com/ngtcp2/ngtcp2/releases/
+# nghttp2       1.68.0  https://github.com/nghttp2/nghttp2/releases/
 # libssh2       1.11.1  https://libssh2.org/
 # zlib          1.3.1   https://github.com/madler/zlib/releases/
-# brotli        1.1.0   https://github.com/google/brotli/releases/
+# brotli        1.2.0   https://github.com/google/brotli/releases/
 # zstd          1.5.7   https://github.com/facebook/zstd/releases/
 # keyutils      1.6.3   https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git/
 # krb5          1.22.1  https://web.mit.edu/kerberos/dist/
 # libidn2       2.3.8   https://mirrors.tuna.tsinghua.edu.cn/gnu/libidn/
 # openldap      2.6.10  https://www.openldap.org/software/download/
-# libunistring  1.3     https://mirrors.tuna.tsinghua.edu.cn/gnu/libunistring/
+# libunistring  1.4.1   https://mirrors.tuna.tsinghua.edu.cn/gnu/libunistring/
 # libpsl        0.21.5  https://github.com/rockdaboot/libpsl/releases/
 # gsasl         2.2.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/gsasl/
-build_packages 8.16.0 /home/lixq/toolchains/curl brotli gsasl keyutils krb5 libidn2 libpsl libunistring zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 openldap curl
+build_packages 8.17.0 /home/lixq/toolchains/curl brotli gsasl keyutils krb5 libidn2 libpsl libunistring zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 openldap curl
 
-# llvm     21.1.4        https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
+# llvm     21.1.5        https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
 # bison    3.8.2         https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
 # libedit  20251016-3.1  https://thrysoee.dk/editline/
 # libxml2  2.15.1        https://gitlab.gnome.org/GNOME/libxml2/-/releases/
@@ -94,7 +94,7 @@ build_packages 8.16.0 /home/lixq/toolchains/curl brotli gsasl keyutils krb5 libi
 # zstd     1.5.7         https://github.com/facebook/zstd/releases/
 # openssl  3.6.0         https://github.com/openssl/openssl/releases/
 # Python   3.14.0        https://www.python.org/ftp/python/
-build_packages 21.1.4 /home/lixq/toolchains/llvm bison libedit libxml2 lua ncurses swig xz zlib zstd openssl Python llvm
+build_packages 21.1.5 /home/lixq/toolchains/llvm bison libedit libxml2 lua ncurses swig xz zlib zstd openssl Python llvm
 
 # zsh  5.9  https://www.zsh.org/
 build_packages 5.9 /home/lixq/toolchains/zsh zsh
@@ -151,7 +151,7 @@ build_packages  0.5.3  /home/lixq/toolchains/bpfsnoop bpfsnoop
 # Python    3.14.0         https://www.python.org/ftp/python/
 build_packages 0.35.0 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT ncurses netperf openssl xz zlib zstd curl elfutils glibc Python bcc
 
-# systemtap  5.3     https://sourceware.org/systemtap/ftp/releases/
+# systemtap  5.4     https://sourceware.org/systemtap/ftp/releases/
 # binutils   2.45    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
 # bzip2      1.0.8   https://sourceware.org/pub/bzip2/
 # readline   8.3     https://mirrors.tuna.tsinghua.edu.cn/gnu/readline/
@@ -161,13 +161,13 @@ build_packages 0.35.0 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c js
 # zlib       1.3.1   https://github.com/madler/zlib/releases/
 # zstd       1.5.7   https://github.com/facebook/zstd/releases/
 # glibc      2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
-build_packages 5.3 /home/lixq/toolchains/systemtap binutils bzip2 curl elfutils gcc ncurses patchelf readline xz zlib zstd systemtap glibc
+build_packages 5.4 /home/lixq/toolchains/systemtap binutils bzip2 curl elfutils gcc ncurses patchelf readline xz zlib zstd systemtap glibc
 
 # eclipse  2025-09   https://www.eclipse.org/downloads/packages/
 #                    https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
-# golang    1.25.3   https://mirrors.ustc.edu.cn/golang/go1.25.3.linux-amd64.tar.gz
+# golang    1.25.4   https://mirrors.ustc.edu.cn/golang/go1.25.4.linux-amd64.tar.gz
 # jdk       25.0.1   https://www.oracle.com/java/technologies/downloads/
-# miniforge 25.3.1-0 https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
+# miniforge 25.9.1   https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
 # websocat  1.13.0   https://github.com/vi/websocat/releases
 
 tae=$(date +%s)
