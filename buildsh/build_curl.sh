@@ -25,7 +25,7 @@ tar -xf "$srcpath" || exit 1
 cd "$name-$ver" || exit 1
 autoreconf -fi || exit 1
 if [[ $DESTDIR == */$name ]]; then
-    ./configure "--prefix=$DESTDIR/usr" --with-openssl --with-nghttp3 --with-ngtcp2 --with-nghttp2 --with-libssh2 --with-zstd --with-gssapi --with-libidn2 --with-ldap --enable-httpsrr --enable-ssls-export || exit 1
+    ./configure "--prefix=$DESTDIR/usr" --with-openssl --with-nghttp3 --with-ngtcp2 --with-nghttp2 --with-libssh2 --with-zstd --with-gssapi --with-libidn2 --with-ldap --enable-httpsrr --enable-ssls-export --enable-ares || exit 1
 else
     ./configure "--prefix=$DESTDIR/usr" --with-openssl || exit 1
 fi
