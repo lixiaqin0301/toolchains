@@ -1,4 +1,5 @@
 #!/bin/bash
+rm -rf docbook.sourceforge.net
 for uri in docbook.sourceforge.net/release/xsl/current/html/docbook.xsl \
            docbook.sourceforge.net/release/xsl-ns/current/manpages/docbook.xsl \
            docbook.sourceforge.net/release/xsl/current/html/../common/entities.ent \
@@ -11,3 +12,4 @@ grep --include='*.xsl' -R 'xsl:include href=' | while read -r line; do
     uri=$d/$f
     [[ -f "$uri" ]] || wget -r -np -k -l 1 "https://$uri"
 done
+tar -cjf docbook.sourceforge.net.tar.gz docbook.sourceforge.net

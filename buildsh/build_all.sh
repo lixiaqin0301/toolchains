@@ -27,8 +27,8 @@ function build_packages() {
 tab=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 
-# cmake  4.1.2  https://cmake.org/download/
-build_packages 4.1.2 /home/lixq/toolchains/cmake cmake
+# cmake  4.2.0  https://cmake.org/download/
+build_packages 4.2.0 /home/lixq/toolchains/cmake cmake
 
 # Shellcheck  0.11.0  https://github.com/koalaman/shellcheck/releases
 build_packages 0.11.0 /home/lixq/toolchains/shellcheck shellcheck
@@ -83,7 +83,7 @@ build_packages 2.42 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap gli
 # gsasl         2.2.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/gsasl/
 build_packages 8.17.0 /home/lixq/toolchains/curl brotli c-ares gsasl keyutils krb5 libidn2 libpsl libunistring zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 openldap curl
 
-# llvm     21.1.5        https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
+# llvm     21.1.6        https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
 # bison    3.8.2         https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
 # libedit  20251016-3.1  https://thrysoee.dk/editline/
 # libxml2  2.15.1        https://gitlab.gnome.org/GNOME/libxml2/-/releases/
@@ -95,7 +95,7 @@ build_packages 8.17.0 /home/lixq/toolchains/curl brotli c-ares gsasl keyutils kr
 # zstd     1.5.7         https://github.com/facebook/zstd/releases/
 # openssl  3.6.0         https://github.com/openssl/openssl/releases/
 # Python   3.14.0        https://www.python.org/ftp/python/
-build_packages 21.1.5 /home/lixq/toolchains/llvm bison libedit libxml2 lua ncurses swig xz zlib zstd openssl Python llvm
+build_packages 21.1.6 /home/lixq/toolchains/llvm bison libedit libxml2 lua ncurses swig xz zlib zstd openssl Python llvm
 
 # zsh  5.9  https://www.zsh.org/
 build_packages 5.9 /home/lixq/toolchains/zsh zsh
@@ -106,20 +106,20 @@ build_packages 1.89.0 /home/lixq/toolchains/boost boost
 # tcpflow  1.6.1  https://github.com/simsong/tcpflow/releases/
 build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 
-# git      2.51.2  https://github.com/git/git/tags/
+# git      2.52.0  https://github.com/git/git/tags/
 # brotli   1.2.0   https://github.com/google/brotli/releases/
 # expat    2.7.3   https://github.com/libexpat/libexpat/releases/
 # libpsl   0.21.5  https://github.com/rockdaboot/libpsl/releases/
 # zlib     1.3.1   https://github.com/madler/zlib/releases/
 # zstd     1.5.7   https://github.com/facebook/zstd/releases/
 # openssl  3.6.0   https://github.com/openssl/openssl/releases/
-# curl     8.16.0  https://github.com/curl/curl/releases/
+# curl     8.17.0  https://github.com/curl/curl/releases/
 # glibc    2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
-build_packages 2.51.2 /home/lixq/toolchains/git brotli expat libpsl zlib zstd openssl curl glibc git
+build_packages 2.52.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd openssl curl glibc git
 
-# node   25.2.0  https://nodejs.org/dist/
+# node   25.2.1  https://nodejs.org/dist/
 # glibc  2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
-build_packages 25.2.0 /home/lixq/toolchains/node glibc node
+build_packages 25.2.1 /home/lixq/toolchains/node glibc node
 
 # bpftrace  0.24.1  https://github.com/bpftrace/bpftrace/releases/
 build_packages 0.24.1 /home/lixq/toolchains/bpftrace bpftrace
