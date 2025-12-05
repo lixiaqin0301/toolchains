@@ -49,8 +49,8 @@ build_packages 3.1.6 /home/lixq/toolchains/Bear Bear
 # bashdb  4.4-1.0.1  https://sourceforge.net/projects/bashdb/files/bashdb/
 build_packages 4.4-1.0.1 /home/lixq/toolchains/bashdb bashdb
 
-# bat  0.26.0  https://github.com/sharkdp/bat/releases/
-build_packages 0.26.0 /home/lixq/toolchains/bat bat
+# bat  0.26.1  https://github.com/sharkdp/bat/releases/
+build_packages 0.26.1 /home/lixq/toolchains/bat bat
 
 # make  4.4.1  https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
 build_packages 4.4.1 /home/lixq/toolchains/make make
@@ -83,7 +83,7 @@ build_packages 2.42 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap gli
 # gsasl         2.2.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/gsasl/
 build_packages 8.17.0 /home/lixq/toolchains/curl brotli c-ares gsasl keyutils krb5 libidn2 libpsl libunistring zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 openldap curl
 
-# llvm     21.1.6        https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
+# llvm     21.1.7        https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
 # bison    3.8.2         https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
 # libedit  20251016-3.1  https://thrysoee.dk/editline/
 # libxml2  2.15.1        https://gitlab.gnome.org/GNOME/libxml2/-/releases/
@@ -94,8 +94,8 @@ build_packages 8.17.0 /home/lixq/toolchains/curl brotli c-ares gsasl keyutils kr
 # zlib     1.3.1         https://github.com/madler/zlib/releases/
 # zstd     1.5.7         https://github.com/facebook/zstd/releases/
 # openssl  3.6.0         https://github.com/openssl/openssl/releases/
-# Python   3.14.0        https://www.python.org/ftp/python/
-build_packages 21.1.6 /home/lixq/toolchains/llvm bison libedit libxml2 lua ncurses swig xz zlib zstd openssl Python llvm
+# Python   3.14.1        https://www.python.org/ftp/python/
+build_packages 21.1.7 /home/lixq/toolchains/llvm bison libedit libxml2 lua ncurses swig xz zlib zstd openssl Python llvm
 
 # zsh  5.9  https://www.zsh.org/
 build_packages 5.9 /home/lixq/toolchains/zsh zsh
@@ -149,7 +149,7 @@ build_packages  0.5.3  /home/lixq/toolchains/bpfsnoop bpfsnoop
 # zstd      1.5.7          https://github.com/facebook/zstd/releases/
 # curl      8.16.0         https://github.com/curl/curl/releases/
 # glibc     2.42           https://mirrors.ustc.edu.cn/gnu/glibc/
-# Python    3.14.0         https://www.python.org/ftp/python/
+# Python    3.14.1         https://www.python.org/ftp/python/
 build_packages 0.35.0 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT ncurses netperf openssl xz zlib zstd curl elfutils glibc Python bcc
 
 # systemtap  5.4     https://sourceware.org/systemtap/ftp/releases/
@@ -168,7 +168,7 @@ build_packages 5.4 /home/lixq/toolchains/systemtap binutils bzip2 curl elfutils 
 #                    https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
 # golang    1.25.4   https://mirrors.ustc.edu.cn/golang/go1.25.4.linux-amd64.tar.gz
 # jdk       25.0.1   https://www.oracle.com/java/technologies/downloads/
-# miniforge 25.9.1   https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
+# miniforge 25.11.0  https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
 # websocat  1.13.0   https://github.com/vi/websocat/releases
 
 tae=$(date +%s)
