@@ -27,8 +27,8 @@ function build_packages() {
 tab=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 
-# cmake  4.2.0  https://cmake.org/download/
-build_packages 4.2.0 /home/lixq/toolchains/cmake cmake
+# cmake  4.2.1  https://cmake.org/download/
+build_packages 4.2.1 /home/lixq/toolchains/cmake cmake
 
 # Shellcheck  0.11.0  https://github.com/koalaman/shellcheck/releases
 build_packages 0.11.0 /home/lixq/toolchains/shellcheck shellcheck
@@ -100,8 +100,8 @@ build_packages 21.1.7 /home/lixq/toolchains/llvm bison libedit libxml2 lua ncurs
 # zsh  5.9  https://www.zsh.org/
 build_packages 5.9 /home/lixq/toolchains/zsh zsh
 
-# boost  1.89.0  https://www.boost.org/releases/latest/
-build_packages 1.89.0 /home/lixq/toolchains/boost boost
+# boost  1.90.0  https://www.boost.org/releases/latest/
+build_packages 1.90.0 /home/lixq/toolchains/boost boost
 
 # tcpflow  1.6.1  https://github.com/simsong/tcpflow/releases/
 build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
@@ -121,8 +121,8 @@ build_packages 2.52.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd op
 # glibc  2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 25.2.1 /home/lixq/toolchains/node glibc node
 
-# bpftrace  0.24.1  https://github.com/bpftrace/bpftrace/releases/
-build_packages 0.24.1 /home/lixq/toolchains/bpftrace bpftrace
+# bpftrace  0.24.2  https://github.com/bpftrace/bpftrace/releases/
+build_packages 0.24.2 /home/lixq/toolchains/bpftrace bpftrace
 
 # bpfsnoop  0.5.3  https://github.com/bpfsnoop/bpfsnoop/tags
 build_packages  0.5.3  /home/lixq/toolchains/bpfsnoop bpfsnoop
@@ -164,9 +164,9 @@ build_packages 0.35.0 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c js
 # glibc      2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 5.4 /home/lixq/toolchains/systemtap binutils bzip2 curl elfutils gcc ncurses patchelf readline xz zlib zstd systemtap glibc
 
-# eclipse  2025-09   https://www.eclipse.org/downloads/packages/
+# eclipse  2025-12   https://www.eclipse.org/downloads/packages/
 #                    https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
-# golang    1.25.4   https://mirrors.ustc.edu.cn/golang/go1.25.4.linux-amd64.tar.gz
+# golang    1.25.5   https://go.dev/dl/go1.25.5.linux-amd64.tar.gz
 # jdk       25.0.1   https://www.oracle.com/java/technologies/downloads/
 # miniforge 25.11.0  https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
 # websocat  1.13.0   https://github.com/vi/websocat/releases
