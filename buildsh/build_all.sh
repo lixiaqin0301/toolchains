@@ -40,8 +40,9 @@ gccver=15.2.0
 build_packages $gccver /opt/gcc gcc binutils
 build_packages $gccver /home/lixq/toolchains/gcc gcc binutils
 
-# gdb  16.3  https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/
-build_packages 16.3 /home/lixq/toolchains/gdb gdb
+# gdb     17.1  https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/
+# ncurses  6.3  https://invisible-island.net/ncurses/
+build_packages 17.1 /home/lixq/toolchains/gdb ncurses gdb
 
 # Bear  3.1.6  https://github.com/rizsotto/Bear/
 build_packages 3.1.6 /home/lixq/toolchains/Bear Bear

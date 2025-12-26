@@ -2,7 +2,7 @@
 
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=16.3
+ver=17.1
 DESTDIR=$1
 srcpath=/home/lixq/src/${name}-${ver}.tar.gz
 
@@ -10,7 +10,9 @@ srcpath=/home/lixq/src/${name}-${ver}.tar.gz
 [[ -f $srcpath ]] || exit 1
 
 export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-export LDFLAGS="-static-libgcc -static-libstdc++"
+export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig"
+export CPPFLAGS="-isystem $DESTDIR/usr/include"
+export LDFLAGS="-static-libgcc -static-libstdc++ -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/usr/lib -Wl,-rpath,$DESTDIR/usr/lib"
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
