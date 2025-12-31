@@ -170,7 +170,7 @@ build_packages 5.4 /home/lixq/toolchains/systemtap binutils bzip2 curl elfutils 
 # golang    1.25.5   https://go.dev/dl/go1.25.5.linux-amd64.tar.gz
 # jdk       25.0.1   https://www.oracle.com/java/technologies/downloads/
 # miniforge 25.11.0  https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
-# websocat  1.13.0   https://github.com/vi/websocat/releases
+# websocat  1.14.1   https://github.com/vi/websocat/releases
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
