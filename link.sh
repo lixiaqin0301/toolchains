@@ -24,6 +24,12 @@ ln -sf /home/lixq/toolchains/SpaceVim.d "$HOME/.SpaceVim.d"
 /bin/rm -rfv "$HOME/.zshrc"
 ln -sf /home/lixq/toolchains/data/zshrc "$HOME/.zshrc"
 
+/bin/rm -rfv "$HOME/.rustup"
+ln -sf /home/lixq/toolchains/rustup "$HOME/.rustup"
+
+/bin/rm -rfv "$HOME/.cargo"
+ln -sf /home/lixq/toolchains/cargo "$HOME/.cargo"
+
 /bin/rm -rfv /etc/profile.d/etc_profile_d.sh
 ln -sf /home/lixq/toolchains/data/etc_profile_d.sh /etc/profile.d/
 

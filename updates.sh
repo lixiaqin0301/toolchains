@@ -54,6 +54,26 @@ for _ in {0..9}; do
     python3 install.py --clangd-completer --clang-completer --system-libclang --go-completer --verbose && break
 done
 
+if [[ -f /mnt/d/Bear.tar ]]; then
+    cd /home/lixq/toolchains/ || exit 1
+    rm -rf Bear
+    tar -xf /mnt/d/Bear.tar
+fi
+
+if [[ -f /mnt/d/cargo.tar ]]; then
+    cd /home/lixq/toolchains/ || exit 1
+    rm -rf .cargo cargo
+    tar -xf /mnt/d/cargo.tar
+    mv .cargo cargo
+fi
+
+if [[ -f /mnt/d/rustup.tar ]]; then
+    cd /home/lixq/toolchains/ || exit 1
+    rm -rf .rustup rustup
+    tar -xf /mnt/d/rustup.tar
+    mv .rustup rustup
+fi
+
 if [[ -d /mnt/d/ ]]; then
     cd /home/lixq || exit 1
     sudo rm -rf /mnt/d/toolchains.tar.gz
