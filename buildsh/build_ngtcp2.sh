@@ -20,5 +20,8 @@ tar -xf "$srcpath" || exit 1
 cd "$name-$ver" || exit 1
 autoreconf -fi || exit 1
 ./configure "--prefix=$DESTDIR/usr" --with-openssl || exit 1
+
+[[ -f tests/munit/.deps/examplestest-munit.Po ]] || cp "examples/\$(top_srcdir)/tests/munit/.deps/examplestest-munit.Po" tests/munit/.deps/examplestest-munit.Po
+
 make -s "-j$(nproc)" || exit 1
 make -s "-j$(nproc)" install || exit 1
