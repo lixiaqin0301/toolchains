@@ -44,8 +44,9 @@ build_packages $gccver /home/lixq/toolchains/gcc gcc binutils
 # ncurses  6.3  https://invisible-island.net/ncurses/
 build_packages 17.1 /home/lixq/toolchains/gdb ncurses gdb
 
-# Bear  3.1.6  https://github.com/rizsotto/Bear/
-build_packages 3.1.6 /home/lixq/toolchains/Bear Bear
+# Bear  4.0.0  https://github.com/rizsotto/Bear/
+#build_packages 4.0.0 /home/lixq/toolchains/Bear Bear
+# /mnt/d/udate_rust.sh
 
 # bashdb  4.4-1.0.1  https://sourceforge.net/projects/bashdb/files/bashdb/
 build_packages 4.4-1.0.1 /home/lixq/toolchains/bashdb bashdb
