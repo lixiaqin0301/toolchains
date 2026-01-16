@@ -47,9 +47,7 @@ rm -rf go Bear .cargo cargo .rustup rustup
 tar -xf /mnt/d/t/go.tar
 tar -xf /mnt/d/t/Bear.tar
 tar -xf /mnt/d/t/cargo.tar
-mv .cargo cargo
 tar -xf /mnt/d/t/rustup.tar
-mv .rustup rustup
 
 cd /home/lixq || exit 1
 sudo chown -R root:root /home/lixq/toolchains /home/lixq/35share-rd/src
