@@ -9,10 +9,26 @@ srcpath=/home/lixq/src/${name}-${ver}.tar.gz
 [[ -n $DESTDIR ]] || exit 1
 [[ -f $srcpath ]] || exit 1
 
-export PATH="/home/lixq/toolchains/gcc/usr/bin:$DESTDIR/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig"
+export PATH="$DESTDIR/usr/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig:$DESTDIR/usr/share/pkgconfig"
 export CPPFLAGS="-isystem $DESTDIR/usr/include"
-export LDFLAGS="-static-libgcc -static-libstdc++ -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/usr/lib -Wl,-rpath,$DESTDIR/usr/lib"
+export LDFLAGS="-L$DESTDIR/usr/lib -L$DESTDIR/usr/lib64 -Wl,-rpath-link,$DESTDIR/usr/lib:$DESTDIR/usr/lib64 -Wl,-rpath,$DESTDIR/usr/lib:$DESTDIR/usr/lib64"
+
+[[ -d $DESTDIR/usr/lib64 ]] || mkdir -p "$DESTDIR/usr/lib64"
+cd "$DESTDIR/usr/lib64" || exit 1
+for p in /home/lixq/toolchains/gcc/usr/lib64/libgcc* /home/lixq/toolchains/gcc/usr/lib64/libstdc++.s*[0-9o]; do
+    [[ -f $(basename "$p") ]] && continue
+    if [[ -L $p ]]; then
+        ln -sf "$(readlink "$p")" "$(basename "$p")"
+    else
+        cp "$p" .
+    fi
+done
+[[ -d $DESTDIR/usr/share ]] || mkdir -p "$DESTDIR/usr/share"
+cp -r /home/lixq/toolchains/gcc/usr/share/gcc-* "$DESTDIR/usr/share"
+for f in /home/lixq/toolchains/gcc/usr/lib64/libstdc++.so.*-gdb.py; do
+    sed "s;/home/lixq/toolchains/gcc;$DESTDIR;" /home/lixq/toolchains/gcc/usr/lib64/libstdc++.so.6.0.34-gdb.py > "$DESTDIR/usr/lib64/$(basename "$f")"
+done
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1

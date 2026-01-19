@@ -41,9 +41,14 @@ build_packages $gccver /opt/gcc gcc binutils
 build_packages $gccver /home/lixq/toolchains/gcc gcc binutils
 
 # gdb       17.1  https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/
+# expat    2.7.3  https://github.com/libexpat/libexpat/releases/
+# gmp      6.3.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gmp/
+# mpfr     4.2.3  https://mirrors.tuna.tsinghua.edu.cn/gnu/mpfr/
 # ncurses    6.3  https://invisible-island.net/ncurses/
+# xz       5.8.2  https://tukaani.org/xz/
+# zstd     1.5.7  https://github.com/facebook/zstd/releases/
 # Python  3.14.2  https://www.python.org/ftp/python/
-build_packages 17.1 /home/lixq/toolchains/gdb ncurses Python gdb
+build_packages 17.1 /home/lixq/toolchains/gdb expat gmp mpfr ncurses xz zstd Python gdb
 
 # Bear  4.0.1  https://github.com/rizsotto/Bear/
 #build_packages 4.0.1 /home/lixq/toolchains/Bear Bear
