@@ -27,8 +27,8 @@ function build_packages() {
 tab=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 
-# cmake  4.2.1  https://cmake.org/download/
-build_packages 4.2.1 /home/lixq/toolchains/cmake cmake
+# cmake  4.2.2  https://cmake.org/download/
+build_packages 4.2.2 /home/lixq/toolchains/cmake cmake
 
 # Shellcheck  0.11.0  https://github.com/koalaman/shellcheck/releases
 build_packages 0.11.0 /home/lixq/toolchains/shellcheck shellcheck
@@ -50,8 +50,7 @@ build_packages $gccver /home/lixq/toolchains/gcc gcc binutils
 # Python  3.14.2  https://www.python.org/ftp/python/
 build_packages 17.1 /home/lixq/toolchains/gdb expat gmp mpfr ncurses xz zstd Python gdb
 
-# Bear  4.0.1  https://github.com/rizsotto/Bear/
-#build_packages 4.0.1 /home/lixq/toolchains/Bear Bear
+# Bear  4.0.2  https://github.com/rizsotto/Bear/
 # /mnt/d/update_rust.sh
 
 # bashdb  4.4-1.0.1  https://sourceforge.net/projects/bashdb/files/bashdb/
@@ -125,9 +124,9 @@ build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 # glibc    2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 2.52.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd openssl curl glibc git
 
-# node   25.3.0  https://nodejs.org/dist/
-# glibc  2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
-build_packages 25.3.0 /home/lixq/toolchains/node glibc node
+# node   25.4.0  https://nodejs.org/dist/
+# glibc  2.42    https://mirrors.tuna.tsinghua.edu.cn/gnu/glibc/
+build_packages 25.4.0 /home/lixq/toolchains/node glibc node
 
 # bpftrace  0.24.2  https://github.com/bpftrace/bpftrace/releases/
 build_packages 0.24.2 /home/lixq/toolchains/bpftrace bpftrace
