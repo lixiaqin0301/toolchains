@@ -44,7 +44,7 @@ build_packages $gccver /home/lixq/toolchains/gcc gcc binutils
 # expat    2.7.3  https://github.com/libexpat/libexpat/releases/
 # gmp      6.3.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gmp/
 # mpfr     4.2.3  https://mirrors.tuna.tsinghua.edu.cn/gnu/mpfr/
-# ncurses    6.3  https://invisible-island.net/ncurses/
+# ncurses    6.6  https://invisible-island.net/ncurses/
 # xz       5.8.2  https://tukaani.org/xz/
 # zstd     1.5.7  https://github.com/facebook/zstd/releases/
 # Python  3.14.2  https://www.python.org/ftp/python/
@@ -73,7 +73,7 @@ build_packages 0.18.0 /home/lixq/toolchains/patchelf patchelf
 build_packages 2.43 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap glibc
 
 # curl          8.18.0  https://github.com/curl/curl/releases/
-# openssl       3.6.0   https://github.com/openssl/openssl/releases/
+# openssl       3.6.1   https://github.com/openssl/openssl/releases/
 # nghttp3       1.14.0  https://github.com/ngtcp2/nghttp3/releases/
 # ngtcp2        1.19.0  https://github.com/ngtcp2/ngtcp2/releases/
 # nghttp2       1.68.0  https://github.com/nghttp2/nghttp2/releases/
@@ -94,14 +94,14 @@ build_packages 8.18.0 /home/lixq/toolchains/curl brotli c-ares gsasl keyutils kr
 # llvm     21.1.8        https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
 # bison    3.8.2         https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
 # libedit  20251016-3.1  https://thrysoee.dk/editline/
-# libxml2  2.15.1        https://gitlab.gnome.org/GNOME/libxml2/-/releases/
+# libxml2  2.15.1        https://github.com/GNOME/libxml2/tags
 # lua      5.4.8         https://www.lua.org/ftp/
-# ncurses  6.3           https://invisible-island.net/ncurses/
+# ncurses  6.6           https://invisible-island.net/ncurses/
 # swig     4.4.1         https://github.com/swig/swig/tags/
 # xz       5.8.2         https://tukaani.org/xz/
 # zlib     1.3.1         https://github.com/madler/zlib/releases/
 # zstd     1.5.7         https://github.com/facebook/zstd/releases/
-# openssl  3.6.0         https://github.com/openssl/openssl/releases/
+# openssl  3.6.1         https://github.com/openssl/openssl/releases/
 # Python   3.14.2        https://www.python.org/ftp/python/
 build_packages 21.1.8 /home/lixq/toolchains/llvm bison libedit libxml2 lua ncurses swig xz zlib zstd openssl Python llvm
 
@@ -120,8 +120,8 @@ build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 # libpsl   0.21.5  https://github.com/rockdaboot/libpsl/releases/
 # zlib     1.3.1   https://github.com/madler/zlib/releases/
 # zstd     1.5.7   https://github.com/facebook/zstd/releases/
-# openssl  3.6.0   https://github.com/openssl/openssl/releases/
-# curl     8.17.0  https://github.com/curl/curl/releases/
+# openssl  3.6.1   https://github.com/openssl/openssl/releases/
+# curl     8.18.0  https://github.com/curl/curl/releases/
 # glibc    2.43    https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 2.52.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd openssl curl glibc git
 
@@ -135,13 +135,13 @@ build_packages 0.24.2 /home/lixq/toolchains/bpftrace bpftrace
 # bpfsnoop  0.5.4  https://github.com/bpfsnoop/bpfsnoop/tags
 build_packages  0.5.4  /home/lixq/toolchains/bpfsnoop bpfsnoop
 
-# bcc       0.35.0         https://github.com/iovisor/bcc/releases/
+# bcc       0.36.0         https://github.com/iovisor/bcc/releases/
 # bison     3.8.2          https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
-# brotli    1.1.0          https://github.com/google/brotli/releases/
+# brotli    1.2.0          https://github.com/google/brotli/releases/
 # bzip2     1.0.8          https://sourceware.org/pub/bzip2/
-# elfutils  0.193          https://sourceware.org/elfutils/ftp/
+# elfutils  0.194          https://sourceware.org/elfutils/ftp/
 # flex      2.6.4          https://github.com/westes/flex/releases/
-# icu4c     77.1           https://github.com/unicode-org/icu/
+# icu4c     78.2           https://github.com/unicode-org/icu/
 # json-c    0.18-20240915  https://github.com/json-c/json-c/tags
 # LuaJIT    2.1.ROLLING    https://github.com/LuaJIT/LuaJIT/tags
 # netperf   2.7.0          https://github.com/HewlettPackard/netperf/tags
@@ -149,23 +149,26 @@ build_packages  0.5.4  /home/lixq/toolchains/bpfsnoop bpfsnoop
 # libedit   20251016-3.1   https://thrysoee.dk/editline/
 # libffi    3.5.2          https://github.com/libffi/libffi/releases/
 # libpsl    0.21.5         https://github.com/rockdaboot/libpsl/releases/
-# libxml2   2.15.1         https://gitlab.gnome.org/GNOME/libxml2/-/releases/
-# ncurses   6.3            https://invisible-island.net/ncurses/
-# openssl   3.6.0          https://github.com/openssl/openssl/releases/
+# libxml2   2.15.1         https://github.com/GNOME/libxml2/tags
+# ncurses   6.6            https://invisible-island.net/ncurses/
+# openssl   3.6.1          https://github.com/openssl/openssl/releases/
 # xz        5.8.2          https://tukaani.org/xz/
 # zlib      1.3.1          https://github.com/madler/zlib/releases/
 # zstd      1.5.7          https://github.com/facebook/zstd/releases/
-# curl      8.16.0         https://github.com/curl/curl/releases/
+# curl      8.18.0         https://github.com/curl/curl/releases/
 # glibc     2.43           https://mirrors.ustc.edu.cn/gnu/glibc/
 # Python    3.14.2         https://www.python.org/ftp/python/
-build_packages 0.35.0 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT ncurses netperf openssl xz zlib zstd curl elfutils glibc Python bcc
+build_packages 0.36.0 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT ncurses netperf openssl xz zlib zstd curl elfutils glibc Python bcc
 
 # systemtap  5.4     https://sourceware.org/systemtap/ftp/releases/
 # binutils   2.45    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
 # bzip2      1.0.8   https://sourceware.org/pub/bzip2/
-# readline   8.3     https://mirrors.tuna.tsinghua.edu.cn/gnu/readline/
-# ncurses    6.3     https://invisible-island.net/ncurses/
+# curl       8.18.0  https://github.com/curl/curl/releases/
+# elfutils   0.194   https://sourceware.org/elfutils/ftp/
+# gcc        15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
+# ncurses    6.6     https://invisible-island.net/ncurses/
 # patchelf   0.18.0  https://github.com/NixOS/patchelf/releases/
+# readline   8.3     https://mirrors.tuna.tsinghua.edu.cn/gnu/readline/
 # xz         5.8.2   https://tukaani.org/xz/
 # zlib       1.3.1   https://github.com/madler/zlib/releases/
 # zstd       1.5.7   https://github.com/facebook/zstd/releases/

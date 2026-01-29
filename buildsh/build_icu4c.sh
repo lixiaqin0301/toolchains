@@ -2,9 +2,9 @@
 
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=77_1
+ver=78.2
 DESTDIR=$1
-srcpath=/home/lixq/src/$name-$ver-src.tgz
+srcpath=/home/lixq/src/${name}-${ver}-sources.tgz
 
 [[ -n $DESTDIR ]] || exit 1
 [[ -f $srcpath ]] || exit 1
