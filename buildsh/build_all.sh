@@ -65,11 +65,12 @@ build_packages 4.4.1 /home/lixq/toolchains/make make
 # patchelf  0.18.0  https://github.com/NixOS/patchelf/releases/
 build_packages 0.18.0 /home/lixq/toolchains/patchelf patchelf
 
-# glibc            2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
-# pcre2            10.46   https://github.com/PCRE2Project/pcre2/releases/
-# audit-userspace  4.1.2   https://github.com/linux-audit/audit-userspace/releases/
-# libcap           2.76    https://git.kernel.org/pub/scm/libs/libcap/libcap.git/
-build_packages 2.42 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap glibc
+# glibc            2.43     https://mirrors.ustc.edu.cn/gnu/glibc/
+# kernel           6.6.121  https://www.kernel.org/
+# pcre2            10.47    https://github.com/PCRE2Project/pcre2/releases/
+# audit-userspace  4.1.2    https://github.com/linux-audit/audit-userspace/releases/
+# libcap           2.77     https://git.kernel.org/pub/scm/libs/libcap/libcap.git/
+build_packages 2.43 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap glibc
 
 # curl          8.18.0  https://github.com/curl/curl/releases/
 # openssl       3.6.0   https://github.com/openssl/openssl/releases/
@@ -121,11 +122,11 @@ build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 # zstd     1.5.7   https://github.com/facebook/zstd/releases/
 # openssl  3.6.0   https://github.com/openssl/openssl/releases/
 # curl     8.17.0  https://github.com/curl/curl/releases/
-# glibc    2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
+# glibc    2.43    https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 2.52.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd openssl curl glibc git
 
 # node   25.4.0  https://nodejs.org/dist/
-# glibc  2.42    https://mirrors.tuna.tsinghua.edu.cn/gnu/glibc/
+# glibc  2.43    https://mirrors.tuna.tsinghua.edu.cn/gnu/glibc/
 build_packages 25.4.0 /home/lixq/toolchains/node glibc node
 
 # bpftrace  0.24.2  https://github.com/bpftrace/bpftrace/releases/
@@ -155,7 +156,7 @@ build_packages  0.5.3  /home/lixq/toolchains/bpfsnoop bpfsnoop
 # zlib      1.3.1          https://github.com/madler/zlib/releases/
 # zstd      1.5.7          https://github.com/facebook/zstd/releases/
 # curl      8.16.0         https://github.com/curl/curl/releases/
-# glibc     2.42           https://mirrors.ustc.edu.cn/gnu/glibc/
+# glibc     2.43           https://mirrors.ustc.edu.cn/gnu/glibc/
 # Python    3.14.2         https://www.python.org/ftp/python/
 build_packages 0.35.0 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT ncurses netperf openssl xz zlib zstd curl elfutils glibc Python bcc
 
@@ -168,7 +169,7 @@ build_packages 0.35.0 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c js
 # xz         5.8.2   https://tukaani.org/xz/
 # zlib       1.3.1   https://github.com/madler/zlib/releases/
 # zstd       1.5.7   https://github.com/facebook/zstd/releases/
-# glibc      2.42    https://mirrors.ustc.edu.cn/gnu/glibc/
+# glibc      2.43    https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 5.4 /home/lixq/toolchains/systemtap binutils bzip2 curl elfutils gcc ncurses patchelf readline xz zlib zstd systemtap glibc
 
 # eclipse  2025-12   https://www.eclipse.org/downloads/packages/
