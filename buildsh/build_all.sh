@@ -132,8 +132,8 @@ build_packages 25.5.0 /home/lixq/toolchains/node glibc node
 # bpftrace  0.24.2  https://github.com/bpftrace/bpftrace/releases/
 build_packages 0.24.2 /home/lixq/toolchains/bpftrace bpftrace
 
-# bpfsnoop  0.5.3  https://github.com/bpfsnoop/bpfsnoop/tags
-build_packages  0.5.3  /home/lixq/toolchains/bpfsnoop bpfsnoop
+# bpfsnoop  0.5.4  https://github.com/bpfsnoop/bpfsnoop/tags
+build_packages  0.5.4  /home/lixq/toolchains/bpfsnoop bpfsnoop
 
 # bcc       0.35.0         https://github.com/iovisor/bcc/releases/
 # bison     3.8.2          https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
@@ -175,7 +175,7 @@ build_packages 5.4 /home/lixq/toolchains/systemtap binutils bzip2 curl elfutils 
 # eclipse  2025-12   https://www.eclipse.org/downloads/packages/
 #                    https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
 # golang    1.25.6   https://go.dev/dl/go1.25.6.linux-amd64.tar.gz
-# jdk       25.0.1   https://www.oracle.com/java/technologies/downloads/
+# jdk       25.0.2   https://www.oracle.com/java/technologies/downloads/
 # miniforge 25.11.0  https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
 # websocat  1.14.1   https://github.com/vi/websocat/releases
 
