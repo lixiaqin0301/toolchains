@@ -50,6 +50,17 @@ build_packages $gccver /home/lixq/toolchains/gcc gcc binutils
 # Python  3.14.2  https://www.python.org/ftp/python/
 build_packages 17.1 /home/lixq/toolchains/gdb expat gmp mpfr ncurses xz zstd Python gdb
 
+# gdb              16.3   https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/
+# core_analyzer  2.24.0  https://github.com/yanqi27/core_analyzer/releases
+# expat           2.7.3   https://github.com/libexpat/libexpat/releases/
+# gmp             6.3.0   https://mirrors.tuna.tsinghua.edu.cn/gnu/gmp/
+# mpfr            4.2.3   https://mirrors.tuna.tsinghua.edu.cn/gnu/mpfr/
+# ncurses           6.6   https://invisible-island.net/ncurses/
+# xz              5.8.2   https://tukaani.org/xz/
+# zstd            1.5.7   https://github.com/facebook/zstd/releases/
+# Python         3.14.2   https://www.python.org/ftp/python/
+build_packages 16.3 /home/lixq/toolchains/gdb16 expat gmp mpfr ncurses xz zstd Python gdb16
+
 # Bear  4.0.2  https://github.com/rizsotto/Bear/
 # /mnt/d/update_rust.sh
 

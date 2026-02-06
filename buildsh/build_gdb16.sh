@@ -1,13 +1,14 @@
 #!/bin/bash
 
-name=$(basename "${BASH_SOURCE[0]}" .sh)
-name=${name#build_}
-ver=17.1
+name=gdb
+ver=16.3
 DESTDIR=$1
 srcpath=/home/lixq/src/${name}-${ver}.tar.gz
+core_analyzer=2.24.0
 
 [[ -n $DESTDIR ]] || exit 1
 [[ -f $srcpath ]] || exit 1
+[[ -f /home/lixq/src/core_analyzer-${core_analyzer}.tar.gz ]] || exit 1
 
 export PATH="$DESTDIR/usr/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig:$DESTDIR/usr/share/pkgconfig"
@@ -34,6 +35,9 @@ done
 cd /home/lixq/src || exit 1
 rm -rf "$name-$ver"
 tar -xf "$srcpath" || exit 1
+rm -rf core_analyzer-${core_analyzer}
+tar -xf core_analyzer-${core_analyzer}.tar.gz || exit 1
+cp -rLvp core_analyzer-${core_analyzer}/gdbplus/gdb-${ver}/gdb "$name-$ver" || exit 1
 mkdir "$name-$ver/build"
 cd "$name-$ver/build" || exit 1
 rm -rf "$DESTDIR/usr/bin/python"
