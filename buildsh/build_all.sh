@@ -41,7 +41,7 @@ build_packages $gccver /opt/gcc gcc binutils
 build_packages $gccver /home/lixq/toolchains/gcc gcc binutils
 
 # gdb       17.1  https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/
-# expat    2.7.3  https://github.com/libexpat/libexpat/releases/
+# expat    2.7.4  https://github.com/libexpat/libexpat/releases/
 # gmp      6.3.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gmp/
 # mpfr     4.2.3  https://mirrors.tuna.tsinghua.edu.cn/gnu/mpfr/
 # ncurses    6.6  https://invisible-island.net/ncurses/
@@ -51,8 +51,8 @@ build_packages $gccver /home/lixq/toolchains/gcc gcc binutils
 build_packages 17.1 /home/lixq/toolchains/gdb expat gmp mpfr ncurses xz zstd Python gdb
 
 # gdb              16.3   https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/
-# core_analyzer  2.24.0  https://github.com/yanqi27/core_analyzer/releases
-# expat           2.7.3   https://github.com/libexpat/libexpat/releases/
+# core_analyzer  2.24.0   https://github.com/yanqi27/core_analyzer/releases
+# expat           2.7.4   https://github.com/libexpat/libexpat/releases/
 # gmp             6.3.0   https://mirrors.tuna.tsinghua.edu.cn/gnu/gmp/
 # mpfr            4.2.3   https://mirrors.tuna.tsinghua.edu.cn/gnu/mpfr/
 # ncurses           6.6   https://invisible-island.net/ncurses/
@@ -125,16 +125,16 @@ build_packages 1.90.0 /home/lixq/toolchains/boost boost
 # tcpflow  1.6.1  https://github.com/simsong/tcpflow/releases/
 build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 
-# git      2.52.0  https://github.com/git/git/tags/
+# git      2.53.0  https://github.com/git/git/tags/
 # brotli   1.2.0   https://github.com/google/brotli/releases/
-# expat    2.7.3   https://github.com/libexpat/libexpat/releases/
+# expat    2.7.4   https://github.com/libexpat/libexpat/releases/
 # libpsl   0.21.5  https://github.com/rockdaboot/libpsl/releases/
 # zlib     1.3.1   https://github.com/madler/zlib/releases/
 # zstd     1.5.7   https://github.com/facebook/zstd/releases/
 # openssl  3.6.1   https://github.com/openssl/openssl/releases/
 # curl     8.18.0  https://github.com/curl/curl/releases/
 # glibc    2.43    https://mirrors.ustc.edu.cn/gnu/glibc/
-build_packages 2.52.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd openssl curl glibc git
+build_packages 2.53.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd openssl curl glibc git
 
 # node   25.5.0  https://nodejs.org/dist/
 # glibc  2.43    https://mirrors.tuna.tsinghua.edu.cn/gnu/glibc/
