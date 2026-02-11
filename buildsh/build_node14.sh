@@ -5,8 +5,8 @@ ver=v14.17.3
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 . /opt/rh/devtoolset-11/enable
 export PATH="$PATH:/home/lixq/toolchains/Bear/usr/bin"
-export CFLAGS="-g -fno-omit-frame-pointer $CFLAGS"
-export CXXFLAGS="-g -fno-omit-frame-pointer $CXXFLAGS"
+export CFLAGS="-g3 -gdwarf-4 -gstrict-dwarf -fno-eliminate-unused-debug-types -fno-eliminate-unused-debug-symbols -fvar-tracking-assignments -fno-omit-frame-pointer -O0 $CFLAGS"
+export CXXFLAGS="-g3 -gdwarf-4 -gstrict-dwarf -fno-eliminate-unused-debug-types -fno-eliminate-unused-debug-symbols -fvar-tracking-assignments -fno-omit-frame-pointer -O0 $CXXFLAGS"
 
 if [[ ! -f /home/lixq/src/node-${ver}.tar.gz ]]; then
     echo "wget https://nodejs.org/dist/${ver}/node-${ver}.tar.gz"
