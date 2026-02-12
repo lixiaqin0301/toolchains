@@ -47,7 +47,7 @@ build_packages $gccver /home/lixq/toolchains/gcc gcc binutils
 # ncurses    6.6  https://invisible-island.net/ncurses/
 # xz       5.8.2  https://tukaani.org/xz/
 # zstd     1.5.7  https://github.com/facebook/zstd/releases/
-# Python  3.14.2  https://www.python.org/ftp/python/
+# Python  3.14.3  https://www.python.org/ftp/python/
 build_packages 17.1 /home/lixq/toolchains/gdb expat gmp mpfr ncurses xz zstd Python gdb
 
 # gdb              16.3   https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/
@@ -58,10 +58,10 @@ build_packages 17.1 /home/lixq/toolchains/gdb expat gmp mpfr ncurses xz zstd Pyt
 # ncurses           6.6   https://invisible-island.net/ncurses/
 # xz              5.8.2   https://tukaani.org/xz/
 # zstd            1.5.7   https://github.com/facebook/zstd/releases/
-# Python         3.14.2   https://www.python.org/ftp/python/
+# Python         3.14.3   https://www.python.org/ftp/python/
 build_packages 16.3 /home/lixq/toolchains/gdb16 expat gmp mpfr ncurses xz zstd Python gdb16
 
-# Bear  4.0.2  https://github.com/rizsotto/Bear/
+# Bear  4.0.3  https://github.com/rizsotto/Bear/
 # /mnt/d/update_rust.sh
 
 # bashdb  4.4-1.0.1  https://sourceforge.net/projects/bashdb/files/bashdb/
@@ -113,7 +113,7 @@ build_packages 8.18.0 /home/lixq/toolchains/curl brotli c-ares gsasl keyutils kr
 # zlib     1.3.1         https://github.com/madler/zlib/releases/
 # zstd     1.5.7         https://github.com/facebook/zstd/releases/
 # openssl  3.6.1         https://github.com/openssl/openssl/releases/
-# Python   3.14.2        https://www.python.org/ftp/python/
+# Python   3.14.3        https://www.python.org/ftp/python/
 build_packages 21.1.8 /home/lixq/toolchains/llvm bison libedit libxml2 lua ncurses swig xz zlib zstd openssl Python llvm
 
 # zsh  5.9  https://www.zsh.org/
@@ -136,9 +136,9 @@ build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 # glibc    2.43    https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 2.53.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd openssl curl glibc git
 
-# node   25.6.0  https://nodejs.org/dist/
+# node   25.6.1  https://nodejs.org/dist/
 # glibc  2.43    https://mirrors.tuna.tsinghua.edu.cn/gnu/glibc/
-build_packages 25.6.0 /home/lixq/toolchains/node glibc node
+build_packages 25.6.1 /home/lixq/toolchains/node glibc node
 
 # bpftrace  0.24.2  https://github.com/bpftrace/bpftrace/releases/
 build_packages 0.24.2 /home/lixq/toolchains/bpftrace bpftrace
@@ -146,7 +146,7 @@ build_packages 0.24.2 /home/lixq/toolchains/bpftrace bpftrace
 # bpfsnoop  0.5.4  https://github.com/bpfsnoop/bpfsnoop/tags
 build_packages  0.5.4  /home/lixq/toolchains/bpfsnoop bpfsnoop
 
-# bcc       0.36.0         https://github.com/iovisor/bcc/releases/
+# bcc       0.36.1         https://github.com/iovisor/bcc/releases/
 # bison     3.8.2          https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
 # brotli    1.2.0          https://github.com/google/brotli/releases/
 # bzip2     1.0.8          https://sourceware.org/pub/bzip2/
@@ -156,7 +156,7 @@ build_packages  0.5.4  /home/lixq/toolchains/bpfsnoop bpfsnoop
 # json-c    0.18-20240915  https://github.com/json-c/json-c/tags
 # LuaJIT    2.1.ROLLING    https://github.com/LuaJIT/LuaJIT/tags
 # netperf   2.7.0          https://github.com/HewlettPackard/netperf/tags
-# libbpf    1.6.2          https://github.com/libbpf/libbpf/releases
+# libbpf    1.6.3          https://github.com/libbpf/libbpf/releases
 # libedit   20251016-3.1   https://thrysoee.dk/editline/
 # libffi    3.5.2          https://github.com/libffi/libffi/releases/
 # libpsl    0.21.5         https://github.com/rockdaboot/libpsl/releases/
@@ -168,8 +168,8 @@ build_packages  0.5.4  /home/lixq/toolchains/bpfsnoop bpfsnoop
 # zstd      1.5.7          https://github.com/facebook/zstd/releases/
 # curl      8.18.0         https://github.com/curl/curl/releases/
 # glibc     2.43           https://mirrors.ustc.edu.cn/gnu/glibc/
-# Python    3.14.2         https://www.python.org/ftp/python/
-build_packages 0.36.0 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT ncurses netperf openssl xz zlib zstd curl elfutils glibc Python bcc
+# Python    3.14.3         https://www.python.org/ftp/python/
+build_packages 0.36.1 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT ncurses netperf openssl xz zlib zstd curl elfutils glibc Python bcc
 
 # systemtap  5.4     https://sourceware.org/systemtap/ftp/releases/
 # binutils   2.45    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
@@ -188,9 +188,9 @@ build_packages 5.4 /home/lixq/toolchains/systemtap binutils bzip2 curl elfutils 
 
 # eclipse  2025-12   https://www.eclipse.org/downloads/packages/
 #                    https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
-# golang    1.25.7   https://go.dev/dl/
+# golang    1.26.0   https://go.dev/dl/
 # jdk       25.0.2   https://www.oracle.com/java/technologies/downloads/
-# miniforge 25.11.0  https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
+# miniforge 26.1.0   https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
 # websocat  1.14.1   https://github.com/vi/websocat/releases
 
 tae=$(date +%s)
