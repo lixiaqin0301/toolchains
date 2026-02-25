@@ -2,7 +2,7 @@
 
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=5.4.8
+ver=5.5.0
 DESTDIR=$1
 srcpath=/home/lixq/src/$name-$ver.tar.gz
 

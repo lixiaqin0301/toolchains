@@ -89,7 +89,7 @@ build_packages 2.43 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap gli
 # ngtcp2        1.19.0  https://github.com/ngtcp2/ngtcp2/releases/
 # nghttp2       1.68.0  https://github.com/nghttp2/nghttp2/releases/
 # libssh2       1.11.1  https://libssh2.org/
-# zlib          1.3.1   https://github.com/madler/zlib/releases/
+# zlib          1.3.2   https://github.com/madler/zlib/releases/
 # brotli        1.2.0   https://github.com/google/brotli/releases/
 # c-ares        1.34.6  https://github.com/c-ares/c-ares/releases/
 # zstd          1.5.7   https://github.com/facebook/zstd/releases/
@@ -102,19 +102,19 @@ build_packages 2.43 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap gli
 # gsasl         2.2.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/gsasl/
 build_packages 8.18.0 /home/lixq/toolchains/curl brotli c-ares gsasl keyutils krb5 libidn2 libpsl libunistring zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 openldap curl
 
-# llvm     21.1.8        https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
+# llvm     22.1.0        https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
 # bison    3.8.2         https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
 # libedit  20251016-3.1  https://thrysoee.dk/editline/
 # libxml2  2.15.1        https://github.com/GNOME/libxml2/tags
-# lua      5.4.8         https://www.lua.org/ftp/
+# lua      5.5.0         https://www.lua.org/ftp/
 # ncurses  6.6           https://invisible-island.net/ncurses/
 # swig     4.4.1         https://github.com/swig/swig/tags/
 # xz       5.8.2         https://tukaani.org/xz/
-# zlib     1.3.1         https://github.com/madler/zlib/releases/
+# zlib     1.3.2         https://github.com/madler/zlib/releases/
 # zstd     1.5.7         https://github.com/facebook/zstd/releases/
 # openssl  3.6.1         https://github.com/openssl/openssl/releases/
 # Python   3.14.3        https://www.python.org/ftp/python/
-build_packages 21.1.8 /home/lixq/toolchains/llvm bison libedit libxml2 lua ncurses swig xz zlib zstd openssl Python llvm
+build_packages 22.1.0 /home/lixq/toolchains/llvm bison libedit libxml2 lua ncurses swig xz zlib zstd openssl Python llvm
 
 # zsh  5.9  https://www.zsh.org/
 build_packages 5.9 /home/lixq/toolchains/zsh zsh
@@ -129,7 +129,7 @@ build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 # brotli   1.2.0   https://github.com/google/brotli/releases/
 # expat    2.7.4   https://github.com/libexpat/libexpat/releases/
 # libpsl   0.21.5  https://github.com/rockdaboot/libpsl/releases/
-# zlib     1.3.1   https://github.com/madler/zlib/releases/
+# zlib     1.3.2   https://github.com/madler/zlib/releases/
 # zstd     1.5.7   https://github.com/facebook/zstd/releases/
 # openssl  3.6.1   https://github.com/openssl/openssl/releases/
 # curl     8.18.0  https://github.com/curl/curl/releases/
@@ -164,7 +164,7 @@ build_packages  0.5.4  /home/lixq/toolchains/bpfsnoop bpfsnoop
 # ncurses   6.6            https://invisible-island.net/ncurses/
 # openssl   3.6.1          https://github.com/openssl/openssl/releases/
 # xz        5.8.2          https://tukaani.org/xz/
-# zlib      1.3.1          https://github.com/madler/zlib/releases/
+# zlib      1.3.2          https://github.com/madler/zlib/releases/
 # zstd      1.5.7          https://github.com/facebook/zstd/releases/
 # curl      8.18.0         https://github.com/curl/curl/releases/
 # glibc     2.43           https://mirrors.ustc.edu.cn/gnu/glibc/
@@ -181,7 +181,7 @@ build_packages 0.36.1 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c js
 # patchelf   0.18.0  https://github.com/NixOS/patchelf/releases/
 # readline   8.3     https://mirrors.tuna.tsinghua.edu.cn/gnu/readline/
 # xz         5.8.2   https://tukaani.org/xz/
-# zlib       1.3.1   https://github.com/madler/zlib/releases/
+# zlib       1.3.2   https://github.com/madler/zlib/releases/
 # zstd       1.5.7   https://github.com/facebook/zstd/releases/
 # glibc      2.43    https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 5.4 /home/lixq/toolchains/systemtap binutils bzip2 curl elfutils gcc ncurses patchelf readline xz zlib zstd systemtap glibc
