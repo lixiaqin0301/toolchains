@@ -143,3 +143,4 @@ compctl -K _complete_invoke + -f invoke inv
 
 # vim: set ft=sh :
 
+ulimit -c unlimited
