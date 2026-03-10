@@ -136,9 +136,9 @@ build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 # glibc    2.43    https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 2.53.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd openssl curl glibc git
 
-# node   25.7.0  https://nodejs.org/dist/
+# node   25.8.0  https://nodejs.org/dist/
 # glibc  2.43    https://mirrors.tuna.tsinghua.edu.cn/gnu/glibc/
-build_packages 25.7.0 /home/lixq/toolchains/node glibc node
+build_packages 25.8.0 /home/lixq/toolchains/node glibc node
 
 # bpftrace  0.24.2  https://github.com/bpftrace/bpftrace/releases/
 build_packages 0.24.2 /home/lixq/toolchains/bpftrace bpftrace
@@ -186,9 +186,12 @@ build_packages 0.36.1 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c js
 # glibc      2.43    https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 5.4 /home/lixq/toolchains/systemtap binutils bzip2 curl elfutils gcc ncurses patchelf readline xz zlib zstd systemtap glibc
 
+# wrk  4.2.0  https://github.com/wg/wrk/tags
+build_packages 4.2.0 /home/lixq/toolchains/wrk wrk
+
 # eclipse  2025-12   https://www.eclipse.org/downloads/packages/
 #                    https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
-# golang    1.26.0   https://go.dev/dl/
+# golang    1.26.1   https://golang.google.cn/dl/
 # jdk       25.0.2   https://www.oracle.com/java/technologies/downloads/
 # miniforge 26.1.0   https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
 # websocat  1.14.1   https://github.com/vi/websocat/releases
