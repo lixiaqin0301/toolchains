@@ -198,6 +198,7 @@ build_packages 4.2.0 /home/lixq/toolchains/wrk wrk
 # Bear        4.0.3    https://github.com/rizsotto/Bear/
 # rg          15.1.0   https://github.com/BurntSushi/ripgrep/releases/
 # rr-debuger  5.9.0    https://github.com/rr-debugger/rr/releases/
+# cygwin      3.6.7    https://cygwin.com/
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
