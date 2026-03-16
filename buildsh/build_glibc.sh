@@ -19,6 +19,26 @@ rm -rf "$name-$ver" linux-${kernelver}
 tar -xf "$srcpath" || exit 1
 mkdir -p "$name-$ver/$name-$ver/build/glibc"
 cd "$name-$ver/$name-$ver/build/glibc" || exit 1
+if [[ $DESTDIR == /opt* ]]; then
+    [[ ${DESTDIR%/} == /opt ]] && exit 1
+    ../../../configure --prefix="$DESTDIR" || exit 1
+    make -s "-j$(nproc)" || exit 1
+    rm -rf "$DESTDIR"
+    make -s "-j$(nproc)" install || exit 1
+    cd "$DESTDIR/lib" || exit 1
+    for p in /home/lixq/toolchains/gcc/usr/lib64/libgcc* /home/lixq/toolchains/gcc/usr/lib64/libstdc++.s*[0-9o]; do
+        [[ -f $(basename "$p") ]] && continue
+        if [[ -L $p ]]; then
+            ln -sf "$(readlink "$p")" "$(basename "$p")"
+        else
+            cp "$p" .
+        fi
+    done
+    cd /opt || exit 1
+    rm -rf glibc-$ver.el7.tar.gz
+    tar -czf glibc-$ver.el7.tar.gz "$(basename "$DESTDIR")" || exit 1
+    exit 0
+fi
 ../../../configure --prefix=/usr || exit 1
 make -s "-j$(nproc)" || exit 1
 make -s "-j$(nproc)" install "DESTDIR=$DESTDIR" || exit 1
