@@ -186,8 +186,9 @@ build_packages 5.4 /home/lixq/toolchains/systemtap binutils bzip2 curl elfutils 
 # wrk  4.2.0  https://github.com/wg/wrk/tags
 build_packages 4.2.0 /home/lixq/toolchains/wrk wrk
 
-# pandoc 3.9 https://github.com/jgm/pandoc/releases/
-
+# pandoc      3.9      https://github.com/jgm/pandoc/releases/
+# claude      2.1.76   https://github.com/anthropics/claude-code/releases
+# /opt/glibc/lib/ld-linux-x86-64.so.2 --version | grep 2.43 || { rm -rf /opt/glibc; mkdir /opt/glibc; curl -sfSL http://10.8.36.42/other/glibc-2.43.el7.tar.gz | tar -xzf - -C /opt; /opt/glibc/lib/ld-linux-x86-64.so.2 --version | grep 2.43; }; /opt/patchelf/bin/patchelf --version | grep 0.15.5 || { rm -rf /opt/patchelf; mkdir /opt/patchelf; curl -sfSL http://10.8.36.42/other/patchelf-0.15.5-x86_64.tar.gz | tar -xzf - -C /opt/patchelf; /opt/patchelf/bin/patchelf --version | grep 0.15.5; }; curl -fsSL https://repo.haplat.net/claude/install.sh | sed -e '/chmod +x/a /opt/patchelf/bin/patchelf --set-rpath /opt/glibc/lib "$binary_path"' -e '/chmod +x/a /opt/patchelf/bin/patchelf --set-interpreter /opt/glibc/lib/ld-linux-x86-64.so.2 "$binary_path"' | bash; /opt/patchelf/bin/patchelf --set-rpath /opt/glibc/lib /root/.local/bin/claude; /opt/patchelf/bin/patchelf --set-interpreter /opt/glibc/lib/ld-linux-x86-64.so.2 /root/.local/bin/claude; /root/.local/bin/claude -v
 # eclipse     2025-12  https://www.eclipse.org/downloads/packages/
 #                      https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
 # golang      1.26.1   https://golang.google.cn/dl/
