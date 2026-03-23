@@ -27,8 +27,8 @@ function build_packages() {
 tab=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 
-# cmake  4.2.3  https://cmake.org/download/
-build_packages 4.2.3 /home/lixq/toolchains/cmake cmake
+# cmake  4.3.0  https://cmake.org/download/
+build_packages 4.3.0 /home/lixq/toolchains/cmake cmake
 
 # Shellcheck  0.11.0  https://github.com/koalaman/shellcheck/releases
 build_packages 0.11.0 /home/lixq/toolchains/shellcheck shellcheck
@@ -186,14 +186,12 @@ build_packages 5.4 /home/lixq/toolchains/systemtap binutils bzip2 curl elfutils 
 # wrk  4.2.0  https://github.com/wg/wrk/tags
 build_packages 4.2.0 /home/lixq/toolchains/wrk wrk
 
-# pandoc      3.9      https://github.com/jgm/pandoc/releases/
-# claude      2.1.76   https://github.com/anthropics/claude-code/releases
-# /opt/glibc/lib/ld-linux-x86-64.so.2 --version | grep 2.43 || { rm -rf /opt/glibc; mkdir /opt/glibc; curl -sfSL http://10.8.36.42/other/glibc-2.43.el7.tar.gz | tar -xzf - -C /opt; /opt/glibc/lib/ld-linux-x86-64.so.2 --version | grep 2.43; }; /opt/patchelf/bin/patchelf --version | grep 0.15.5 || { rm -rf /opt/patchelf; mkdir /opt/patchelf; curl -sfSL http://10.8.36.42/other/patchelf-0.15.5-x86_64.tar.gz | tar -xzf - -C /opt/patchelf; /opt/patchelf/bin/patchelf --version | grep 0.15.5; }; curl -fsSL https://repo.haplat.net/claude/install.sh | sed -e '/chmod +x/a /opt/patchelf/bin/patchelf --set-rpath /opt/glibc/lib "$binary_path"' -e '/chmod +x/a /opt/patchelf/bin/patchelf --set-interpreter /opt/glibc/lib/ld-linux-x86-64.so.2 "$binary_path"' | bash; /opt/patchelf/bin/patchelf --set-rpath /opt/glibc/lib /root/.local/bin/claude; /opt/patchelf/bin/patchelf --set-interpreter /opt/glibc/lib/ld-linux-x86-64.so.2 /root/.local/bin/claude; /root/.local/bin/claude -v
-# eclipse     2025-12  https://www.eclipse.org/downloads/packages/
+# pandoc      3.9.0.2  https://github.com/jgm/pandoc/releases/
+# eclipse     2026-03  https://www.eclipse.org/downloads/packages/
 #                      https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
 # golang      1.26.1   https://golang.google.cn/dl/
-# jdk         25.0.2   https://www.oracle.com/java/technologies/downloads/
-# miniforge   26.1.0   https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
+# jdk         26       https://www.oracle.com/java/technologies/downloads/
+# miniforge   26.1.1   https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
 # websocat    1.14.1   https://github.com/vi/websocat/releases/
 # Bear        4.0.3    https://github.com/rizsotto/Bear/
 # rg          15.1.0   https://github.com/BurntSushi/ripgrep/releases/
