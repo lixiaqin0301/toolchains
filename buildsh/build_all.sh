@@ -99,10 +99,10 @@ build_packages 2.43 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap gli
 # gsasl         2.2.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/gsasl/
 build_packages 8.19.0 /home/lixq/toolchains/curl brotli c-ares gsasl keyutils krb5 libidn2 libpsl libunistring zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 openldap curl
 
-# llvm     22.1.1        https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
+# llvm     22.1.2        https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
 # bison    3.8.2         https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
 # libedit  20251016-3.1  https://thrysoee.dk/editline/
-# libxml2  2.15.1        https://github.com/GNOME/libxml2/tags
+# libxml2  2.15.2        https://github.com/GNOME/libxml2/tags
 # lua      5.5.0         https://www.lua.org/ftp/
 # ncurses  6.6           https://invisible-island.net/ncurses/
 # swig     4.4.1         https://github.com/swig/swig/tags/
@@ -111,7 +111,7 @@ build_packages 8.19.0 /home/lixq/toolchains/curl brotli c-ares gsasl keyutils kr
 # zstd     1.5.7         https://github.com/facebook/zstd/releases/
 # openssl  3.6.1         https://github.com/openssl/openssl/releases/
 # Python   3.14.3        https://www.python.org/ftp/python/
-build_packages 22.1.1 /home/lixq/toolchains/llvm bison libedit libxml2 lua ncurses swig xz zlib zstd openssl Python llvm
+build_packages 22.1.2 /home/lixq/toolchains/llvm bison libedit libxml2 lua ncurses swig xz zlib zstd openssl Python llvm
 
 # zsh  5.9  https://www.zsh.org/
 build_packages 5.9 /home/lixq/toolchains/zsh zsh
@@ -133,12 +133,12 @@ build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 # glibc    2.43    https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 2.53.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd openssl curl glibc git
 
-# node   25.8.1  https://nodejs.org/dist/
+# node   25.8.2  https://nodejs.org/dist/
 # glibc  2.43    https://mirrors.tuna.tsinghua.edu.cn/gnu/glibc/
-build_packages 25.8.1 /home/lixq/toolchains/node glibc node
+build_packages 25.8.2 /home/lixq/toolchains/node glibc node
 
-# bpftrace  0.25.0  https://github.com/bpftrace/bpftrace/releases/
-build_packages 0.25.0 /home/lixq/toolchains/bpftrace bpftrace
+# bpftrace  0.25.1  https://github.com/bpftrace/bpftrace/releases/
+build_packages 0.25.1 /home/lixq/toolchains/bpftrace bpftrace
 
 # bpfsnoop  0.5.4  https://github.com/bpfsnoop/bpfsnoop/tags
 build_packages  0.5.4  /home/lixq/toolchains/bpfsnoop bpfsnoop
@@ -189,14 +189,16 @@ build_packages 4.2.0 /home/lixq/toolchains/wrk wrk
 # pandoc      3.9.0.2  https://github.com/jgm/pandoc/releases/
 # eclipse     2026-03  https://www.eclipse.org/downloads/packages/
 #                      https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
-# golang      1.26.1   https://golang.google.cn/dl/
 # jdk         26       https://www.oracle.com/java/technologies/downloads/
 # miniforge   26.1.1   https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
 # websocat    1.14.1   https://github.com/vi/websocat/releases/
-# Bear        4.0.3    https://github.com/rizsotto/Bear/
 # rg          15.1.0   https://github.com/BurntSushi/ripgrep/releases/
 # rr-debuger  5.9.0    https://github.com/rr-debugger/rr/releases/
 # cygwin      3.6.7    https://cygwin.com/
+# golang      1.26.1   https://golang.google.cn/dl/
+# rust        1.94.1   https://rust-lang.org/
+# Bear        4.0.3    https://github.com/rizsotto/Bear/
+# superpowers 5.0.6    https://github.com/obra/superpowers/releases/
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log

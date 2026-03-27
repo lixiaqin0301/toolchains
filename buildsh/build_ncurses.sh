@@ -10,6 +10,7 @@ srcpath=/home/lixq/src/$name.tar.gz
 [[ -f $srcpath ]] || exit 1
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export LDFLAGS="-L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/usr/lib -Wl,-rpath,$DESTDIR/usr/lib"
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
