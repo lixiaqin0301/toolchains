@@ -9,7 +9,7 @@ srcpath=/home/lixq/src/$name-$ver.tar.gz
 [[ -n $DESTDIR ]] || exit 1
 [[ -f $srcpath ]] || exit 1
 
-export PATH="/home/lixq/toolchains/Miniforge3/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export PATH="$DESTDIR/usr/bin:/home/lixq/toolchains/Miniforge3/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export CPPFLAGS="-I$DESTDIR/include --sysroot=$DESTDIR"
 export LDFLAGS=" -L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64 --sysroot=$DESTDIR -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64 -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
 export LIBRARY_PATH="$DESTDIR/usr/lib64:$DESTDIR/lib64"
@@ -34,3 +34,38 @@ make -s "-j$(nproc)" || exit 1
 make -s "-j$(nproc)" install || exit 1
 cd "$DESTDIR/usr/lib" || exit 1
 ln -s libnode.so.* libnode.so
+
+while IFS= read -r f; do
+    $f --help 2>&1 | grep -q GLIBC || continue
+    [[ -f "$f.real" ]] || mv "$f" "$f.real"
+    rm -f "$f"
+    {
+        echo "#!/bin/bash"
+        echo "exec $DESTDIR/lib64/ld-linux-x86-64.so.2 --library-path $DESTDIR/lib64:$DESTDIR/usr/lib64 \"$f.real\" \"\$@\" "
+    } > "$f"
+    chmod 755 "$f"
+done < <(find "$DESTDIR" -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)
+
+"$DESTDIR/usr/bin/npm" config set registry https://repo.haplat.net/npm/ || exit 1
+echo "config set"
+"$DESTDIR/usr/bin/npm" install -g @anthropic-ai/claude-code || exit 1
+echo "@anthropic-ai/claude-code"
+"$DESTDIR/usr/bin/npm" install -g @openai/codex@latest || exit 1
+echo "@openai/codex@latest"
+"$DESTDIR/usr/bin/npm" install -g opencode-ai@latest || exit 1
+3cho "opencode-ai@latest"
+"$DESTDIR/usr/bin/npm" install -g markdownlint-cli2 || exit 1
+echo "markdownlint-cli2"
+"$DESTDIR/usr/bin/npm" install -g prettier || exit 1
+echo "prettier"
+
+while IFS= read -r f; do
+    $f --help 2>&1 | grep -q GLIBC || continue
+    [[ -f "$f.real" ]] || mv "$f" "$f.real"
+    rm -f "$f"
+    {
+        echo "#!/bin/bash"
+        echo "exec $DESTDIR/lib64/ld-linux-x86-64.so.2 --library-path $DESTDIR/lib64:$DESTDIR/usr/lib64 \"$f.real\" \"\$@\" "
+    } > "$f"
+    chmod 755 "$f"
+done < <(find "$DESTDIR" -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)

@@ -34,6 +34,16 @@ if [[ $DESTDIR == /opt* ]]; then
             cp "$p" .
         fi
     done
+    while IFS= read -r f; do
+        $f --help 2>&1 | grep -q GLIBC || continue
+        [[ -f "$f.real" ]] || mv "$f" "$f.real"
+        rm -f "$f"
+        {
+            echo "#!/bin/bash"
+            echo "exec $DESTDIR/lib64/ld-linux-x86-64.so.2 --library-path $DESTDIR/lib64:$DESTDIR/usr/lib64 \"$f.real\" \"\$@\" "
+        } > "$f"
+        chmod 755 "$f"
+    done < <(find "$DESTDIR" -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)
     cd /opt || exit 1
     rm -rf glibc-$ver.el7.tar.gz
     tar -czf glibc-$ver.el7.tar.gz "$(basename "$DESTDIR")" || exit 1
@@ -52,3 +62,14 @@ rm -rf linux-$kernelver
 tar -xf /home/lixq/src/linux-$kernelver.tar.gz || exit 1
 cd linux-${kernelver} || exit 1
 make -s "-j$(nproc)" headers_install "INSTALL_HDR_PATH=$DESTDIR/usr" || exit 1
+
+while IFS= read -r f; do
+    $f --help 2>&1 | grep -q GLIBC || continue
+    [[ -f "$f.real" ]] || mv "$f" "$f.real"
+    rm -f "$f"
+    {
+        echo "#!/bin/bash"
+        echo "exec $DESTDIR/lib64/ld-linux-x86-64.so.2 --library-path $DESTDIR/lib64:$DESTDIR/usr/lib64 \"$f.real\" \"\$@\" "
+    } > "$f"
+    chmod 755 "$f"
+done < <(find "$DESTDIR" -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)
