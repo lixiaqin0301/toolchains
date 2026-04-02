@@ -19,7 +19,7 @@ rm -rf "$name-$ver" linux-${kernelver}
 tar -xf "$srcpath" || exit 1
 mkdir -p "$name-$ver/$name-$ver/build/glibc"
 cd "$name-$ver/$name-$ver/build/glibc" || exit 1
-if [[ $DESTDIR == /opt* ]]; then
+if [[ $DESTDIR == /opt/glibc* ]]; then
     [[ ${DESTDIR%/} == /opt ]] && exit 1
     ../../../configure --prefix="$DESTDIR" || exit 1
     make -s "-j$(nproc)" || exit 1
@@ -40,7 +40,7 @@ if [[ $DESTDIR == /opt* ]]; then
         rm -f "$f"
         {
             echo "#!/bin/bash"
-            echo "exec $DESTDIR/lib64/ld-linux-x86-64.so.2 --library-path $DESTDIR/lib64:$DESTDIR/usr/lib64 \"$f.real\" \"\$@\" "
+            echo "exec '$DESTDIR/lib/ld-linux-x86-64.so.2' '$f.real' \"\$@\""
         } > "$f"
         chmod 755 "$f"
     done < <(find "$DESTDIR" -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)
@@ -69,7 +69,7 @@ while IFS= read -r f; do
     rm -f "$f"
     {
         echo "#!/bin/bash"
-        echo "exec $DESTDIR/lib64/ld-linux-x86-64.so.2 --library-path $DESTDIR/lib64:$DESTDIR/usr/lib64 \"$f.real\" \"\$@\" "
+        echo "exec '$DESTDIR/lib64/ld-linux-x86-64.so.2' --library-path '$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/usr/lib' '$f.real' \"\$@\""
     } > "$f"
     chmod 755 "$f"
 done < <(find "$DESTDIR" -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)

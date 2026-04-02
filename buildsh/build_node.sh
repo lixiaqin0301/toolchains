@@ -41,7 +41,7 @@ while IFS= read -r f; do
     rm -f "$f"
     {
         echo "#!/bin/bash"
-        echo "exec $DESTDIR/lib64/ld-linux-x86-64.so.2 --library-path $DESTDIR/lib64:$DESTDIR/usr/lib64 \"$f.real\" \"\$@\" "
+        echo "exec '$DESTDIR/lib64/ld-linux-x86-64.so.2' --library-path '$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/usr/lib' '$f.real' \"\$@\""
     } > "$f"
     chmod 755 "$f"
 done < <(find "$DESTDIR" -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)
@@ -59,19 +59,49 @@ while IFS= read -r f; do
     rm -f "$f"
     {
         echo "#!/bin/bash"
-        echo "exec $DESTDIR/lib64/ld-linux-x86-64.so.2 --library-path $DESTDIR/lib64:$DESTDIR/usr/lib64 \"$f.real\" \"\$@\" "
+        echo "exec '$DESTDIR/lib64/ld-linux-x86-64.so.2' --library-path '$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/usr/lib' '$f.real' \"\$@\""
     } > "$f"
     chmod 755 "$f"
 done < <(find "$DESTDIR" -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)
 
 cat > "$DESTDIR/usr/bin/fake_patchelf.sh" << EOF
 #!/bin/bash
+rm -rf /usr/local/bin/node
+ln -s '$DESTDIR/usr/bin/node' /usr/local/bin/node
 for arg in "\$@"; do
     [[ "\$arg" == */node ]] || continue
     [[ -f "\$arg" ]] || continue
     [[ -L "\$arg" ]] && continue
     mv "\$arg" "\${arg}.real"
-    ln -s "$DESTDIR/usr/bin/node" "\$arg"
+    ln -s '$DESTDIR/usr/bin/node' "\$arg"
 done
 EOF
 chmod 755 "$DESTDIR/usr/bin/fake_patchelf.sh"
+cat > "$DESTDIR/usr/bin/adjust_cpptools_claude.sh" << EOF
+#!/bin/bash
+for f in ~/.vscode-server/extensions/anthropic.claude-code-*/resources/native-binary/claude \\
+         ~/.local/share/code-server/extensions/anthropic.claude-code-*/resources/native-binary/claude; do
+    if "\$f" --help 2>&1 | grep -q GLIBC; then
+        mv "\$f" "\$f".real
+        ln -s "\$(realpath '$DESTDIR/usr/bin/claude')" "\$f"
+    fi
+done
+for d in ~/.vscode-server/extensions/ms-vscode.cpptools-*/debugAdapters/bin/ \\
+         ~/.local/share/code-server/extensions/ms-vscode.cpptools-*/debugAdapters/bin/; do
+    if "\$d/OpenDebugAD7" --help 2>&1 | grep GLIBCXX; then
+        cd "\$d" || continue
+        rm -rf netcoredeps
+        mkdir netcoredeps
+        cd netcoredeps || continue
+        for p in '$DESTDIR'/usr/lib64/libstdc++.s*[0-9o]; do
+            [[ -f \$(basename "\$p") ]] && continue
+            if [[ -L \$p ]]; then
+                ln -sf "\$(readlink "\$p")" "\$(basename "\$p")"
+            else
+                cp "\$p" .
+            fi
+        done
+    fi
+done
+EOF
+chmod 755 "$DESTDIR/usr/bin/adjust_cpptools_claude.sh"

@@ -79,6 +79,7 @@ build_packages 0.15.5 /home/lixq/toolchains/patchelf patchelf
 # audit-userspace  4.1.2    https://github.com/linux-audit/audit-userspace/releases/
 # libcap           2.77     https://git.kernel.org/pub/scm/libs/libcap/libcap.git/
 build_packages 2.43 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap glibc
+build_packages 2.43 /opt/glibc pcre2 audit-userspace libcap glibc
 
 # curl          8.19.0  https://github.com/curl/curl/releases/
 # openssl       3.6.1   https://github.com/openssl/openssl/releases/
@@ -136,6 +137,7 @@ build_packages 2.53.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd op
 # node   22.2.2  https://nodejs.org/dist/
 # glibc  2.43    https://mirrors.tuna.tsinghua.edu.cn/gnu/glibc/
 build_packages 22.22.2 /home/lixq/toolchains/node glibc node
+build_packages 22.22.2 /opt/node glibc node
 
 # bpftrace  0.25.1  https://github.com/bpftrace/bpftrace/releases/
 build_packages 0.25.1 /home/lixq/toolchains/bpftrace bpftrace
