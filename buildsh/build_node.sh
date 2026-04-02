@@ -2,7 +2,7 @@
 
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=v25.8.2
+ver=v25.9.0
 DESTDIR=$1
 srcpath=/home/lixq/src/$name-$ver.tar.gz
 
@@ -47,17 +47,11 @@ while IFS= read -r f; do
 done < <(find "$DESTDIR" -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)
 
 "$DESTDIR/usr/bin/npm" config set registry https://repo.haplat.net/npm/ || exit 1
-echo "config set"
 "$DESTDIR/usr/bin/npm" install -g @anthropic-ai/claude-code || exit 1
-echo "@anthropic-ai/claude-code"
 "$DESTDIR/usr/bin/npm" install -g @openai/codex@latest || exit 1
-echo "@openai/codex@latest"
 "$DESTDIR/usr/bin/npm" install -g opencode-ai@latest || exit 1
-3cho "opencode-ai@latest"
 "$DESTDIR/usr/bin/npm" install -g markdownlint-cli2 || exit 1
-echo "markdownlint-cli2"
 "$DESTDIR/usr/bin/npm" install -g prettier || exit 1
-echo "prettier"
 
 while IFS= read -r f; do
     $f --help 2>&1 | grep -q GLIBC || continue
@@ -69,3 +63,15 @@ while IFS= read -r f; do
     } > "$f"
     chmod 755 "$f"
 done < <(find "$DESTDIR" -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)
+
+cat > "$DESTDIR/usr/bin/fake_patchelf.sh" << EOF
+#!/bin/bash
+for arg in "\$@"; do
+    [[ "\$arg" == */node ]] || continue
+    [[ -f "\$arg" ]] || continue
+    [[ -L "\$arg" ]] && continue
+    mv "\$arg" "\${arg}.real"
+    ln -s "$DESTDIR/usr/bin/node" "\$arg"
+done
+EOF
+chmod 755 "$DESTDIR/usr/bin/fake_patchelf.sh"
