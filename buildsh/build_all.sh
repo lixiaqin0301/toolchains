@@ -27,8 +27,8 @@ function build_packages() {
 tab=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 
-# cmake  4.3.0  https://cmake.org/download/
-build_packages 4.3.0 /home/lixq/toolchains/cmake cmake
+# cmake  4.3.1  https://cmake.org/download/
+build_packages 4.3.1 /home/lixq/toolchains/cmake cmake
 
 # Shellcheck  0.11.0  https://github.com/koalaman/shellcheck/releases
 build_packages 0.11.0 /home/lixq/toolchains/shellcheck shellcheck
@@ -199,7 +199,7 @@ build_packages 4.2.0 /home/lixq/toolchains/wrk wrk
 # cygwin      3.6.7    https://cygwin.com/
 # golang      1.26.1   https://golang.google.cn/dl/
 # rust        1.94.1   https://rust-lang.org/
-# Bear        4.0.3    https://github.com/rizsotto/Bear/
+# Bear        4.1.0    https://github.com/rizsotto/Bear/
 # superpowers 5.0.6    https://github.com/obra/superpowers/releases/
 
 tae=$(date +%s)

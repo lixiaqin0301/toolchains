@@ -47,6 +47,14 @@ while IFS= read -r f; do
 done < <(find "$DESTDIR" -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)
 
 "$DESTDIR/usr/bin/npm" config set registry https://repo.haplat.net/npm/ || exit 1
+
+# node 22 的 npm 有问题
+if [[ -d "$DESTDIR/usr/lib/node_modules/npm/node_modules/promise-retry" && ! -d "$DESTDIR/usr/lib/node_modules/promise-retry" ]]; then
+    cp -r "$DESTDIR/usr/lib/node_modules/npm/node_modules/promise-retry" "$DESTDIR/usr/lib/node_modules/"
+    "$DESTDIR/usr/bin/npm" update -g || exit 1
+    rm -rf "$DESTDIR/usr/lib/node_modules/promise-retry"
+fi
+"$DESTDIR/usr/bin/npm" update -g
 "$DESTDIR/usr/bin/npm" install -g @anthropic-ai/claude-code || exit 1
 "$DESTDIR/usr/bin/npm" install -g @openai/codex@latest || exit 1
 "$DESTDIR/usr/bin/npm" install -g opencode-ai@latest || exit 1
@@ -68,6 +76,11 @@ cat > "$DESTDIR/usr/bin/fake_patchelf.sh" << EOF
 #!/bin/bash
 rm -rf /usr/local/bin/node
 ln -s '$DESTDIR/usr/bin/node' /usr/local/bin/node
+for f in claude codex corepack markdownlint-cli2 npm npx opencode pnpm pnpx prettier yarn yarnpkg; do
+    [[ -L "$DESTDIR/usr/bin/\$f" ]] || continue
+    rm -rf "/usr/local/bin/\$f"
+    ln -s "\$(realpath "$DESTDIR/usr/bin/\$f")" "/usr/local/bin/\$f"
+done
 for arg in "\$@"; do
     [[ "\$arg" == */node ]] || continue
     [[ -f "\$arg" ]] || continue
