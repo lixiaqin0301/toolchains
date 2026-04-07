@@ -49,6 +49,7 @@ build_packages $gccver /home/lixq/toolchains/gcc gcc binutils
 # zstd     1.5.7  https://github.com/facebook/zstd/releases/
 # Python  3.14.3  https://www.python.org/ftp/python/
 build_packages 17.1 /home/lixq/toolchains/gdb expat gmp mpfr ncurses xz zstd Python gdb
+build_packages 17.1 /home/watch/toolchains/gdb expat gmp mpfr ncurses xz zstd Python gdb
 
 # gdb              16.3   https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/
 # core_analyzer  2.24.0   https://github.com/yanqi27/core_analyzer/releases
@@ -113,6 +114,7 @@ build_packages 8.19.0 /home/lixq/toolchains/curl brotli c-ares gsasl keyutils kr
 # openssl  3.6.1         https://github.com/openssl/openssl/releases/
 # Python   3.14.3        https://www.python.org/ftp/python/
 build_packages 22.1.2 /home/lixq/toolchains/llvm bison libedit libxml2 lua ncurses swig xz zlib zstd openssl Python llvm
+build_packages 22.1.2 /home/watch/toolchains/lldb bison libedit libxml2 lua ncurses swig xz zlib zstd openssl Python llvm
 
 # zsh  5.9  https://www.zsh.org/
 build_packages 5.9 /home/lixq/toolchains/zsh zsh
@@ -141,6 +143,7 @@ build_packages 22.22.2 /opt/node glibc node
 
 # bpftrace  0.25.1  https://github.com/bpftrace/bpftrace/releases/
 build_packages 0.25.1 /home/lixq/toolchains/bpftrace bpftrace
+build_packages 0.25.1 /home/watch/toolchains/bpftrace bpftrace
 
 # bpfsnoop  0.5.4  https://github.com/bpfsnoop/bpfsnoop/tags
 build_packages  0.5.4  /home/lixq/toolchains/bpfsnoop bpfsnoop
@@ -169,6 +172,7 @@ build_packages  0.5.4  /home/lixq/toolchains/bpfsnoop bpfsnoop
 # glibc     2.43           https://mirrors.ustc.edu.cn/gnu/glibc/
 # Python    3.14.3         https://www.python.org/ftp/python/
 build_packages 0.36.1 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT ncurses netperf openssl xz zlib zstd curl elfutils glibc Python bcc
+build_packages 0.36.1 /home/watch/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT ncurses netperf openssl xz zlib zstd curl elfutils glibc Python bcc
 
 # systemtap  5.4     https://sourceware.org/systemtap/ftp/releases/
 # binutils   2.45    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
@@ -184,6 +188,7 @@ build_packages 0.36.1 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c js
 # zstd       1.5.7   https://github.com/facebook/zstd/releases/
 # glibc      2.43    https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 5.4 /home/lixq/toolchains/systemtap binutils bzip2 curl elfutils gcc ncurses patchelf readline xz zlib zstd systemtap glibc
+build_packages 5.4 /home/watch/toolchains/systemtap binutils bzip2 curl elfutils gcc ncurses patchelf readline xz zlib zstd systemtap glibc
 
 # wrk  4.2.0  https://github.com/wg/wrk/tags
 build_packages 4.2.0 /home/lixq/toolchains/wrk wrk
