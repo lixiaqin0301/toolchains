@@ -69,7 +69,7 @@ while IFS= read -r f; do
     rm -f "$f"
     {
         echo "#!/bin/bash"
-        echo "exec '$DESTDIR/lib64/ld-linux-x86-64.so.2' --library-path '$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/usr/lib' '$f.real' \"\$@\""
+        echo "exec '$DESTDIR/lib64/ld-linux-x86-64.so.2' --library-path '$DESTDIR/lib64:$DESTDIR/usr/lib64' '$f.real' \"\$@\""
     } > "$f"
     chmod 755 "$f"
 done < <(find "$DESTDIR" -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)

@@ -200,7 +200,9 @@ build_packages 4.2.0 /home/lixq/toolchains/wrk wrk
 # golang      1.26.1   https://golang.google.cn/dl/
 # rust        1.94.1   https://rust-lang.org/
 # Bear        4.1.0    https://github.com/rizsotto/Bear/
-# superpowers 5.0.6    https://github.com/obra/superpowers/releases/
+
+# fox-wiki-manager  3.4.0-20260404   https://wiki.haplat.net/display/NGBNEW/fox-wiki-manager
+# superpowers       5.0.7            https://github.com/obra/superpowers/releases/
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log

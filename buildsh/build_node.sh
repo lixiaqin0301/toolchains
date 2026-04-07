@@ -32,8 +32,6 @@ cd "$name-$ver" || exit 1
 ./configure "--prefix=$DESTDIR/usr" || exit 1
 make -s "-j$(nproc)" || exit 1
 make -s "-j$(nproc)" install || exit 1
-cd "$DESTDIR/usr/lib" || exit 1
-ln -s libnode.so.* libnode.so
 
 while IFS= read -r f; do
     $f --help 2>&1 | grep -q GLIBC || continue
@@ -41,7 +39,7 @@ while IFS= read -r f; do
     rm -f "$f"
     {
         echo "#!/bin/bash"
-        echo "exec '$DESTDIR/lib64/ld-linux-x86-64.so.2' --library-path '$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/usr/lib' '$f.real' \"\$@\""
+        echo "exec '$DESTDIR/lib64/ld-linux-x86-64.so.2' --library-path '$DESTDIR/lib64:$DESTDIR/usr/lib64' '$f.real' \"\$@\""
     } > "$f"
     chmod 755 "$f"
 done < <(find "$DESTDIR" -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)
@@ -67,7 +65,7 @@ while IFS= read -r f; do
     rm -f "$f"
     {
         echo "#!/bin/bash"
-        echo "exec '$DESTDIR/lib64/ld-linux-x86-64.so.2' --library-path '$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/usr/lib' '$f.real' \"\$@\""
+        echo "exec '$DESTDIR/lib64/ld-linux-x86-64.so.2' --library-path '$DESTDIR/lib64:$DESTDIR/usr/lib64' '$f.real' \"\$@\""
     } > "$f"
     chmod 755 "$f"
 done < <(find "$DESTDIR" -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)
