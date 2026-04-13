@@ -83,7 +83,7 @@ build_packages 2.43 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap gli
 build_packages 2.43 /opt/glibc pcre2 audit-userspace libcap glibc
 
 # curl          8.19.0  https://github.com/curl/curl/releases/
-# openssl       3.6.1   https://github.com/openssl/openssl/releases/
+# openssl       3.6.2   https://github.com/openssl/openssl/releases/
 # nghttp3       1.15.0  https://github.com/ngtcp2/nghttp3/releases/
 # ngtcp2        1.21.0  https://github.com/ngtcp2/ngtcp2/releases/
 # nghttp2       1.68.0  https://github.com/nghttp2/nghttp2/releases/
@@ -131,7 +131,7 @@ build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 # libpsl   0.21.5  https://github.com/rockdaboot/libpsl/releases/
 # zlib     1.3.2   https://github.com/madler/zlib/releases/
 # zstd     1.5.7   https://github.com/facebook/zstd/releases/
-# openssl  3.6.1   https://github.com/openssl/openssl/releases/
+# openssl  3.6.2   https://github.com/openssl/openssl/releases/
 # curl     8.19.0  https://github.com/curl/curl/releases/
 # glibc    2.43    https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 2.53.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd openssl curl glibc git
@@ -164,7 +164,7 @@ build_packages  0.5.4  /home/lixq/toolchains/bpfsnoop bpfsnoop
 # libpsl    0.21.5         https://github.com/rockdaboot/libpsl/releases/
 # libxml2   2.15.1         https://github.com/GNOME/libxml2/tags
 # ncurses   6.6            https://invisible-island.net/ncurses/
-# openssl   3.6.1          https://github.com/openssl/openssl/releases/
+# openssl   3.6.2          https://github.com/openssl/openssl/releases/
 # xz        5.8.2          https://tukaani.org/xz/
 # zlib      1.3.2          https://github.com/madler/zlib/releases/
 # zstd      1.5.7          https://github.com/facebook/zstd/releases/
@@ -177,18 +177,19 @@ build_packages 0.36.1 /home/watch/toolchains/bcc bison brotli bzip2 flex icu4c j
 # systemtap  5.4     https://sourceware.org/systemtap/ftp/releases/
 # binutils   2.45    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
 # bzip2      1.0.8   https://sourceware.org/pub/bzip2/
-# curl       8.19.0  https://github.com/curl/curl/releases/
 # elfutils   0.194   https://sourceware.org/elfutils/ftp/
 # gcc        15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
 # ncurses    6.6     https://invisible-island.net/ncurses/
+# openssl    3.6.2   https://github.com/openssl/openssl/releases/
 # patchelf   0.15.5  https://github.com/NixOS/patchelf/releases/
 # readline   8.3     https://mirrors.tuna.tsinghua.edu.cn/gnu/readline/
 # xz         5.8.2   https://tukaani.org/xz/
 # zlib       1.3.2   https://github.com/madler/zlib/releases/
 # zstd       1.5.7   https://github.com/facebook/zstd/releases/
+# curl       8.19.0  https://github.com/curl/curl/releases/
 # glibc      2.43    https://mirrors.ustc.edu.cn/gnu/glibc/
-build_packages 5.4 /home/lixq/toolchains/systemtap binutils bzip2 curl elfutils gcc ncurses patchelf readline xz zlib zstd systemtap glibc
-build_packages 5.4 /home/watch/toolchains/systemtap binutils bzip2 curl elfutils gcc ncurses patchelf readline xz zlib zstd systemtap glibc
+#build_packages 5.4 /home/lixq/toolchains/systemtap binutils bzip2 openssl curl elfutils gcc ncurses patchelf readline xz zlib zstd systemtap glibc
+build_packages 5.4 /home/watch/toolchains/systemtap binutils bzip2 openssl curl elfutils gcc ncurses patchelf readline xz zlib zstd systemtap glibc
 
 # wrk  4.2.0  https://github.com/wg/wrk/tags
 build_packages 4.2.0 /home/lixq/toolchains/wrk wrk
@@ -202,9 +203,9 @@ build_packages 4.2.0 /home/lixq/toolchains/wrk wrk
 # rg          15.1.0   https://github.com/BurntSushi/ripgrep/releases/
 # rr-debuger  5.9.0    https://github.com/rr-debugger/rr/releases/
 # cygwin      3.6.7    https://cygwin.com/
-# golang      1.26.1   https://golang.google.cn/dl/
+# golang      1.26.2   https://golang.google.cn/dl/
 # rust        1.94.1   https://rust-lang.org/
-# Bear        4.1.0    https://github.com/rizsotto/Bear/
+# Bear        4.1.1    https://github.com/rizsotto/Bear/
 
 # fox-wiki-manager  3.4.0-20260404   https://wiki.haplat.net/display/NGBNEW/fox-wiki-manager
 # superpowers       5.0.7            https://github.com/obra/superpowers/releases/
