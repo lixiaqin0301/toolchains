@@ -2,7 +2,7 @@
 
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=v22.22.2
+ver=v25.9.0
 DESTDIR=$1
 srcpath=/home/lixq/src/$name-$ver.tar.gz
 
@@ -46,12 +46,12 @@ done < <(find "$DESTDIR" -type f -executable ! -name '*.so' ! -name '*.so.*' ! -
 
 "$DESTDIR/usr/bin/npm" config set registry https://repo.haplat.net/npm/ || exit 1
 
-# node 22 的 npm 有问题
-if [[ -d "$DESTDIR/usr/lib/node_modules/npm/node_modules/promise-retry" && ! -d "$DESTDIR/usr/lib/node_modules/promise-retry" ]]; then
-    cp -r "$DESTDIR/usr/lib/node_modules/npm/node_modules/promise-retry" "$DESTDIR/usr/lib/node_modules/"
-    "$DESTDIR/usr/bin/npm" update -g || exit 1
-    rm -rf "$DESTDIR/usr/lib/node_modules/promise-retry"
-fi
+# # node 22 的 npm 有问题
+# if [[ -d "$DESTDIR/usr/lib/node_modules/npm/node_modules/promise-retry" && ! -d "$DESTDIR/usr/lib/node_modules/promise-retry" ]]; then
+#     cp -r "$DESTDIR/usr/lib/node_modules/npm/node_modules/promise-retry" "$DESTDIR/usr/lib/node_modules/"
+#     "$DESTDIR/usr/bin/npm" update -g || exit 1
+#     rm -rf "$DESTDIR/usr/lib/node_modules/promise-retry"
+# fi
 "$DESTDIR/usr/bin/npm" update -g
 "$DESTDIR/usr/bin/npm" install -g @anthropic-ai/claude-code || exit 1
 "$DESTDIR/usr/bin/npm" install -g @openai/codex@latest || exit 1
@@ -74,7 +74,7 @@ cat > "$DESTDIR/usr/bin/fake_patchelf.sh" << EOF
 #!/bin/bash
 rm -rf /usr/local/bin/node
 ln -s '$DESTDIR/usr/bin/node' /usr/local/bin/node
-for f in claude codex corepack markdownlint-cli2 npm npx opencode pnpm pnpx prettier yarn yarnpkg; do
+for f in codex corepack markdownlint-cli2 npm npx opencode pnpm pnpx prettier yarn yarnpkg; do
     [[ -L "$DESTDIR/usr/bin/\$f" ]] || continue
     rm -rf "/usr/local/bin/\$f"
     ln -s "\$(realpath "$DESTDIR/usr/bin/\$f")" "/usr/local/bin/\$f"
@@ -84,7 +84,11 @@ for arg in "\$@"; do
     [[ -f "\$arg" ]] || continue
     [[ -L "\$arg" ]] && continue
     mv "\$arg" "\${arg}.real"
-    ln -s '$DESTDIR/usr/bin/node' "\$arg"
+    {
+        echo "#!/bin/bash"
+        echo "exec '$DESTDIR/lib64/ld-linux-x86-64.so.2' --library-path '$DESTDIR/lib64:$DESTDIR/usr/lib64' \"\${arg}.real\" \"\\\$@\""
+    } > "\$arg"
+    chmod 755 "\$arg"
 done
 EOF
 chmod 755 "$DESTDIR/usr/bin/fake_patchelf.sh"
@@ -94,8 +98,12 @@ for f in ~/.vscode-server/extensions/anthropic.claude-code-*/resources/native-bi
          ~/.local/share/code-server/extensions/anthropic.claude-code-*/resources/native-binary/claude; do
     if "\$f" --help 2>&1 | grep -q GLIBC; then
         mv "\$f" "\$f".real
-        ln -s "\$(realpath '$DESTDIR/usr/bin/claude')" "\$f"
+        {
+            echo "#!/bin/bash"
+            echo "exec '$DESTDIR/lib64/ld-linux-x86-64.so.2' --library-path '$DESTDIR/lib64:$DESTDIR/usr/lib64' \"\${f}.real\" \"\\\$@\""
+        } > "\$f"
     fi
+    chmod 755 "\$f"
 done
 for d in ~/.vscode-server/extensions/ms-vscode.cpptools-*/debugAdapters/bin/ \\
          ~/.local/share/code-server/extensions/ms-vscode.cpptools-*/debugAdapters/bin/; do
