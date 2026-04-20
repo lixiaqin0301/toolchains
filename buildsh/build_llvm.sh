@@ -65,3 +65,6 @@ else
 fi
 make -s "-j$(nproc)" || exit 1
 make -s "-j$(nproc)" install || exit 1
+for f in bin/*; do
+    cp -an "$f" "$DESTDIR/usr/bin/"
+done
