@@ -40,6 +40,14 @@ cd /home/lixq/src || exit 1
 rm -rf "$name-$ver"
 tar -xf "$srcpath" || exit 1
 cd "$name-$ver" || exit 1
+# Python 3.14.4 不兼容 openssl 4.0.0
+sed -e '/OpenSSL API 1\.1\.0+ does not include version methods/i #if OPENSSL_VERSION_MAJOR < 4' \
+    -e '/extern const SSL_METHOD \*TLSv1_2_method/{n; s/^#endif$/#endif\n#endif \/* OPENSSL_VERSION_MAJOR < 4 *\//}' \
+    -e 's/!defined(OPENSSL_NO_TLS1_METHOD))/!defined(OPENSSL_NO_TLS1_METHOD) \&\& OPENSSL_VERSION_MAJOR < 4)/' \
+    -e 's/!defined(OPENSSL_NO_TLS1_1_METHOD))/!defined(OPENSSL_NO_TLS1_1_METHOD) \&\& OPENSSL_VERSION_MAJOR < 4)/' \
+    -e 's/!defined(OPENSSL_NO_TLS1_2_METHOD))/!defined(OPENSSL_NO_TLS1_2_METHOD) \&\& OPENSSL_VERSION_MAJOR < 4)/' \
+    -e 's/#if defined(SSL3_VERSION) && !defined(OPENSSL_NO_SSL3)/#if defined(SSL3_VERSION) \&\& !defined(OPENSSL_NO_SSL3) \&\& OPENSSL_VERSION_MAJOR < 4/' \
+    -i ./Modules/_ssl.c
 ./configure "--prefix=$DESTDIR/usr" --enable-shared || exit 1
 make -s "-j$(nproc)" || exit 1
 make -s -j"$(nproc)" install || exit 1
