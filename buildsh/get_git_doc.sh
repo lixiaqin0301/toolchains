@@ -12,4 +12,4 @@ grep --include='*.xsl' -R 'xsl:include href=' | while read -r line; do
     uri=$d/$f
     [[ -f "$uri" ]] || wget -r -np -k -l 1 "https://$uri"
 done
-tar -cjf docbook.sourceforge.net.tar.gz docbook.sourceforge.net
+tar -czf docbook.sourceforge.net.tar.gz docbook.sourceforge.net
