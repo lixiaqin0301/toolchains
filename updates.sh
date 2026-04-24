@@ -51,4 +51,4 @@ tar -xf /mnt/d/t/rustup.tar
 
 cd /home/lixq || exit 1
 sudo chown -R root:root /home/lixq/toolchains /share-rd/lixq/src/
-sudo tar -czf /share-rd/lixq/src/toolchains.tar.gz toolchains
+sudo tar -czf /share-rd/lixq/src/toolchains.tar.gz --exclude='toolchains/Miniforge3' toolchains
