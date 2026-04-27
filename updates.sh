@@ -36,9 +36,9 @@ touch /tmp/t/t.c /tmp/t/t.py /tmp/t/t.sh /tmp/t/t.lua /tmp/t/t.go
 nvim /tmp/t/t.*
 cd /home/lixq/toolchains/github.com/Valloric/YouCompleteMe/ || exit 1
 git submodule update --init --recursive
-if [[ -f /share-rd/lixq/src/clangd-21.1.3-x86_64-unknown-linux-gnu.tar.bz2 ]]; then
+if [[ -f /home/lixq/src/clangd-21.1.3-x86_64-unknown-linux-gnu.tar.bz2 ]]; then
     mkdir -p /home/lixq/toolchains/github.com/Valloric/YouCompleteMe/third_party/ycmd/third_party/clangd/cache/
-    cp /share-rd/lixq/src/clangd-21.1.3-x86_64-unknown-linux-gnu.tar.bz2 /home/lixq/toolchains/github.com/Valloric/YouCompleteMe/third_party/ycmd/third_party/clangd/cache/
+    cp /home/lixq/src/clangd-21.1.3-x86_64-unknown-linux-gnu.tar.bz2 /home/lixq/toolchains/github.com/Valloric/YouCompleteMe/third_party/ycmd/third_party/clangd/cache/
 fi
 python3 install.py --clangd-completer --clang-completer --system-libclang --go-completer --verbose
 
