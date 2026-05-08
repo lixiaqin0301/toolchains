@@ -20,7 +20,9 @@ export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/
 cd /home/lixq/src || exit 1
 rm -rf "$name-$ver"
 tar -xf "$srcpath" || exit 1
-cd "$name-$ver" || exit 1
+cd "/home/lixq/src/$name-$ver" || exit 1
+# 2.6.13 不兼容 openssl 4.0.0
+sed -i 's/cn->length/ASN1_STRING_length(cn)/g; s/cn->data/ASN1_STRING_get0_data(cn)/g' libraries/libldap/tls_o.c
 ./configure "--prefix=$DESTDIR/usr" --with-tls=openssl || exit 1
 make -s "-j$(nproc)" || exit 1
 make -s "-j$(nproc)" install || exit 1

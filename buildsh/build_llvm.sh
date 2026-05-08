@@ -2,7 +2,7 @@
 
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=22.1.4
+ver=22.1.5
 DESTDIR=$1
 srcpath=/home/lixq/src/$name-project-$ver.src.tar.xz
 
@@ -68,6 +68,6 @@ make -s "-j$(nproc)" install || exit 1
 for f in bin/*; do
     cp -an "$f" "$DESTDIR/usr/bin/"
 done
-if [[ -f /usr/local/lib/node_modules/llnode/plugin.so && $DESTDIR == */lldb ]]; then
-    rsync -a /usr/local/lib/node_modules/ "$DESTDIR/usr/lib/node_modules/"
-fi
+# if [[ -f /usr/local/lib/node_modules/llnode/plugin.so && $DESTDIR == */lldb ]]; then
+#     rsync -a /usr/local/lib/node_modules/ "$DESTDIR/usr/lib/node_modules/"
+# fi

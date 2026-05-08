@@ -33,10 +33,10 @@ build_packages 4.3.2 /home/lixq/toolchains/cmake cmake
 # Shellcheck  0.11.0  https://github.com/koalaman/shellcheck/releases
 build_packages 0.11.0 /home/lixq/toolchains/shellcheck shellcheck
 
-# gcc     15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
+# gcc     16.1.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
 # ./contrib/download_prerequisites  https://gcc.gnu.org/pub/gcc/infrastructure/
-# binutils  2.45  https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
-gccver=15.2.0
+# binutils  2.46  https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
+gccver=16.1.0
 build_packages $gccver /opt/gcc gcc binutils
 build_packages $gccver /home/lixq/toolchains/gcc gcc binutils
 
@@ -82,11 +82,11 @@ build_packages 0.15.5 /home/lixq/toolchains/patchelf patchelf
 build_packages 2.43 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap glibc
 build_packages 2.43 /opt/glibc pcre2 audit-userspace libcap glibc
 
-# curl          8.19.0  https://github.com/curl/curl/releases/
+# curl          8.20.0  https://github.com/curl/curl/releases/
 # openssl       4.0.0   https://github.com/openssl/openssl/releases/
 # nghttp3       1.15.0  https://github.com/ngtcp2/nghttp3/releases/
-# ngtcp2        1.21.0  https://github.com/ngtcp2/ngtcp2/releases/
-# nghttp2       1.68.0  https://github.com/nghttp2/nghttp2/releases/
+# ngtcp2        1.22.1  https://github.com/ngtcp2/ngtcp2/releases/
+# nghttp2       1.69.0  https://github.com/nghttp2/nghttp2/releases/
 # libssh2       1.11.1  https://libssh2.org/
 # zlib          1.3.2   https://github.com/madler/zlib/releases/
 # brotli        1.2.0   https://github.com/google/brotli/releases/
@@ -99,9 +99,9 @@ build_packages 2.43 /opt/glibc pcre2 audit-userspace libcap glibc
 # libunistring  1.4.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/libunistring/
 # libpsl        0.21.5  https://github.com/rockdaboot/libpsl/releases/
 # gsasl         2.2.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/gsasl/
-build_packages 8.19.0 /home/lixq/toolchains/curl brotli c-ares gsasl keyutils krb5 libidn2 libpsl libunistring zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 openldap curl
+build_packages 8.20.0 /home/lixq/toolchains/curl brotli c-ares gsasl keyutils krb5 libidn2 libpsl libunistring zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 openldap curl
 
-# llvm     22.1.4        https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
+# llvm     22.1.5        https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
 # bison    3.8.2         https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
 # libedit  20251016-3.1  https://thrysoee.dk/editline/
 # libxml2  2.15.3        https://github.com/GNOME/libxml2/tags
@@ -113,8 +113,8 @@ build_packages 8.19.0 /home/lixq/toolchains/curl brotli c-ares gsasl keyutils kr
 # zstd     1.5.7         https://github.com/facebook/zstd/releases/
 # openssl  4.0.0         https://github.com/openssl/openssl/releases/
 # Python   3.14.4        https://www.python.org/ftp/python/
-build_packages 22.1.4 /home/lixq/toolchains/llvm bison libedit libxml2 lua ncurses swig xz zlib zstd openssl Python llvm
-build_packages 22.1.4 /home/watch/toolchains/lldb bison libedit libxml2 lua ncurses swig xz zlib zstd openssl Python llvm
+build_packages 22.1.5 /home/lixq/toolchains/llvm bison libedit libxml2 lua ncurses swig xz zlib zstd openssl Python llvm
+build_packages 22.1.5 /home/watch/toolchains/lldb bison libedit libxml2 lua ncurses swig xz zlib zstd openssl Python llvm
 
 # zsh  5.9  https://www.zsh.org/
 build_packages 5.9 /home/lixq/toolchains/zsh zsh
@@ -136,10 +136,10 @@ build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 # glibc    2.43    https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 2.54.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd openssl curl glibc git
 
-# node   25.9.0  https://nodejs.org/dist/
+# node   26.1.0  https://nodejs.org/dist/
 # glibc  2.43    https://mirrors.tuna.tsinghua.edu.cn/gnu/glibc/
-build_packages 25.9.0 /home/lixq/toolchains/node glibc node
-build_packages 25.9.0 /opt/node glibc node
+build_packages 26.1.0 /home/lixq/toolchains/node glibc node
+build_packages 26.1.0 /opt/node glibc node
 
 # bpftrace  0.25.1  https://github.com/bpftrace/bpftrace/releases/
 build_packages 0.25.1 /home/lixq/toolchains/bpftrace bpftrace
@@ -174,22 +174,22 @@ build_packages  0.5.4  /home/lixq/toolchains/bpfsnoop bpfsnoop
 build_packages 0.36.1 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT ncurses netperf openssl xz zlib zstd curl elfutils glibc Python bcc
 build_packages 0.36.1 /home/watch/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT ncurses netperf openssl xz zlib zstd curl elfutils glibc Python bcc
 
-# systemtap  5.4     https://sourceware.org/systemtap/ftp/releases/
-# binutils   2.45    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
+# systemtap  5.5     https://sourceware.org/systemtap/ftp/releases/
+# binutils   2.46    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
 # bzip2      1.0.8   https://sourceware.org/pub/bzip2/
-# elfutils   0.194   https://sourceware.org/elfutils/ftp/
-# gcc        15.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
+# elfutils   0.195   https://sourceware.org/elfutils/ftp/
+# gcc        16.1.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
 # ncurses    6.6     https://invisible-island.net/ncurses/
-# openssl    3.6.2   https://github.com/openssl/openssl/releases/
+# openssl    4.0.0   https://github.com/openssl/openssl/releases/
 # patchelf   0.15.5  https://github.com/NixOS/patchelf/releases/
 # readline   8.3     https://mirrors.tuna.tsinghua.edu.cn/gnu/readline/
-# xz         5.8.2   https://tukaani.org/xz/
+# xz         5.8.3   https://tukaani.org/xz/
 # zlib       1.3.2   https://github.com/madler/zlib/releases/
 # zstd       1.5.7   https://github.com/facebook/zstd/releases/
-# curl       8.19.0  https://github.com/curl/curl/releases/
+# curl       8.20.0  https://github.com/curl/curl/releases/
 # glibc      2.43    https://mirrors.ustc.edu.cn/gnu/glibc/
-#build_packages 5.4 /home/lixq/toolchains/systemtap binutils bzip2 openssl curl elfutils gcc ncurses patchelf readline xz zlib zstd systemtap glibc
-build_packages 5.4 /home/watch/toolchains/systemtap binutils bzip2 openssl curl elfutils gcc ncurses patchelf readline xz zlib zstd systemtap glibc
+build_packages 5.5 /home/lixq/toolchains/systemtap binutils bzip2 openssl curl elfutils gcc ncurses patchelf readline xz zlib zstd systemtap glibc
+build_packages 5.5 /home/watch/toolchains/systemtap binutils bzip2 openssl curl elfutils gcc ncurses patchelf readline xz zlib zstd systemtap glibc
 
 # wrk  4.2.0  https://github.com/wg/wrk/tags
 build_packages 4.2.0 /home/lixq/toolchains/wrk wrk
@@ -198,17 +198,17 @@ build_packages 4.2.0 /home/lixq/toolchains/wrk wrk
 # eclipse     2026-03  https://www.eclipse.org/downloads/packages/
 #                      https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
 # jdk         26.0.1   https://www.oracle.com/java/technologies/downloads/
-# miniforge   26.1.1   https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
+# miniforge   26.3.2   https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
 # websocat    1.14.1   https://github.com/vi/websocat/releases/
 # rg          15.1.0   https://github.com/BurntSushi/ripgrep/releases/
 # rr-debuger  5.9.0    https://github.com/rr-debugger/rr/releases/
 # cygwin      3.6.9    https://cygwin.com/
-# golang      1.26.2   https://golang.google.cn/dl/
+# golang      1.26.3   https://golang.google.cn/dl/
 # rust        1.95.0   https://rust-lang.org/
-# Bear        4.1.1    https://github.com/rizsotto/Bear/
+# Bear        4.1.3    https://github.com/rizsotto/Bear/
 
 # fox-wiki-manager  3.4.1-20260422   https://wiki.haplat.net/display/NGBNEW/fox-wiki-manager
-# superpowers       5.0.7            https://github.com/obra/superpowers/releases/
+# superpowers       5.1.0            https://github.com/obra/superpowers/releases/
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
