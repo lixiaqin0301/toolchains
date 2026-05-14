@@ -40,16 +40,16 @@ gccver=16.1.0
 build_packages $gccver /opt/gcc gcc binutils
 build_packages $gccver /home/lixq/toolchains/gcc gcc binutils
 
-# gdb       17.1  https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/
-# expat    2.7.5  https://github.com/libexpat/libexpat/releases/
+# gdb       17.2  https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/
+# expat    2.8.1  https://github.com/libexpat/libexpat/releases/
 # gmp      6.3.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gmp/
-# mpfr     4.2.3  https://mirrors.tuna.tsinghua.edu.cn/gnu/mpfr/
+# mpfr     4.2.2  https://mirrors.tuna.tsinghua.edu.cn/gnu/mpfr/
 # ncurses    6.6  https://invisible-island.net/ncurses/
-# xz       5.8.2  https://tukaani.org/xz/
+# xz       5.8.3  https://tukaani.org/xz/
 # zstd     1.5.7  https://github.com/facebook/zstd/releases/
 # Python  3.14.3  https://www.python.org/ftp/python/
-build_packages 17.1 /home/lixq/toolchains/gdb expat gmp mpfr ncurses xz zstd Python gdb
-build_packages 17.1 /home/watch/toolchains/gdb expat gmp mpfr ncurses xz zstd Python gdb
+build_packages 17.2 /home/lixq/toolchains/gdb expat gmp mpfr ncurses xz zstd Python gdb
+build_packages 17.2 /home/watch/toolchains/gdb expat gmp mpfr ncurses xz zstd Python gdb
 
 # gdb              16.3   https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/
 # core_analyzer  2.24.0   https://github.com/yanqi27/core_analyzer/releases
@@ -197,6 +197,7 @@ build_packages 4.2.0 /home/lixq/toolchains/wrk wrk
 # pandoc      3.9.0.2  https://github.com/jgm/pandoc/releases/
 # eclipse     2026-03  https://www.eclipse.org/downloads/packages/
 #                      https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
+# PyDev       13.1.0   https://github.com/fabioz/Pydev/releases
 # jdk         26.0.1   https://www.oracle.com/java/technologies/downloads/
 # miniforge   26.3.2   https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
 # websocat    1.14.1   https://github.com/vi/websocat/releases/
@@ -206,7 +207,8 @@ build_packages 4.2.0 /home/lixq/toolchains/wrk wrk
 # golang      1.26.3   https://golang.google.cn/dl/
 # rust        1.95.0   https://rust-lang.org/
 # Bear        4.1.3    https://github.com/rizsotto/Bear/
-
+# rime        0.17.4   https://rime.im/
+# rime-frost  1.0.4    https://github.com/gaboolic/rime-frost/releases
 # fox-wiki-manager  3.4.1-20260422   https://wiki.haplat.net/display/NGBNEW/fox-wiki-manager
 # superpowers       5.1.0            https://github.com/obra/superpowers/releases/
 

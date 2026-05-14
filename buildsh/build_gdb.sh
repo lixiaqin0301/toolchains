@@ -2,7 +2,7 @@
 
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=17.1
+ver=17.2
 DESTDIR=$1
 srcpath=/home/lixq/src/${name}-${ver}.tar.gz
 
@@ -24,21 +24,22 @@ for p in /home/lixq/toolchains/gcc/usr/lib64/libgcc* /home/lixq/toolchains/gcc/u
         cp "$p" .
     fi
 done
-[[ -d $DESTDIR/usr/share ]] || mkdir -p "$DESTDIR/usr/share"
-cp -r /home/lixq/toolchains/gcc/usr/share/gcc-* "$DESTDIR/usr/share"
-for f in /home/lixq/toolchains/gcc/usr/lib64/libstdc++.so.*-gdb.py; do
-    sed "s;/home/lixq/toolchains/gcc;$DESTDIR;" /home/lixq/toolchains/gcc/usr/lib64/libstdc++.so.6.0.34-gdb.py > "$DESTDIR/usr/lib64/$(basename "$f")"
-done
+# [[ -d $DESTDIR/usr/share ]] || mkdir -p "$DESTDIR/usr/share"
+# cp -r /home/lixq/toolchains/gcc/usr/share/gcc-* "$DESTDIR/usr/share"
+# for f in /home/lixq/toolchains/gcc/usr/lib64/libstdc++.so.*-gdb.py; do
+#     sed "s;/home/lixq/toolchains/gcc;$DESTDIR;" /home/lixq/toolchains/gcc/usr/lib64/libstdc++.so.6.0.34-gdb.py > "$DESTDIR/usr/lib64/$(basename "$f")"
+# done
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src || exit 1
 rm -rf "$name-$ver"
 tar -xf "$srcpath" || exit 1
 mkdir "$name-$ver/build"
-cd "$name-$ver/build" || exit 1
+cd "/home/lixq/src/$name-$ver/build" || exit 1
 rm -rf "$DESTDIR/usr/bin/python"
 ln -s "$DESTDIR/usr/bin/python3" "$DESTDIR/usr/bin/python"
 ../configure "--prefix=$DESTDIR/usr" --with-python --with-separate-debug-dir=/usr/lib/debug || exit 1
 make -s "-j$(nproc)" || exit 1
 make -s "-j$(nproc)" install || exit 1
 rm -rf "$DESTDIR/usr/bin/python"
+[[ -f "$DESTDIR/usr/share/gdb/python/gdb/dap/launch.py" ]] && sed -i 's/pid: Optional\[int\] = None/pid: Optional[str] = None/' "$DESTDIR/usr/share/gdb/python/gdb/dap/launch.py"
