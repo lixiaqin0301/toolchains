@@ -56,3 +56,14 @@ ln -s Miniforge3-$ver Miniforge3
 
 echo /home/lixq/shark-test/lib > /home/lixq/toolchains/Miniforge3/lib/python3.13/site-packages/shark-test.pth
 echo /home/lixq/shark-test/lib/archive >> /home/lixq/toolchains/Miniforge3/lib/python3.13/site-packages/shark-test.pth
+
+while IFS= read -r f; do
+    $f --help 2>&1 | grep -q GLIBC || continue
+    [[ -f "$f.real" ]] || mv "$f" "$f.real"
+    rm -f "$f"
+    {
+        echo "#!/bin/bash"
+        echo "exec /opt/lib/ld-linux-x86-64.so.2 --library-path /opt/lib '$f.real' \"\$@\""
+    } > "$f"
+    chmod 755 "$f"
+done < <(find /home/lixq/toolchains/Miniforge3-$ver -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)

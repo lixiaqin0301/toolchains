@@ -2,7 +2,7 @@
 
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=v26.1.0
+ver=v26.2.0
 DESTDIR=$1
 srcpath=/home/lixq/src/$name-$ver.tar.gz
 
@@ -51,6 +51,7 @@ done < <(find "$DESTDIR" -type f -executable ! -name '*.so' ! -name '*.so.*' ! -
 "$DESTDIR/usr/bin/npm" install -g opencode-ai@latest || exit 1
 "$DESTDIR/usr/bin/npm" install -g markdownlint-cli2 || exit 1
 "$DESTDIR/usr/bin/npm" install -g prettier || exit 1
+"$DESTDIR/usr/bin/npm" install -g typescript-language-server typescript || exit 1
 
 while IFS= read -r f; do
     $f --help 2>&1 | grep -q GLIBC || continue
