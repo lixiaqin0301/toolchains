@@ -27,8 +27,8 @@ function build_packages() {
 tab=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 
-# cmake  4.3.2  https://cmake.org/download/
-build_packages 4.3.2 /home/lixq/toolchains/cmake cmake
+# cmake  4.3.3  https://cmake.org/download/
+build_packages 4.3.3 /home/lixq/toolchains/cmake cmake
 
 # Shellcheck  0.11.0  https://github.com/koalaman/shellcheck/releases
 build_packages 0.11.0 /home/lixq/toolchains/shellcheck shellcheck
@@ -141,9 +141,9 @@ build_packages 2.54.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd op
 build_packages 26.2.0 /home/lixq/toolchains/node glibc node
 build_packages 26.2.0 /opt/node glibc node
 
-# bpftrace  0.25.1  https://github.com/bpftrace/bpftrace/releases/
-build_packages 0.25.1 /home/lixq/toolchains/bpftrace bpftrace
-build_packages 0.25.1 /home/watch/toolchains/bpftrace bpftrace
+# bpftrace  0.26.0  https://github.com/bpftrace/bpftrace/releases/
+build_packages 0.26.0 /home/lixq/toolchains/bpftrace bpftrace
+build_packages 0.26.0 /home/watch/toolchains/bpftrace bpftrace
 
 # bpfsnoop  0.5.5  https://github.com/bpfsnoop/bpfsnoop/tags
 build_packages  0.5.5  /home/lixq/toolchains/bpfsnoop bpfsnoop
