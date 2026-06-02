@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ver=26.3.2-0
+ver=26.3.2-3
 
 export PATH="/home/lixq/toolchains/Miniforge3-$ver/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export LDFLAGS="-static-libgcc -static-libstdc++"
@@ -31,21 +31,7 @@ EOF
 [[ -f /home/lixq/src/Miniforge3-$ver-Linux-x86_64.sh ]] || exit 1
 rm -rf /home/lixq/toolchains/Miniforge3-$ver
 
-# Miniforge3-26.3.2-0-Linux-x86_64.sh 无法正常离线安装
-# bash /home/lixq/src/Miniforge3-$ver-Linux-x86_64.sh -b -p /home/lixq/toolchains/Miniforge3-$ver || exit 1
-# 先解压（会因断网在 Transaction 阶段失败，但 pkgs/ 和 explicit.txt 已生成）
-unshare --net bash /home/lixq/src/Miniforge3-$ver-Linux-x86_64.sh -b -p /home/lixq/toolchains/Miniforge3-$ver || true
-# 把 explicit.txt 里硬编码的 conda.anaconda.org 替换成内网镜像
-EXPLICIT=/home/lixq/toolchains/Miniforge3-$ver/conda-meta/initial-state.explicit.txt
-[[ -f "$EXPLICIT" ]] || { echo "ERROR: explicit.txt not found, extraction failed"; exit 1; }
-sed -i 's|https://conda.anaconda.org/conda-forge|https://repo.haplat.net/anaconda/cloud/conda-forge|g' "$EXPLICIT"
-# 用内嵌的 micromamba 离线安装
-PREFIX=/home/lixq/toolchains/Miniforge3-$ver
-CONDA_SAFETY_CHECKS=disabled \
-CONDA_EXTRA_SAFETY_CHECKS=no \
-CONDA_CHANNELS="conda-forge" \
-CONDA_PKGS_DIRS="$PREFIX/pkgs" \
-"$PREFIX/_conda" install --offline --file "$EXPLICIT" -yp "$PREFIX" --no-rc || exit 1
+bash /home/lixq/src/Miniforge3-$ver-Linux-x86_64.sh -b -p /home/lixq/toolchains/Miniforge3-$ver || exit 1
 
 cd /home/lixq/toolchains || exit 1
 rm -rf Miniforge3
@@ -63,7 +49,7 @@ while IFS= read -r f; do
     rm -f "$f"
     {
         echo "#!/bin/bash"
-        echo "exec /opt/lib/ld-linux-x86-64.so.2 --library-path /opt/lib '$f.real' \"\$@\""
+        echo "exec /opt/glibc/lib/ld-linux-x86-64.so.2 --library-path /opt/glibc/lib:/lib64 '$f.real' \"\$@\""
     } > "$f"
     chmod 755 "$f"
 done < <(find /home/lixq/toolchains/Miniforge3-$ver -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)

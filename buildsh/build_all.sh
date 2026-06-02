@@ -136,14 +136,14 @@ build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 # glibc    2.43    https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 2.54.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd openssl curl glibc git
 
-# node   26.2.0  https://nodejs.org/dist/
+# node   26.3.0  https://nodejs.org/dist/
 # glibc  2.43    https://mirrors.tuna.tsinghua.edu.cn/gnu/glibc/
-build_packages 26.2.0 /home/lixq/toolchains/node glibc node
-build_packages 26.2.0 /opt/node glibc node
+build_packages 26.3.0 /home/lixq/toolchains/node glibc node
+build_packages 26.3.0 /opt/node glibc node
 
-# bpftrace  0.26.0  https://github.com/bpftrace/bpftrace/releases/
-build_packages 0.26.0 /home/lixq/toolchains/bpftrace bpftrace
-build_packages 0.26.0 /home/watch/toolchains/bpftrace bpftrace
+# bpftrace  0.26.1  https://github.com/bpftrace/bpftrace/releases/
+build_packages 0.26.1 /home/lixq/toolchains/bpftrace bpftrace
+build_packages 0.26.1 /home/watch/toolchains/bpftrace bpftrace
 
 # bpfsnoop  0.5.5  https://github.com/bpfsnoop/bpfsnoop/tags
 build_packages  0.5.5  /home/lixq/toolchains/bpfsnoop bpfsnoop
