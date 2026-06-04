@@ -194,21 +194,21 @@ build_packages 5.5 /home/watch/toolchains/systemtap binutils bzip2 openssl curl 
 # wrk  4.2.0  https://github.com/wg/wrk/tags
 build_packages 4.2.0 /home/lixq/toolchains/wrk wrk
 
-# pandoc      3.9.0.2  https://github.com/jgm/pandoc/releases/
-# eclipse     2026-03  https://www.eclipse.org/downloads/packages/
-#                      https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
-# PyDev       13.1.0   https://github.com/fabioz/Pydev/releases
-# jdk         26.0.1   https://www.oracle.com/java/technologies/downloads/
-# miniforge   26.3.2   https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
-# websocat    1.14.1   https://github.com/vi/websocat/releases/
-# rg          15.1.0   https://github.com/BurntSushi/ripgrep/releases/
-# rr-debuger  5.9.0    https://github.com/rr-debugger/rr/releases/
-# cygwin      3.6.9    https://cygwin.com/
-# golang      1.26.4   https://golang.google.cn/dl/
-# rust        1.95.0   https://rust-lang.org/
-# Bear        4.1.3    https://github.com/rizsotto/Bear/
-# rime        0.17.4   https://rime.im/
-# rime-frost  1.0.4    https://github.com/gaboolic/rime-frost/releases
+# pandoc      3.9.0.2   https://github.com/jgm/pandoc/releases/
+# eclipse     2026-03   https://www.eclipse.org/downloads/packages/
+#                       https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
+# PyDev       13.1.0    https://github.com/fabioz/Pydev/releases
+# jdk         26.0.1    https://www.oracle.com/java/technologies/downloads/
+# miniforge   26.3.2-3  https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
+# websocat    1.14.1    https://github.com/vi/websocat/releases/
+# rg          15.1.0    https://github.com/BurntSushi/ripgrep/releases/
+# rr-debuger  5.9.0     https://github.com/rr-debugger/rr/releases/
+# cygwin      3.6.9     https://cygwin.com/
+# golang      1.26.4    https://golang.google.cn/dl/
+# rust        1.96.0    https://rust-lang.org/
+# Bear        4.1.4     https://github.com/rizsotto/Bear/
+# rime        0.17.4    https://rime.im/
+# rime-frost  1.0.4     https://github.com/gaboolic/rime-frost/releases
 # fox-wiki-manager  3.4.1-20260422   https://wiki.haplat.net/display/NGBNEW/fox-wiki-manager
 # superpowers       5.1.0            https://github.com/obra/superpowers/releases/
 
