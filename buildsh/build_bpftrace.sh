@@ -18,3 +18,12 @@ tar -xf "$srcpath" || exit 1
 cd "$DESTDIR" || exit 1
 "$DESTDIR/usr/bin/bpftrace" --appimage-extract
 rm -rf "$DESTDIR/usr/bin/bpftrace"
+{
+    echo "#!/bin/bash"
+    echo "'$DESTDIR/squashfs-root/AppRun' \"\$@\""
+    echo "for _ in {1..100}; do"
+    echo "    df | grep '$DESTDIR/squashfs-root/mountroot' || continue"
+    echo "    umount '$DESTDIR/squashfs-root/mountroot'"
+    echo "done"
+} > "$DESTDIR/usr/bin/bpftrace"
+chmod 755 "$DESTDIR/usr/bin/bpftrace"
