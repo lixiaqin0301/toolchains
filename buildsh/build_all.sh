@@ -194,6 +194,12 @@ build_packages 5.5 /home/watch/toolchains/systemtap binutils bzip2 openssl curl 
 # wrk  4.2.0  https://github.com/wg/wrk/tags
 build_packages 4.2.0 /home/lixq/toolchains/wrk wrk
 
+# nasm  3.01  https://www.nasm.us/pub/nasm/releasebuilds/
+build_packages 3.01 /home/lixq/toolchains/nasm nasm
+
+# FFmpeg  7.1.4  https://github.com/FFmpeg/FFmpeg/tags
+build_packages 7.1.4 /home/lixq/toolchains/FFmpeg FFmpeg
+
 # pandoc      3.9.0.2   https://github.com/jgm/pandoc/releases/
 # eclipse     2026-03   https://www.eclipse.org/downloads/packages/
 #                       https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
