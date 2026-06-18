@@ -1,5 +1,5 @@
 # https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/refs/heads/master/templates/zshrc.zsh-template
-export ZSH="/home/lixq/toolchains/oh-my-zsh"
+export ZSH="/home/lixq/toolchains/ohmyzsh"
 ZSH_THEME="ys"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
