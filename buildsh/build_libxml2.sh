@@ -1,23 +1,21 @@
 #!/bin/bash
-
+set -euo pipefail
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
 ver=2.15.3
 DESTDIR=$1
 srcpath=/home/lixq/src/$name-$ver.tar.gz
-
-[[ -n $DESTDIR ]] || exit 1
-[[ -f $srcpath ]] || exit 1
+[[ -n $DESTDIR ]]
+[[ -f $srcpath ]]
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
 
-[[ -d /home/lixq/src ]] || mkdir /home/lixq/src
-cd /home/lixq/src || exit 1
+cd /home/lixq/src
 rm -rf "$name-$ver"
 tar -xf "$srcpath" || exit 1
-cd "$name-$ver" || exit 1
+cd "/home/lixq/src/$name-$ver"
 sed -i 's;1.16.3;1.13.4;' configure.ac
-./autogen.sh || exit 1
-./configure "--prefix=$DESTDIR/usr" --enable-static || exit 1
-make -s "-j$(nproc)" || exit 1
-make -s "-j$(nproc)" install || exit 1
+./autogen.sh
+./configure "--prefix=$DESTDIR/usr" --enable-static
+make -s "-j$(nproc)"
+make -s "-j$(nproc)" install

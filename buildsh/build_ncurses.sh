@@ -1,38 +1,34 @@
 #!/bin/bash
-
+set -euo pipefail
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
 ver=6.6
 DESTDIR=$1
 srcpath=/home/lixq/src/$name.tar.gz
-
-[[ -n $DESTDIR ]] || exit 1
-[[ -f $srcpath ]] || exit 1
+[[ -n $DESTDIR ]]
+[[ -f $srcpath ]]
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-export LDFLAGS="-L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/usr/lib -Wl,-rpath,$DESTDIR/usr/lib"
 
-[[ -d /home/lixq/src ]] || mkdir /home/lixq/src
-cd /home/lixq/src || exit 1
+ncurses_options=(--with-shared --without-ada --with-ospeed=unsigned --enable-hard-tabs --enable-xmc-glitch --enable-colorfgbg --enable-overwrite --enable-pc-files --with-termlib=tinfo --with-chtype=long --with-cxx-shared --with-xterm-kbs=DEL "--prefix=$DESTDIR/usr")
+
+cd /home/lixq/src
 rm -rf "$name-$ver"
-tar -xf "$srcpath" || exit 1
-cd "$name-$ver" || exit 1
-ncurses_options=(--with-shared --without-ada --with-ospeed=unsigned --enable-hard-tabs --enable-xmc-glitch --enable-colorfgbg --enable-overwrite --enable-pc-files --with-termlib=tinfo --with-chtype=long --with-cxx-shared --with-xterm-kbs=DEL)
+tar -xf "$srcpath"
+cd "/home/lixq/src/$name-$ver"
 mkdir narrowc widec
-cd narrowc || exit 1
+
+cd "/home/lixq/src/$name-$ver/narrowc"
 ln -s ../configure .
-./configure "${ncurses_options[@]}" --with-ticlib || exit 1
-make -s "-j$(nproc)" libs || exit 1
-make -s "-j$(nproc)" -C progs || exit 1
-cd ../widec || exit 1
+./configure "${ncurses_options[@]}" --disable-widec --with-ticlib
+make -s "-j$(nproc)" libs
+make -s "-j$(nproc)" -C progs
+
+cd "/home/lixq/src/$name-$ver/widec"
 ln -s ../configure .
-./configure "${ncurses_options[@]}" --enable-widec --without-progs || exit 1
-make -s "-j$(nproc)" libs || exit 1
-cd ..
-make -C narrowc "DESTDIR=$DESTDIR" install.{libs,progs,data}
-make -C widec "DESTDIR=$DESTDIR" install.{libs,includes,man}
-mkdir "$DESTDIR/usr/include"/ncurses{,w}
-for l in "$DESTDIR/usr/include"/*.h; do
-    ln -s "../$(basename "$l")" "$DESTDIR/usr/include/ncurses"
-    ln -s "../$(basename "$l")" "$DESTDIR/usr/include/ncursesw"
-done
+./configure "${ncurses_options[@]}" --without-progs
+make -s "-j$(nproc)" libs
+
+cd "/home/lixq/src/$name-$ver"
+make -C narrowc install.{libs,progs,data}
+make -C widec install.{libs,includes,man}
