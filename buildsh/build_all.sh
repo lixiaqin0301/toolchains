@@ -103,18 +103,18 @@ build_packages 8.20.0 /home/lixq/toolchains/curl brotli c-ares gsasl keyutils kr
 
 # llvm     22.1.8        https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
 # bison    3.8.2         https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
-# libedit  20260512-3.1  https://thrysoee.dk/editline/
 # libxml2  2.15.3        https://github.com/GNOME/libxml2/tags
 # lua      5.5.0         https://www.lua.org/ftp/
 # ncurses  6.6           https://invisible-island.net/ncurses/
+# libedit  20260512-3.1  https://thrysoee.dk/editline/
 # swig     4.4.1         https://github.com/swig/swig/tags/
 # xz       5.8.3         https://tukaani.org/xz/
 # zlib     1.3.2         https://github.com/madler/zlib/releases/
 # zstd     1.5.7         https://github.com/facebook/zstd/releases/
 # openssl  4.0.1         https://github.com/openssl/openssl/releases/
 # Python   3.14.6        https://www.python.org/ftp/python/
-build_packages 22.1.8 /home/lixq/toolchains/llvm bison libedit libxml2 lua ncurses swig xz zlib zstd openssl Python llvm
-build_packages 22.1.8 /home/watch/toolchains/lldb bison libedit libxml2 lua ncurses swig xz zlib zstd openssl Python llvm
+build_packages 22.1.8 /home/lixq/toolchains/llvm bison libxml2 lua ncurses libedit swig xz zlib zstd openssl Python llvm
+build_packages 22.1.8 /home/watch/toolchains/lldb bison libxml2 lua ncurses libedit swig xz zlib zstd openssl Python llvm
 
 # zsh  5.9  https://www.zsh.org/
 build_packages 5.9 /home/lixq/toolchains/zsh zsh
