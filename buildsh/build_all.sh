@@ -197,8 +197,14 @@ build_packages 4.2.0 /home/lixq/toolchains/wrk wrk
 # nasm  3.01  https://www.nasm.us/pub/nasm/releasebuilds/
 build_packages 3.01 /home/lixq/toolchains/nasm nasm
 
-# FFmpeg  7.1.4  https://github.com/FFmpeg/FFmpeg/tags
-build_packages 7.1.4 /home/lixq/toolchains/FFmpeg FFmpeg
+# FFmpeg     8.1.2   https://github.com/FFmpeg/FFmpeg/tags
+# bzip2      1.0.8   https://sourceware.org/pub/bzip2/
+# libXau     1.0.12  https://xorg.freedesktop.org/archive/individual/lib/
+# xcb-proto  1.17.0  https://xorg.freedesktop.org/archive/individual/proto/
+# libxcb     1.17.0  https://xorg.freedesktop.org/archive/individual/lib/
+# xz         5.8.3   https://tukaani.org/xz/
+# zlib       1.3.2   https://github.com/madler/zlib/releases/
+build_packages 8.1.2 /home/lixq/toolchains/FFmpeg bzip2 libXau xcb-proto libxcb xz zlib FFmpeg
 
 # pandoc       3.10      https://github.com/jgm/pandoc/releases/
 # eclipse      2026-06   https://www.eclipse.org/downloads/packages/
@@ -217,9 +223,9 @@ build_packages 7.1.4 /home/lixq/toolchains/FFmpeg FFmpeg
 # rime         0.17.4    https://rime.im/
 # rime-frost   1.0.4     https://github.com/gaboolic/rime-frost/releases
 # tabby        1.0.234   https://github.com/Eugeny/tabby/releases
-# onnxruntime  1.26.0    https://pypi.org/project/onnxruntime/
+# onnxruntime  1.27.0    https://pypi.org/project/onnxruntime/
 # fox-wiki-manager  3.4.5-20260607   https://wiki.haplat.net/display/NGBNEW/fox-wiki-manager
-# superpowers       5.1.0            https://github.com/obra/superpowers/releases/
+# superpowers       6.0.2            https://github.com/obra/superpowers/releases/
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
