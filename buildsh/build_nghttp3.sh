@@ -18,7 +18,6 @@ cd /home/lixq/src
 rm -rf "$name-$ver"
 tar -xf "$srcpath"
 cd "/home/lixq/src/$name-$ver/lib"
-git clone https://github.com/ngtcp2/sfparse
 cd "/home/lixq/src/$name-$ver"
 autoreconf -fi
 ./configure --prefix=/usr
