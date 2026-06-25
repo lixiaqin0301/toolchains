@@ -84,13 +84,13 @@ build_packages 2.43 /opt/glibc pcre2 audit-userspace libcap glibc
 
 # curl          8.21.0  https://github.com/curl/curl/releases/
 # brotli        1.2.0   https://github.com/google/brotli/releases/
+# c-ares        1.34.6  https://github.com/c-ares/c-ares/releases/
 # openssl       4.0.1   https://github.com/openssl/openssl/releases/
 # nghttp3       1.15.0  https://github.com/ngtcp2/nghttp3/releases/
 # ngtcp2        1.22.1  https://github.com/ngtcp2/ngtcp2/releases/
 # nghttp2       1.69.0  https://github.com/nghttp2/nghttp2/releases/
 # libssh2       1.11.1  https://libssh2.org/
 # zlib          1.3.2   https://github.com/madler/zlib/releases/
-# c-ares        1.34.6  https://github.com/c-ares/c-ares/releases/
 # zstd          1.5.7   https://github.com/facebook/zstd/releases/
 # keyutils      1.6.3   https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git/
 # krb5          1.22.2  https://web.mit.edu/kerberos/dist/
