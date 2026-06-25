@@ -16,4 +16,4 @@ tar -xf "$srcpath"
 mkdir "$name-$ver/out"
 cd "/home/lixq/src/$name-$ver/out"
 cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
-cmake --install . --config Release --prefix "$DESTDIR"
+DESTDIR="$DESTDIR" cmake --install . --config Release
