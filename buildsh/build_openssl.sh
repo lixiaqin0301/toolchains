@@ -27,6 +27,6 @@ cd /home/lixq/src
 rm -rf "$name-$ver"
 tar -xf "$srcpath"
 cd "/home/lixq/src/$name-$ver"
-./config "--prefix=$DESTDIR/usr" --libdir=lib
+./config --prefix=/usr
 make -s "-j$(nproc)"
-make -s "-j$(nproc)" install
+make -s "-j$(nproc)" install DESTDIR="$DESTDIR"
