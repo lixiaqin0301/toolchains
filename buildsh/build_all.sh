@@ -82,14 +82,14 @@ build_packages 0.15.5 /home/lixq/toolchains/patchelf patchelf
 build_packages 2.43 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap glibc
 build_packages 2.43 /opt/glibc pcre2 audit-userspace libcap glibc
 
-# curl          8.20.0  https://github.com/curl/curl/releases/
-# openssl       4.0.0   https://github.com/openssl/openssl/releases/
+# curl          8.21.0  https://github.com/curl/curl/releases/
+# brotli        1.2.0   https://github.com/google/brotli/releases/
+# openssl       4.0.1   https://github.com/openssl/openssl/releases/
 # nghttp3       1.15.0  https://github.com/ngtcp2/nghttp3/releases/
 # ngtcp2        1.22.1  https://github.com/ngtcp2/ngtcp2/releases/
 # nghttp2       1.69.0  https://github.com/nghttp2/nghttp2/releases/
 # libssh2       1.11.1  https://libssh2.org/
 # zlib          1.3.2   https://github.com/madler/zlib/releases/
-# brotli        1.2.0   https://github.com/google/brotli/releases/
 # c-ares        1.34.6  https://github.com/c-ares/c-ares/releases/
 # zstd          1.5.7   https://github.com/facebook/zstd/releases/
 # keyutils      1.6.3   https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git/
@@ -99,7 +99,7 @@ build_packages 2.43 /opt/glibc pcre2 audit-userspace libcap glibc
 # libunistring  1.4.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/libunistring/
 # libpsl        0.21.5  https://github.com/rockdaboot/libpsl/releases/
 # gsasl         2.2.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/gsasl/
-build_packages 8.20.0 /home/lixq/toolchains/curl brotli c-ares gsasl keyutils krb5 libidn2 libpsl libunistring zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 openldap curl
+build_packages 8.21.0 /home/lixq/toolchains/curl brotli c-ares gsasl keyutils krb5 libidn2 libpsl libunistring zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 openldap curl
 
 # llvm     22.1.8        https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
 # bison    3.8.2         https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
@@ -138,7 +138,6 @@ build_packages 2.54.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd op
 
 # node   26.3.1  https://nodejs.org/dist/
 # glibc  2.43    https://mirrors.tuna.tsinghua.edu.cn/gnu/glibc/
-build_packages 26.3.1 /home/lixq/toolchains/node glibc node
 build_packages 26.3.1 /opt/node glibc node
 
 # bpftrace  0.26.1  https://github.com/bpftrace/bpftrace/releases/
@@ -225,7 +224,7 @@ build_packages 8.1.2 /home/lixq/toolchains/FFmpeg bzip2 libXau xcb-proto libxcb 
 # tabby        1.0.234   https://github.com/Eugeny/tabby/releases
 # onnxruntime  1.27.0    https://pypi.org/project/onnxruntime/
 # fox-wiki-manager  3.4.5-20260607   https://wiki.haplat.net/display/NGBNEW/fox-wiki-manager
-# superpowers       6.0.2            https://github.com/obra/superpowers/releases/
+# superpowers       6.0.3            https://github.com/obra/superpowers/releases/
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
