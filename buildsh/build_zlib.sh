@@ -16,4 +16,4 @@ tar -xf "$srcpath"
 cd "/home/lixq/src/$name-$ver"
 ./configure --prefix=/usr
 make -s "-j$(nproc)"
-make -s "-j$(nproc)" install DESTDIR="$$DESTDIR"
+make -s "-j$(nproc)" install DESTDIR="$DESTDIR"
