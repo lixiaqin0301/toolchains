@@ -20,7 +20,8 @@ tar -xf "$srcpath"
 cd "$name-$ver"
 autoreconf -fi
 ./configure --prefix=/usr --with-openssl
-for p in "crypto/ossl/\$(top_srcdir)/tests/munit/.deps/cryptotest-munit.Po"; do
+for p in "crypto/ossl/\$(top_srcdir)/tests/munit/.deps/cryptotest-munit.Po" \
+         "examples/\$(top_srcdir)/tests/munit/.deps/examplestest-munit.Po"; do
     f=$(basename "$p")
     [[ -f "tests/munit/.deps/$f" ]] && continue
     cp "$p" tests/munit/.deps/
