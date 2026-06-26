@@ -15,6 +15,6 @@ rm -rf "$name-$ver"
 tar -xf "$srcpath"
 mkdir "$name-$ver/build"
 cd "/home/lixq/src/$name-$ver/build"
-../configure --prefix=/usr
+../configure --prefix="$DESTDIR"/usr
 make -s "-j$(nproc)"
-make -s "-j$(nproc)" install DESTDIR="$DESTDIR"
+make -s "-j$(nproc)" install

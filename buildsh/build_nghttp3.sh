@@ -10,7 +10,6 @@ srcpath=/home/lixq/src/$name-$ver.tar.gz
 
 export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export PKG_CONFIG_PATH="$DESTDIR/lib64/pkgconfig:$DESTDIR/usr/lib64/pkgconfig:$DESTDIR/lib/pkgconfig:$DESTDIR/usr/lib/pkgconfig"
-export PKG_CONFIG_SYSROOT_DIR="$DESTDIR"
 export CPATH="$DESTDIR/usr/include"
 export LIBRARY_PATH="$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
 
@@ -20,6 +19,6 @@ tar -xf "$srcpath"
 cd "/home/lixq/src/$name-$ver/lib"
 cd "/home/lixq/src/$name-$ver"
 autoreconf -fi
-./configure --prefix=/usr
+./configure --prefix="$DESTDIR"/usr
 make -s "-j$(nproc)"
-make -s "-j$(nproc)" install DESTDIR="$DESTDIR"
+make -s "-j$(nproc)" install

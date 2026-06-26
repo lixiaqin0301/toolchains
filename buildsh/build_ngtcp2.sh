@@ -10,7 +10,6 @@ srcpath=/home/lixq/src/$name-$ver.tar.gz
 
 export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export PKG_CONFIG_PATH="$DESTDIR/lib64/pkgconfig:$DESTDIR/usr/lib64/pkgconfig:$DESTDIR/lib/pkgconfig:$DESTDIR/usr/lib/pkgconfig"
-export PKG_CONFIG_SYSROOT_DIR="$DESTDIR"
 export CPATH="$DESTDIR/usr/include"
 export LIBRARY_PATH="$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
 
@@ -19,7 +18,7 @@ rm -rf "$name-$ver"
 tar -xf "$srcpath"
 cd "$name-$ver"
 autoreconf -fi
-./configure --prefix=/usr --with-openssl
+./configure --prefix="$DESTDIR"/usr --with-openssl
 for p in "crypto/ossl/\$(top_srcdir)/tests/munit/.deps/cryptotest-munit.Po" \
          "examples/\$(top_srcdir)/tests/munit/.deps/examplestest-munit.Po"; do
     f=$(basename "$p")
@@ -27,4 +26,4 @@ for p in "crypto/ossl/\$(top_srcdir)/tests/munit/.deps/cryptotest-munit.Po" \
     cp "$p" tests/munit/.deps/
 done
 make -s "-j$(nproc)"
-make -s "-j$(nproc)" install DESTDIR="$DESTDIR"
+make -s "-j$(nproc)" install

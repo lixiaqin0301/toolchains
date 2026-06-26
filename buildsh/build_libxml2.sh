@@ -16,6 +16,6 @@ tar -xf "$srcpath"
 cd "/home/lixq/src/$name-$ver"
 sed -i 's;1.16.3;1.13.4;' configure.ac
 ./autogen.sh
-./configure --prefix=/usr --enable-static
+./configure --prefix="$DESTDIR"/usr --enable-static
 make -s "-j$(nproc)"
-make -s "-j$(nproc)" install DESTDIR="$DESTDIR"
+make -s "-j$(nproc)" install
