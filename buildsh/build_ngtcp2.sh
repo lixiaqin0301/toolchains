@@ -20,6 +20,10 @@ tar -xf "$srcpath"
 cd "$name-$ver"
 autoreconf -fi
 ./configure --prefix=/usr --with-openssl
-[[ -f tests/munit/.deps/examplestest-munit.Po ]] || cp "examples/\$(top_srcdir)/tests/munit/.deps/examplestest-munit.Po" tests/munit/.deps/examplestest-munit.Po
+for p in "crypto/ossl/\$(top_srcdir)/tests/munit/.deps/cryptotest-munit.Po"; do
+    f=$(basename "$p")
+    [[ -f "tests/munit/.deps/$f" ]] && continue
+    cp "$p" tests/munit/.deps/
+done
 make -s "-j$(nproc)"
 make -s "-j$(nproc)" install DESTDIR="$DESTDIR"
