@@ -1,33 +1,30 @@
 #!/bin/bash
 
 # https://curl.se/docs/http3.html
-
+set -euo pipefail
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=8.20.0
+ver=8.21.0
 DESTDIR=$1
 srcpath=/home/lixq/src/$name-$ver.tar.gz
-
-[[ -n $DESTDIR ]] || exit 1
-[[ -f $srcpath ]] || exit 1
+[[ -n $DESTDIR ]]
+[[ -f $srcpath ]]
 
 export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig"
-# export CPATH="$DESTDIR/usr/include"
-# export LIBRARY_PATH="$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
-# export LD_RUN_PATH="$LIBRARY_PATH"
+export PKG_CONFIG_PATH="$DESTDIR/lib64/pkgconfig:$DESTDIR/usr/lib64/pkgconfig:$DESTDIR/lib/pkgconfig:$DESTDIR/usr/lib/pkgconfig"
+export PKG_CONFIG_SYSROOT_DIR="$DESTDIR"
 export CPPFLAGS="-isystem $DESTDIR/usr/include"
 export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
 
-cd /home/lixq/src || exit 1
+cd /home/lixq/src
 rm -rf "$name-$ver"
-tar -xf "$srcpath" || exit 1
-cd "$name-$ver" || exit 1
-autoreconf -fi || exit 1
+tar -xf "$srcpath"
+cd "/home/lixq/src/$name-$ver"
+autoreconf -fi
 if [[ $DESTDIR == */$name ]]; then
-    ./configure "--prefix=$DESTDIR/usr" --with-openssl --with-nghttp3 --with-ngtcp2 --with-nghttp2 --with-libssh2 --with-zstd --with-gssapi --with-libidn2 --with-ldap --enable-httpsrr --enable-ssls-export --enable-ares || exit 1
+    ./configure --prefix=/usr --with-openssl --with-nghttp3 --with-ngtcp2 --with-nghttp2 --with-libssh2 --with-zstd --with-gssapi --with-libidn2 --with-ldap --enable-httpsrr --enable-ssls-export --enable-ares || exit 1
 else
-    ./configure "--prefix=$DESTDIR/usr" --with-openssl || exit 1
+    ./configure --prefix=/usr --with-openssl
 fi
-make -s "-j$(nproc)" || exit 1
-make -s "-j$(nproc)" install || exit 1
+make -s "-j$(nproc)"
+make -s "-j$(nproc)" install DESTDIR="$DESTDIR"

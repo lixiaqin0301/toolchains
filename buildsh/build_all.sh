@@ -85,20 +85,20 @@ build_packages 2.43 /opt/glibc pcre2 audit-userspace libcap glibc
 # curl          8.21.0  https://github.com/curl/curl/releases/
 # brotli        1.2.0   https://github.com/google/brotli/releases/
 # c-ares        1.34.6  https://github.com/c-ares/c-ares/releases/
-# openssl       4.0.1   https://github.com/openssl/openssl/releases/
-# nghttp3       1.15.0  https://github.com/ngtcp2/nghttp3/releases/
-# ngtcp2        1.22.1  https://github.com/ngtcp2/ngtcp2/releases/
-# nghttp2       1.69.0  https://github.com/nghttp2/nghttp2/releases/
-# libssh2       1.11.1  https://libssh2.org/
-# zlib          1.3.2   https://github.com/madler/zlib/releases/
-# zstd          1.5.7   https://github.com/facebook/zstd/releases/
+# gsasl         2.2.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/gsasl/
 # keyutils      1.6.3   https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git/
 # krb5          1.22.2  https://web.mit.edu/kerberos/dist/
 # libidn2       2.3.8   https://mirrors.tuna.tsinghua.edu.cn/gnu/libidn/
-# openldap      2.6.13  https://www.openldap.org/software/download/
-# libunistring  1.4.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/libunistring/
 # libpsl        0.21.5  https://github.com/rockdaboot/libpsl/releases/
-# gsasl         2.2.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/gsasl/
+# libunistring  1.4.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/libunistring/
+# zlib          1.3.2   https://github.com/madler/zlib/releases/
+# zstd          1.5.7   https://github.com/facebook/zstd/releases/
+# openssl       4.0.1   https://github.com/openssl/openssl/releases/
+# nghttp3       1.16.0  https://github.com/ngtcp2/nghttp3/releases/
+# ngtcp2        1.23.0  https://github.com/ngtcp2/ngtcp2/releases/
+# nghttp2       1.69.0  https://github.com/nghttp2/nghttp2/releases/
+# libssh2       1.11.1  https://libssh2.org/
+# openldap      2.6.13  https://www.openldap.org/software/download/
 build_packages 8.21.0 /home/lixq/toolchains/curl brotli c-ares gsasl keyutils krb5 libidn2 libpsl libunistring zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 openldap curl
 
 # llvm     22.1.8        https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
