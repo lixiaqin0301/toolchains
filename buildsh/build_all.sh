@@ -137,9 +137,9 @@ build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 # glibc    2.43    https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 2.54.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd openssl curl glibc git
 
-# node   26.3.1  https://nodejs.org/dist/
+# node   26.4.0  https://nodejs.org/dist/
 # glibc  2.43    https://mirrors.tuna.tsinghua.edu.cn/gnu/glibc/
-build_packages 26.3.1 /opt/node glibc node
+build_packages 26.4.0 /opt/node glibc node
 
 # bpftrace  0.26.1  https://github.com/bpftrace/bpftrace/releases/
 build_packages 0.26.1 /home/lixq/toolchains/bpftrace bpftrace
