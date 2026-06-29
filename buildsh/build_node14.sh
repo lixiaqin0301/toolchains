@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -euo pipefail
 ver=v14.17.3
 
 export PATH="/home/lixq/toolchains/llvm/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/lixq/toolchains/Bear/usr/bin"
@@ -9,15 +9,11 @@ export CFLAGS="-g3 -O0 -Wno-error"
 export CXXFLAGS="-g3 -O0 -Wno-error -fno-strict-enums --gcc-toolchain=/home/lixq/toolchains/gcc/usr"
 export LDFLAGS="-L/home/lixq/toolchains/llvm/usr/lib64 -L/home/lixq/toolchains/gcc/usr/lib64 --gcc-toolchain=/home/lixq/toolchains/gcc/usr -Wl,-rpath-link,/home/lixq/toolchains/llvm/usr/lib64:/home/lixq/toolchains/gcc/usr/lib64 -Wl,-rpath,/home/lixq/toolchains/llvm/usr/lib64:/home/lixq/toolchains/gcc/usr/lib64"
 
-if [[ ! -f /home/lixq/src/node-${ver}.tar.gz ]]; then
-    echo "wget https://nodejs.org/dist/${ver}/node-${ver}.tar.gz"
-    exit 1
-fi
-[[ -d /home/lixq/workspace-vscode ]] || mkdir /home/lixq/workspace-vscode
-cd /home/lixq/workspace-vscode || exit 1
+mkdir -p /home/lixq/workspace-vscode
+cd /home/lixq/workspace-vscode
 rm -rf node-${ver}
 tar -xf /home/lixq/src/node-${ver}.tar.gz
-cd /home/lixq/workspace-vscode/node-${ver} || exit 1
+cd /home/lixq/workspace-vscode/node-${ver}
 sed -i '/#include <string>/a #include <cstdint>' deps/v8/src/base/logging.h deps/v8/src/inspector/v8-string-conversions.h
 sed -i 's/static constexpr T kMax = static_cast<T>(kNumValues - 1);/static constexpr U kMax = kNumValues - 1;/' deps/v8/src/base/bit-field.h
 sed -e 's/STATIC_ASSERT(OptimizationMarker::kLastOptimizationMarker/STATIC_ASSERT(static_cast<int>(OptimizationMarker::kLastOptimizationMarker)/' \
@@ -32,9 +28,9 @@ sed -i 's/DCHECK(script_offset <= ScriptOffsetField::kMax - 2);/DCHECK(script_of
 sed -i 's/DCHECK(inlining_id <= InliningIdField::kMax - 2);/DCHECK(inlining_id <= static_cast<int>(InliningIdField::kMax) - 2);/' deps/v8/src/codegen/source-position.h
 sed -i '/#include <memory>/i #include <cstdint>' src/inspector/worker_inspector.h
 ./configure --prefix=/home/lixq/toolchains/node14-${ver} --shared --debug --debug-node --debug-lib --gdb --v8-non-optimized-debug --v8-with-dchecks --v8-enable-object-print || exit 1
-bear -- make -j"$(nproc)" || exit 1
+bear -- make -j"$(nproc)"
 rm -rf /home/lixq/toolchains/node14-${ver}
-make install || exit 1
-cd /home/lixq/toolchains/node14-${ver}/lib || exit 1
+make install
+cd /home/lixq/toolchains/node14-${ver}/lib
 ln -s libnode.so.* libnode.so
 cp /home/lixq/workspace-vscode/node-${ver}/deps/v8/include/v8-inspector*.h /home/lixq/toolchains/node14-${ver}/include/node/
