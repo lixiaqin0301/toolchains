@@ -22,7 +22,7 @@ sed -i '/#include <string>/a #include <cstdint>' deps/v8/src/base/logging.h deps
 sed -i 's/static constexpr T kMax = static_cast<T>(kNumValues - 1);/static constexpr U kMax = kNumValues - 1;/' deps/v8/src/base/bit-field.h
 sed -e 's/STATIC_ASSERT(OptimizationMarker::kLastOptimizationMarker/STATIC_ASSERT(static_cast<int>(OptimizationMarker::kLastOptimizationMarker)/' \
     -e 's/STATIC_ASSERT(OptimizationTier::kLastOptimizationTier/STATIC_ASSERT(static_cast<int>(OptimizationTier::kLastOptimizationTier)/' \
-    -i deps/v8/src/objects/feedback-vector.h \
+    -i deps/v8/src/objects/feedback-vector.h
 sed -e 's/STATIC_ASSERT(BailoutReason::kLastErrorMessage/STATIC_ASSERT(static_cast<int>(BailoutReason::kLastErrorMessage)/' \
     -e 's/STATIC_ASSERT(FunctionSyntaxKind::kLastFunctionSyntaxKind/STATIC_ASSERT(static_cast<int>(FunctionSyntaxKind::kLastFunctionSyntaxKind)/' \
     -i deps/v8/src/objects/shared-function-info.h

@@ -224,8 +224,6 @@ build_packages 8.1.2 /home/lixq/toolchains/FFmpeg bzip2 libXau xcb-proto libxcb 
 # rime-frost   1.0.4     https://github.com/gaboolic/rime-frost/releases
 # tabby        1.0.234   https://github.com/Eugeny/tabby/releases
 # onnxruntime  1.27.0    https://pypi.org/project/onnxruntime/
-# fox-wiki-manager  3.4.5-20260607   https://wiki.haplat.net/display/NGBNEW/fox-wiki-manager
-# superpowers       6.0.3            https://github.com/obra/superpowers/releases/
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
