@@ -67,3 +67,4 @@ make configure
 ./configure "--prefix=$DESTDIR/usr"
 make -s "-j$(nproc)" all doc
 make -s "-j$(nproc)" install install-doc install-html
+touch /home/lixq/src/git_success
