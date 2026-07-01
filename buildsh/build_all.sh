@@ -194,8 +194,8 @@ build_packages 5.5 /home/watch/toolchains/systemtap binutils bzip2 openssl curl 
 # wrk  4.2.0  https://github.com/wg/wrk/tags
 build_packages 4.2.0 /home/lixq/toolchains/wrk wrk
 
-# nasm  3.01  https://www.nasm.us/pub/nasm/releasebuilds/
-build_packages 3.01 /home/lixq/toolchains/nasm nasm
+# nasm  3.02  https://www.nasm.us/pub/nasm/releasebuilds/
+build_packages 3.02 /home/lixq/toolchains/nasm nasm
 
 # FFmpeg     8.1.2   https://github.com/FFmpeg/FFmpeg/tags
 # bzip2      1.0.8   https://sourceware.org/pub/bzip2/
