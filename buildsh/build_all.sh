@@ -128,7 +128,7 @@ build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 
 # git      2.54.0  https://github.com/git/git/tags/
 # brotli   1.2.0   https://github.com/google/brotli/releases/
-# expat    2.7.5   https://github.com/libexpat/libexpat/releases/
+# expat    2.8.2   https://github.com/libexpat/libexpat/releases/
 # libpsl   0.21.5  https://github.com/rockdaboot/libpsl/releases/
 # zlib     1.3.2   https://github.com/madler/zlib/releases/
 # zstd     1.5.7   https://github.com/facebook/zstd/releases/
