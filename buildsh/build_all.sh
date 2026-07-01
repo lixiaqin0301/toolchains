@@ -206,6 +206,9 @@ build_packages 3.02 /home/lixq/toolchains/nasm nasm
 # zlib       1.3.2   https://github.com/madler/zlib/releases/
 build_packages 8.1.2 /home/lixq/toolchains/FFmpeg bzip2 libXau xcb-proto libxcb xz zlib FFmpeg
 
+# cppcheck  2.21.0  https://github.com/cppcheck-opensource/cppcheck/releases
+build_packages 2.21.0 cppcheck
+
 # pandoc       3.10      https://github.com/jgm/pandoc/releases/
 # eclipse      2026-06   https://www.eclipse.org/downloads/packages/
 #                        https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
