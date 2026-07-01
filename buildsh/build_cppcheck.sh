@@ -26,5 +26,6 @@ cd /home/lixq/src
 rm -rf "$name-$ver"
 tar -xf "$srcpath"
 cd "/home/lixq/src/$name-$ver"
-make -s "-j$(nproc)"
-make -s "-j$(nproc)" install PREFIX="$DESTDIR"/usr
+export FILESDIR="$DESTDIR/usr/share/cppcheck"
+make -s "-j$(nproc)" FILESDIR="$FILESDIR"
+make -s "-j$(nproc)" install PREFIX="$DESTDIR"/usr FILESDIR="$FILESDIR"
