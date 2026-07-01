@@ -16,7 +16,7 @@ export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/usr/lib -Wl,-rp
 
 rm -rf /home/lixq/src/git_success
 function recover() {
-    #[[ -f /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/include-fixed/openssl/bn.h.bak ]] && mv /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/include-fixed/openssl/bn.h.#bak /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/include-fixed/openssl/bn.h
+    [[ -f /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.0/include-fixed/openssl/bn.h.bak ]] && mv /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.0/include-fixed/openssl/bn.h.bak /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.0/include-fixed/openssl/bn.h
     [[ -f /etc/hosts.bak ]] && mv /etc/hosts.bak /etc/hosts
     killall openresty || true
     killall openresty || true
@@ -58,7 +58,7 @@ done
 openresty -p /home/lixq/src/build-git-server/
 sleep 1
 wget http://docbook.sourceforge.net/release/xsl/current/html/docbook.xsl -O /tmp/docbook.xsl
-#mv /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/include-fixed/openssl/bn.h /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/15.2.0/include-fixed/openssl/bn.h.bak
+mv /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.0/include-fixed/openssl/bn.h /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.0/include-fixed/openssl/bn.h.bak
 cd /home/lixq/src
 rm -rf "$name-$ver"
 tar -xf "$srcpath"
