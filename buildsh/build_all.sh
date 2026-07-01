@@ -126,16 +126,16 @@ build_packages 1.91.0 /home/lixq/toolchains/boost boost
 # tcpflow  1.6.1  https://github.com/simsong/tcpflow/releases/
 build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 
-# git      2.54.0  https://github.com/git/git/tags/
+# git      2.55.0  https://github.com/git/git/tags/
 # brotli   1.2.0   https://github.com/google/brotli/releases/
 # expat    2.8.2   https://github.com/libexpat/libexpat/releases/
-# libpsl   0.21.5  https://github.com/rockdaboot/libpsl/releases/
+# libpsl   0.22.0  https://github.com/rockdaboot/libpsl/releases/
 # zlib     1.3.2   https://github.com/madler/zlib/releases/
 # zstd     1.5.7   https://github.com/facebook/zstd/releases/
-# openssl  4.0.0   https://github.com/openssl/openssl/releases/
-# curl     8.19.0  https://github.com/curl/curl/releases/
+# openssl  4.0.1   https://github.com/openssl/openssl/releases/
+# curl     8.21.0  https://github.com/curl/curl/releases/
 # glibc    2.43    https://mirrors.ustc.edu.cn/gnu/glibc/
-build_packages 2.54.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd openssl curl glibc git
+build_packages 2.55.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd openssl curl glibc git
 
 # node   26.4.0  https://nodejs.org/dist/
 # glibc  2.43    https://mirrors.tuna.tsinghua.edu.cn/gnu/glibc/
