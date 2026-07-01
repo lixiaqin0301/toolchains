@@ -30,6 +30,9 @@ date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 # cmake  4.3.4  https://cmake.org/download/
 build_packages 4.3.4 /home/lixq/toolchains/cmake cmake
 
+# lcov  2.4  https://github.com/linux-test-project/lcov/releases/
+build_packages 2.4 /home/lixq/toolchains/lcov lcov
+
 # Shellcheck  0.11.0  https://github.com/koalaman/shellcheck/releases
 build_packages 0.11.0 /home/lixq/toolchains/shellcheck shellcheck
 
