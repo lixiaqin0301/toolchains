@@ -51,7 +51,7 @@ sed -e '/OpenSSL API 1\.1\.0+ does not include version methods/i #if OPENSSL_VER
     -e 's/!defined(OPENSSL_NO_TLS1_2_METHOD))/!defined(OPENSSL_NO_TLS1_2_METHOD) \&\& OPENSSL_VERSION_MAJOR < 4)/' \
     -e 's/#if defined(SSL3_VERSION) && !defined(OPENSSL_NO_SSL3)/#if defined(SSL3_VERSION) \&\& !defined(OPENSSL_NO_SSL3) \&\& OPENSSL_VERSION_MAJOR < 4/' \
     -i ./Modules/_ssl.c
-mv "$GCC_INCLUDE_FIXED" "$GCC_INCLUDE_FIXED.bak"
+[[ -f $DESTDIR/lib64/ld-linux-x86-64.so.2 ]] && mv "$GCC_INCLUDE_FIXED" "$GCC_INCLUDE_FIXED.bak"
 ./configure "--prefix=$DESTDIR/usr" --enable-shared
 make -s -j"$(nproc)"
 make -s -j"$(nproc)" install
