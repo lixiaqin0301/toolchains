@@ -17,6 +17,6 @@ cd "/home/lixq/src/json-c-$name-$ver"
 mkdir json-c-build
 cd "/home/lixq/src/json-c-$name-$ver/json-c-build"
 #cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_INSTALL_PREFIX="$DESTDIR/usr" -DCMAKE_INSTALL_LIBDIR=lib ..
-cmake -DCMAKE_INSTALL_PREFIX="$DESTDIR/usr" ..
+cmake -DDISABLE_WERROR=ON -DCMAKE_INSTALL_PREFIX="$DESTDIR/usr" ..
 make -s "-j$(nproc)"
 make -s "-j$(nproc)" install
