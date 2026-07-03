@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euo pipevail
+set -euo pipefail
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
 ver=0.19-20260627
