@@ -23,6 +23,29 @@ tar -xf "$srcpath"
 cd "/home/lixq/src/$name-src-with-submodule-$ver/bcc"
 #sed -i "1a set(REVISION \"$ver\")" cmake/version.cmake
 #sed -i 's/ -bgd / -bg /' src/lua/CMakeLists.txt
+# bcc 0.37.0 不支持 llvm 22
+cat > /tmp/build_bcc_file1 << EOF
+find_library(libclangAnalysisLifetimeSafety NAMES clangAnalysisLifetimeSafety clang-cpp HINTS \${CLANG_SEARCH})
+find_library(libclangFormat NAMES clangFormat clang-cpp HINTS \${CLANG_SEARCH})
+find_library(libclangOptions NAMES clangOptions clang-cpp HINTS \${CLANG_SEARCH})
+find_library(libclangToolingCore NAMES clangToolingCore clang-cpp HINTS \${CLANG_SEARCH})
+find_library(libclangToolingInclusions NAMES clangToolingInclusions clang-cpp HINTS \${CLANG_SEARCH})
+find_library(libclangTooling NAMES clangTooling clang-cpp HINTS \${CLANG_SEARCH})
+find_library(libclangDependencyScanning NAMES clangDependencyScanning clang-cpp HINTS \${CLANG_SEARCH})
+EOF
+sed -i '/find_library(libclang-shared/r /tmp/build_bcc_file1' CMakeLists.txt
+cat > /tmp/build_bcc_file2 << EOF
+list(APPEND clang_libs
+    \${libclangAnalysisLifetimeSafety}
+    \${libclangFormat}
+    \${libclangOptions}
+    \${libclangToolingCore}
+    \${libclangToolingInclusions}
+    \${libclangTooling}
+    \${libclangDependencyScanning}
+)
+EOF
+sed -i '/# prune unused llvm static library stuff/r /tmp/build_bcc_file2' cmake/clang_libs.cmake
 mkdir bcc-build
 cd "/home/lixq/src/$name-src-with-submodule-$ver/bcc/bcc-build" || exit 1
 cmake -DENABLE_LLVM_SHARED=0 -DLLVM_ROOT=/home/lixq/toolchains/llvm/usr \
