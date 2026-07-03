@@ -153,7 +153,7 @@ build_packages  0.5.5  /home/lixq/toolchains/bpfsnoop bpfsnoop
 # brotli    1.2.0          https://github.com/google/brotli/releases/
 # bzip2     1.0.8          https://sourceware.org/pub/bzip2/
 # flex      2.6.4          https://github.com/westes/flex/releases/
-# icu4c     78.2           https://github.com/unicode-org/icu/
+# icu4c     78.3           https://github.com/unicode-org/icu/
 # json-c    0.18-20240915  https://github.com/json-c/json-c/tags
 # LuaJIT    2.1.ROLLING    https://github.com/LuaJIT/LuaJIT/tags
 # netperf   2.7.0          https://github.com/HewlettPackard/netperf/tags
