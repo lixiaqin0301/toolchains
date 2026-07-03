@@ -157,7 +157,7 @@ build_packages  0.5.5  /home/lixq/toolchains/bpfsnoop bpfsnoop
 # json-c    0.19-20260627  https://github.com/json-c/json-c/tags
 # LuaJIT    2.1.ROLLING    https://github.com/LuaJIT/LuaJIT/tags
 # netperf   2.7.0          https://github.com/HewlettPackard/netperf/tags
-# libbpf    1.6.3          https://github.com/libbpf/libbpf/releases
+# libbpf    1.7.0          https://github.com/libbpf/libbpf/releases
 # libedit   20251016-3.1   https://thrysoee.dk/editline/
 # libffi    3.5.2          https://github.com/libffi/libffi/releases/
 # libpsl    0.21.5         https://github.com/rockdaboot/libpsl/releases/
