@@ -5,7 +5,7 @@ name=${name#build_}
 ver=2.43
 DESTDIR=$1
 srcpath=/home/lixq/src/$name-$ver.tar.gz
-kernelver=6.6.137
+kernelver=6.6.143
 [[ -n $DESTDIR ]]
 [[ -f $srcpath ]]
 [[ -f /home/lixq/src/linux-$kernelver.tar.gz ]]

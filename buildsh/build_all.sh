@@ -160,18 +160,18 @@ build_packages  0.5.5  /home/lixq/toolchains/bpfsnoop bpfsnoop
 # libbpf    1.7.0          https://github.com/libbpf/libbpf/releases
 # libedit   20260512-3.1   https://thrysoee.dk/editline/
 # libffi    3.6.0          https://github.com/libffi/libffi/releases/
-# libpsl    0.21.5         https://github.com/rockdaboot/libpsl/releases/
+# libpsl    0.22.0         https://github.com/rockdaboot/libpsl/releases/
 # libxml2   2.15.3         https://github.com/GNOME/libxml2/tags
 # ncurses   6.6            https://invisible-island.net/ncurses/
-# openssl   4.0.0          https://github.com/openssl/openssl/releases/
-# xz        5.8.2          https://tukaani.org/xz/
+# xz        5.8.3          https://tukaani.org/xz/
 # zlib      1.3.2          https://github.com/madler/zlib/releases/
 # zstd      1.5.7          https://github.com/facebook/zstd/releases/
-# curl      8.19.0         https://github.com/curl/curl/releases/
+# openssl   4.0.1          https://github.com/openssl/openssl/releases/
+# curl      8.21.0         https://github.com/curl/curl/releases/
 # elfutils  0.195          https://sourceware.org/elfutils/ftp/
 # glibc     2.43           https://mirrors.ustc.edu.cn/gnu/glibc/
 # Python    3.14.3         https://www.python.org/ftp/python/
-build_packages 0.37.0 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT ncurses netperf openssl xz zlib zstd curl elfutils glibc Python bcc
+build_packages 0.37.0 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c json-c LuaJIT netperf libbpf libedit libffi libpsl libxml2 ncurses xz zlib zstd openssl curl elfutils glibc Python bcc
 build_packages 0.37.0 /home/watch/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT ncurses netperf openssl xz zlib zstd curl elfutils glibc Python bcc
 
 # systemtap  5.5     https://sourceware.org/systemtap/ftp/releases/
