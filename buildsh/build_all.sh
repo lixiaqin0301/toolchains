@@ -158,8 +158,8 @@ build_packages  0.5.5  /home/lixq/toolchains/bpfsnoop bpfsnoop
 # LuaJIT    2.1.ROLLING    https://github.com/LuaJIT/LuaJIT/tags
 # netperf   2.7.0          https://github.com/HewlettPackard/netperf/tags
 # libbpf    1.7.0          https://github.com/libbpf/libbpf/releases
-# libedit   20251016-3.1   https://thrysoee.dk/editline/
-# libffi    3.5.2          https://github.com/libffi/libffi/releases/
+# libedit   20260512-3.1   https://thrysoee.dk/editline/
+# libffi    3.6.0          https://github.com/libffi/libffi/releases/
 # libpsl    0.21.5         https://github.com/rockdaboot/libpsl/releases/
 # libxml2   2.15.3         https://github.com/GNOME/libxml2/tags
 # ncurses   6.6            https://invisible-island.net/ncurses/
