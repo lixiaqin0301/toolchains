@@ -152,7 +152,6 @@ build_packages  0.5.5  /home/lixq/toolchains/bpfsnoop bpfsnoop
 # bison     3.8.2          https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
 # brotli    1.2.0          https://github.com/google/brotli/releases/
 # bzip2     1.0.8          https://sourceware.org/pub/bzip2/
-# elfutils  0.195          https://sourceware.org/elfutils/ftp/
 # flex      2.6.4          https://github.com/westes/flex/releases/
 # icu4c     78.2           https://github.com/unicode-org/icu/
 # json-c    0.18-20240915  https://github.com/json-c/json-c/tags
@@ -169,6 +168,7 @@ build_packages  0.5.5  /home/lixq/toolchains/bpfsnoop bpfsnoop
 # zlib      1.3.2          https://github.com/madler/zlib/releases/
 # zstd      1.5.7          https://github.com/facebook/zstd/releases/
 # curl      8.19.0         https://github.com/curl/curl/releases/
+# elfutils  0.195          https://sourceware.org/elfutils/ftp/
 # glibc     2.43           https://mirrors.ustc.edu.cn/gnu/glibc/
 # Python    3.14.3         https://www.python.org/ftp/python/
 build_packages 0.37.0 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT ncurses netperf openssl xz zlib zstd curl elfutils glibc Python bcc
