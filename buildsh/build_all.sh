@@ -74,9 +74,6 @@ build_packages 0.26.1 /home/lixq/toolchains/bat bat
 # make  4.4.1  https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
 build_packages 4.4.1 /home/lixq/toolchains/make make
 
-# patchelf  0.15.5  https://github.com/NixOS/patchelf/releases/
-build_packages 0.15.5 /home/lixq/toolchains/patchelf patchelf
-
 # glibc            2.43     https://mirrors.ustc.edu.cn/gnu/glibc/
 # kernel           6.6.121  https://www.kernel.org/
 # pcre2            10.47    https://github.com/PCRE2Project/pcre2/releases/
@@ -151,11 +148,11 @@ build_packages 0.26.1 /home/watch/toolchains/bpftrace bpftrace
 # bpfsnoop  0.5.5  https://github.com/bpfsnoop/bpfsnoop/tags
 build_packages  0.5.5  /home/lixq/toolchains/bpfsnoop bpfsnoop
 
-# bcc       0.36.1         https://github.com/iovisor/bcc/releases/
+# bcc       0.37.0         https://github.com/iovisor/bcc/releases/
 # bison     3.8.2          https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
 # brotli    1.2.0          https://github.com/google/brotli/releases/
 # bzip2     1.0.8          https://sourceware.org/pub/bzip2/
-# elfutils  0.194          https://sourceware.org/elfutils/ftp/
+# elfutils  0.195          https://sourceware.org/elfutils/ftp/
 # flex      2.6.4          https://github.com/westes/flex/releases/
 # icu4c     78.2           https://github.com/unicode-org/icu/
 # json-c    0.18-20240915  https://github.com/json-c/json-c/tags
@@ -174,8 +171,8 @@ build_packages  0.5.5  /home/lixq/toolchains/bpfsnoop bpfsnoop
 # curl      8.19.0         https://github.com/curl/curl/releases/
 # glibc     2.43           https://mirrors.ustc.edu.cn/gnu/glibc/
 # Python    3.14.3         https://www.python.org/ftp/python/
-build_packages 0.36.1 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT ncurses netperf openssl xz zlib zstd curl elfutils glibc Python bcc
-build_packages 0.36.1 /home/watch/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT ncurses netperf openssl xz zlib zstd curl elfutils glibc Python bcc
+build_packages 0.37.0 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT ncurses netperf openssl xz zlib zstd curl elfutils glibc Python bcc
+build_packages 0.37.0 /home/watch/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT ncurses netperf openssl xz zlib zstd curl elfutils glibc Python bcc
 
 # systemtap  5.5     https://sourceware.org/systemtap/ftp/releases/
 # binutils   2.46    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
@@ -212,6 +209,7 @@ build_packages 8.1.2 /home/lixq/toolchains/FFmpeg bzip2 libXau xcb-proto libxcb 
 # cppcheck  2.21.0  https://cppcheck.sourceforge.io/
 build_packages 2.21.0 /home/lixq/toolchains/cppcheck cppcheck
 
+# patchelf     0.19.0    https://github.com/NixOS/patchelf/releases/
 # pandoc       3.10      https://github.com/jgm/pandoc/releases/
 # eclipse      2026-06   https://www.eclipse.org/downloads/packages/
 #                        https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
