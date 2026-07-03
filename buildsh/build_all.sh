@@ -154,7 +154,7 @@ build_packages  0.5.5  /home/lixq/toolchains/bpfsnoop bpfsnoop
 # bzip2     1.0.8          https://sourceware.org/pub/bzip2/
 # flex      2.6.4          https://github.com/westes/flex/releases/
 # icu4c     78.3           https://github.com/unicode-org/icu/
-# json-c    0.18-20240915  https://github.com/json-c/json-c/tags
+# json-c    0.19-20260627  https://github.com/json-c/json-c/tags
 # LuaJIT    2.1.ROLLING    https://github.com/LuaJIT/LuaJIT/tags
 # netperf   2.7.0          https://github.com/HewlettPackard/netperf/tags
 # libbpf    1.6.3          https://github.com/libbpf/libbpf/releases
