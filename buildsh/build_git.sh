@@ -15,8 +15,14 @@ export CPPFLAGS="-I/home/lixq/src/$name-$ver --sysroot=$DESTDIR"
 export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/usr/lib --sysroot=$DESTDIR -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/usr/lib -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
 
 rm -rf /home/lixq/src/git_success
+GCC_INCLUDE_FIXED=""
+for d in /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/*/include-fixed/; do
+    [[ -d "$d" ]] || continue
+    GCC_INCLUDE_FIXED=$(realpath "$d")
+    break
+done
 function recover() {
-    [[ -f /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.0/include-fixed/openssl/bn.h.bak ]] && mv /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.0/include-fixed/openssl/bn.h.bak /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.0/include-fixed/openssl/bn.h
+    [[ -d "$GCC_INCLUDE_FIXED.bak" ]] && mv "$GCC_INCLUDE_FIXED.bak" "$GCC_INCLUDE_FIXED"
     [[ -f /etc/hosts.bak ]] && mv /etc/hosts.bak /etc/hosts
     killall openresty || true
     killall openresty || true
@@ -58,11 +64,11 @@ done
 openresty -p /home/lixq/src/build-git-server/
 sleep 1
 wget http://docbook.sourceforge.net/release/xsl/current/html/docbook.xsl -O /tmp/docbook.xsl
-mv /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.0/include-fixed/openssl/bn.h /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/16.1.0/include-fixed/openssl/bn.h.bak
 cd /home/lixq/src
 rm -rf "$name-$ver"
 tar -xf "$srcpath"
 cd "$name-$ver"
+mv "$GCC_INCLUDE_FIXED" "$GCC_INCLUDE_FIXED.bak"
 make configure
 ./configure "--prefix=$DESTDIR/usr"
 make -s "-j$(nproc)" all doc

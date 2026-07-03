@@ -17,6 +17,17 @@ else
     export LDFLAGS="-Wl,-rpath,$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
 fi
 
+GCC_INCLUDE_FIXED=""
+for d in /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/*/include-fixed/; do
+    [[ -d "$d" ]] || continue
+    GCC_INCLUDE_FIXED=$(realpath "$d")
+    break
+done
+function recover() {
+    [[ -d "$GCC_INCLUDE_FIXED.bak" ]] && mv "$GCC_INCLUDE_FIXED.bak" "$GCC_INCLUDE_FIXED"
+}
+trap recover EXIT
+
 mkdir -p "$DESTDIR/usr/lib64"
 cd "$DESTDIR/usr/lib64" || exit 1
 for p in /home/lixq/toolchains/gcc/usr/lib64/libgcc* /home/lixq/toolchains/gcc/usr/lib64/libstdc++.s*[0-9o]; do
@@ -40,6 +51,7 @@ sed -e '/OpenSSL API 1\.1\.0+ does not include version methods/i #if OPENSSL_VER
     -e 's/!defined(OPENSSL_NO_TLS1_2_METHOD))/!defined(OPENSSL_NO_TLS1_2_METHOD) \&\& OPENSSL_VERSION_MAJOR < 4)/' \
     -e 's/#if defined(SSL3_VERSION) && !defined(OPENSSL_NO_SSL3)/#if defined(SSL3_VERSION) \&\& !defined(OPENSSL_NO_SSL3) \&\& OPENSSL_VERSION_MAJOR < 4/' \
     -i ./Modules/_ssl.c
+mv "$GCC_INCLUDE_FIXED" "$GCC_INCLUDE_FIXED.bak"
 ./configure "--prefix=$DESTDIR/usr" --enable-shared
 make -s -j"$(nproc)"
 make -s -j"$(nproc)" install
