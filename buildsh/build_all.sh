@@ -170,7 +170,7 @@ build_packages  0.5.5  /home/lixq/toolchains/bpfsnoop bpfsnoop
 # curl      8.21.0         https://github.com/curl/curl/releases/
 # elfutils  0.195          https://sourceware.org/elfutils/ftp/
 # glibc     2.43           https://mirrors.ustc.edu.cn/gnu/glibc/
-# Python    3.14.3         https://www.python.org/ftp/python/
+# Python    3.14.6         https://www.python.org/ftp/python/
 build_packages 0.37.0 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c json-c LuaJIT netperf libbpf libedit libffi libpsl libxml2 ncurses xz zlib zstd openssl curl elfutils glibc Python bcc
 build_packages 0.37.0 /home/watch/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT ncurses netperf openssl xz zlib zstd curl elfutils glibc Python bcc
 
