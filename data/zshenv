@@ -33,6 +33,7 @@ export PATH="/home/lixq/toolchains/bin:\
 /home/lixq/toolchains/tcpflow/usr/bin:\
 /home/lixq/toolchains/wrk/usr/bin:\
 /home/lixq/toolchains/zsh/usr/bin:\
+/root/.cargo/bin:\
 /root/go/bin"
 export MANPATH="/opt/node/usr/share/man:\
 /opt/node/usr/lib/node_modules/npm/man:\
@@ -59,6 +60,7 @@ export MANPATH="/opt/node/usr/share/man:\
 /home/lixq/toolchains/systemtap/usr/share/man:\
 /home/lixq/toolchains/tcpflow/usr/share/man:\
 /home/lixq/toolchains/zsh/usr/share/man:\
+/root/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/share/man:\
 $MANPATH"
 export GOPATH=/root/go
 #export GO111MODULE=off
