@@ -209,6 +209,9 @@ build_packages 8.1.2 /home/lixq/toolchains/FFmpeg bzip2 libXau xcb-proto libxcb 
 # cppcheck  2.21.0  https://cppcheck.sourceforge.io/
 build_packages 2.21.0 /home/lixq/toolchains/cppcheck cppcheck
 
+# Bear         4.1.5     https://github.com/rizsotto/Bear/
+build_packages 4.1.5 /home/lixq/toolchains/Bear Bear
+
 # ninja        1.13.2    https://github.com/ninja-build/ninja/releases/
 # patchelf     0.19.0    https://github.com/NixOS/patchelf/releases/
 # pandoc       3.10      https://github.com/jgm/pandoc/releases/
@@ -224,7 +227,6 @@ build_packages 2.21.0 /home/lixq/toolchains/cppcheck cppcheck
 # cygwin       3.6.9     https://cygwin.com/
 # golang       1.26.4    https://golang.google.cn/dl/
 # rust         1.96.0    https://rust-lang.org/
-# Bear         4.1.4     https://github.com/rizsotto/Bear/
 # rime         0.17.4    https://rime.im/
 # rime-frost   1.0.4     https://github.com/gaboolic/rime-frost/releases
 # tabby        1.0.234   https://github.com/Eugeny/tabby/releases
