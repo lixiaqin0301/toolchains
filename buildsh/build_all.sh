@@ -209,6 +209,7 @@ build_packages 8.1.2 /home/lixq/toolchains/FFmpeg bzip2 libXau xcb-proto libxcb 
 # cppcheck  2.21.0  https://cppcheck.sourceforge.io/
 build_packages 2.21.0 /home/lixq/toolchains/cppcheck cppcheck
 
+# ninja        1.13.2    https://github.com/ninja-build/ninja/releases/
 # patchelf     0.19.0    https://github.com/NixOS/patchelf/releases/
 # pandoc       3.10      https://github.com/jgm/pandoc/releases/
 # eclipse      2026-06   https://www.eclipse.org/downloads/packages/

@@ -25,6 +25,7 @@ for d in /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/*/include-fix
 done
 function recover() {
     [[ -d "$GCC_INCLUDE_FIXED.bak" ]] && mv "$GCC_INCLUDE_FIXED.bak" "$GCC_INCLUDE_FIXED"
+    "$DESTDIR/usr/bin/python3 -c 'import ssl'"
 }
 trap recover EXIT
 

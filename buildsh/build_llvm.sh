@@ -69,7 +69,7 @@ else
         -DCMAKE_LIBRARY_PATH="$DESTDIR/lib64;$DESTDIR/usr/lib64;$DESTDIR/lib;$DESTDIR/usr/lib" \
         -DCMAKE_BUILD_TYPE=Release \
         -DLLVM_TARGETS_TO_BUILD="BPF;X86" \
-        -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lldb" \
+        -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lld;lldb" \
         -DCMAKE_C_FLAGS="-isystem $DESTDIR/usr/include" \
         -DCMAKE_CXX_FLAGS="-isystem $DESTDIR/usr/include" \
         -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS" \
