@@ -23,6 +23,10 @@ tar -xf "$srcpath"
 cd "/home/lixq/src/$name-src-with-submodule-$ver/bcc"
 #sed -i "1a set(REVISION \"$ver\")" cmake/version.cmake
 #sed -i 's/ -bgd / -bg /' src/lua/CMakeLists.txt
+# bcc-lua 通过 require("bcc") 加载内嵌字节码，LuaJIT 用 dlsym(RTLD_DEFAULT, "luaJIT_BC_bcc")
+# 查找该符号，需要可执行文件动态导出符号，否则报 module 'bcc' not found。
+# ENABLE_EXPORTS 让 CMake 为该目标链接时加上 -rdynamic（导出符号到 .dynsym）。
+sed -i 's/set_target_properties(bcc-lua PROPERTIES LINKER_LANGUAGE C)/set_target_properties(bcc-lua PROPERTIES LINKER_LANGUAGE C ENABLE_EXPORTS ON)/' src/lua/CMakeLists.txt
 # bcc 0.37.0 不支持 llvm 22
 cat > /tmp/build_bcc_file1 << EOF
 find_library(libclangAnalysisLifetimeSafety NAMES clangAnalysisLifetimeSafety clang-cpp HINTS \${CLANG_SEARCH})
