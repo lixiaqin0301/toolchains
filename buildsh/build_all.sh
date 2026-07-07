@@ -213,7 +213,7 @@ build_packages 2.21.0 /home/lixq/toolchains/cppcheck cppcheck
 build_packages 4.1.5 /home/lixq/toolchains/Bear Bear
 
 # ninja        1.13.2    https://github.com/ninja-build/ninja/releases/
-# patchelf     0.19.0    https://github.com/NixOS/patchelf/releases/
+# patchelf     0.19.1    https://github.com/NixOS/patchelf/releases/
 # pandoc       3.10      https://github.com/jgm/pandoc/releases/
 # eclipse      2026-06   https://www.eclipse.org/downloads/packages/
 #                        https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
