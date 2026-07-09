@@ -1,5 +1,4 @@
 export PATH="/home/lixq/toolchains/bin:\
-/home/lixq/toolchains/git/usr/bin:\
 /usr/local/sbin:\
 /usr/local/bin:\
 /usr/sbin:\
@@ -21,6 +20,7 @@ export PATH="/home/lixq/toolchains/bin:\
 /home/lixq/toolchains/curl/usr/bin:\
 /home/lixq/toolchains/FFmpeg/usr/bin:\
 /home/lixq/toolchains/gdb/usr/bin:\
+/home/lixq/toolchains/git/usr/bin:\
 /home/lixq/toolchains/golang/bin:\
 /home/lixq/toolchains/jdk/bin:\
 /home/lixq/toolchains/lcov/usr/bin:\
