@@ -137,9 +137,9 @@ build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 # glibc    2.43    https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 2.55.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd openssl curl glibc git
 
-# node   26.4.0  https://nodejs.org/dist/
+# node   26.5.0  https://nodejs.org/dist/
 # glibc  2.43    https://mirrors.tuna.tsinghua.edu.cn/gnu/glibc/
-build_packages 26.4.0 /opt/node glibc node
+build_packages 26.5.0 /opt/node glibc node
 
 # bpftrace  0.26.1  https://github.com/bpftrace/bpftrace/releases/
 build_packages 0.26.1 /home/lixq/toolchains/bpftrace bpftrace
@@ -209,7 +209,7 @@ build_packages 8.1.2 /home/lixq/toolchains/FFmpeg bzip2 libXau xcb-proto libxcb 
 # cppcheck  2.21.0  https://cppcheck.sourceforge.io/
 build_packages 2.21.0 /home/lixq/toolchains/cppcheck cppcheck
 
-# Bear         4.1.5     https://github.com/rizsotto/Bear/
+# Bear         4.1.5     https://github.com/rizsotto/Bear/releases/
 build_packages 4.1.5 /home/lixq/toolchains/Bear Bear
 
 # ninja        1.13.2    https://github.com/ninja-build/ninja/releases/
@@ -225,12 +225,13 @@ build_packages 4.1.5 /home/lixq/toolchains/Bear Bear
 # rg           15.1.0    https://github.com/BurntSushi/ripgrep/releases/
 # rr-debuger   5.9.0     https://github.com/rr-debugger/rr/releases/
 # cygwin       3.6.9     https://cygwin.com/
-# golang       1.26.4    https://golang.google.cn/dl/
-# rust         1.96.0    https://rust-lang.org/
+# golang       1.26.5    https://golang.google.cn/dl/
+# rust         1.96.1    https://rust-lang.org/
 # rime         0.17.4    https://rime.im/
 # rime-frost   1.0.4     https://github.com/gaboolic/rime-frost/releases
 # tabby        1.0.234   https://github.com/Eugeny/tabby/releases
 # onnxruntime  1.27.0    https://pypi.org/project/onnxruntime/
+# bazel        9.1.1     https://github.com/bazelbuild/bazel/releases/
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log

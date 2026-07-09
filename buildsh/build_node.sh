@@ -2,7 +2,7 @@
 set -euo pipefail
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=v26.4.0
+ver=v26.5.0
 DESTDIR=$1
 srcpath=/home/lixq/src/$name-$ver.tar.gz
 [[ -n $DESTDIR ]]
@@ -28,7 +28,7 @@ cd /home/lixq/src
 rm -rf "$name-$ver"
 tar -xf "$srcpath"
 cd "/home/lixq/src/$name-$ver"
-./configure "--prefix=$DESTDIR/usr"
+./configure "--prefix=$DESTDIR/usr" --shared
 make -s "-j$(nproc)"
 make -s "-j$(nproc)" install
 
@@ -38,7 +38,7 @@ while IFS= read -r f; do
     rm -f "$f"
     {
         echo "#!/bin/bash"
-        echo "exec '$DESTDIR/lib64/ld-linux-x86-64.so.2' --library-path '$DESTDIR/lib64:$DESTDIR/usr/lib64' '$f.real' \"\$@\""
+        echo "exec '$DESTDIR/lib64/ld-linux-x86-64.so.2' --library-path '$DESTDIR/lib64:$DESTDIR/usr/lib64:/lib64:/lib' --argv0 '$f' '$f.real' \"\$@\""
     } > "$f"
     chmod 755 "$f"
 done < <(find "$DESTDIR" -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)
@@ -58,7 +58,7 @@ while IFS= read -r f; do
     rm -f "$f"
     {
         echo "#!/bin/bash"
-        echo "exec '$DESTDIR/lib64/ld-linux-x86-64.so.2' --library-path '$DESTDIR/lib64:$DESTDIR/usr/lib64' '$f.real' \"\$@\""
+        echo "exec '$DESTDIR/lib64/ld-linux-x86-64.so.2' --library-path '$DESTDIR/lib64:$DESTDIR/usr/lib64:/lib64:/lib' --argv0 '$f' '$f.real' \"\$@\""
     } > "$f"
     chmod 755 "$f"
 done < <(find "$DESTDIR" -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)
