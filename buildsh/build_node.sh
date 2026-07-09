@@ -43,14 +43,15 @@ while IFS= read -r f; do
     chmod 755 "$f"
 done < <(find "$DESTDIR" -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)
 
-"$DESTDIR/usr/bin/npm" config set registry https://repo.haplat.net/npm/ || exit 1
-"$DESTDIR/usr/bin/npm" update -g
-"$DESTDIR/usr/bin/npm" install -g @anthropic-ai/claude-code || exit 1
-"$DESTDIR/usr/bin/npm" install -g @openai/codex@latest || exit 1
-"$DESTDIR/usr/bin/npm" install -g opencode-ai@latest || exit 1
-"$DESTDIR/usr/bin/npm" install -g markdownlint-cli2 || exit 1
-"$DESTDIR/usr/bin/npm" install -g prettier || exit 1
-"$DESTDIR/usr/bin/npm" install -g typescript-language-server typescript || exit 1
+cd "$DESTDIR/usr/lib"
+[[ -f libnode.so ]] || ln -s libnode.so.[1-9]* libnode.so
+
+"$DESTDIR/usr/bin/npm" config set registry https://repo.haplat.net/npm/
+"$DESTDIR/usr/bin/npm" update -g --allow-remote=all
+"$DESTDIR/usr/bin/npm" install -g markdownlint-cli2 --allow-remote=all
+"$DESTDIR/usr/bin/npm" install -g prettier --allow-remote=all
+"$DESTDIR/usr/bin/npm" install -g typescript --allow-remote=all
+"$DESTDIR/usr/bin/npm" install -g typescript-language-server --allow-remote=all
 
 while IFS= read -r f; do
     $f --help 2>&1 | grep -q GLIBC || continue
