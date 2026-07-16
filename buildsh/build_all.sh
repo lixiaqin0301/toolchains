@@ -222,7 +222,7 @@ build_packages 4.1.5 /home/lixq/toolchains/Bear Bear
 # jdk          26.0.1    https://www.oracle.com/java/technologies/downloads/
 # miniforge    26.3.2-3  https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
 # websocat     1.14.1    https://github.com/vi/websocat/releases/
-# rg           15.1.0    https://github.com/BurntSushi/ripgrep/releases/
+# rg           15.2.0    https://github.com/BurntSushi/ripgrep/releases/
 # rr-debuger   5.9.0     https://github.com/rr-debugger/rr/releases/
 # cygwin       3.6.9     https://cygwin.com/
 # golang       1.26.5    https://golang.google.cn/dl/
@@ -234,6 +234,8 @@ build_packages 4.1.5 /home/lixq/toolchains/Bear Bear
 # bazel        9.1.1     https://github.com/bazelbuild/bazel/releases/
 # btop         1.4.7     https://github.com/aristocratos/btop/releases/
 # fd           10.4.2    https://github.com/sharkdp/fd/releases/
+# fzf          0.74.0    https://github.com/junegunn/fzf/releases/
+# lazygit      0.63.1    https://github.com/jesseduffield/lazygit/releases/
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
