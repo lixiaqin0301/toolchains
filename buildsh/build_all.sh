@@ -236,6 +236,7 @@ build_packages 4.1.5 /home/lixq/toolchains/Bear Bear
 # fd           10.4.2    https://github.com/sharkdp/fd/releases/
 # fzf          0.74.0    https://github.com/junegunn/fzf/releases/
 # lazygit      0.63.1    https://github.com/jesseduffield/lazygit/releases/
+# zoxide       0.10.0    https://github.com/ajeetdsouza/zoxide/releases/
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
