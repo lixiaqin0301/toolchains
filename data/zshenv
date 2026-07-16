@@ -14,6 +14,7 @@ export PATH="/home/lixq/toolchains/bin:\
 /home/lixq/toolchains/bpfsnoop/usr/bin:\
 /home/lixq/toolchains/bpftool/sbin:\
 /home/lixq/toolchains/bpftrace/usr/bin:\
+/home/lixq/toolchains/btop/bin:\
 /home/lixq/toolchains/cargo/bin:\
 /home/lixq/toolchains/cmake/usr/bin:\
 /home/lixq/toolchains/cppcheck/usr/bin:\
