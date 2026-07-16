@@ -19,6 +19,7 @@ export PATH="/home/lixq/toolchains/bin:\
 /home/lixq/toolchains/cmake/usr/bin:\
 /home/lixq/toolchains/cppcheck/usr/bin:\
 /home/lixq/toolchains/curl/usr/bin:\
+/home/lixq/toolchains/fd:\
 /home/lixq/toolchains/FFmpeg/usr/bin:\
 /home/lixq/toolchains/gdb/usr/bin:\
 /home/lixq/toolchains/git/usr/bin:\

@@ -232,6 +232,8 @@ build_packages 4.1.5 /home/lixq/toolchains/Bear Bear
 # tabby        1.0.234   https://github.com/Eugeny/tabby/releases
 # onnxruntime  1.27.0    https://pypi.org/project/onnxruntime/
 # bazel        9.1.1     https://github.com/bazelbuild/bazel/releases/
+# btop         1.4.7     https://github.com/aristocratos/btop/releases/
+# fd           10.4.2    https://github.com/sharkdp/fd/releases/
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
