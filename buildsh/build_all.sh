@@ -237,6 +237,8 @@ build_packages 4.1.5 /home/lixq/toolchains/Bear Bear
 # fzf          0.74.0    https://github.com/junegunn/fzf/releases/
 # lazygit      0.63.1    https://github.com/jesseduffield/lazygit/releases/
 # zoxide       0.10.0    https://github.com/ajeetdsouza/zoxide/releases/
+# lazyVim      16.0.0    https://github.com/LazyVim/LazyVim/releases/
+# windterm     2.7.0     https://github.com/kingToolbox/WindTerm/releases/
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
