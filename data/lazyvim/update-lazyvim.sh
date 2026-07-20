@@ -2,8 +2,8 @@
 set -euo pipefail
 export PATH="/home/lixq/toolchains/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
-if [[ -d /root/.config/nvim ]]; then
-    cd /root/.config/nvim || exit 1
+if [[ -d "$HOME/.config/nvim" ]]; then
+    cd "$HOME/.config/nvim" || exit 1
     git checkout -- .
     git clean -ffdx
     cat /home/lixq/toolchains/data/lazyvim/options.lua >> lua/config/options.lua
