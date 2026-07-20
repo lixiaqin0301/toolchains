@@ -1,6 +1,6 @@
 #!/bin/bash
 set -euo pipefail
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export PATH="/home/lixq/toolchains/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 if [[ -d /root/.config/nvim ]]; then
     cd /root/.config/nvim || exit 1
