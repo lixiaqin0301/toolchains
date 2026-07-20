@@ -17,6 +17,7 @@ export PATH="/home/lixq/toolchains/bin:\
 /home/lixq/toolchains/btop/bin:\
 /home/lixq/toolchains/cargo/bin:\
 /home/lixq/toolchains/cmake/usr/bin:\
+/home/lixq/toolchains/codelldb/extension/adapter:\
 /home/lixq/toolchains/cppcheck/usr/bin:\
 /home/lixq/toolchains/curl/usr/bin:\
 /home/lixq/toolchains/fd:\
