@@ -11,10 +11,4 @@ if [[ -d /root/.config/nvim ]]; then
     mkdir -p lua/plugins
     rsync -a /home/lixq/toolchains/data/lazyvim/plugins/ lua/plugins/
 fi
-for d in /root/.local/share/nvim/lazy/*/.git; do
-    [[ -d "$d/.." ]] || continue
-    cd "$d/.."
-    git checkout -- .
-    git git clean -ffdx
-    git pull
-done
+/home/lixq/toolchains/nvim-linux-x86_64/bin/nvim --headless "+Lazy! sync" +qa
