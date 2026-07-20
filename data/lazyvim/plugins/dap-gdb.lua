@@ -31,8 +31,7 @@ return {
           type = "gdb",
           request = "attach",
           pid = function()
-            local name = vim.fn.input("Process name: ")
-            return require("dap.utils").pick_process({ filter = name })
+            return vim.fn.input("PID to attach: ")
           end,
           cwd = "${workspaceFolder}",
         },

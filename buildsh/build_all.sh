@@ -243,6 +243,7 @@ build_packages 4.1.5 /home/lixq/toolchains/Bear Bear
 # LuaLS          3.18.2    https://github.com/LuaLS/lua-language-server/releases/
 # golangci-lint  2.12.2    https://github.com/golangci/golangci-lint/releases/
 # codelldb       1.12.2    https://github.com/vadimcn/codelldb/releases/
+# Nerd Fonts     3.4.0     https://github.com/ryanoasis/nerd-fonts/releases/
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
