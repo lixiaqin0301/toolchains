@@ -212,34 +212,37 @@ build_packages 2.21.0 /home/lixq/toolchains/cppcheck cppcheck
 # Bear         4.1.5     https://github.com/rizsotto/Bear/releases/
 build_packages 4.1.5 /home/lixq/toolchains/Bear Bear
 
-# ninja        1.13.2    https://github.com/ninja-build/ninja/releases/
-# patchelf     0.19.1    https://github.com/NixOS/patchelf/releases/
-# pandoc       3.10      https://github.com/jgm/pandoc/releases/
-# eclipse      2026-06   https://www.eclipse.org/downloads/packages/
-#                        https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
-#                        markdown json(Wild Web Developer) bash
-# PyDev        13.1.0    https://github.com/fabioz/Pydev/releases
-# jdk          26.0.1    https://www.oracle.com/java/technologies/downloads/
-# miniforge    26.3.2-3  https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
-# websocat     1.14.1    https://github.com/vi/websocat/releases/
-# rr-debuger   5.9.0     https://github.com/rr-debugger/rr/releases/
-# cygwin       3.6.9     https://cygwin.com/
-# golang       1.26.5    https://golang.google.cn/dl/
-# rust         1.97.1    https://rust-lang.org/
-# rime         0.17.4    https://rime.im/
-# rime-frost   1.0.4     https://github.com/gaboolic/rime-frost/releases
-# tabby        1.0.234   https://github.com/Eugeny/tabby/releases
-# onnxruntime  1.27.0    https://pypi.org/project/onnxruntime/
-# bazel        9.2.0     https://github.com/bazelbuild/bazel/releases/
-# nvim         0.12.4    https://github.com/neovim/neovim/releases/
-# rg           15.2.0    https://github.com/BurntSushi/ripgrep/releases/
-# btop         1.4.7     https://github.com/aristocratos/btop/releases/
-# fd           10.4.2    https://github.com/sharkdp/fd/releases/
-# fzf          0.74.1    https://github.com/junegunn/fzf/releases/
-# lazygit      0.63.1    https://github.com/jesseduffield/lazygit/releases/
-# zoxide       0.10.0    https://github.com/ajeetdsouza/zoxide/releases/
-# lazyVim      16.0.0    https://github.com/LazyVim/LazyVim/releases/
-# windterm     2.7.0     https://github.com/kingToolbox/WindTerm/releases/
+# ninja          1.13.2    https://github.com/ninja-build/ninja/releases/
+# patchelf       0.19.1    https://github.com/NixOS/patchelf/releases/
+# pandoc         3.10      https://github.com/jgm/pandoc/releases/
+# eclipse        2026-06   https://www.eclipse.org/downloads/packages/
+#                          https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
+#                          markdown json(Wild Web Developer) bash
+# PyDev          13.1.0    https://github.com/fabioz/Pydev/releases
+# jdk            26.0.1    https://www.oracle.com/java/technologies/downloads/
+# miniforge      26.3.2-3  https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
+# websocat       1.14.1    https://github.com/vi/websocat/releases/
+# rr-debuger     5.9.0     https://github.com/rr-debugger/rr/releases/
+# cygwin         3.6.9     https://cygwin.com/
+# golang         1.26.5    https://golang.google.cn/dl/
+# rust           1.97.1    https://rust-lang.org/
+# rime           0.17.4    https://rime.im/
+# rime-frost     1.0.4     https://github.com/gaboolic/rime-frost/releases
+# tabby          1.0.234   https://github.com/Eugeny/tabby/releases
+# onnxruntime    1.27.0    https://pypi.org/project/onnxruntime/
+# bazel          9.2.0     https://github.com/bazelbuild/bazel/releases/
+# nvim           0.12.4    https://github.com/neovim/neovim/releases/
+# rg             15.2.0    https://github.com/BurntSushi/ripgrep/releases/
+# btop           1.4.7     https://github.com/aristocratos/btop/releases/
+# fd             10.4.2    https://github.com/sharkdp/fd/releases/
+# fzf            0.74.1    https://github.com/junegunn/fzf/releases/
+# lazygit        0.63.1    https://github.com/jesseduffield/lazygit/releases/
+# zoxide         0.10.0    https://github.com/ajeetdsouza/zoxide/releases/
+# lazyVim        16.0.0    https://github.com/LazyVim/LazyVim/releases/
+# windterm       2.7.0     https://github.com/kingToolbox/WindTerm/releases/
+# LuaLS          3.18.2    https://github.com/LuaLS/lua-language-server/releases/
+# golangci-lint  2.12.2    https://github.com/golangci/golangci-lint/releases/
+
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log

@@ -27,6 +27,7 @@ export PATH="/home/lixq/toolchains/bin:\
 /home/lixq/toolchains/jdk/bin:\
 /home/lixq/toolchains/lcov/usr/bin:\
 /home/lixq/toolchains/llvm/usr/bin:\
+/home/lixq/toolchains/LuaLS/bin:\
 /home/lixq/toolchains/Miniforge3/bin:\
 /home/lixq/toolchains/nvim-linux-x86_64/bin:\
 /home/lixq/toolchains/pandoc/bin:\
