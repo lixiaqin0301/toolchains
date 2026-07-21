@@ -39,28 +39,50 @@ local function pick_process_all()
 end
 
 return {
-  "mfussenegger/nvim-dap",
-  opts = function()
-    local dap = require("dap")
+  {
+    "mfussenegger/nvim-dap",
+    -- IDE-style function keys (single press), alongside LazyVim's <leader>d* maps.
+    keys = {
+      { "<F5>", function() require("dap").continue() end, desc = "Debug: Continue" },
+      { "<F9>", function() require("dap").toggle_breakpoint() end, desc = "Debug: Toggle Breakpoint" },
+      { "<F10>", function() require("dap").step_over() end, desc = "Debug: Step Over" },
+      { "<F11>", function() require("dap").step_into() end, desc = "Debug: Step Into" },
+      { "<F23>", function() require("dap").step_out() end, desc = "Debug: Step Out" }, -- Shift+F11
+    },
+    opts = function()
+      local dap = require("dap")
 
-    dap.adapters.codelldb = {
-      type = "server",
-      host = "127.0.0.1",
-      port = "${port}",
-      executable = {
-        command = "codelldb",
-        args = { "--port", "${port}" },
-      },
-    }
+      dap.adapters.codelldb = {
+        type = "server",
+        host = "127.0.0.1",
+        port = "${port}",
+        executable = {
+          command = "codelldb",
+          args = { "--port", "${port}" },
+        },
+      }
 
-    -- Swap the pid picker on the Attach config for c/cpp (defined by the clangd
-    -- extra) so it lists every user's processes, not just root's.
-    for _, lang in ipairs({ "c", "cpp" }) do
-      for _, cfg in ipairs(dap.configurations[lang] or {}) do
-        if cfg.request == "attach" and cfg.pid ~= nil then
-          cfg.pid = pick_process_all
+      -- Swap the pid picker on the Attach config for c/cpp (defined by the clangd
+      -- extra) so it lists every user's processes, not just root's.
+      for _, lang in ipairs({ "c", "cpp" }) do
+        for _, cfg in ipairs(dap.configurations[lang] or {}) do
+          if cfg.request == "attach" and cfg.pid ~= nil then
+            cfg.pid = pick_process_all
+          end
         end
       end
-    end
-  end,
+    end,
+  },
+  {
+    "rcarriga/nvim-dap-ui",
+    keys = {
+      -- Rebuild the dap-ui windows at their default sizes (fixes layout that got
+      -- squished after toggling neo-tree with <leader>e, etc.).
+      { "<leader>dR", function() require("dapui").open({ reset = true }) end, desc = "Reset DAP UI layout" },
+      -- Toggle the whole UI (LazyVim also binds <leader>du; kept here for discoverability).
+      { "<leader>dU", function() require("dapui").toggle({ reset = true }) end, desc = "Toggle DAP UI (reset)" },
+      -- Float the value/scope of the symbol under cursor (n) or the selection (x).
+      { "<leader>dv", function() require("dapui").eval(nil, { enter = true }) end, mode = { "n", "x" }, desc = "Eval (float, enter)" },
+    },
+  },
 }
