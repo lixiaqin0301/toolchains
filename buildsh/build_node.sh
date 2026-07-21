@@ -54,6 +54,7 @@ cd "$DESTDIR/usr/lib"
 "$DESTDIR/usr/bin/npm" install -g typescript-language-server --allow-remote=all
 "$DESTDIR/usr/bin/npm" install -g @vtsls/language-server --allow-remote=all
 "$DESTDIR/usr/bin/npm" install -g bash-language-server --allow-remote=all
+"$DESTDIR/usr/bin/npm" install -g markdown-toc --allow-remote=all
 
 while IFS= read -r f; do
     $f --help 2>&1 | grep -q GLIBC || continue

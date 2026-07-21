@@ -7,6 +7,8 @@ return {
       -- (mason 走直连 github,114MB @ ~17KB/s 基本下不完)。mason=false 时
       -- lspconfig 会直接用 PATH 上的 clangd。
       clangd = { mason = false },
+      -- marksman 已手动装在 PATH(lang.markdown extra 用),同样不走 mason
+      marksman = { mason = false },
     },
   },
 }
