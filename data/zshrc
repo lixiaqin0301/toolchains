@@ -7,6 +7,8 @@ source $ZSH/oh-my-zsh.sh
 # lixq
 if [[ -x /home/lixq/toolchains/bat/usr/bin/bat ]]; then
     alias bat="/home/lixq/toolchains/bat/usr/bin/bat --paging=never"
-else
+elif command -v batcat; then
     alias bat="batcat --paging=never"
+else
+    alias bat="cat"
 fi
