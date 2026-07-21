@@ -3,20 +3,64 @@
 -- liblldb is resolved via the symlink at .../lldb/lib/liblldb.so, so no --liblldb
 -- is needed. NOTE: mason still lists codelldb in ensure_installed (via the clangd
 -- extra), so if it manages to install its own copy it may shadow the PATH one.
--- The c/cpp configurations come from lazyvim.plugins.extras.lang.clangd.
+-- The c/cpp configurations come from lazyvim.plugins.extras.lang.clangd; we only
+-- override the Attach entry's pid picker below.
+
+-- List processes of ALL users (root nvim + attaching to another user's process).
+-- dap's built-in require("dap.utils").pick_process runs `ps ah -U $USER`, which
+-- only shows the current user's processes, hiding e.g. a `sharklet` worker.
+local function pick_process_all()
+  local dap = require("dap")
+  local out = vim.fn.systemlist({ "ps", "-eo", "pid=", "-o", "user=", "-o", "args=" })
+  if vim.v.shell_error ~= 0 then
+    vim.notify("pick_process_all: `ps` failed", vim.log.levels.ERROR)
+    return dap.ABORT
+  end
+
+  local nvim_pid = vim.fn.getpid()
+  local procs = {}
+  for _, line in ipairs(out) do
+    local pid, user, cmd = line:match("^%s*(%d+)%s+(%S+)%s+(.*)$")
+    pid = tonumber(pid)
+    if pid and pid ~= nvim_pid and cmd and cmd ~= "" then
+      table.insert(procs, { pid = pid, user = user, cmd = cmd })
+    end
+  end
+
+  local choice = require("dap.ui").pick_one(
+    procs,
+    "Select process to attach:",
+    function(p) return string.format("%d  %-12s %s", p.pid, p.user, p.cmd) end
+  )
+  if not choice then
+    return dap.ABORT
+  end
+  return choice.pid
+end
+
 return {
-  {
-    "mfussenegger/nvim-dap",
-    opts = function()
-      require("dap").adapters.codelldb = {
-        type = "server",
-        host = "127.0.0.1",
-        port = "${port}",
-        executable = {
-          command = "codelldb",
-          args = { "--port", "${port}" },
-        },
-      }
-    end,
-  },
+  "mfussenegger/nvim-dap",
+  opts = function()
+    local dap = require("dap")
+
+    dap.adapters.codelldb = {
+      type = "server",
+      host = "127.0.0.1",
+      port = "${port}",
+      executable = {
+        command = "codelldb",
+        args = { "--port", "${port}" },
+      },
+    }
+
+    -- Swap the pid picker on the Attach config for c/cpp (defined by the clangd
+    -- extra) so it lists every user's processes, not just root's.
+    for _, lang in ipairs({ "c", "cpp" }) do
+      for _, cfg in ipairs(dap.configurations[lang] or {}) do
+        if cfg.request == "attach" and cfg.pid ~= nil then
+          cfg.pid = pick_process_all
+        end
+      end
+    end
+  end,
 }
