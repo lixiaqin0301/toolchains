@@ -74,6 +74,11 @@ return {
     end,
   },
   {
+    -- Disable all inline variable virtual text during debugging.
+    "theHamsta/nvim-dap-virtual-text",
+    enabled = false,
+  },
+  {
     "rcarriga/nvim-dap-ui",
     keys = {
       -- Rebuild the dap-ui windows at their default sizes (fixes layout that got

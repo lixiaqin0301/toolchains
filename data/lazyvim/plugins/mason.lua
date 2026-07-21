@@ -1,14 +1,10 @@
 return {
   "mason-org/mason.nvim",
-  opts = {
-    -- 关掉 registry 联网刷新。mason / mason-lspconfig / mason-nvim-dap 的 refresh
-    -- 都读这个开关,false 时 refresh() 第一行就空转返回,不再请求 api.mason-registry.dev。
-    registry_cache = { refresh = false },
-  },
+  -- 覆盖 LazyVim 默认 config：去掉启动时的 mr.refresh()。
+  -- 它每次启动都请求 api.mason-registry.dev 检查 registry,本机网络到不了会一直挂住 curl。
+  -- 需要 mason 的工具都已在 PATH(codelldb 见 dap-codelldb.lua、clangd 见 lsp.lua),
+  -- 无需自动安装。想装时手动 :MasonInstall <tool> 即可(那时才联网)。
   config = function(_, opts)
-    -- 覆盖 LazyVim 默认 config:它启动时会遍历 ensure_installed 自动 p:install(),
-    -- 会联网下载 stylua/shfmt/codelldb 并卡住。这里只做 setup、不自动安装。
-    -- 需要的工具都已在 PATH(codelldb 见 dap-codelldb.lua、clangd 见 lsp.lua)。
     require("mason").setup(opts)
   end,
 }
