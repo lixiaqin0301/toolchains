@@ -244,6 +244,7 @@ build_packages 4.1.5 /home/lixq/toolchains/Bear Bear
 # golangci-lint  2.12.2    https://github.com/golangci/golangci-lint/releases/
 # codelldb       1.12.2    https://github.com/vadimcn/codelldb/releases/
 # Nerd Fonts     3.4.0     https://github.com/ryanoasis/nerd-fonts/releases/
+# tree-sitter    0.26.11   https://github.com/tree-sitter/tree-sitter/releases/
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
