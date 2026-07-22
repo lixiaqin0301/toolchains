@@ -212,6 +212,9 @@ build_packages 2.21.0 /home/lixq/toolchains/cppcheck cppcheck
 # Bear         4.1.5     https://github.com/rizsotto/Bear/releases/
 build_packages 4.1.5 /home/lixq/toolchains/Bear Bear
 
+# luarocks  3.13.0  https://github.com/luarocks/luarocks/releases/
+build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
+
 # ninja          1.13.2      https://github.com/ninja-build/ninja/releases/
 # patchelf       0.19.1      https://github.com/NixOS/patchelf/releases/
 # pandoc         3.10        https://github.com/jgm/pandoc/releases/
