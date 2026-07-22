@@ -15,6 +15,8 @@ return {
       servers = {
         clangd = { mason = false },
         marksman = { mason = false },
+        pyright = { mason = false },
+        ruff = { mason = false },
       },
     },
   },
