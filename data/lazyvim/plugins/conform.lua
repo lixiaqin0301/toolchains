@@ -8,6 +8,7 @@ return {
       objcpp = { "clang_format" },
       cuda = { "clang_format" },
       proto = { "clang_format" },
+      markdown = { "prettier" },
     },
   },
 }
