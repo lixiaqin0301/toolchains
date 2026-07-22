@@ -41,6 +41,7 @@ export PATH="/home/lixq/toolchains/bin:\
 /home/lixq/toolchains/wrk/usr/bin:\
 /home/lixq/toolchains/zoxide:\
 /home/lixq/toolchains/zsh/usr/bin:\
+/snap/bin:\
 $HOME/.cargo/bin:\
 $HOME/go/bin"
 export MANPATH="/opt/node/usr/share/man:\
