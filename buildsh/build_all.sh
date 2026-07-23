@@ -217,12 +217,12 @@ build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 
 # ninja          1.13.2      https://github.com/ninja-build/ninja/releases/
 # patchelf       0.19.1      https://github.com/NixOS/patchelf/releases/
-# pandoc         3.10        https://github.com/jgm/pandoc/releases/
+# pandoc         3.10.1      https://github.com/jgm/pandoc/releases/
 # eclipse        2026-06     https://www.eclipse.org/downloads/packages/
 #                            https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
 #                            markdown json(Wild Web Developer) bash
 # PyDev          13.1.0      https://github.com/fabioz/Pydev/releases
-# jdk            26.0.1      https://www.oracle.com/java/technologies/downloads/
+# jdk            26.0.2      https://www.oracle.com/java/technologies/downloads/
 # miniforge      26.3.2-3    https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
 # websocat       1.14.1      https://github.com/vi/websocat/releases/
 # rr-debuger     5.9.0       https://github.com/rr-debugger/rr/releases/
@@ -231,7 +231,7 @@ build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 # rust           1.97.1      https://rust-lang.org/
 # rime           0.17.4      https://rime.im/
 # rime-frost     1.0.4       https://github.com/gaboolic/rime-frost/releases
-# tabby          1.0.234     https://github.com/Eugeny/tabby/releases
+# tabby          1.0.235     https://github.com/Eugeny/tabby/releases
 # onnxruntime    1.27.0      https://pypi.org/project/onnxruntime/
 # bazel          9.2.0       https://github.com/bazelbuild/bazel/releases/
 # nvim           0.12.4      https://github.com/neovim/neovim/releases/
