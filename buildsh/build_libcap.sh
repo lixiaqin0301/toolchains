@@ -12,7 +12,7 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 cd /home/lixq/src
 rm -rf "$name-$ver"
-tar -xf "/home/lixq/src/$srcpath"
-cd "$name-$ver"
+tar -xf "$srcpath"
+cd "/home/lixq/src/$name-$ver"
 make -s "-j$(nproc)" prefix="$DESTDIR/usr"
 make -s "-j$(nproc)" install

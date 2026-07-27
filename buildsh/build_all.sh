@@ -78,7 +78,7 @@ build_packages 4.4.1 /home/lixq/toolchains/make make
 # kernel           6.6.145  https://www.kernel.org/
 # pcre2            10.47    https://github.com/PCRE2Project/pcre2/releases/
 # audit-userspace  4.2      https://github.com/linux-audit/audit-userspace/releases/
-# libcap           2.77     https://git.kernel.org/pub/scm/libs/libcap/libcap.git/
+# libcap           2.78     https://git.kernel.org/pub/scm/libs/libcap/libcap.git/
 build_packages 2.44 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap glibc
 build_packages 2.44 /opt/glibc pcre2 audit-userspace libcap glibc
 
