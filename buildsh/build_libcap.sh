@@ -15,4 +15,4 @@ rm -rf "$name-$ver"
 tar -xf "$srcpath"
 cd "/home/lixq/src/$name-$ver"
 make -s "-j$(nproc)" prefix="$DESTDIR/usr"
-make -s "-j$(nproc)" install
+make -s "-j$(nproc)" prefix="$DESTDIR/usr" install
