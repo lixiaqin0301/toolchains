@@ -74,10 +74,10 @@ build_packages 0.26.1 /home/lixq/toolchains/bat bat
 # make  4.4.1  https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
 build_packages 4.4.1 /home/lixq/toolchains/make make
 
-# glibc            2.43     https://mirrors.ustc.edu.cn/gnu/glibc/
-# kernel           6.6.121  https://www.kernel.org/
+# glibc            2.44     https://mirrors.ustc.edu.cn/gnu/glibc/
+# kernel           6.6.145  https://www.kernel.org/
 # pcre2            10.47    https://github.com/PCRE2Project/pcre2/releases/
-# audit-userspace  4.1.2    https://github.com/linux-audit/audit-userspace/releases/
+# audit-userspace  4.2      https://github.com/linux-audit/audit-userspace/releases/
 # libcap           2.77     https://git.kernel.org/pub/scm/libs/libcap/libcap.git/
 build_packages 2.43 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap glibc
 build_packages 2.43 /opt/glibc pcre2 audit-userspace libcap glibc
@@ -232,7 +232,7 @@ build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 # rime           0.17.4      https://rime.im/
 # rime-frost     1.0.4       https://github.com/gaboolic/rime-frost/releases
 # tabby          1.0.235     https://github.com/Eugeny/tabby/releases
-# onnxruntime    1.27.0      https://pypi.org/project/onnxruntime/
+# onnxruntime    1.28.0      https://pypi.org/project/onnxruntime/
 # bazel          9.2.0       https://github.com/bazelbuild/bazel/releases/
 # nvim           0.12.4      https://github.com/neovim/neovim/releases/
 # rg             15.2.0      https://github.com/BurntSushi/ripgrep/releases/

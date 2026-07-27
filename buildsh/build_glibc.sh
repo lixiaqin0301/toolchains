@@ -2,10 +2,10 @@
 set -euo pipefail
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=2.43
+ver=2.44
 DESTDIR=$1
 srcpath=/home/lixq/src/$name-$ver.tar.gz
-kernelver=6.6.143
+kernelver=6.6.145
 [[ -n $DESTDIR ]]
 [[ -f $srcpath ]]
 [[ -f /home/lixq/src/linux-$kernelver.tar.gz ]]
