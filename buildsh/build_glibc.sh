@@ -17,8 +17,8 @@ rm -rf "$name-$ver" linux-${kernelver}
 tar -xf "$srcpath"
 mkdir -p "$name-$ver/$name-$ver/build/glibc"
 cd "/home/lixq/src/$name-$ver/$name-$ver/build/glibc"
-if [[ $DESTDIR == /opt/glibc* ]]; then
-    [[ ${DESTDIR%/} == /opt ]] && exit 1
+
+if [[ $DESTDIR == /opt/glibc ]]; then
     ../../../configure --prefix="$DESTDIR"
     make -s "-j$(nproc)"
     rm -rf "$DESTDIR"
@@ -32,42 +32,19 @@ if [[ $DESTDIR == /opt/glibc* ]]; then
             cp "$p" .
         fi
     done
-    while IFS= read -r f; do
-        $f --help 2>&1 | grep -q GLIBC || continue
-        [[ -f "$f.real" ]] || mv "$f" "$f.real"
-        rm -f "$f"
-        {
-            echo "#!/bin/bash"
-            echo "exec '$DESTDIR/lib/ld-linux-x86-64.so.2' '$f.real' \"\$@\""
-        } > "$f"
-        chmod 755 "$f"
-    done < <(find "$DESTDIR" -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)
     cd /opt
     rm -rf glibc-$ver.el7.tar.gz
     tar -czf glibc-$ver.el7.tar.gz "$(basename "$DESTDIR")"
     exit 0
 fi
+
 ../../../configure --prefix=/usr
 make -s "-j$(nproc)"
 make -s "-j$(nproc)" install "DESTDIR=$DESTDIR"
-if [[ $DESTDIR == */$name ]]; then
-    make -s "-j$(nproc)" localedata/install-locales "DESTDIR=$DESTDIR"
-    make -s "-j$(nproc)" localedata/install-locale-files "DESTDIR=$DESTDIR"
-fi
-
+# make -s "-j$(nproc)" localedata/install-locales "DESTDIR=$DESTDIR"
+# make -s "-j$(nproc)" localedata/install-locale-files "DESTDIR=$DESTDIR"
 cd /home/lixq/src
 rm -rf linux-$kernelver
 tar -xf /home/lixq/src/linux-$kernelver.tar.xz
 cd /home/lixq/src/linux-${kernelver}
 make -s "-j$(nproc)" headers_install "INSTALL_HDR_PATH=$DESTDIR/usr"
-
-while IFS= read -r f; do
-    $f --help 2>&1 | grep -q GLIBC || continue
-    [[ -f "$f.real" ]] || mv "$f" "$f.real"
-    rm -f "$f"
-    {
-        echo "#!/bin/bash"
-        echo "exec '$DESTDIR/lib64/ld-linux-x86-64.so.2' --library-path '$DESTDIR/lib64:$DESTDIR/usr/lib64' '$f.real' \"\$@\""
-    } > "$f"
-    chmod 755 "$f"
-done < <(find "$DESTDIR" -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)

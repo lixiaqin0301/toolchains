@@ -18,6 +18,16 @@ function build_packages() {
         te=$(date +%s)
         date "+%Y-%m-%d %H:%M:%S end   build $DESTDIR $p use $((te - tb)) seconds" | tee -a /tmp/build_all.log
     done
+    while IFS= read -r f; do
+        $f --help 2>&1 | grep -q GLIBC || continue
+        [[ -f "$f.real" ]] || mv "$f" "$f.real"
+        rm -f "$f"
+        {
+            echo "#!/bin/bash"
+            echo "exec '$DESTDIR/lib64/ld-linux-x86-64.so.2' --library-path '$DESTDIR/lib64:$DESTDIR/usr/lib64:/lib64:/lib' --argv0 '$f' '$f.real' \"\$@\""
+        } > "$f"
+        chmod 755 "$f"
+    done < <(find "$DESTDIR" -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)
     cd "$(dirname "$DESTDIR")" || exit 1
     tar -czf "$(basename "$DESTDIR")-$ver.tar.gz" "$(basename "$DESTDIR")"
     tse=$(date +%s)
