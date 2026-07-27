@@ -8,7 +8,7 @@ srcpath=/home/lixq/src/$name-$ver.tar.gz
 kernelver=6.6.145
 [[ -n $DESTDIR ]]
 [[ -f $srcpath ]]
-[[ -f /home/lixq/src/linux-$kernelver.tar.gz ]]
+[[ -f /home/lixq/src/linux-$kernelver.tar.xz ]]
 
 export PATH="/home/lixq/toolchains/make/usr/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
@@ -57,7 +57,7 @@ fi
 
 cd /home/lixq/src
 rm -rf linux-$kernelver
-tar -xf /home/lixq/src/linux-$kernelver.tar.gz
+tar -xf /home/lixq/src/linux-$kernelver.tar.xz
 cd /home/lixq/src/linux-${kernelver}
 make -s "-j$(nproc)" headers_install "INSTALL_HDR_PATH=$DESTDIR/usr"
 
