@@ -41,8 +41,10 @@ fi
 ../../../configure --prefix=/usr
 make -s "-j$(nproc)"
 make -s "-j$(nproc)" install "DESTDIR=$DESTDIR"
-# make -s "-j$(nproc)" localedata/install-locales "DESTDIR=$DESTDIR"
-# make -s "-j$(nproc)" localedata/install-locale-files "DESTDIR=$DESTDIR"
+if [[ $DESTDIR == /home/lixq/toolchains/glibc ]]; then
+    make -s "-j$(nproc)" localedata/install-locales "DESTDIR=$DESTDIR"
+    make -s "-j$(nproc)" localedata/install-locale-files "DESTDIR=$DESTDIR"
+fi
 cd /home/lixq/src
 rm -rf linux-$kernelver
 tar -xf /home/lixq/src/linux-$kernelver.tar.xz
