@@ -27,11 +27,39 @@ local function pick_process_all()
     end
   end
 
-  local choice = require("dap.ui").pick_one(
-    procs,
-    "Select process to attach:",
-    function(p) return string.format("%d  %-12s %s", p.pid, p.user, p.cmd) end
-  )
+  local label_fn = function(p)
+    return string.format("%d  %-12s %s", p.pid, p.user, p.cmd)
+  end
+
+  -- Prefill the picker's filter with the current directory's basename (e.g.
+  -- "shark" for /home/lixq/workspace-vscode/shark), so the target process is
+  -- usually the top match without typing. `opts.snacks` is merged into the
+  -- snacks picker config by snacks' vim.ui.select implementation, and `pattern`
+  -- is that picker's initial input value. Unknown opts are ignored by other
+  -- providers (telescope/dressing), so this is safe regardless of picker.
+  local default_pattern = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+  local ui_opts = {
+    prompt = "Select process to attach:",
+    format_item = label_fn,
+  }
+  if default_pattern ~= "" then
+    ui_opts.snacks = { pattern = default_pattern }
+  end
+
+  -- dap runs the `pid` function inside a coroutine, so we can drive vim.ui.select
+  -- directly (mirrors how require("dap.ui").pick_one works) and pass our opts.
+  local choice
+  local co = coroutine.running()
+  if co and vim.ui and vim.ui.select then
+    vim.ui.select(procs, ui_opts, function(item)
+      coroutine.resume(co, item)
+    end)
+    choice = coroutine.yield()
+  else
+    -- Fallback (no coroutine / no ui.select): dap's own picker, no prefill.
+    choice = require("dap.ui").pick_one(procs, ui_opts.prompt, label_fn)
+  end
+
   if not choice then
     return dap.ABORT
   end
@@ -63,9 +91,16 @@ return {
       }
 
       -- Swap the pid picker on the Attach config for c/cpp (defined by the clangd
-      -- extra) so it lists every user's processes, not just root's.
+      -- extra) so it lists every user's processes, not just root's. Also lift
+      -- Attach above Launch in the selection list, since attaching is the more
+      -- common action here.
       for _, lang in ipairs({ "c", "cpp" }) do
-        for _, cfg in ipairs(dap.configurations[lang] or {}) do
+        local cfgs = dap.configurations[lang] or {}
+        table.sort(cfgs, function(a, b)
+          if a.request == b.request then return false end
+          return a.request == "attach" -- attach < launch
+        end)
+        for _, cfg in ipairs(cfgs) do
           if cfg.request == "attach" and cfg.pid ~= nil then
             cfg.pid = pick_process_all
           end
