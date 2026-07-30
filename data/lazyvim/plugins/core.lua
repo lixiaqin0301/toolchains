@@ -17,6 +17,7 @@ return {
         marksman = { mason = false },
         pyright = { mason = false },
         ruff = { mason = false },
+        robotcode = { mason = false },
       },
     },
   },
@@ -33,9 +34,29 @@ return {
         cuda = { "clang_format" },
         proto = { "clang_format" },
         markdown = { "prettier" },
+        robot = { "robotidy" },
+      },
+      formatters = {
+        robotidy = {
+          command = "robotidy",
+          args = { "--stdin", "$FILENAME" },
+          stdin = true,
+        },
       },
     },
   },
+
+  -- nvim-lint：robot 文件启用 robocop
+  {
+    "mfussenegger/nvim-lint",
+    optional = true,
+    opts = {
+      linters_by_ft = {
+        robot = { "robocop" },
+      },
+    },
+  },
+
 
   -- 关闭 render-markdown
   { "MeanderingProgrammer/render-markdown.nvim", enabled = false },
