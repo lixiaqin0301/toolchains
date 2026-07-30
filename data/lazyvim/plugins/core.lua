@@ -10,6 +10,15 @@ return {
   -- nvim-lspconfig + clangd / marksman（均用系统 PATH，不走 mason）
   {
     "neovim/nvim-lspconfig",
+    init = function()
+      -- 识别 .robot 和 .resource 文件类型
+      vim.filetype.add({
+        extension = {
+          robot = "robot",
+          resource = "robot",
+        },
+      })
+    end,
     opts = {
       inlay_hints = { enabled = false },
       servers = {
