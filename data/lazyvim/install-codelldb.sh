@@ -114,3 +114,12 @@ echo "  包装脚本: $BIN_WRAPPER"
 echo
 echo "下一步:重启 nvim(mason 会把 $BIN_DIR 前置到内部 PATH),"
 echo "然后用 <F5> / <leader>d 启动调试即可。"
+
+# 1. 从内网 npm 获取源码
+# npm pack tree-sitter-robot
+# tar -xzf tree-sitter-robot-1.5.0.tgz
+# 2. 编译生成 .so 文件  cd package
+# gcc -shared -fPIC -O2 -std=gnu99 -I src src/parser.c -o robot.so
+# 3. 复制到 Neovim 的 parser 目录
+# cp robot.so ~/.local/share/nvim/site/parser/robot.so
+
