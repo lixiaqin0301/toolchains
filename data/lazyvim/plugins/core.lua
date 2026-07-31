@@ -67,4 +67,12 @@ return {
 
   -- 关闭 render-markdown
   { "MeanderingProgrammer/render-markdown.nvim", enabled = false },
+
+  -- 使用 catppuccin 主题
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "catppuccin-nvim",
+    },
+  },
 }
