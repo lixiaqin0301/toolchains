@@ -26,7 +26,17 @@ return {
         marksman = { mason = false },
         pyright = { mason = false },
         ruff = { mason = false },
-        robotcode = { mason = false },
+        robotcode = {
+          mason = false,
+          handlers = {
+            ["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
+              result.diagnostics = vim.tbl_filter(function(diag)
+                return diag.severity <= vim.diagnostic.severity.ERROR
+              end, result.diagnostics)
+              vim.lsp.handlers["textDocument/publishDiagnostics"](_, result, ctx, config)
+            end,
+          },
+        },
       },
     },
   },
