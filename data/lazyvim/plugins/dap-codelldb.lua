@@ -6,6 +6,27 @@
 -- The c/cpp configurations come from lazyvim.plugins.extras.lang.clangd; we only
 -- override the Attach entry's pid picker below.
 
+-- Cache shared between Launch's program() and args() functions so only one
+-- input prompt is shown regardless of which field pairs() evaluates first.
+---@type table|false|nil  { prog: string, args: table|nil }, false (canceled), or nil (unset)
+local _launch_cache = nil
+
+local function _ensure_launch_cache()
+  if _launch_cache ~= nil then return end
+  local input = vim.fn.input("Run: ", vim.fn.getcwd() .. "/", "file")
+  if input == "" then
+    _launch_cache = false
+    return
+  end
+  local tokens = vim.split(input, "%s+")
+  local prog = tokens[1]
+  table.remove(tokens, 1)
+  _launch_cache = { prog = prog, args = next(tokens) and tokens or nil }
+  -- Clear after the synchronous config expansion finishes, so the next
+  -- launch gets a fresh prompt.
+  vim.schedule(function() _launch_cache = nil end)
+end
+
 -- List processes of ALL users (root nvim + attaching to another user's process).
 -- dap's built-in require("dap.utils").pick_process runs `ps ah -U $USER`, which
 -- only shows the current user's processes, hiding e.g. a `sharklet` worker.
@@ -103,6 +124,20 @@ return {
         for _, cfg in ipairs(cfgs) do
           if cfg.request == "attach" and cfg.pid ~= nil then
             cfg.pid = pick_process_all
+          end
+          if cfg.request == "launch" then
+            cfg.program = function()
+              _ensure_launch_cache()
+              if _launch_cache == false then return dap.ABORT end
+              return _launch_cache.prog
+            end
+            cfg.args = function()
+              _ensure_launch_cache()
+              if _launch_cache == false then return dap.ABORT end
+              return _launch_cache.args
+            end
+            -- Remove cwd so we don't get a redundant "$workspaceFolder" prompt
+            -- (the default from clangd extra is fine).
           end
         end
       end
