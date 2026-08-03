@@ -208,8 +208,8 @@ build_packages 8.1.2 /home/lixq/toolchains/FFmpeg bzip2 libXau xcb-proto libxcb 
 # cppcheck  2.21.0  https://cppcheck.sourceforge.io/
 build_packages 2.21.0 /home/lixq/toolchains/cppcheck cppcheck
 
-# Bear         4.1.5     https://github.com/rizsotto/Bear/releases/
-build_packages 4.1.5 /home/lixq/toolchains/Bear Bear
+# Bear         4.2.0     https://github.com/rizsotto/Bear/releases/
+build_packages 4.2.0 /home/lixq/toolchains/Bear Bear
 
 # luarocks  3.13.0  https://github.com/luarocks/luarocks/releases/
 build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
