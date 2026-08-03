@@ -37,8 +37,8 @@ function build_packages() {
 tab=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 
-# cmake  4.4.1  https://cmake.org/download/
-build_packages 4.4.1 /home/lixq/toolchains/cmake cmake
+# cmake  4.4.2  https://cmake.org/download/
+build_packages 4.4.2 /home/lixq/toolchains/cmake cmake
 
 # lcov  2.5  https://github.com/linux-test-project/lcov/releases/
 build_packages 2.5 /home/lixq/toolchains/lcov lcov
