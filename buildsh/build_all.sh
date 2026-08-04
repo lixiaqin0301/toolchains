@@ -239,13 +239,13 @@ build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 # rg                   15.2.0      https://github.com/BurntSushi/ripgrep/releases/
 # btop                 1.4.7       https://github.com/aristocratos/btop/releases/
 # fd                   10.4.2      https://github.com/sharkdp/fd/releases/
-# fzf                  0.74.1      https://github.com/junegunn/fzf/releases/
-# lazygit              0.63.1      https://github.com/jesseduffield/lazygit/releases/
+# fzf                  0.74.2      https://github.com/junegunn/fzf/releases/
+# lazygit              0.64.0      https://github.com/jesseduffield/lazygit/releases/
 # zoxide               0.10.0      https://github.com/ajeetdsouza/zoxide/releases/
 # lua-language-server  3.18.2      https://github.com/LuaLS/lua-language-server/releases/
 # golangci-lint        2.12.2      https://github.com/golangci/golangci-lint/releases/
 # codelldb             1.12.2      https://github.com/vadimcn/codelldb/releases/
-# Nerd Fonts           3.4.0       https://github.com/ryanoasis/nerd-fonts/releases/
+# Nerd Fonts           3.5.0       https://github.com/ryanoasis/nerd-fonts/releases/
 # tree-sitter          0.26.11     https://github.com/tree-sitter/tree-sitter/releases/
 # marksman             2026-02-08  https://github.com/artempyanykh/marksman/releases/
 
