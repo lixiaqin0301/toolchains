@@ -1,10 +1,4 @@
--- Use the codelldb on PATH (a locally built, glibc 2.17 compatible one) instead of
--- the mason-managed prebuilt binary, which needs GLIBC_2.35 and exits 101 here.
--- liblldb is resolved via the symlink at .../lldb/lib/liblldb.so, so no --liblldb
--- is needed. NOTE: mason still lists codelldb in ensure_installed (via the clangd
--- extra), so if it manages to install its own copy it may shadow the PATH one.
--- The c/cpp configurations come from lazyvim.plugins.extras.lang.clangd; we only
--- override the Attach entry's pid picker below.
+-- Use the system lldb-dap from the local LLVM toolchain instead of codelldb.
 
 -- Cache shared between Launch's program() and args() functions so only one
 -- input prompt is shown regardless of which field pairs() evaluates first.
@@ -102,13 +96,8 @@ return {
       local dap = require("dap")
 
       dap.adapters.codelldb = {
-        type = "server",
-        host = "127.0.0.1",
-        port = "${port}",
-        executable = {
-          command = "codelldb",
-          args = { "--port", "${port}" },
-        },
+        type = "executable",
+        command = "/home/lixq/toolchains/llvm/usr/bin/lldb-dap",
       }
 
       -- Swap the pid picker on the Attach config for c/cpp (defined by the clangd
@@ -154,10 +143,6 @@ return {
       -- Rebuild the dap-ui windows at their default sizes (fixes layout that got
       -- squished after toggling neo-tree with <leader>e, etc.).
       { "<leader>dR", function() require("dapui").open({ reset = true }) end, desc = "Reset DAP UI layout" },
-      -- Toggle the whole UI (LazyVim also binds <leader>du; kept here for discoverability).
-      { "<leader>dU", function() require("dapui").toggle({ reset = true }) end, desc = "Toggle DAP UI (reset)" },
-      -- Float the value/scope of the symbol under cursor (n) or the selection (x).
-      { "<leader>dv", function() require("dapui").eval(nil, { enter = true }) end, mode = { "n", "x" }, desc = "Eval (float, enter)" },
     },
   },
 }
