@@ -136,9 +136,9 @@ build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 # glibc    2.43    https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 2.55.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd openssl curl glibc git
 
-# node   26.6.0  https://nodejs.org/dist/
+# node   26.7.0  https://nodejs.org/dist/
 # glibc  2.44    https://mirrors.tuna.tsinghua.edu.cn/gnu/glibc/
-build_packages 26.6.0 /opt/node glibc node
+build_packages 26.7.0 /opt/node glibc node
 
 # bpftrace  0.26.1  https://github.com/bpftrace/bpftrace/releases/
 build_packages 0.26.1 /home/lixq/toolchains/bpftrace bpftrace
@@ -214,7 +214,7 @@ build_packages 4.2.0 /home/lixq/toolchains/Bear Bear
 # luarocks  3.13.0  https://github.com/luarocks/luarocks/releases/
 build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 
-# FireFox              153.0.1     https://www.firefox.com/en-US/download/all/desktop-release/win64/zh-CN/
+# FireFox              153.0.3     https://www.firefox.com/en-US/download/all/desktop-release/win64/zh-CN/
 # Chrome                           https://www.google.cn/chrome/?standalone=1&platform=win64
 # ninja                1.13.2      https://github.com/ninja-build/ninja/releases/
 # patchelf             0.19.1      https://github.com/NixOS/patchelf/releases/
@@ -244,7 +244,6 @@ build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 # zoxide               0.10.0      https://github.com/ajeetdsouza/zoxide/releases/
 # lua-language-server  3.18.2      https://github.com/LuaLS/lua-language-server/releases/
 # golangci-lint        2.12.2      https://github.com/golangci/golangci-lint/releases/
-# codelldb             1.12.2      https://github.com/vadimcn/codelldb/releases/
 # Nerd Fonts           3.5.0       https://github.com/ryanoasis/nerd-fonts/releases/
 # tree-sitter          0.26.11     https://github.com/tree-sitter/tree-sitter/releases/
 # marksman             2026-02-08  https://github.com/artempyanykh/marksman/releases/
