@@ -144,24 +144,61 @@ return {
       -- squished after toggling neo-tree with <leader>e, etc.).
       { "<leader>dR", function() require("dapui").open({ reset = true }) end, desc = "Reset DAP UI layout" },
     },
-    opts = {
-      layouts = {
-        {
-          elements = {
-            { id = "scopes", size = 0.25 },
-            { id = "breakpoints", size = 0.25 },
-            { id = "stacks", size = 0.25 },
-            { id = "watches", size = 0.25 },
+    config = function(_, opts)
+      local dapui = require("dapui")
+      local dap = require("dap")
+      -- Default layout: no console. Launch sessions get the full layout injected
+      -- on init; Attach sessions keep only REPL in the bottom pane.
+      dapui.setup(vim.tbl_deep_extend("force", opts or {}, {
+        layouts = {
+          {
+            elements = {
+              { id = "scopes", size = 0.25 },
+              { id = "breakpoints", size = 0.25 },
+              { id = "stacks", size = 0.25 },
+              { id = "watches", size = 0.25 },
+            },
+            size = 40,
+            position = "left",
           },
-          size = 40,
-          position = "left",
+          {
+            elements = { "repl" },
+            size = 10,
+            position = "bottom",
+          },
         },
-        {
-          elements = { "repl" },
-          size = 10,
-          position = "bottom",
-        },
-      },
-    },
+      }))
+      dap.listeners.after.event_initialized["dapui_config"] = function(session)
+        if session.config.request ~= "attach" then
+          -- Launch: re-setup with console included, then open the full UI.
+          dapui.setup(vim.tbl_deep_extend("force", opts or {}, {
+            layouts = {
+              {
+                elements = {
+                  { id = "scopes", size = 0.25 },
+                  { id = "breakpoints", size = 0.25 },
+                  { id = "stacks", size = 0.25 },
+                  { id = "watches", size = 0.25 },
+                },
+                size = 40,
+                position = "left",
+              },
+              {
+                elements = { "repl", "console" },
+                size = 10,
+                position = "bottom",
+              },
+            },
+          }))
+        end
+        dapui.open({})
+      end
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close({})
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close({})
+      end
+    end,
   },
 }
