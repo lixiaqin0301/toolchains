@@ -144,5 +144,24 @@ return {
       -- squished after toggling neo-tree with <leader>e, etc.).
       { "<leader>dR", function() require("dapui").open({ reset = true }) end, desc = "Reset DAP UI layout" },
     },
+    opts = {
+      layouts = {
+        {
+          elements = {
+            { id = "scopes", size = 0.25 },
+            { id = "breakpoints", size = 0.25 },
+            { id = "stacks", size = 0.25 },
+            { id = "watches", size = 0.25 },
+          },
+          size = 40,
+          position = "left",
+        },
+        {
+          elements = { "repl" },
+          size = 10,
+          position = "bottom",
+        },
+      },
+    },
   },
 }
