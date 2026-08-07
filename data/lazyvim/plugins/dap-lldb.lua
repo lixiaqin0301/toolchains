@@ -86,6 +86,21 @@ return {
     "mfussenegger/nvim-dap",
     -- IDE-style function keys (single press), alongside LazyVim's <leader>d* maps.
     keys = {
+      -- Override <leader>dt: for attach sessions, detach without killing the
+      -- attached process; for launch sessions, terminate normally (kill).
+      {
+        "<leader>dt",
+        function()
+          local dap = require("dap")
+          local session = dap.session()
+          if session and session.config.request == "attach" then
+            dap.disconnect({ terminateDebuggee = false })
+          else
+            dap.terminate()
+          end
+        end,
+        desc = "Terminate (attach: detach only)",
+      },
       { "<F5>", function() require("dap").continue() end, desc = "Debug: Continue" },
       { "<F9>", function() require("dap").toggle_breakpoint() end, desc = "Debug: Toggle Breakpoint" },
       { "<F10>", function() require("dap").step_over() end, desc = "Debug: Step Over" },
