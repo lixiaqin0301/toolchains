@@ -8,7 +8,7 @@ srcpath=/home/lixq/src/$name-$ver.tar.gz
 [[ -n $DESTDIR ]]
 [[ -f $srcpath ]]
 
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+export PATH=/opt/rh/devtoolset-11/root/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
 
 cd /home/lixq/src
 rm -rf "$name-$ver"
