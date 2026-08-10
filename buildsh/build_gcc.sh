@@ -18,11 +18,18 @@ gettext='gettext-0.22.tar.gz'
 [[ -f /home/lixq/src/$isl ]]
 [[ -f /home/lixq/src/$gettext ]]
 
+export MANPATH=
+export PCP_DIR=
+export LD_LIBRARY_PATH=
+export PKG_CONFIG_PATH=
+export INFOPATH=
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+
 if [[ $DESTDIR == /opt/gcc ]]; then
-    export PATH="/home/lixq/toolchains/gcc/usr/bin:/opt/rh/devtoolset-11/root/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
+    export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
     export LDFLAGS="-L/home/lixq/toolchains/gcc/usr/lib64 -Wl,-rpath-link,/home/lixq/toolchains/gcc/usr/lib64 -Wl,-rpath,/opt/gcc/usr/lib64"
 else
-    export PATH="/opt/gcc/usr/bin:/opt/rh/devtoolset-11/root/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
+    export PATH="/opt/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
     export LDFLAGS="-L/opt/gcc/usr/lib64 -Wl,-rpath-link,/opt/gcc/usr/lib64 -Wl,-rpath,/home/lixq/toolchains/gcc/usr/lib64"
 fi
 
