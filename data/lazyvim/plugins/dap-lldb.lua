@@ -82,6 +82,21 @@ local function pick_process_all()
 end
 
 return {
+  -- Disable blink.cmp auto-completion for the dap-repl buffer, so only nvim-dap's
+  -- built-in omnifunc (variables, expressions, DAP commands) is used. Otherwise
+  -- blink's lsp/path/snippets/buffer sources clutter the completion menu and
+  -- make it unusable. <C-x><C-o> still invokes the DAP omnifunc directly.
+  {
+    "saghen/blink.cmp",
+    optional = true,
+    opts = {
+      sources = {
+        per_filetype = {
+          ["dap-repl"] = { inherit_defaults = false },
+        },
+      },
+    },
+  },
   {
     "mfussenegger/nvim-dap",
     -- IDE-style function keys (single press), alongside LazyVim's <leader>d* maps.
@@ -185,7 +200,9 @@ return {
       }))
       dap.listeners.after.event_initialized["dapui_config"] = function(session)
         if session.config.request ~= "attach" then
-          -- Launch: re-setup with console included, then open the full UI.
+          -- Launch: close, re-setup with console, then schedule open so the
+          -- DAP terminal buffer has time to be created before dapui renders it.
+          dapui.close({})
           dapui.setup(vim.tbl_deep_extend("force", opts or {}, {
             layouts = {
               {
@@ -205,8 +222,10 @@ return {
               },
             },
           }))
+          vim.schedule(function() dapui.open({}) end)
+        else
+          dapui.open({})
         end
-        dapui.open({})
       end
       dap.listeners.before.event_terminated["dapui_config"] = function()
         dapui.close({})
