@@ -50,5 +50,3 @@ make -s "-j$(nproc)"
 make -s "-j$(nproc)" install
 cd "$DESTDIR/usr/bin"
 ln -s gcc cc
-cd "$DESTDIR"
-ln -s usr/lib64 lib64
