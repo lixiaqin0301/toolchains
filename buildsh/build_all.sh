@@ -46,10 +46,10 @@ build_packages 2.5 /home/lixq/toolchains/lcov lcov
 # Shellcheck  0.11.0  https://github.com/koalaman/shellcheck/releases
 build_packages 0.11.0 /home/lixq/toolchains/shellcheck shellcheck
 
-# gcc     16.1.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
+# gcc     16.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
 # ./contrib/download_prerequisites  https://gcc.gnu.org/pub/gcc/infrastructure/
-# binutils  2.46  https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
-gccver=16.1.0
+# binutils  2.47  https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
+gccver=16.2.0
 build_packages $gccver /opt/gcc gcc binutils
 build_packages $gccver /home/lixq/toolchains/gcc gcc binutils
 
