@@ -20,7 +20,7 @@ function build_packages() {
     done
     if [[ -f "$DESTDIR/lib64/ld-linux-x86-64.so.2" ]]; then
         while IFS= read -r f; do
-            $f --help 2>&1 | grep -q GLIBC || continue
+            $f --help 2>&1 | grep -q "$f: /lib64/libc.so.6: version .GLIBC_.* not found (required by $f)" || continue
             [[ -f "$f.real" ]] || mv "$f" "$f.real"
             rm -f "$f"
             {
