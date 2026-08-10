@@ -226,7 +226,6 @@ build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 # jdk                  26.0.2      https://www.oracle.com/java/technologies/downloads/
 # miniforge            26.3.2-3    https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
 # websocat             1.14.1      https://github.com/vi/websocat/releases/
-# rr-debuger           5.9.0       https://github.com/rr-debugger/rr/releases/
 # cygwin               3.6.9       https://cygwin.com/
 # golang               1.26.5      https://golang.google.cn/dl/
 # rust                 1.97.1      https://rust-lang.org/
@@ -242,10 +241,10 @@ build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 # fzf                  0.74.2      https://github.com/junegunn/fzf/releases/
 # lazygit              0.64.0      https://github.com/jesseduffield/lazygit/releases/
 # zoxide               0.10.0      https://github.com/ajeetdsouza/zoxide/releases/
-# lua-language-server  3.18.2      https://github.com/LuaLS/lua-language-server/releases/
+# lua-language-server  3.19.0      https://github.com/LuaLS/lua-language-server/releases/
 # golangci-lint        2.12.2      https://github.com/golangci/golangci-lint/releases/
 # Nerd Fonts           3.5.0       https://github.com/ryanoasis/nerd-fonts/releases/
-# tree-sitter          0.26.11     https://github.com/tree-sitter/tree-sitter/releases/
+# tree-sitter          0.26.12     https://github.com/tree-sitter/tree-sitter/releases/
 # marksman             2026-02-08  https://github.com/artempyanykh/marksman/releases/
 
 tae=$(date +%s)
