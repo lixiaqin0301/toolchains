@@ -1,10 +1,9 @@
 export PATH="/home/lixq/toolchains/bin:\
+/opt/rh/devtoolset-11/root/usr/bin:\
 /usr/local/sbin:\
 /usr/local/bin:\
 /usr/sbin:\
 /usr/bin:\
-/sbin:\
-/bin:\
 /opt/node/usr/bin:\
 /opt/patchelf/bin:\
 /home/lixq/toolchains/bashdb/usr/bin:\

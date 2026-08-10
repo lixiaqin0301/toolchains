@@ -1,6 +1,7 @@
 vim.g.autoformat = false
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
+vim.o.shell = "/bin/zsh"
 vim.opt.conceallevel = 0
 vim.opt.expandtab = true
 vim.opt.relativenumber = false
