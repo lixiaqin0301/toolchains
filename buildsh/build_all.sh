@@ -205,7 +205,7 @@ build_packages 3.02 /home/lixq/toolchains/nasm nasm
 # libxcb     1.17.0  https://xorg.freedesktop.org/archive/individual/lib/
 # xz         5.8.3   https://tukaani.org/xz/
 # zlib       1.3.2   https://github.com/madler/zlib/releases/
-build_packages 9.0 /home/lixq/toolchains/FFmpeg bzip2 libXau xcb-proto libxcb xz zlib FFmpeg
+build_packages 9.0.1 /home/lixq/toolchains/FFmpeg bzip2 libXau xcb-proto libxcb xz zlib FFmpeg
 
 # cppcheck  2.21.0  https://cppcheck.sourceforge.io/
 build_packages 2.21.0 /home/lixq/toolchains/cppcheck cppcheck
