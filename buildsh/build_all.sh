@@ -198,7 +198,7 @@ build_packages 4.2.0 /home/lixq/toolchains/wrk wrk
 # nasm  3.02  https://www.nasm.us/pub/nasm/releasebuilds/
 build_packages 3.02 /home/lixq/toolchains/nasm nasm
 
-# FFmpeg     9.0     https://github.com/FFmpeg/FFmpeg/tags
+# FFmpeg     9.0.1   https://github.com/FFmpeg/FFmpeg/tags
 # bzip2      1.0.8   https://sourceware.org/pub/bzip2/
 # libXau     1.0.12  https://xorg.freedesktop.org/archive/individual/lib/
 # xcb-proto  1.17.0  https://xorg.freedesktop.org/archive/individual/proto/
