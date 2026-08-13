@@ -121,8 +121,8 @@ build_packages 22.1.8 /home/watch/toolchains/lldb bison libxml2 lua ncurses libe
 # zsh  5.9  https://www.zsh.org/
 build_packages 5.9 /home/lixq/toolchains/zsh zsh
 
-# boost  1.91.0  https://www.boost.org/releases/latest/
-build_packages 1.91.0 /home/lixq/toolchains/boost boost
+# boost  1.92.0  https://www.boost.org/releases/latest/
+build_packages 1.92.0 /home/lixq/toolchains/boost boost
 
 # tcpflow  1.6.1  https://github.com/simsong/tcpflow/releases/
 build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
@@ -216,11 +216,11 @@ build_packages 4.2.0 /home/lixq/toolchains/Bear Bear
 # luarocks  3.13.0  https://github.com/luarocks/luarocks/releases/
 build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 
-# FireFox              153.0.3     https://www.firefox.com/en-US/download/all/desktop-release/win64/zh-CN/
+# FireFox              153.0.4     https://www.firefox.com/en-US/download/all/desktop-release/win64/zh-CN/
 # Chrome                           https://www.google.cn/chrome/?standalone=1&platform=win64
 # ninja                1.13.2      https://github.com/ninja-build/ninja/releases/
 # patchelf             0.19.1      https://github.com/NixOS/patchelf/releases/
-# pandoc               3.10.1      https://github.com/jgm/pandoc/releases/
+# pandoc               3.10.2      https://github.com/jgm/pandoc/releases/
 # eclipse              2026-06     https://www.eclipse.org/downloads/packages/
 #                                  https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
 #                                  markdown json(Wild Web Developer) bash
@@ -241,7 +241,7 @@ build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 # btop                 1.4.7       https://github.com/aristocratos/btop/releases/
 # fd                   10.4.2      https://github.com/sharkdp/fd/releases/
 # fzf                  0.74.2      https://github.com/junegunn/fzf/releases/
-# lazygit              0.64.0      https://github.com/jesseduffield/lazygit/releases/
+# lazygit              0.64.1      https://github.com/jesseduffield/lazygit/releases/
 # zoxide               0.10.0      https://github.com/ajeetdsouza/zoxide/releases/
 # lua-language-server  3.19.0      https://github.com/LuaLS/lua-language-server/releases/
 # golangci-lint        2.12.2      https://github.com/golangci/golangci-lint/releases/
