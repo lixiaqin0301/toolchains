@@ -210,8 +210,8 @@ build_packages 9.0.1 /home/lixq/toolchains/FFmpeg bzip2 libXau xcb-proto libxcb 
 # cppcheck  2.21.0  https://cppcheck.sourceforge.io/
 build_packages 2.21.0 /home/lixq/toolchains/cppcheck cppcheck
 
-# Bear         4.2.0     https://github.com/rizsotto/Bear/releases/
-build_packages 4.2.0 /home/lixq/toolchains/Bear Bear
+# Bear         4.2.1     https://github.com/rizsotto/Bear/releases/
+build_packages 4.2.1 /home/lixq/toolchains/Bear Bear
 
 # luarocks  3.13.0  https://github.com/luarocks/luarocks/releases/
 build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
@@ -229,7 +229,7 @@ build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 # miniforge            26.3.2-3    https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
 # websocat             1.14.1      https://github.com/vi/websocat/releases/
 # cygwin               3.6.9       https://cygwin.com/
-# golang               1.26.5      https://golang.google.cn/dl/
+# golang               1.26.6      https://golang.google.cn/dl/
 # rust                 1.97.1      https://rust-lang.org/
 # rime                 0.17.4      https://rime.im/
 # rime-frost           1.0.4       https://github.com/gaboolic/rime-frost/releases
@@ -243,7 +243,7 @@ build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 # fzf                  0.74.2      https://github.com/junegunn/fzf/releases/
 # lazygit              0.64.1      https://github.com/jesseduffield/lazygit/releases/
 # zoxide               0.10.0      https://github.com/ajeetdsouza/zoxide/releases/
-# lua-language-server  3.19.0      https://github.com/LuaLS/lua-language-server/releases/
+# lua-language-server  3.19.1      https://github.com/LuaLS/lua-language-server/releases/
 # golangci-lint        2.12.2      https://github.com/golangci/golangci-lint/releases/
 # Nerd Fonts           3.5.0       https://github.com/ryanoasis/nerd-fonts/releases/
 # tree-sitter          0.26.12     https://github.com/tree-sitter/tree-sitter/releases/

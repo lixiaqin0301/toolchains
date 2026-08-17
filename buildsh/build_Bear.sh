@@ -2,13 +2,18 @@
 set -euo pipefail
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=4.2.0
+ver=4.2.1
 DESTDIR=$1
 srcpath=/home/lixq/src/$name-$ver.tar.gz
 [[ -n $DESTDIR ]]
 [[ -f $srcpath ]]
 
-export PATH="/root/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export MANPATH=
+export PCP_DIR=
+export LD_LIBRARY_PATH=
+export PKG_CONFIG_PATH=
+export INFOPATH=
+export PATH="/root/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
 . /opt/rh/devtoolset-11/enable
 
 cd /home/lixq/src
