@@ -142,10 +142,9 @@ return {
     config = function(_, opts)
       local dapui = require("dapui")
       local dap = require("dap")
-      -- Default layout: no console. Launch sessions get the full layout injected
-      -- on init; Attach sessions keep only REPL in the bottom pane.
-      dapui.setup(vim.tbl_deep_extend("force", opts or {}, {
-        layouts = {
+
+      local function build_layouts(with_console)
+        return {
           {
             elements = {
               { id = "scopes", size = 0.25 },
@@ -157,36 +156,27 @@ return {
             position = "left",
           },
           {
-            elements = { "repl" },
+            elements = with_console and { "repl", "console" } or { "repl" },
             size = 10,
             position = "bottom",
           },
-        },
-      }))
+        }
+      end
+
+      local function setup(with_console)
+        dapui.setup(vim.tbl_deep_extend("force", opts or {}, { layouts = build_layouts(with_console) }))
+      end
+
+      -- Default layout: no console. Launch sessions get the full layout injected
+      -- on init; Attach sessions keep only REPL in the bottom pane.
+      setup(false)
+
       dap.listeners.after.event_initialized["dapui_config"] = function(session)
         if session.config.request ~= "attach" then
           -- Launch: close, re-setup with console, then schedule open so the
           -- DAP terminal buffer has time to be created before dapui renders it.
           dapui.close({})
-          dapui.setup(vim.tbl_deep_extend("force", opts or {}, {
-            layouts = {
-              {
-                elements = {
-                  { id = "scopes", size = 0.25 },
-                  { id = "breakpoints", size = 0.25 },
-                  { id = "stacks", size = 0.25 },
-                  { id = "watches", size = 0.25 },
-                },
-                size = 40,
-                position = "left",
-              },
-              {
-                elements = { "repl", "console" },
-                size = 10,
-                position = "bottom",
-              },
-            },
-          }))
+          setup(true)
           vim.schedule(function() dapui.open({}) end)
         else
           dapui.open({})
