@@ -216,38 +216,38 @@ build_packages 4.2.1 /home/lixq/toolchains/Bear Bear
 # luarocks  3.13.0  https://github.com/luarocks/luarocks/releases/
 build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 
-# FireFox              153.0.4     https://www.firefox.com/en-US/download/all/desktop-release/win64/zh-CN/
-# Chrome                           https://www.google.cn/chrome/?standalone=1&platform=win64
-# ninja                1.13.2      https://github.com/ninja-build/ninja/releases/
-# patchelf             0.19.1      https://github.com/NixOS/patchelf/releases/
-# pandoc               3.10.2      https://github.com/jgm/pandoc/releases/
-# eclipse              2026-06     https://www.eclipse.org/downloads/packages/
-#                                  https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
-#                                  markdown json(Wild Web Developer) bash
-# PyDev                13.1.0      https://github.com/fabioz/Pydev/releases
-# jdk                  26.0.2      https://www.oracle.com/java/technologies/downloads/
-# miniforge            26.3.2-3    https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
-# websocat             1.14.1      https://github.com/vi/websocat/releases/
-# cygwin               3.6.9       https://cygwin.com/
-# golang               1.26.6      https://golang.google.cn/dl/
-# rust                 1.97.1      https://rust-lang.org/
-# rime                 0.17.4      https://rime.im/
-# rime-frost           1.0.4       https://github.com/gaboolic/rime-frost/releases
-# tabby                1.0.235     https://github.com/Eugeny/tabby/releases
-# onnxruntime          1.28.0      https://pypi.org/project/onnxruntime/
-# bazel                9.2.0       https://github.com/bazelbuild/bazel/releases/
-# nvim                 0.12.4      https://github.com/neovim/neovim/releases/
-# rg                   15.2.0      https://github.com/BurntSushi/ripgrep/releases/
-# btop                 1.4.7       https://github.com/aristocratos/btop/releases/
-# fd                   10.4.2      https://github.com/sharkdp/fd/releases/
-# fzf                  0.74.2      https://github.com/junegunn/fzf/releases/
-# lazygit              0.64.1      https://github.com/jesseduffield/lazygit/releases/
-# zoxide               0.10.0      https://github.com/ajeetdsouza/zoxide/releases/
-# lua-language-server  3.19.1      https://github.com/LuaLS/lua-language-server/releases/
-# golangci-lint        2.12.2      https://github.com/golangci/golangci-lint/releases/
-# Nerd Fonts           3.5.0       https://github.com/ryanoasis/nerd-fonts/releases/
-# tree-sitter          0.26.12     https://github.com/tree-sitter/tree-sitter/releases/
-# marksman             2026-02-08  https://github.com/artempyanykh/marksman/releases/
+# FireFox              154.0           https://www.firefox.com/en-US/download/all/desktop-release/win64/zh-CN/
+# Chrome               151.0.7922.170  https://www.google.cn/chrome/?standalone=1&platform=win64
+# ninja                1.13.2          https://github.com/ninja-build/ninja/releases/
+# patchelf             0.19.1          https://github.com/NixOS/patchelf/releases/
+# pandoc               3.10.2          https://github.com/jgm/pandoc/releases/
+# eclipse              2026-06         https://www.eclipse.org/downloads/packages/
+#                                      https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
+#                                      markdown json(Wild Web Developer) bash
+# PyDev                13.1.0          https://github.com/fabioz/Pydev/releases
+# jdk                  26.0.2.1        https://www.oracle.com/java/technologies/downloads/
+# miniforge            26.3.2-3        https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
+# websocat             1.14.1          https://github.com/vi/websocat/releases/
+# cygwin               3.6.9           https://cygwin.com/
+# golang               1.26.6          https://golang.google.cn/dl/
+# rust                 1.97.1          https://rust-lang.org/
+# rime                 0.17.4          https://rime.im/
+# rime-frost           1.0.4           https://github.com/gaboolic/rime-frost/releases
+# tabby                1.0.235         https://github.com/Eugeny/tabby/releases
+# onnxruntime          1.29.0          https://pypi.org/project/onnxruntime/
+# bazel                9.2.0           https://github.com/bazelbuild/bazel/releases/
+# nvim                 0.12.4          https://github.com/neovim/neovim/releases/
+# rg                   15.2.0          https://github.com/BurntSushi/ripgrep/releases/
+# btop                 1.4.7           https://github.com/aristocratos/btop/releases/
+# fd                   10.4.2          https://github.com/sharkdp/fd/releases/
+# fzf                  0.74.3          https://github.com/junegunn/fzf/releases/
+# lazygit              0.64.1          https://github.com/jesseduffield/lazygit/releases/
+# zoxide               0.10.0          https://github.com/ajeetdsouza/zoxide/releases/
+# lua-language-server  3.19.1          https://github.com/LuaLS/lua-language-server/releases/
+# golangci-lint        2.12.2          https://github.com/golangci/golangci-lint/releases/
+# Nerd Fonts           3.5.0           https://github.com/ryanoasis/nerd-fonts/releases/
+# tree-sitter          0.26.12         https://github.com/tree-sitter/tree-sitter/releases/
+# marksman             2026-02-08      https://github.com/artempyanykh/marksman/releases/
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
