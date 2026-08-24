@@ -42,17 +42,17 @@ cd /home/lixq/toolchains || exit 1
 rm -rf Miniforge3
 ln -s Miniforge3-$ver Miniforge3
 # onnxruntime 1.29.0    https://pypi.org/project/onnxruntime/
-/home/lixq/toolchains/Miniforge3/bin/pip3 install /home/lixq/src/onnxruntime-1.29.0-cp313-cp313-manylinux_2_17_x86_64.whl
+/home/lixq/toolchains/Miniforge3/bin/pip3 install /home/lixq/src/onnxruntime-1.29.0-cp314-cp314-manylinux_2_17_x86_64.whl
 /home/lixq/toolchains/Miniforge3/bin/pip3 --trusted-host repo.haplat.net install ipython invoke neovim h11 pytz cryptography h2 hpack hyperframe json5 robotframework six websockets pytest pyparsing scapy pytest-timeout pytest-html python-jenkins markdown atlassian-python-api paramiko pycryptodome chardet requests requests_toolbelt atlassian urllib3 meson flask ipython invoke neovim h11 pytz cryptography h2 hpack hyperframe json5 robotframework six websockets pytest pyparsing scapy pytest-timeout pytest-html python-jenkins markdown atlassian-python-api paramiko pycryptodome chardet requests requests_toolbelt beautifulsoup4 atlassian urllib3 bs4 meson flask markdown PyYAML playwright atlassian-python-api lxml markitdown pip-review pyright ruff
 /home/lixq/toolchains/Miniforge3/bin/pip3 install robotcode 'robotcode[languageserver]' robotframework-tidy robotframework-robocop
 /home/lixq/toolchains/Miniforge3/bin/pip3 --trusted-host repo.haplat.net install cython
 /home/lixq/toolchains/Miniforge3/bin/pip3 --trusted-host repo.haplat.net install pandas
 
-echo /home/lixq/shark-test/lib > /home/lixq/toolchains/Miniforge3/lib/python3.13/site-packages/shark-test.pth
-echo /home/lixq/shark-test/lib/archive >> /home/lixq/toolchains/Miniforge3/lib/python3.13/site-packages/shark-test.pth
+echo /home/lixq/shark-test/lib > /home/lixq/toolchains/Miniforge3/lib/python3.14/site-packages/shark-test.pth
+echo /home/lixq/shark-test/lib/archive >> /home/lixq/toolchains/Miniforge3/lib/python3.14/site-packages/shark-test.pth
 
 while IFS= read -r f; do
-    $f --help 2>&1 | grep -q GLIBC || continue
+    $f --help 2>&1 | grep -q "$f: /lib64/libc.so.6: version .GLIBC_.* not found (required by $f)" || continue
     [[ -f "$f.real" ]] || mv "$f" "$f.real"
     rm -f "$f"
     {
