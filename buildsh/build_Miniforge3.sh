@@ -1,8 +1,13 @@
 #!/bin/bash
 
-ver=26.3.2-3
+ver=26.5.3-0
 
-export PATH="/home/lixq/toolchains/Miniforge3-$ver/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export MANPATH=
+export PCP_DIR=
+export LD_LIBRARY_PATH=
+export PKG_CONFIG_PATH=
+export INFOPATH=
+export PATH="/home/lixq/toolchains/Miniforge3-$ver/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
 export LDFLAGS="-static-libgcc -static-libstdc++"
 export PKG_CONFIG_PATH="/home/lixq/toolchains/Miniforge3-$ver/lib/pkgconfig"
 
@@ -36,8 +41,8 @@ bash /home/lixq/src/Miniforge3-$ver-Linux-x86_64.sh -b -p /home/lixq/toolchains/
 cd /home/lixq/toolchains || exit 1
 rm -rf Miniforge3
 ln -s Miniforge3-$ver Miniforge3
-# onnxruntime 1.27.0    https://pypi.org/project/onnxruntime/
-/home/lixq/toolchains/Miniforge3/bin/pip3 install /home/lixq/src/onnxruntime-1.27.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_17_x86_64.whl
+# onnxruntime 1.29.0    https://pypi.org/project/onnxruntime/
+/home/lixq/toolchains/Miniforge3/bin/pip3 install /home/lixq/src/onnxruntime-1.29.0-cp313-cp313-manylinux_2_17_x86_64.whl
 /home/lixq/toolchains/Miniforge3/bin/pip3 --trusted-host repo.haplat.net install ipython invoke neovim h11 pytz cryptography h2 hpack hyperframe json5 robotframework six websockets pytest pyparsing scapy pytest-timeout pytest-html python-jenkins markdown atlassian-python-api paramiko pycryptodome chardet requests requests_toolbelt atlassian urllib3 meson flask ipython invoke neovim h11 pytz cryptography h2 hpack hyperframe json5 robotframework six websockets pytest pyparsing scapy pytest-timeout pytest-html python-jenkins markdown atlassian-python-api paramiko pycryptodome chardet requests requests_toolbelt beautifulsoup4 atlassian urllib3 bs4 meson flask markdown PyYAML playwright atlassian-python-api lxml markitdown pip-review pyright ruff
 /home/lixq/toolchains/Miniforge3/bin/pip3 install robotcode 'robotcode[languageserver]' robotframework-tidy robotframework-robocop
 /home/lixq/toolchains/Miniforge3/bin/pip3 --trusted-host repo.haplat.net install cython
