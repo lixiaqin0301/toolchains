@@ -39,8 +39,8 @@ function build_packages() {
 tab=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 
-# cmake  4.4.2  https://cmake.org/download/
-build_packages 4.4.2 /home/lixq/toolchains/cmake cmake
+# cmake  4.4.3  https://cmake.org/download/
+build_packages 4.4.3 /home/lixq/toolchains/cmake cmake
 
 # lcov  2.5  https://github.com/linux-test-project/lcov/releases/
 build_packages 2.5 /home/lixq/toolchains/lcov lcov
@@ -216,6 +216,7 @@ build_packages 4.2.1 /home/lixq/toolchains/Bear Bear
 # luarocks  3.13.0  https://github.com/luarocks/luarocks/releases/
 build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 
+# cmake                4.4.3           https://cmake.org/download/
 # FireFox              154.0.1         https://www.firefox.com/en-US/download/all/desktop-release/win64/zh-CN/
 # Chrome               152.0.7977.65   https://www.google.cn/chrome/?standalone=1&platform=win64
 # ninja                1.13.2          https://github.com/ninja-build/ninja/releases/
