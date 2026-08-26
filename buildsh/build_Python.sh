@@ -49,6 +49,14 @@ cd /home/lixq/src
 rm -rf "$name-$ver"
 tar -xf "$srcpath"
 cd "/home/lixq/src/$name-$ver"
+# Python 3.14.7 不兼容 openssl 4.0.2
+sed -e '/OpenSSL API 1\.1\.0+ does not include version methods/i #if OPENSSL_VERSION_MAJOR < 4' \
+    -e '/extern const SSL_METHOD \*TLSv1_2_method/{n; s/^#endif$/#endif\n#endif \/* OPENSSL_VERSION_MAJOR < 4 *\//}' \
+    -e 's/!defined(OPENSSL_NO_TLS1_METHOD))/!defined(OPENSSL_NO_TLS1_METHOD) \&\& OPENSSL_VERSION_MAJOR < 4)/' \
+    -e 's/!defined(OPENSSL_NO_TLS1_1_METHOD))/!defined(OPENSSL_NO_TLS1_1_METHOD) \&\& OPENSSL_VERSION_MAJOR < 4)/' \
+    -e 's/!defined(OPENSSL_NO_TLS1_2_METHOD))/!defined(OPENSSL_NO_TLS1_2_METHOD) \&\& OPENSSL_VERSION_MAJOR < 4)/' \
+    -e 's/#if defined(SSL3_VERSION) && !defined(OPENSSL_NO_SSL3)/#if defined(SSL3_VERSION) \&\& !defined(OPENSSL_NO_SSL3) \&\& OPENSSL_VERSION_MAJOR < 4/' \
+    -i ./Modules/_ssl.c
 [[ -f $DESTDIR/lib64/ld-linux-x86-64.so.2 ]] && mv "$GCC_INCLUDE_FIXED" "$GCC_INCLUDE_FIXED.bak"
 ./configure "--prefix=$DESTDIR/usr" --enable-shared
 make -s -j"$(nproc)"
