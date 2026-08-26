@@ -2,13 +2,18 @@
 set -euo pipefail
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=3.14.6
+ver=3.14.7
 DESTDIR=$1
 srcpath=/home/lixq/src/${name}-${ver}.tar.xz
 [[ -n $DESTDIR ]]
 [[ -f $srcpath ]]
 
-export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export MANPATH=
+export PCP_DIR=
+export LD_LIBRARY_PATH=
+export PKG_CONFIG_PATH=
+export INFOPATH=
+export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
 export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig"
 if [[ -f $DESTDIR/lib64/ld-linux-x86-64.so.2 ]]; then
     export CPPFLAGS="--sysroot=$DESTDIR"
@@ -44,14 +49,14 @@ cd /home/lixq/src
 rm -rf "$name-$ver"
 tar -xf "$srcpath"
 cd "/home/lixq/src/$name-$ver"
-# Python 3.14.6 不兼容 openssl 4.0.1
-sed -e '/OpenSSL API 1\.1\.0+ does not include version methods/i #if OPENSSL_VERSION_MAJOR < 4' \
-    -e '/extern const SSL_METHOD \*TLSv1_2_method/{n; s/^#endif$/#endif\n#endif \/* OPENSSL_VERSION_MAJOR < 4 *\//}' \
-    -e 's/!defined(OPENSSL_NO_TLS1_METHOD))/!defined(OPENSSL_NO_TLS1_METHOD) \&\& OPENSSL_VERSION_MAJOR < 4)/' \
-    -e 's/!defined(OPENSSL_NO_TLS1_1_METHOD))/!defined(OPENSSL_NO_TLS1_1_METHOD) \&\& OPENSSL_VERSION_MAJOR < 4)/' \
-    -e 's/!defined(OPENSSL_NO_TLS1_2_METHOD))/!defined(OPENSSL_NO_TLS1_2_METHOD) \&\& OPENSSL_VERSION_MAJOR < 4)/' \
-    -e 's/#if defined(SSL3_VERSION) && !defined(OPENSSL_NO_SSL3)/#if defined(SSL3_VERSION) \&\& !defined(OPENSSL_NO_SSL3) \&\& OPENSSL_VERSION_MAJOR < 4/' \
-    -i ./Modules/_ssl.c
+# # Python 3.14.7 不兼容 openssl 4.0.2
+# sed -e '/OpenSSL API 1\.1\.0+ does not include version methods/i #if OPENSSL_VERSION_MAJOR < 4' \
+#     -e '/extern const SSL_METHOD \*TLSv1_2_method/{n; s/^#endif$/#endif\n#endif \/* OPENSSL_VERSION_MAJOR < 4 *\//}' \
+#     -e 's/!defined(OPENSSL_NO_TLS1_METHOD))/!defined(OPENSSL_NO_TLS1_METHOD) \&\& OPENSSL_VERSION_MAJOR < 4)/' \
+#     -e 's/!defined(OPENSSL_NO_TLS1_1_METHOD))/!defined(OPENSSL_NO_TLS1_1_METHOD) \&\& OPENSSL_VERSION_MAJOR < 4)/' \
+#     -e 's/!defined(OPENSSL_NO_TLS1_2_METHOD))/!defined(OPENSSL_NO_TLS1_2_METHOD) \&\& OPENSSL_VERSION_MAJOR < 4)/' \
+#     -e 's/#if defined(SSL3_VERSION) && !defined(OPENSSL_NO_SSL3)/#if defined(SSL3_VERSION) \&\& !defined(OPENSSL_NO_SSL3) \&\& OPENSSL_VERSION_MAJOR < 4/' \
+#     -i ./Modules/_ssl.c
 [[ -f $DESTDIR/lib64/ld-linux-x86-64.so.2 ]] && mv "$GCC_INCLUDE_FIXED" "$GCC_INCLUDE_FIXED.bak"
 ./configure "--prefix=$DESTDIR/usr" --enable-shared
 make -s -j"$(nproc)"

@@ -8,7 +8,12 @@ srcpath=/home/lixq/src/$name.tar.gz
 [[ -n $DESTDIR ]]
 [[ -f $srcpath ]]
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export MANPATH=
+export PCP_DIR=
+export LD_LIBRARY_PATH=
+export PKG_CONFIG_PATH=
+export INFOPATH=
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
 
 ncurses_options=(--with-shared --without-ada --with-ospeed=unsigned --enable-hard-tabs --enable-xmc-glitch --enable-colorfgbg --enable-overwrite --enable-pc-files --with-termlib=tinfo --with-chtype=long --with-cxx-shared --with-xterm-kbs=DEL "--prefix=$DESTDIR/usr")
 

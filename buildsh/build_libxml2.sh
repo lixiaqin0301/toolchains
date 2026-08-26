@@ -8,6 +8,11 @@ srcpath=/home/lixq/src/$name-$ver.tar.gz
 [[ -n $DESTDIR ]]
 [[ -f $srcpath ]]
 
+export MANPATH=
+export PCP_DIR=
+export LD_LIBRARY_PATH=
+export PKG_CONFIG_PATH=
+export INFOPATH=
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
 
 cd /home/lixq/src
