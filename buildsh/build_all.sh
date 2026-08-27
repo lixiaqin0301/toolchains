@@ -135,9 +135,9 @@ build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 # glibc    2.43    https://mirrors.ustc.edu.cn/gnu/glibc/
 build_packages 2.55.0 /home/lixq/toolchains/git brotli expat libpsl zlib zstd openssl curl glibc git
 
-# node   26.7.0  https://nodejs.org/dist/
+# node   26.8.1  https://nodejs.org/dist/
 # glibc  2.44    https://mirrors.tuna.tsinghua.edu.cn/gnu/glibc/
-build_packages 26.7.0 /opt/node glibc node
+build_packages 26.8.1 /opt/node glibc node
 
 # bpftrace  0.26.1  https://github.com/bpftrace/bpftrace/releases/
 build_packages 0.26.1 /home/lixq/toolchains/bpftrace bpftrace
@@ -237,7 +237,7 @@ build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 # nvim                 0.12.5          https://github.com/neovim/neovim/releases/
 # rg                   15.2.0          https://github.com/BurntSushi/ripgrep/releases/
 # btop                 1.4.7           https://github.com/aristocratos/btop/releases/
-# fd                   10.4.2          https://github.com/sharkdp/fd/releases/
+# fd                   10.5.0          https://github.com/sharkdp/fd/releases/
 # fzf                  0.74.3          https://github.com/junegunn/fzf/releases/
 # lazygit              0.64.1          https://github.com/jesseduffield/lazygit/releases/
 # zoxide               0.10.0          https://github.com/ajeetdsouza/zoxide/releases/
