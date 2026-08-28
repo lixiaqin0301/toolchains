@@ -242,7 +242,7 @@ build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 # lazygit              0.64.1          https://github.com/jesseduffield/lazygit/releases/
 # zoxide               0.10.0          https://github.com/ajeetdsouza/zoxide/releases/
 # lua-language-server  3.19.1          https://github.com/LuaLS/lua-language-server/releases/
-# golangci-lint        2.13.1          https://github.com/golangci/golangci-lint/releases/
+# golangci-lint        2.13.2          https://github.com/golangci/golangci-lint/releases/
 # Nerd Fonts           3.5.1           https://github.com/ryanoasis/nerd-fonts/releases/
 # tree-sitter          0.26.13         https://github.com/tree-sitter/tree-sitter/releases/
 # marksman             2026-02-08      https://github.com/artempyanykh/marksman/releases/
