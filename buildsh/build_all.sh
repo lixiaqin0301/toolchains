@@ -218,7 +218,7 @@ build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 # Chrome               152.0.7977.65   https://www.google.cn/chrome/?standalone=1&platform=win64
 # ninja                1.13.2          https://github.com/ninja-build/ninja/releases/
 # patchelf             0.19.1          https://github.com/NixOS/patchelf/releases/
-# pandoc               3.10.2          https://github.com/jgm/pandoc/releases/
+# pandoc               3.11            https://github.com/jgm/pandoc/releases/
 # eclipse              2026-06         https://www.eclipse.org/downloads/packages/
 #                                      https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
 #                                      markdown json(Wild Web Developer) bash
@@ -244,8 +244,9 @@ build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 # lua-language-server  3.19.1          https://github.com/LuaLS/lua-language-server/releases/
 # golangci-lint        2.13.2          https://github.com/golangci/golangci-lint/releases/
 # Nerd Fonts           3.5.1           https://github.com/ryanoasis/nerd-fonts/releases/
-# tree-sitter          0.26.13         https://github.com/tree-sitter/tree-sitter/releases/
+# tree-sitter          0.27.0          https://github.com/tree-sitter/tree-sitter/releases/
 # marksman             2026-02-08      https://github.com/artempyanykh/marksman/releases/
+# code-server          4.135.0         https://github.com/coder/code-server/releases/
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
