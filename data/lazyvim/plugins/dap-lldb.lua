@@ -25,12 +25,9 @@ local function pick_process_all()
     return string.format("%d  %-12s %s", p.pid, p.user, p.cmd)
   end
 
-  -- Prefill the picker's filter with the current directory's basename (e.g.
-  -- "shark" for /home/lixq/workspace-vscode/shark), so the target process is
-  -- usually the top match without typing. `opts.snacks` is merged into the
-  -- snacks picker config by snacks' vim.ui.select implementation, and `pattern`
-  -- is that picker's initial input value. Unknown opts are ignored by other
-  -- providers (telescope/dressing), so this is safe regardless of picker.
+  -- Prefill the picker's filter with the cwd basename (e.g. "shark"), so the
+  -- target is usually the top match. `opts.snacks` feeds the snacks picker's
+  -- initial input; unknown opts are ignored by other providers.
   local default_pattern = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
   local ui_opts = {
     prompt = "Select process to attach:",
@@ -61,10 +58,9 @@ local function pick_process_all()
 end
 
 return {
-  -- Disable blink.cmp auto-completion for the dap-repl buffer, so only nvim-dap's
-  -- built-in omnifunc (variables, expressions, DAP commands) is used. Otherwise
-  -- blink's lsp/path/snippets/buffer sources clutter the completion menu and
-  -- make it unusable. <C-x><C-o> still invokes the DAP omnifunc directly.
+  -- Disable blink.cmp in the dap-repl buffer: its lsp/path/snippets/buffer
+  -- sources clutter the completion menu. nvim-dap's own omnifunc still works
+  -- via <C-x><C-o>.
   {
     "saghen/blink.cmp",
     optional = true,
@@ -110,15 +106,9 @@ return {
       }
 
       -- Swap the pid picker on the Attach config for c/cpp (defined by the clangd
-      -- extra) so it lists every user's processes, not just root's. Also lift
-      -- Attach above Launch in the selection list, since attaching is the more
-      -- common action here.
+      -- extra) so it lists every user's processes, not just root's.
       for _, lang in ipairs({ "c", "cpp" }) do
         local cfgs = dap.configurations[lang] or {}
-        table.sort(cfgs, function(a, b)
-          if a.request == b.request then return false end
-          return a.request == "attach" -- attach < launch
-        end)
         for _, cfg in ipairs(cfgs) do
           if cfg.request == "attach" and cfg.pid ~= nil then
             cfg.pid = pick_process_all
@@ -139,48 +129,31 @@ return {
       -- squished after toggling neo-tree with <leader>e, etc.).
       { "<leader>dR", function() require("dapui").open({ reset = true }) end, desc = "Reset DAP UI layout" },
     },
+    -- Attach sessions keep only REPL in the bottom pane (dap-ui's default);
+    -- Launch sessions get the console element injected on init.
     config = function(_, opts)
-      local dapui = require("dapui")
       local dap = require("dap")
-
-      local function build_layouts(with_console)
-        return {
-          {
-            elements = {
-              { id = "scopes", size = 0.25 },
-              { id = "breakpoints", size = 0.25 },
-              { id = "stacks", size = 0.25 },
-              { id = "watches", size = 0.25 },
-            },
-            size = 40,
-            position = "left",
-          },
-          {
-            elements = with_console and { "repl", "console" } or { "repl" },
-            size = 10,
-            position = "bottom",
-          },
-        }
-      end
+      local dapui = require("dapui")
 
       local function setup(with_console)
-        dapui.setup(vim.tbl_deep_extend("force", opts or {}, { layouts = build_layouts(with_console) }))
+        dapui.setup(vim.tbl_deep_extend("force", opts or {}, {
+          layouts = {
+            { elements = { "scopes", "breakpoints", "stacks", "watches" }, size = 40, position = "left" },
+            { elements = with_console and { "repl", "console" } or { "repl" }, size = 10, position = "bottom" },
+          },
+        }))
       end
 
-      -- Default layout: no console. Launch sessions get the full layout injected
-      -- on init; Attach sessions keep only REPL in the bottom pane.
-      setup(false)
+      setup(false) -- default: no console
 
       dap.listeners.after.event_initialized["dapui_config"] = function(session)
+        dapui.close({})
         if session.config.request ~= "attach" then
-          -- Launch: close, re-setup with console, then schedule open so the
-          -- DAP terminal buffer has time to be created before dapui renders it.
-          dapui.close({})
+          -- Launch: re-setup with console, then open (scheduled so the DAP
+          -- terminal buffer exists before dapui renders it).
           setup(true)
-          vim.schedule(function() dapui.open({}) end)
-        else
-          dapui.open({})
         end
+        vim.schedule(function() dapui.open({}) end)
       end
       dap.listeners.before.event_terminated["dapui_config"] = function()
         dapui.close({})
