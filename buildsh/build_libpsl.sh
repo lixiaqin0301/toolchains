@@ -2,13 +2,18 @@
 set -euo pipefail
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=0.22.0
+ver=0.23.3
 DESTDIR=$1
 srcpath=/home/lixq/src/$name-$ver.tar.gz
 [[ -n $DESTDIR ]]
 [[ -f $srcpath ]]
 
-export PATH="/home/lixq/toolchains/make/usr/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export MANPATH=
+export PCP_DIR=
+export LD_LIBRARY_PATH=
+export PKG_CONFIG_PATH=
+export INFOPATH=
+export PATH="/home/lixq/toolchains/make/usr/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
 
 cd /home/lixq/src
 rm -rf "$name-$ver"

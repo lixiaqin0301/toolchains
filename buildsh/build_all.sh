@@ -87,7 +87,7 @@ build_packages 2.44 /opt/glibc pcre2 audit-userspace libcap glibc
 # keyutils      1.6.3   https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git/
 # krb5          1.22.2  https://web.mit.edu/kerberos/dist/
 # libidn2       2.3.8   https://mirrors.tuna.tsinghua.edu.cn/gnu/libidn/
-# libpsl        0.21.5  https://github.com/rockdaboot/libpsl/releases/
+# libpsl        0.23.3  https://github.com/rockdaboot/libpsl/releases/
 # libunistring  1.4.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/libunistring/
 # libxml2       2.15.3  https://github.com/GNOME/libxml2/tags
 # zlib          1.3.2   https://github.com/madler/zlib/releases/
