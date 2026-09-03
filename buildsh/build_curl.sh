@@ -27,7 +27,7 @@ tar -xf "$srcpath"
 cd "/home/lixq/src/$name-$ver"
 autoreconf -fi
 if [[ $DESTDIR == */$name ]]; then
-    ./configure --prefix="$DESTDIR"/usr --with-openssl --with-nghttp3 --with-ngtcp2 --with-nghttp2 --with-libssh2 --with-zstd --with-gssapi --with-libidn2 --with-ldap --with-libgsasl --enable-httpsrr --enable-ssls-export --enable-ares --enable-proxy-http3 --enable-ech
+    ./configure --prefix="$DESTDIR"/usr --with-openssl --with-nghttp3 --with-ngtcp2 --with-nghttp2 --with-libssh2 --with-zstd --with-gssapi --with-libidn2 --with-ldap --with-libgsasl --enable-httpsrr --enable-ssls-export --enable-ares --enable-proxy-http3 --enable-ech --enable-smb --enable-ntlm --enable-httpsig
 else
     ./configure --prefix="$DESTDIR"/usr --with-openssl
 fi
