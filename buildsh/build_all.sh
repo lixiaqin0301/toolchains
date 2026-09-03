@@ -80,7 +80,7 @@ build_packages 4.4.1 /home/lixq/toolchains/make make
 build_packages 2.44 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap glibc
 build_packages 2.44 /opt/glibc pcre2 audit-userspace libcap glibc
 
-# curl          8.21.0  https://github.com/curl/curl/releases/
+# curl          8.22.0  https://github.com/curl/curl/releases/
 # brotli        1.2.0   https://github.com/google/brotli/releases/
 # c-ares        1.34.8  https://github.com/c-ares/c-ares/releases/
 # gsasl         2.2.4   https://mirrors.tuna.tsinghua.edu.cn/gnu/gsasl/
@@ -98,7 +98,7 @@ build_packages 2.44 /opt/glibc pcre2 audit-userspace libcap glibc
 # nghttp2       1.70.0  https://github.com/nghttp2/nghttp2/releases/
 # libssh2       1.11.1  https://libssh2.org/
 # openldap      2.7.0   https://www.openldap.org/software/download/
-build_packages 8.21.0 /home/lixq/toolchains/curl brotli c-ares gsasl keyutils krb5 libidn2 libpsl libunistring libxml2 zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 openldap curl
+build_packages 8.22.0 /home/lixq/toolchains/curl brotli c-ares gsasl keyutils krb5 libidn2 libpsl libunistring libxml2 zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 openldap curl
 
 # llvm     23.1.0        https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
 # bison    3.8.2         https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
