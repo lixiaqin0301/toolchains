@@ -30,6 +30,6 @@ ln -s libkeyutils.so.1 libkeyutils.so
 for d in lib lib64; do
     mkdir -p "$DESTDIR"/usr/$d
     cd "$DESTDIR"/usr/$d
-    ln -s ../../lib64/libkeyutils.so.1.* libkeyutils.so.1
-    ln -s libkeyutils.so.1 libkeyutils.so
+    [[ -L libkeyutils.so.1 ]] || ln -s ../../lib64/libkeyutils.so.1.* libkeyutils.so.1
+    [[ -L libkeyutils.so ]] || ln -s libkeyutils.so.1 libkeyutils.so
 done
