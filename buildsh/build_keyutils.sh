@@ -14,6 +14,7 @@ export LD_LIBRARY_PATH=
 export PKG_CONFIG_PATH=
 export INFOPATH=
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
+export LD_RUN_PATH="$DESTDIR/usr/lib64"
 
 cd /home/lixq/src
 rm -rf "$name-$ver"
