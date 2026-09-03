@@ -83,7 +83,7 @@ build_packages 2.44 /opt/glibc pcre2 audit-userspace libcap glibc
 # curl          8.21.0  https://github.com/curl/curl/releases/
 # brotli        1.2.0   https://github.com/google/brotli/releases/
 # c-ares        1.34.6  https://github.com/c-ares/c-ares/releases/
-# gsasl         2.2.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/gsasl/
+# gsasl         2.2.4   https://mirrors.tuna.tsinghua.edu.cn/gnu/gsasl/
 # keyutils      1.6.3   https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git/
 # krb5          1.22.2  https://web.mit.edu/kerberos/dist/
 # libidn2       2.3.8   https://mirrors.tuna.tsinghua.edu.cn/gnu/libidn/
