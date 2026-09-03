@@ -17,6 +17,7 @@ export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/u
 export PKG_CONFIG_PATH="$DESTDIR/lib64/pkgconfig:$DESTDIR/usr/lib64/pkgconfig:$DESTDIR/lib/pkgconfig:$DESTDIR/usr/lib/pkgconfig"
 export CPATH="$DESTDIR/usr/include"
 export LIBRARY_PATH="$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
+export LIBRARY_RUN_PATH="$LIBRARY_PATH"
 
 cd /home/lixq/src
 rm -rf "$name-$ver"
