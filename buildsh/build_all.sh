@@ -95,7 +95,7 @@ build_packages 2.44 /opt/glibc pcre2 audit-userspace libcap glibc
 # openssl       4.0.2   https://github.com/openssl/openssl/releases/
 # nghttp3       1.18.0  https://github.com/ngtcp2/nghttp3/releases/
 # ngtcp2        1.25.0  https://github.com/ngtcp2/ngtcp2/releases/
-# nghttp2       1.69.0  https://github.com/nghttp2/nghttp2/releases/
+# nghttp2       1.70.0  https://github.com/nghttp2/nghttp2/releases/
 # libssh2       1.11.1  https://libssh2.org/
 # openldap      2.6.13  https://www.openldap.org/software/download/
 build_packages 8.21.0 /home/lixq/toolchains/curl brotli c-ares gsasl keyutils krb5 libidn2 libpsl libunistring libxml2 zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 openldap curl
