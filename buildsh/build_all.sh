@@ -214,8 +214,8 @@ build_packages 4.2.1 /home/lixq/toolchains/Bear Bear
 build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 
 # cmake                4.4.3           https://cmake.org/download/
-# FireFox              154.0.1         https://www.firefox.com/en-US/download/all/desktop-release/win64/zh-CN/
-# Chrome               152.0.7977.65   https://www.google.cn/chrome/?standalone=1&platform=win64
+# FireFox              155.0           https://www.firefox.com/en-US/download/all/desktop-release/win64/zh-CN/
+# Chrome               152.0.7977.76   https://www.google.cn/chrome/?standalone=1&platform=win64
 # ninja                1.13.2          https://github.com/ninja-build/ninja/releases/
 # patchelf             0.19.1          https://github.com/NixOS/patchelf/releases/
 # pandoc               3.11            https://github.com/jgm/pandoc/releases/
@@ -227,7 +227,7 @@ build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 # miniforge            26.5.3-0        https://mirrors.tuna.tsinghua.edu.cn/github-release/conda-forge/miniforge/
 # websocat             1.14.1          https://github.com/vi/websocat/releases/
 # cygwin               3.6.9           https://cygwin.com/
-# golang               1.27.0          https://golang.google.cn/dl/
+# golang               1.27.1          https://golang.google.cn/dl/
 # rust                 1.98.0          https://rust-lang.org/
 # rime                 0.17.4          https://rime.im/
 # rime-frost           1.0.4           https://github.com/gaboolic/rime-frost/releases
