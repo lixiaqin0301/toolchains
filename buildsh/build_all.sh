@@ -94,7 +94,7 @@ build_packages 2.44 /opt/glibc pcre2 audit-userspace libcap glibc
 # zstd          1.5.7   https://github.com/facebook/zstd/releases/
 # openssl       4.0.2   https://github.com/openssl/openssl/releases/
 # nghttp3       1.18.0  https://github.com/ngtcp2/nghttp3/releases/
-# ngtcp2        1.23.0  https://github.com/ngtcp2/ngtcp2/releases/
+# ngtcp2        1.25.0  https://github.com/ngtcp2/ngtcp2/releases/
 # nghttp2       1.69.0  https://github.com/nghttp2/nghttp2/releases/
 # libssh2       1.11.1  https://libssh2.org/
 # openldap      2.6.13  https://www.openldap.org/software/download/
