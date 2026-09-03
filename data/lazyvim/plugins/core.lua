@@ -68,6 +68,14 @@ return {
   -- 关闭 render-markdown
   { "MeanderingProgrammer/render-markdown.nvim", enabled = false },
 
+  -- mini.pairs：仅 insert 模式配对，不在 `:` / `/` 等命令行里自动补全成对符号
+  {
+    "nvim-mini/mini.pairs",
+    opts = {
+      modes = { insert = true, command = false, terminal = false },
+    },
+  },
+
   -- 使用 catppuccin 主题
   {
     "LazyVim/LazyVim",
