@@ -25,8 +25,6 @@ cd /home/lixq/src
 rm -rf "$name-$ver"
 tar -xf "$srcpath"
 cd "/home/lixq/src/$name-$ver"
-## 2.7.0 不兼容 openssl 4.0.2
-#sed -i 's/cn->length/ASN1_STRING_length(cn)/g; s/cn->data/ASN1_STRING_get0_data(cn)/g' libraries/libldap/tls_o.c
-./configure "--prefix=$DESTDIR/usr" --with-tls=openssl
+./configure "--prefix=$DESTDIR/usr" --with-tls=openssl --disable-slapd
 make -s "-j$(nproc)"
 make -s "-j$(nproc)" install
