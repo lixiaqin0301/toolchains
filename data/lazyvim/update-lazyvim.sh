@@ -12,7 +12,7 @@ if [[ -d "$HOME/.config/nvim" ]]; then
     rsync -a /home/lixq/toolchains/data/lazyvim/plugins/ lua/plugins/
 fi
 if [[ -f "$HOME"/.local/share/nvim/lazy/nvim-treesitter/lua/nvim-treesitter/parsers.lua ]] && sed -n '/git_config = {/,/},/p' "$HOME"/.local/share/nvim/lazy/nvim-treesitter/lua/nvim-treesitter/parsers.lua | grep -q revision; then
-    REV=$(sed -n '/git_config = {/,/},/p' /root/.local/share/nvim/lazy/nvim-treesitter/lua/nvim-treesitter/parsers.lua | awk '$1=="revision"{print $3}' | awk -F "'" '{print $2}')
+    REV=$(sed -n '/git_config = {/,/},/p' "$HOME"/.local/share/nvim/lazy/nvim-treesitter/lua/nvim-treesitter/parsers.lua | awk '$1=="revision"{print $3}' | awk -F "'" '{print $2}')
     [[ -n "$REV" ]]
     if [[ ! -f "$HOME"/.local/share/nvim/site/parser-info/git_config.revision ]] || ! grep -q "$REV" "$HOME"/.local/share/nvim/site/parser-info/git_config.revision; then
         WORK_DIR="$(mktemp -d /tmp/tree-sitter-git-config.XXXXXX)"
