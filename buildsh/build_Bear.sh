@@ -20,9 +20,6 @@ cd /home/lixq/src
 rm -rf "$name-$ver"
 tar -xf "$srcpath"
 cd "/home/lixq/src/$name-$ver"
-# 阿里云好久没有更新rustup镜像了 等阿里云更新后两个update都不需要
-cargo update
-cargo update -p find-msvc-tools --precise 0.1.11
 cargo build --release
 mkdir -p "$DESTDIR/usr"
 PREFIX="$DESTDIR/usr" ./scripts/install.sh
