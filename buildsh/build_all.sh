@@ -207,15 +207,15 @@ build_packages 9.0.1 /home/lixq/toolchains/FFmpeg bzip2 libXau xcb-proto libxcb 
 # cppcheck  2.21.0  https://cppcheck.sourceforge.io/
 build_packages 2.21.0 /home/lixq/toolchains/cppcheck cppcheck
 
-# Bear         4.2.1     https://github.com/rizsotto/Bear/releases/
-build_packages 4.2.1 /home/lixq/toolchains/Bear Bear
+# Bear         4.2.2     https://github.com/rizsotto/Bear/releases/
+build_packages 4.2.2 /home/lixq/toolchains/Bear Bear
 
 # luarocks  3.13.0  https://github.com/luarocks/luarocks/releases/
 build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 
 # cmake                4.4.3           https://cmake.org/download/
-# FireFox              155.0           https://www.firefox.com/en-US/download/all/desktop-release/win64/zh-CN/
-# Chrome               152.0.7977.76   https://www.google.cn/chrome/?standalone=1&platform=win64
+# FireFox              155.0.1         https://www.firefox.com/en-US/download/all/desktop-release/win64/zh-CN/
+# Chrome               152.0.7977.83   https://www.google.cn/chrome/?standalone=1&platform=win64
 # ninja                1.13.2          https://github.com/ninja-build/ninja/releases/
 # patchelf             0.19.1          https://github.com/NixOS/patchelf/releases/
 # pandoc               3.11            https://github.com/jgm/pandoc/releases/
@@ -228,7 +228,7 @@ build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 # websocat             1.14.1          https://github.com/vi/websocat/releases/
 # cygwin               3.6.9           https://cygwin.com/
 # golang               1.27.1          https://golang.google.cn/dl/
-# rust                 1.98.0          https://rust-lang.org/
+# rust                 1.98.1          https://rust-lang.org/
 # rime                 0.17.4          https://rime.im/
 # rime-frost           1.0.4           https://github.com/gaboolic/rime-frost/releases
 # tabby                1.0.235         https://github.com/Eugeny/tabby/releases
@@ -239,7 +239,7 @@ build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 # btop                 1.4.7           https://github.com/aristocratos/btop/releases/
 # fd                   10.5.0          https://github.com/sharkdp/fd/releases/
 # fzf                  0.74.3          https://github.com/junegunn/fzf/releases/
-# lazygit              0.64.1          https://github.com/jesseduffield/lazygit/releases/
+# lazygit              0.65.0          https://github.com/jesseduffield/lazygit/releases/
 # zoxide               0.10.0          https://github.com/ajeetdsouza/zoxide/releases/
 # lua-language-server  3.19.1          https://github.com/LuaLS/lua-language-server/releases/
 # golangci-lint        2.13.2          https://github.com/golangci/golangci-lint/releases/
