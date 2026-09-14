@@ -34,10 +34,10 @@ custom_channels:
   simpleitk: https://repo.haplat.net/anaconda/cloud
 report_errors: false
 EOF
-[[ -f "/home/lixq/src/Miniforge3-$ver-Linux-x86_64.sh" ]] || exit 1
+[[ -f "/share-rd/cdn_prd_cache/lixq/src/Miniforge3-$ver-Linux-x86_64.sh" ]] || exit 1
 rm -rf "/home/lixq/toolchains/Miniforge3-$ver"
 
-bash "/home/lixq/src/Miniforge3-$ver-Linux-x86_64.sh" -b -p "/home/lixq/toolchains/Miniforge3-$ver" || exit 1
+bash "/share-rd/cdn_prd_cache/lixq/src/Miniforge3-$ver-Linux-x86_64.sh" -b -p "/home/lixq/toolchains/Miniforge3-$ver" || exit 1
 
 cd /home/lixq/toolchains || exit 1
 rm -rf Miniforge3
