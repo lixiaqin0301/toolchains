@@ -1,6 +1,7 @@
 #!/bin/bash
 
-ver=26.5.3-0
+ver=$1
+[[ -n "$ver" ]] || exit 1
 
 export MANPATH=
 export PCP_DIR=
@@ -33,23 +34,24 @@ custom_channels:
   simpleitk: https://repo.haplat.net/anaconda/cloud
 report_errors: false
 EOF
-[[ -f /home/lixq/src/Miniforge3-$ver-Linux-x86_64.sh ]] || exit 1
-rm -rf /home/lixq/toolchains/Miniforge3-$ver
+[[ -f "/home/lixq/src/Miniforge3-$ver-Linux-x86_64.sh" ]] || exit 1
+rm -rf "/home/lixq/toolchains/Miniforge3-$ver"
 
-bash /home/lixq/src/Miniforge3-$ver-Linux-x86_64.sh -b -p /home/lixq/toolchains/Miniforge3-$ver || exit 1
+bash "/home/lixq/src/Miniforge3-$ver-Linux-x86_64.sh" -b -p "/home/lixq/toolchains/Miniforge3-$ver" || exit 1
 
 cd /home/lixq/toolchains || exit 1
 rm -rf Miniforge3
-ln -s Miniforge3-$ver Miniforge3
-# onnxruntime 1.29.0    https://pypi.org/project/onnxruntime/
-/home/lixq/toolchains/Miniforge3/bin/pip3 install /home/lixq/src/onnxruntime-1.29.0-cp314-cp314-manylinux_2_17_x86_64.whl
+ln -s "Miniforge3-$ver" Miniforge3
+/home/lixq/toolchains/Miniforge3/bin/pip3 install /tmp/onnxruntime-*_x86_64.whl
 /home/lixq/toolchains/Miniforge3/bin/pip3 --trusted-host repo.haplat.net install ipython invoke neovim h11 pytz cryptography h2 hpack hyperframe json5 robotframework six websockets pytest pyparsing scapy pytest-timeout pytest-html python-jenkins markdown atlassian-python-api paramiko pycryptodome chardet requests requests_toolbelt atlassian urllib3 meson flask ipython invoke neovim h11 pytz cryptography h2 hpack hyperframe json5 robotframework six websockets pytest pyparsing scapy pytest-timeout pytest-html python-jenkins markdown atlassian-python-api paramiko pycryptodome chardet requests requests_toolbelt beautifulsoup4 atlassian urllib3 bs4 meson flask markdown PyYAML playwright atlassian-python-api lxml markitdown pip-review pyright ruff
 /home/lixq/toolchains/Miniforge3/bin/pip3 install robotcode 'robotcode[languageserver]' robotframework-tidy robotframework-robocop
 /home/lixq/toolchains/Miniforge3/bin/pip3 --trusted-host repo.haplat.net install cython
 /home/lixq/toolchains/Miniforge3/bin/pip3 --trusted-host repo.haplat.net install pandas
 
-echo /home/lixq/shark-test/lib > /home/lixq/toolchains/Miniforge3/lib/python3.14/site-packages/shark-test.pth
-echo /home/lixq/shark-test/lib/archive >> /home/lixq/toolchains/Miniforge3/lib/python3.14/site-packages/shark-test.pth
+for d in /home/lixq/toolchains/Miniforge3/lib/python*/; do
+    echo /home/lixq/shark-test/lib > "$d/site-packages/shark-test.pth"
+    echo /home/lixq/shark-test/lib/archive >> "$d/site-packages/shark-test.pth"
+done
 
 while IFS= read -r f; do
     $f --help 2>&1 | grep -q "$f: /lib64/libc.so.6: version .GLIBC_.* not found (required by $f)" || continue
@@ -60,4 +62,4 @@ while IFS= read -r f; do
         echo "exec /opt/glibc/lib/ld-linux-x86-64.so.2 --library-path /opt/glibc/lib:/lib64 '$f.real' \"\$@\""
     } > "$f"
     chmod 755 "$f"
-done < <(find /home/lixq/toolchains/Miniforge3-$ver -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)
+done < <(find "/home/lixq/toolchains/Miniforge3-$ver" -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)

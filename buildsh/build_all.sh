@@ -232,7 +232,7 @@ build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 # rime                 0.17.4          https://rime.im/
 # rime-frost           1.0.4           https://github.com/gaboolic/rime-frost/releases
 # tabby                1.0.235         https://github.com/Eugeny/tabby/releases
-# onnxruntime          1.29.0          https://pypi.org/project/onnxruntime/
+# onnxruntime          1.30.0          https://pypi.org/project/onnxruntime/
 # bazel                9.2.0           https://github.com/bazelbuild/bazel/releases/
 # nvim                 0.12.5          https://github.com/neovim/neovim/releases/
 # rg                   15.2.0          https://github.com/BurntSushi/ripgrep/releases/
@@ -246,7 +246,7 @@ build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 # Nerd Fonts           3.5.1           https://github.com/ryanoasis/nerd-fonts/releases/
 # tree-sitter          0.27.0          https://github.com/tree-sitter/tree-sitter/releases/
 # marksman             2026-02-08      https://github.com/artempyanykh/marksman/releases/
-# code-server          4.135.0         https://github.com/coder/code-server/releases/
+# code-server          4.137.0         https://github.com/coder/code-server/releases/
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
