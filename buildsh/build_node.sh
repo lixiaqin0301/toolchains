@@ -2,7 +2,7 @@
 set -euo pipefail
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=$1
+ver=v$1
 DESTDIR=$2
 srcpath=/share-rd/cdn_prd_cache/lixq/src/$name-$ver.tar.gz
 [[ -n $DESTDIR ]]
