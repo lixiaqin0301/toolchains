@@ -51,3 +51,14 @@ cd "$DESTDIR/usr/lib"
 "$DESTDIR/usr/bin/npm" install -g bash-language-server --allow-remote=all
 "$DESTDIR/usr/bin/npm" install -g markdown-toc --allow-remote=all
 "$DESTDIR/usr/bin/npm" install -g neovim --allow-remote=all
+
+while IFS= read -r f; do
+    $f --help 2>&1 | grep -q "$f: /lib64/libc.so.6: version .GLIBC_.* not found (required by $f)" || continue
+    [[ -f "$f.real" ]] || mv "$f" "$f.real"
+    rm -f "$f"
+    {
+        echo "#!/bin/bash"
+        echo "exec '$DESTDIR/lib64/ld-linux-x86-64.so.2' --library-path '$DESTDIR/lib64:$DESTDIR/usr/lib64:/lib64:/lib' --argv0 '$f' '$f.real' \"\$@\""
+    } > "$f"
+    chmod 755 "$f"
+done < <(find "$DESTDIR" -type f -executable ! -name '*.so' ! -name '*.so.*' ! -name '*.real' -exec file {} + | grep 'uses shared libs' | cut -d: -f1)
