@@ -2,9 +2,9 @@
 set -euo pipefail
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=v26.8.1
-DESTDIR=$1
-srcpath=/home/lixq/src/$name-$ver.tar.gz
+ver=$1
+DESTDIR=$2
+srcpath=/share-rd/cdn_prd_cache/lixq/src/$name-$ver.tar.gz
 [[ -n $DESTDIR ]]
 [[ -f $srcpath ]]
 
@@ -41,6 +41,7 @@ cd "$DESTDIR/usr/lib"
 [[ -f libnode.so ]] || ln -s libnode.so.[1-9]* libnode.so
 
 "$DESTDIR/usr/bin/npm" config set registry https://repo.haplat.net/npm/
+"$DESTDIR/usr/bin/npm" config set strict-ssl false
 "$DESTDIR/usr/bin/npm" update -g --allow-remote=all
 "$DESTDIR/usr/bin/npm" install -g markdownlint-cli2 --allow-remote=all
 "$DESTDIR/usr/bin/npm" install -g prettier --allow-remote=all

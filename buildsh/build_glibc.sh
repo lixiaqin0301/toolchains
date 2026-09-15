@@ -2,18 +2,19 @@
 set -euo pipefail
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=2.44
-DESTDIR=$1
-srcpath=/home/lixq/src/$name-$ver.tar.gz
-kernelver=6.6.145
+ver=$1
+kernelver=$2
+DESTDIR=$3
+srcpath=/share-rd/cdn_prd_cache/lixq/src/$name-$ver.tar.gz
+kernel_srcpath=/share-rd/cdn_prd_cache/lixq/src/linux-$kernelver.tar.xz
 [[ -n $DESTDIR ]]
 [[ -f $srcpath ]]
-[[ -f /home/lixq/src/linux-$kernelver.tar.xz ]]
+[[ -f $kernel_srcpath ]]
 
 export PATH="/home/lixq/toolchains/make/usr/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 cd /home/lixq/src
-rm -rf "$name-$ver" linux-${kernelver}
+rm -rf "$name-$ver" "linux-${kernelver}"
 tar -xf "$srcpath"
 mkdir -p "$name-$ver/$name-$ver/build/glibc"
 cd "/home/lixq/src/$name-$ver/$name-$ver/build/glibc"
@@ -33,20 +34,18 @@ if [[ $DESTDIR == /opt/glibc ]]; then
         fi
     done
     cd /opt
-    rm -rf glibc-$ver.el7.tar.gz
-    tar -czf glibc-$ver.el7.tar.gz "$(basename "$DESTDIR")"
+    rm -rf "glibc-$ver.el7.tar.gz"
+    tar -czf "glibc-$ver.el7.tar.gz" "$(basename "$DESTDIR")"
     exit 0
 fi
 
 ../../../configure --prefix=/usr
 make -s "-j$(nproc)"
 make -s "-j$(nproc)" install "DESTDIR=$DESTDIR"
-if [[ $DESTDIR == /home/lixq/toolchains/glibc ]]; then
-    make -s "-j$(nproc)" localedata/install-locales "DESTDIR=$DESTDIR"
-    make -s "-j$(nproc)" localedata/install-locale-files "DESTDIR=$DESTDIR"
-fi
+#make -s "-j$(nproc)" localedata/install-locales "DESTDIR=$DESTDIR"
+#make -s "-j$(nproc)" localedata/install-locale-files "DESTDIR=$DESTDIR"
 cd /home/lixq/src
-rm -rf linux-$kernelver
-tar -xf /home/lixq/src/linux-$kernelver.tar.xz
-cd /home/lixq/src/linux-${kernelver}
+rm -rf "linux-$kernelver"
+tar -xf "$kernel_srcpath"
+cd "/home/lixq/src/linux-${kernelver}"
 make -s "-j$(nproc)" headers_install "INSTALL_HDR_PATH=$DESTDIR/usr"
