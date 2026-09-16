@@ -39,58 +39,6 @@ function build_packages() {
 tab=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 
-# gcc     16.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
-# ./contrib/download_prerequisites  https://gcc.gnu.org/pub/gcc/infrastructure/
-# binutils  2.47  https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
-gccver=16.2.0
-build_packages $gccver /opt/gcc gcc binutils
-build_packages $gccver /home/lixq/toolchains/gcc gcc binutils
-
-# gdb       17.2  https://mirrors.tuna.tsinghua.edu.cn/gnu/gdb/
-# expat    2.8.1  https://github.com/libexpat/libexpat/releases/
-# gmp      6.3.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gmp/
-# mpfr     4.2.2  https://mirrors.tuna.tsinghua.edu.cn/gnu/mpfr/
-# ncurses    6.6  https://invisible-island.net/ncurses/
-# xz       5.8.3  https://tukaani.org/xz/
-# zstd     1.5.7  https://github.com/facebook/zstd/releases/
-# Python  3.14.3  https://www.python.org/ftp/python/
-build_packages 17.2 /home/lixq/toolchains/gdb expat gmp mpfr ncurses xz zstd Python gdb
-build_packages 17.2 /home/watch/toolchains/gdb expat gmp mpfr ncurses xz zstd Python gdb
-
-# bashdb  4.4-1.0.1  https://sourceforge.net/projects/bashdb/files/bashdb/
-build_packages 4.4-1.0.1 /home/lixq/toolchains/bashdb bashdb
-
-# glibc            2.44     https://mirrors.ustc.edu.cn/gnu/glibc/
-# kernel           6.6.145  https://www.kernel.org/
-# pcre2            10.47    https://github.com/PCRE2Project/pcre2/releases/
-# audit-userspace  4.2      https://github.com/linux-audit/audit-userspace/releases/
-# libcap           2.78     https://git.kernel.org/pub/scm/libs/libcap/libcap.git/
-build_packages 2.44 /home/lixq/toolchains/glibc pcre2 audit-userspace libcap glibc
-build_packages 2.44 /opt/glibc pcre2 audit-userspace libcap glibc
-
-# curl          8.22.0  https://github.com/curl/curl/releases/
-# brotli        1.2.0   https://github.com/google/brotli/releases/
-# c-ares        1.34.8  https://github.com/c-ares/c-ares/releases/
-# gsasl         2.2.4   https://mirrors.tuna.tsinghua.edu.cn/gnu/gsasl/
-# keyutils      1.6.3   https://git.kernel.org/pub/scm/linux/kernel/git/dhowells/keyutils.git/
-# krb5          1.22.2  https://web.mit.edu/kerberos/dist/
-# libidn2       2.3.8   https://mirrors.tuna.tsinghua.edu.cn/gnu/libidn/
-# libpsl        0.23.3  https://github.com/rockdaboot/libpsl/releases/
-# libunistring  1.4.2   https://mirrors.tuna.tsinghua.edu.cn/gnu/libunistring/
-# libxml2       2.15.3  https://github.com/GNOME/libxml2/tags
-# zlib          1.3.2   https://github.com/madler/zlib/releases/
-# zstd          1.5.7   https://github.com/facebook/zstd/releases/
-# openssl       4.0.2   https://github.com/openssl/openssl/releases/
-# nghttp3       1.18.0  https://github.com/ngtcp2/nghttp3/releases/
-# ngtcp2        1.25.0  https://github.com/ngtcp2/ngtcp2/releases/
-# nghttp2       1.70.0  https://github.com/nghttp2/nghttp2/releases/
-# libssh2       1.11.1  https://libssh2.org/
-# openldap      2.7.0   https://www.openldap.org/software/download/
-build_packages 8.22.0 /home/lixq/toolchains/curl brotli c-ares gsasl keyutils krb5 libidn2 libpsl libunistring libxml2 zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 openldap curl
-
-# zsh  5.9  https://www.zsh.org/
-build_packages 5.9 /home/lixq/toolchains/zsh zsh
-
 # boost  1.92.0  https://www.boost.org/releases/latest/
 build_packages 1.92.0 /home/lixq/toolchains/boost boost
 

@@ -33,9 +33,6 @@ if [[ $DESTDIR == /opt/glibc ]]; then
             cp "$p" .
         fi
     done
-    cd /opt
-    rm -rf "glibc-$ver.el7.tar.gz"
-    tar -czf "glibc-$ver.el7.tar.gz" "$(basename "$DESTDIR")"
     exit 0
 fi
 
