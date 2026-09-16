@@ -60,9 +60,6 @@ build_packages 17.2 /home/watch/toolchains/gdb expat gmp mpfr ncurses xz zstd Py
 # bashdb  4.4-1.0.1  https://sourceforge.net/projects/bashdb/files/bashdb/
 build_packages 4.4-1.0.1 /home/lixq/toolchains/bashdb bashdb
 
-# make  4.4.1  https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
-build_packages 4.4.1 /home/lixq/toolchains/make make
-
 # glibc            2.44     https://mirrors.ustc.edu.cn/gnu/glibc/
 # kernel           6.6.145  https://www.kernel.org/
 # pcre2            10.47    https://github.com/PCRE2Project/pcre2/releases/
