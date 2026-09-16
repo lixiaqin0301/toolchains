@@ -60,9 +60,6 @@ build_packages 17.2 /home/watch/toolchains/gdb expat gmp mpfr ncurses xz zstd Py
 # bashdb  4.4-1.0.1  https://sourceforge.net/projects/bashdb/files/bashdb/
 build_packages 4.4-1.0.1 /home/lixq/toolchains/bashdb bashdb
 
-# bat  0.26.1  https://github.com/sharkdp/bat/releases/
-build_packages 0.26.1 /home/lixq/toolchains/bat bat
-
 # make  4.4.1  https://mirrors.tuna.tsinghua.edu.cn/gnu/make/
 build_packages 4.4.1 /home/lixq/toolchains/make make
 
