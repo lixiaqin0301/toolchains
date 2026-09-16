@@ -39,9 +39,6 @@ function build_packages() {
 tab=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 
-# Shellcheck  0.11.0  https://github.com/koalaman/shellcheck/releases
-build_packages 0.11.0 /home/lixq/toolchains/shellcheck shellcheck
-
 # gcc     16.2.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
 # ./contrib/download_prerequisites  https://gcc.gnu.org/pub/gcc/infrastructure/
 # binutils  2.47  https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
