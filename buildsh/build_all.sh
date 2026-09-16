@@ -39,9 +39,6 @@ function build_packages() {
 tab=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 
-# lcov  2.5  https://github.com/linux-test-project/lcov/releases/
-build_packages 2.5 /home/lixq/toolchains/lcov lcov
-
 # Shellcheck  0.11.0  https://github.com/koalaman/shellcheck/releases
 build_packages 0.11.0 /home/lixq/toolchains/shellcheck shellcheck
 
@@ -99,21 +96,6 @@ build_packages 2.44 /opt/glibc pcre2 audit-userspace libcap glibc
 # libssh2       1.11.1  https://libssh2.org/
 # openldap      2.7.0   https://www.openldap.org/software/download/
 build_packages 8.22.0 /home/lixq/toolchains/curl brotli c-ares gsasl keyutils krb5 libidn2 libpsl libunistring libxml2 zlib zstd openssl nghttp3 ngtcp2 nghttp2 libssh2 openldap curl
-
-# llvm     23.1.0        https://mirrors.tuna.tsinghua.edu.cn/github-release/llvm/llvm-project/
-# bison    3.8.2         https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
-# libxml2  2.15.3        https://github.com/GNOME/libxml2/tags
-# lua      5.5.1         https://www.lua.org/ftp/
-# ncurses  6.6           https://invisible-island.net/ncurses/
-# libedit  20260512-3.1  https://thrysoee.dk/editline/
-# swig     4.5.0         https://github.com/swig/swig/tags/
-# xz       5.8.3         https://tukaani.org/xz/
-# zlib     1.3.2         https://github.com/madler/zlib/releases/
-# zstd     1.5.7         https://github.com/facebook/zstd/releases/
-# openssl  4.0.2         https://github.com/openssl/openssl/releases/
-# Python   3.14.7        https://www.python.org/ftp/python/
-build_packages 23.1.0 /home/lixq/toolchains/llvm bison libxml2 lua ncurses libedit swig xz zlib zstd openssl Python llvm
-build_packages 23.1.0 /home/watch/toolchains/lldb bison libxml2 lua ncurses libedit swig xz zlib zstd openssl Python llvm
 
 # zsh  5.9  https://www.zsh.org/
 build_packages 5.9 /home/lixq/toolchains/zsh zsh
@@ -215,7 +197,6 @@ build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 #                                      https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
 #                                      markdown json(Wild Web Developer) bash
 # PyDev                13.1.0          https://github.com/fabioz/Pydev/releases
-# jdk                  26.0.2.1        https://www.oracle.com/java/technologies/downloads/
 # websocat             1.14.1          https://github.com/vi/websocat/releases/
 # cygwin               3.6.9           https://cygwin.com/
 # golang               1.27.1          https://golang.google.cn/dl/
@@ -223,7 +204,6 @@ build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 # rime                 0.17.4          https://rime.im/
 # rime-frost           1.0.4           https://github.com/gaboolic/rime-frost/releases
 # tabby                1.0.235         https://github.com/Eugeny/tabby/releases
-# bazel                9.2.0           https://github.com/bazelbuild/bazel/releases/
 # nvim                 0.12.5          https://github.com/neovim/neovim/releases/
 # rg                   15.2.0          https://github.com/BurntSushi/ripgrep/releases/
 # btop                 1.4.7           https://github.com/aristocratos/btop/releases/

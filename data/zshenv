@@ -26,7 +26,7 @@ export PATH="/home/lixq/toolchains/bin:\
 /home/lixq/toolchains/git/usr/bin:\
 /home/lixq/toolchains/golang/bin:\
 /home/lixq/toolchains/jdk/bin:\
-/home/lixq/toolchains/lcov/usr/bin:\
+/home/lixq/toolchains/lcov/bin:\
 /home/lixq/toolchains/llvm/usr/bin:\
 /home/lixq/toolchains/LuaLS/bin:\
 /home/lixq/toolchains/luarocks/usr/bin:\
@@ -58,7 +58,7 @@ export MANPATH="/opt/node/usr/share/man:\
 /home/lixq/toolchains/gdb/usr/share/man:\
 /home/lixq/toolchains/git/usr/share/man:\
 /home/lixq/toolchains/jdk/man:\
-/home/lixq/toolchains/lcov/usr/man:\
+/home/lixq/toolchains/lcov/man:\
 /home/lixq/toolchains/llvm/usr/man:\
 /home/lixq/toolchains/llvm/usr/share/man:\
 /home/lixq/toolchains/Miniforge3/man:\
