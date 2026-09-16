@@ -39,9 +39,6 @@ function build_packages() {
 tab=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 
-# boost  1.92.0  https://www.boost.org/releases/latest/
-build_packages 1.92.0 /home/lixq/toolchains/boost boost
-
 # tcpflow  1.6.1  https://github.com/simsong/tcpflow/releases/
 build_packages 1.6.1 /home/lixq/toolchains/tcpflow tcpflow
 
