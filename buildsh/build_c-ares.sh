@@ -13,7 +13,7 @@ export PCP_DIR=
 export LD_LIBRARY_PATH=
 export PKG_CONFIG_PATH=
 export INFOPATH=
-export PATH="/home/lixq/toolchains/cmake/usr/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
+export PATH="/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
 
 cd /home/lixq/src
 rm -rf "$name-$ver"

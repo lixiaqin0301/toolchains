@@ -8,7 +8,7 @@ srcpath=/home/lixq/src/$name-$ver.tar.gz
 [[ -n $DESTDIR ]]
 [[ -f $srcpath ]]
 
-export PATH="/home/lixq/toolchains/cmake/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export PATH="/home/lixq/toolchains/cmake/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 cd /home/lixq/src
 rm -rf "json-c-$name-$ver"
