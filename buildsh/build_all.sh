@@ -39,52 +39,6 @@ function build_packages() {
 tab=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 
-# bcc       0.37.0         https://github.com/iovisor/bcc/releases/
-# bison     3.8.2          https://mirrors.tuna.tsinghua.edu.cn/gnu/bison/
-# brotli    1.2.0          https://github.com/google/brotli/releases/
-# bzip2     1.0.8          https://sourceware.org/pub/bzip2/
-# flex      2.6.4          https://github.com/westes/flex/releases/
-# icu4c     78.3           https://github.com/unicode-org/icu/
-# json-c    0.19-20260627  https://github.com/json-c/json-c/tags
-# LuaJIT    2.1.ROLLING    https://github.com/LuaJIT/LuaJIT/tags
-# netperf   2.7.0          https://github.com/HewlettPackard/netperf/tags
-# libbpf    1.7.0          https://github.com/libbpf/libbpf/releases
-# libedit   20260512-3.1   https://thrysoee.dk/editline/
-# libffi    3.6.0          https://github.com/libffi/libffi/releases/
-# libpsl    0.22.0         https://github.com/rockdaboot/libpsl/releases/
-# libxml2   2.15.3         https://github.com/GNOME/libxml2/tags
-# ncurses   6.6            https://invisible-island.net/ncurses/
-# xz        5.8.3          https://tukaani.org/xz/
-# zlib      1.3.2          https://github.com/madler/zlib/releases/
-# zstd      1.5.7          https://github.com/facebook/zstd/releases/
-# openssl   4.0.1          https://github.com/openssl/openssl/releases/
-# curl      8.21.0         https://github.com/curl/curl/releases/
-# elfutils  0.195          https://sourceware.org/elfutils/ftp/
-# glibc     2.43           https://mirrors.ustc.edu.cn/gnu/glibc/
-# Python    3.14.6         https://www.python.org/ftp/python/
-build_packages 0.37.0 /home/lixq/toolchains/bcc bison brotli bzip2 flex icu4c json-c LuaJIT netperf libbpf libedit libffi libpsl libxml2 ncurses xz zlib zstd openssl curl elfutils glibc Python bcc
-build_packages 0.37.0 /home/watch/toolchains/bcc bison brotli bzip2 flex icu4c json-c libbpf libedit libffi libpsl libxml2 LuaJIT ncurses netperf openssl xz zlib zstd curl elfutils glibc Python bcc
-
-# systemtap  5.5     https://sourceware.org/systemtap/ftp/releases/
-# binutils   2.46    https://mirrors.tuna.tsinghua.edu.cn/gnu/binutils/
-# bzip2      1.0.8   https://sourceware.org/pub/bzip2/
-# elfutils   0.195   https://sourceware.org/elfutils/ftp/
-# gcc        16.1.0  https://mirrors.tuna.tsinghua.edu.cn/gnu/gcc/
-# ncurses    6.6     https://invisible-island.net/ncurses/
-# openssl    4.0.0   https://github.com/openssl/openssl/releases/
-# patchelf   0.15.5  https://github.com/NixOS/patchelf/releases/
-# readline   8.3     https://mirrors.tuna.tsinghua.edu.cn/gnu/readline/
-# xz         5.8.3   https://tukaani.org/xz/
-# zlib       1.3.2   https://github.com/madler/zlib/releases/
-# zstd       1.5.7   https://github.com/facebook/zstd/releases/
-# curl       8.20.0  https://github.com/curl/curl/releases/
-# glibc      2.43    https://mirrors.ustc.edu.cn/gnu/glibc/
-build_packages 5.5 /home/lixq/toolchains/systemtap binutils bzip2 openssl curl elfutils gcc ncurses patchelf readline xz zlib zstd systemtap glibc
-build_packages 5.5 /home/watch/toolchains/systemtap binutils bzip2 openssl curl elfutils gcc ncurses patchelf readline xz zlib zstd systemtap glibc
-
-# wrk  4.2.0  https://github.com/wg/wrk/tags
-build_packages 4.2.0 /home/lixq/toolchains/wrk wrk
-
 # nasm  3.02  https://www.nasm.us/pub/nasm/releasebuilds/
 build_packages 3.02 /home/lixq/toolchains/nasm nasm
 
