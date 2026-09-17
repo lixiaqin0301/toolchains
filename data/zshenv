@@ -9,7 +9,6 @@ export PATH="/home/lixq/toolchains/bin:\
 /home/lixq/toolchains/bashdb/usr/bin:\
 /home/lixq/toolchains/bcc/share/bcc/tools:\
 /home/lixq/toolchains/Bear/usr/bin:\
-/home/lixq/toolchains/bpfsnoop/usr/bin:\
 /home/lixq/toolchains/bpftool/sbin:\
 /home/lixq/toolchains/bpftrace/usr/bin:\
 /home/lixq/toolchains/btop/bin:\
