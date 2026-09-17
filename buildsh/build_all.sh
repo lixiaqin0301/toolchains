@@ -39,9 +39,6 @@ function build_packages() {
 tab=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 
-# luarocks  3.13.0  https://github.com/luarocks/luarocks/releases/
-build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
-
 # cmake                4.4.3           https://cmake.org/download/
 # FireFox              155.0.1         https://www.firefox.com/en-US/download/all/desktop-release/win64/zh-CN/
 # Chrome               153.0.8010.37   https://www.google.cn/chrome/?standalone=1&platform=win64
