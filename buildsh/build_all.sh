@@ -39,9 +39,6 @@ function build_packages() {
 tab=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 
-# Bear         4.2.2     https://github.com/rizsotto/Bear/releases/
-build_packages 4.2.2 /home/lixq/toolchains/Bear Bear
-
 # luarocks  3.13.0  https://github.com/luarocks/luarocks/releases/
 build_packages 3.13.0 /home/lixq/toolchains/luarocks luarocks
 
