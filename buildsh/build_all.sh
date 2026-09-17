@@ -39,10 +39,8 @@ function build_packages() {
 tab=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 
-# cmake                4.4.3           https://cmake.org/download/
 # FireFox              155.0.1         https://www.firefox.com/en-US/download/all/desktop-release/win64/zh-CN/
 # Chrome               153.0.8010.37   https://www.google.cn/chrome/?standalone=1&platform=win64
-# ninja                1.13.2          https://github.com/ninja-build/ninja/releases/
 # patchelf             0.19.1          https://github.com/NixOS/patchelf/releases/
 # pandoc               3.11            https://github.com/jgm/pandoc/releases/
 # eclipse              2026-06         https://www.eclipse.org/downloads/packages/
