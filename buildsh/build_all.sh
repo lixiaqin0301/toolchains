@@ -39,9 +39,6 @@ function build_packages() {
 tab=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 
-# nasm  3.02  https://www.nasm.us/pub/nasm/releasebuilds/
-build_packages 3.02 /home/lixq/toolchains/nasm nasm
-
 # FFmpeg     9.0.1   https://github.com/FFmpeg/FFmpeg/tags
 # bzip2      1.0.8   https://sourceware.org/pub/bzip2/
 # libXau     1.0.12  https://xorg.freedesktop.org/archive/individual/lib/
