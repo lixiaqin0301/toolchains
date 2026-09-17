@@ -39,9 +39,6 @@ function build_packages() {
 tab=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 
-# cppcheck  2.21.0  https://cppcheck.sourceforge.io/
-build_packages 2.21.0 /home/lixq/toolchains/cppcheck cppcheck
-
 # Bear         4.2.2     https://github.com/rizsotto/Bear/releases/
 build_packages 4.2.2 /home/lixq/toolchains/Bear Bear
 
