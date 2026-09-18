@@ -41,7 +41,6 @@ date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 
 # FireFox              155.0.1         https://www.firefox.com/en-US/download/all/desktop-release/win64/zh-CN/
 # Chrome               153.0.8010.37   https://www.google.cn/chrome/?standalone=1&platform=win64
-# pandoc               3.11            https://github.com/jgm/pandoc/releases/
 # eclipse              2026-06         https://www.eclipse.org/downloads/packages/
 #                                      https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
 #                                      markdown json(Wild Web Developer) bash
