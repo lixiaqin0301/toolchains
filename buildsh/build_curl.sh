@@ -4,9 +4,9 @@
 set -euo pipefail
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=8.22.0
-DESTDIR=$1
-srcpath=/home/lixq/src/$name-$ver.tar.gz
+ver=$1
+DESTDIR=$2
+srcpath=/share-rd/cdn_prd_cache/lixq/src/$name-$ver.tar.gz
 [[ -n $DESTDIR ]]
 [[ -f $srcpath ]]
 
@@ -20,6 +20,17 @@ export PKG_CONFIG_PATH="$DESTDIR/lib64/pkgconfig:$DESTDIR/usr/lib64/pkgconfig:$D
 export CPPFLAGS="-isystem $DESTDIR/usr/include"
 export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -Wl,--disable-new-dtags -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
 export LD_LIBRARY_PATH="$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
+
+mkdir -p "$DESTDIR/usr/lib64"
+cd "$DESTDIR/usr/lib64"
+for p in /home/lixq/toolchains/gcc/usr/lib64/libgcc* /home/lixq/toolchains/gcc/usr/lib64/libstdc++.s*[0-9o]; do
+    [[ -f $(basename "$p") ]] && continue
+    if [[ -L $p ]]; then
+        ln -sf "$(readlink "$p")" "$(basename "$p")"
+    else
+        cp "$p" .
+    fi
+done
 
 cd /home/lixq/src
 rm -rf "$name-$ver"
