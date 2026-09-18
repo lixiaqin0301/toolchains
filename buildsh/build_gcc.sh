@@ -27,11 +27,11 @@ cd /home/lixq/src
 rm -rf "$name-$ver"
 tar -xf "$srcpath"
 cd "/home/lixq/src/$name-$ver"
-cp -a /share-rd/cdn_prd_cache/lixq/src/"$(grep "^gmp='gmp" | awk -F "'" '{print $2}')" .
-cp -a /share-rd/cdn_prd_cache/lixq/src/"$(grep "^mpfr='mpfr" | awk -F "'" '{print $2}')" .
-cp -a /share-rd/cdn_prd_cache/lixq/src/"$(grep "^mpc='mpc" | awk -F "'" '{print $2}')" .
-cp -a /share-rd/cdn_prd_cache/lixq/src/"$(grep "^isl='isl" | awk -F "'" '{print $2}')" .
-cp -a /share-rd/cdn_prd_cache/lixq/src/"$(grep "^gettext='gettext" | awk -F "'" '{print $2}')" .
+cp -a /share-rd/cdn_prd_cache/lixq/src/"$(grep "^gmp='gmp" ./contrib/download_prerequisites | awk -F "'" '{print $2}')" .
+cp -a /share-rd/cdn_prd_cache/lixq/src/"$(grep "^mpfr='mpfr" ./contrib/download_prerequisites | awk -F "'" '{print $2}')" .
+cp -a /share-rd/cdn_prd_cache/lixq/src/"$(grep "^mpc='mpc" ./contrib/download_prerequisites | awk -F "'" '{print $2}')" .
+cp -a /share-rd/cdn_prd_cache/lixq/src/"$(grep "^isl='isl" ./contrib/download_prerequisites | awk -F "'" '{print $2}')" .
+cp -a /share-rd/cdn_prd_cache/lixq/src/"$(grep "^gettext='gettext" ./contrib/download_prerequisites | awk -F "'" '{print $2}')" .
 ./contrib/download_prerequisites
 mkdir -p "/home/lixq/src/$name-$ver/build"
 cd "/home/lixq/src/$name-$ver/build"
