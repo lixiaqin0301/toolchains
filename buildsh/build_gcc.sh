@@ -2,21 +2,11 @@
 set -euo pipefail
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=16.2.0
-DESTDIR=$1
-srcpath=/home/lixq/src/$name-$ver.tar.gz
-gmp='gmp-6.3.0.tar.bz2'
-mpfr='mpfr-4.2.2.tar.bz2'
-mpc='mpc-1.3.1.tar.gz'
-isl='isl-0.24.tar.bz2'
-gettext='gettext-0.22.tar.gz'
+ver=$1
+DESTDIR=$2
+srcpath=/share-rd/cdn_prd_cache/lixq/src/$name-$ver.tar.gz
 [[ -n $DESTDIR ]]
 [[ -f $srcpath ]]
-[[ -f /home/lixq/src/$gmp ]]
-[[ -f /home/lixq/src/$mpfr ]]
-[[ -f /home/lixq/src/$mpc ]]
-[[ -f /home/lixq/src/$isl ]]
-[[ -f /home/lixq/src/$gettext ]]
 
 export MANPATH=
 export PCP_DIR=
@@ -25,23 +15,23 @@ export PKG_CONFIG_PATH=
 export INFOPATH=
 export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
 
-if [[ $DESTDIR == /opt/gcc ]]; then
-    export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
-    export LDFLAGS="-L/home/lixq/toolchains/gcc/usr/lib64 -Wl,-rpath-link,/home/lixq/toolchains/gcc/usr/lib64 -Wl,-rpath,/opt/gcc/usr/lib64"
-else
+if [[ $DESTDIR == /home/lixq/toolchains/gcc ]]; then
     export PATH="/opt/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
     export LDFLAGS="-L/opt/gcc/usr/lib64 -Wl,-rpath-link,/opt/gcc/usr/lib64 -Wl,-rpath,/home/lixq/toolchains/gcc/usr/lib64"
+else
+    export PATH="/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
+    export LDFLAGS="-L/home/lixq/toolchains/gcc/usr/lib64 -Wl,-rpath-link,/home/lixq/toolchains/gcc/usr/lib64 -Wl,-rpath,/opt/gcc/usr/lib64"
 fi
 
 cd /home/lixq/src
 rm -rf "$name-$ver"
 tar -xf "$srcpath"
 cd "/home/lixq/src/$name-$ver"
-cp /home/lixq/src/$gmp .
-cp /home/lixq/src/$mpfr .
-cp /home/lixq/src/$mpc .
-cp /home/lixq/src/$isl .
-cp /home/lixq/src/$gettext .
+cp -a /share-rd/cdn_prd_cache/lixq/src/"$(grep "^gmp='gmp" | awk -F "'" '{print $2}')" .
+cp -a /share-rd/cdn_prd_cache/lixq/src/"$(grep "^mpfr='mpfr" | awk -F "'" '{print $2}')" .
+cp -a /share-rd/cdn_prd_cache/lixq/src/"$(grep "^mpc='mpc" | awk -F "'" '{print $2}')" .
+cp -a /share-rd/cdn_prd_cache/lixq/src/"$(grep "^isl='isl" | awk -F "'" '{print $2}')" .
+cp -a /share-rd/cdn_prd_cache/lixq/src/"$(grep "^gettext='gettext" | awk -F "'" '{print $2}')" .
 ./contrib/download_prerequisites
 mkdir -p "/home/lixq/src/$name-$ver/build"
 cd "/home/lixq/src/$name-$ver/build"
