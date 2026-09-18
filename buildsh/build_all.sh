@@ -57,11 +57,7 @@ date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 # btop                 1.4.7           https://github.com/aristocratos/btop/releases/
 # fd                   10.5.0          https://github.com/sharkdp/fd/releases/
 # zoxide               0.10.0          https://github.com/ajeetdsouza/zoxide/releases/
-# lua-language-server  3.19.1          https://github.com/LuaLS/lua-language-server/releases/
-# golangci-lint        2.13.2          https://github.com/golangci/golangci-lint/releases/
 # Nerd Fonts           3.5.1           https://github.com/ryanoasis/nerd-fonts/releases/
-# tree-sitter          0.27.0          https://github.com/tree-sitter/tree-sitter/releases/
-# marksman             2026-02-08      https://github.com/artempyanykh/marksman/releases/
 
 tae=$(date +%s)
 date "+%Y-%m-%d %H:%M:%S end   use $((tae - tab)) seconds" | tee -a /tmp/build_all.log
