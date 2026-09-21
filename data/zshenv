@@ -63,6 +63,7 @@ export MANPATH="/opt/node/usr/share/man:\
 /home/lixq/toolchains/Miniforge3/share/man:\
 /home/lixq/toolchains/nvim-linux-x86_64/share/man:\
 /home/lixq/toolchains/pandoc/share/man:\
+/home/lixq/toolchains/ripgrep/man:\
 /home/lixq/toolchains/systemtap/usr/share/man:\
 /home/lixq/toolchains/tcpflow/usr/share/man:\
 /home/lixq/toolchains/zoxide/man:\
