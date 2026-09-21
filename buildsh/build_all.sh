@@ -55,8 +55,6 @@ date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 # nvim                 0.12.5          https://github.com/neovim/neovim/releases/
 # rg                   15.2.0          https://github.com/BurntSushi/ripgrep/releases/
 # btop                 1.4.7           https://github.com/aristocratos/btop/releases/
-# fd                   10.5.0          https://github.com/sharkdp/fd/releases/
-# zoxide               0.10.0          https://github.com/ajeetdsouza/zoxide/releases/
 # Nerd Fonts           3.5.1           https://github.com/ryanoasis/nerd-fonts/releases/
 
 tae=$(date +%s)

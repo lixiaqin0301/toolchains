@@ -18,7 +18,7 @@ export PATH="/home/lixq/toolchains/bin:\
 /home/lixq/toolchains/codelldb/extension/bin:\
 /home/lixq/toolchains/cppcheck/usr/bin:\
 /home/lixq/toolchains/curl/usr/bin:\
-/home/lixq/toolchains/fd:\
+/home/lixq/toolchains/fd/bin:\
 /home/lixq/toolchains/FFmpeg/usr/bin:\
 /home/lixq/toolchains/gdb/usr/bin:\
 /home/lixq/toolchains/git/usr/bin:\
@@ -50,6 +50,7 @@ export MANPATH="/opt/node/usr/share/man:\
 /home/lixq/toolchains/bpftrace/usr/share/man:\
 /home/lixq/toolchains/cmake/man:\
 /home/lixq/toolchains/curl/usr/share/man:\
+/home/lixq/toolchains/fd/man:\
 /home/lixq/toolchains/FFmpeg/usr/share/man:\
 /home/lixq/toolchains/gcc/usr/share/man:\
 /home/lixq/toolchains/gdb/usr/share/man:\
