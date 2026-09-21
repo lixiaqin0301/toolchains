@@ -1,10 +1,19 @@
 #!/bin/bash
+set -euo pipefail
 # eclipse              2026-06         https://www.eclipse.org/downloads/packages/
 #                                      https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
 #                                      markdown json(Wild Web Developer) bash
 # cygwin               3.6.9           https://cygwin.com/
 # rime                 0.17.4          https://rime.im/
-
+apt update -y
+apt upgrade -y
+apt dist-upgrade -y
+apt autoremove -y
+npm update -g
+npm update -g --prefix=/usr/local
+/home/lixq/toolchains/data/update-claude.sh
+/home/lixq/toolchains/data/reset-claude.sh
+/home/lixq/toolchains/data/lazyvim/update-lazyvim.sh
 firefox_ver=$(curl -fsSL --max-time 15 https://product-details.mozilla.org/1.0/firefox_versions.json | jq -r .LATEST_FIREFOX_VERSION)
 firefox_cver=$(sed -n 's/^Version=//p' "/mnt/d/Programs/Mozilla Firefox/application.ini")
 if [[ "$firefox_ver" != "$firefox_cver" ]]; then
