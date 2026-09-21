@@ -45,7 +45,6 @@ date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 #                                      https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
 #                                      markdown json(Wild Web Developer) bash
 # PyDev                13.1.0          https://github.com/fabioz/Pydev/releases
-# websocat             1.14.1          https://github.com/vi/websocat/releases/
 # cygwin               3.6.9           https://cygwin.com/
 # golang               1.27.1          https://golang.google.cn/dl/
 # rust                 1.98.1          https://rust-lang.org/

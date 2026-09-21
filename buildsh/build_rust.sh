@@ -31,9 +31,6 @@ EOF
 
 export RUSTUP_DIST_SERVER=https://rsproxy.cn
 export RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup
-curl -sSf https://mirrors.ustc.edu.cn/rust-static/rustup/dist/x86_64-unknown-linux-gnu/rustup-init -o /tmp/rustup-init.$$
-chmod +x /tmp/rustup-init.$$
-/tmp/rustup-init.$$ -y --no-modify-path --default-host x86_64-unknown-linux-gnu --profile default # miminal / default / complete
-rm -f /tmp/rustup-init.$$
+/share-rd/cdn_prd_cache/lixq/src/vers/rustup-init -y --no-modify-path --default-host x86_64-unknown-linux-gnu --profile default
 rustc --version
 cargo --version
