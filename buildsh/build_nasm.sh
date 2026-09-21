@@ -30,7 +30,7 @@ done
 cd /home/lixq/src
 rm -rf "$name-$ver"
 tar -xf "$srcpath"
-cd "/home/lixq/src/$name-$ver"
+cd "/home/lixq/src/$name-$name-$ver"
 ./configure "--prefix=$DESTDIR/usr"
 make -s "-j$(nproc)"
 make -s "-j$(nproc)" install
