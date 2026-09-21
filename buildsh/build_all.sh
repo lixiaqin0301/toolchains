@@ -52,7 +52,6 @@ date "+%Y-%m-%d %H:%M:%S begin" | tee /tmp/build_all.log
 # rime                 0.17.4          https://rime.im/
 # rime-frost           1.0.4           https://github.com/gaboolic/rime-frost/releases
 # tabby                1.0.235         https://github.com/Eugeny/tabby/releases
-# nvim                 0.12.5          https://github.com/neovim/neovim/releases/
 # Nerd Fonts           3.5.1           https://github.com/ryanoasis/nerd-fonts/releases/
 
 tae=$(date +%s)
