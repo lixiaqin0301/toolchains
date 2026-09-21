@@ -12,6 +12,8 @@ apt autoremove -y
 npm update -g
 npm update -g --prefix=/usr/local
 /home/lixq/toolchains/data/update-claude.sh
+rm -rf /usr/local/bin/claude
+ln -s /root/.local/share/claude/versions/* /usr/local/bin/claude
 /home/lixq/toolchains/data/reset-claude.sh
 /home/lixq/toolchains/data/lazyvim/update-lazyvim.sh
 firefox_ver=$(curl -fsSL --max-time 15 https://product-details.mozilla.org/1.0/firefox_versions.json | jq -r .LATEST_FIREFOX_VERSION)
