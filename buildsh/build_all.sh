@@ -13,6 +13,13 @@ ln -s /root/.local/share/claude/versions/* /usr/local/bin/claude
 /home/lixq/toolchains/data/reset-claude.sh
 /home/lixq/toolchains/data/lazyvim/update-lazyvim.sh
 
+if [[ -d /home/lixq/workspace-vscode/learn-nginx ]]; then
+    cd /home/lixq/workspace-vscode/learn-nginx
+    git fetch upstream
+    git rebase upstream/master
+    git push origin master
+fi
+
 chrome_appid=$(/mnt/c/Windows/System32/reg.exe query "HKLM\SOFTWARE\WOW6432Node\Google\Update\Clients" /s /f 'Google Chrome' /d | tr -d '\r' | grep -B1 'REG_SZ *Google Chrome$' | sed -n 's/.*Clients\\\({.*}\)$/\1/p')
 chrome_cur=$(/mnt/c/Windows/System32/reg.exe query "HKLM\SOFTWARE\WOW6432Node\Google\Update\Clients\\$chrome_appid" /v pv | tr -d '\r' | awk '/REG_SZ/{print $NF; exit}')
 rm -rf /tmp/chrome
