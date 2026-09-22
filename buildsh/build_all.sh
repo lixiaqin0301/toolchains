@@ -53,6 +53,10 @@ if [[ "$cygwin_ver" != 3.6.10 ]]; then
     echo "cygwin 需要更新 https://cygwin.com/ curl wget nginx ngx-mod_stream vim rsync python inetutils"
 fi
 
+if [[ $(curl -vso/dev/null -w '%{http_code}\n' "https://update.code.visualstudio.com/api/update/win32-x64-user/stable/$(jq -r .commit "/mnt/d/Programs/Microsoft VS Code"/*/resources/app/product.json)") != 204 ]]; then
+    echo "VSCode 需要更新"
+fi
+
 firefox_ver=$(curl -fsSL --max-time 15 https://product-details.mozilla.org/1.0/firefox_versions.json | jq -r .LATEST_FIREFOX_VERSION)
 firefox_cver=$(sed -n 's/^Version=//p' "/mnt/d/Programs/Mozilla Firefox/application.ini")
 if [[ "$firefox_ver" != "$firefox_cver" ]]; then
