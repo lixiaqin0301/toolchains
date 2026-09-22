@@ -7,6 +7,7 @@ if [[ -d "$HOME/.config/nvim" ]]; then
     git restore .
     git clean -ffdx
     cat /home/lixq/toolchains/data/lazyvim/options.lua >> lua/config/options.lua
+    cat /home/lixq/toolchains/data/lazyvim/autocmds.lua >> lua/config/autocmds.lua
     sed -i '/import = "lazyvim.plugins"/r /home/lixq/toolchains/data/lazyvim/lazy.lua' lua/config/lazy.lua
     mkdir -p lua/plugins
     rsync -a /home/lixq/toolchains/data/lazyvim/plugins/ lua/plugins/
