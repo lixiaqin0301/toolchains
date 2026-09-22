@@ -53,7 +53,7 @@ if [[ "$cygwin_ver" != 3.6.10 ]]; then
     echo "cygwin 需要更新 https://cygwin.com/ curl wget nginx ngx-mod_stream vim rsync python inetutils"
 fi
 
-if [[ $(curl -vso/dev/null -w '%{http_code}\n' "https://update.code.visualstudio.com/api/update/win32-x64-user/stable/$(jq -r .commit "/mnt/d/Programs/Microsoft VS Code"/*/resources/app/product.json)") != 204 ]]; then
+if [[ $(curl -so/dev/null -w '%{http_code}\n' "https://update.code.visualstudio.com/api/update/win32-x64-user/stable/$(jq -r .commit "/mnt/d/Programs/Microsoft VS Code"/*/resources/app/product.json)") != 204 ]]; then
     echo "VSCode 需要更新"
 fi
 
