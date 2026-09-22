@@ -1,10 +1,6 @@
 #!/bin/bash
 set -euo pipefail
-# eclipse              2026-06         https://www.eclipse.org/downloads/packages/
-#                                      https://mirrors.aliyun.com/eclipse/technology/epp/downloads/release/
-#                                      markdown json(Wild Web Developer) bash
-# cygwin               3.6.9           https://cygwin.com/
-# rime                 0.17.4          https://rime.im/
+
 apt update -y
 apt upgrade -y
 apt dist-upgrade -y
@@ -16,11 +12,6 @@ rm -rf /usr/local/bin/claude
 ln -s /root/.local/share/claude/versions/* /usr/local/bin/claude
 /home/lixq/toolchains/data/reset-claude.sh
 /home/lixq/toolchains/data/lazyvim/update-lazyvim.sh
-firefox_ver=$(curl -fsSL --max-time 15 https://product-details.mozilla.org/1.0/firefox_versions.json | jq -r .LATEST_FIREFOX_VERSION)
-firefox_cver=$(sed -n 's/^Version=//p' "/mnt/d/Programs/Mozilla Firefox/application.ini")
-if [[ "$firefox_ver" != "$firefox_cver" ]]; then
-    echo "FireFox 需要更新 https://www.firefox.com/en-US/download/all/desktop-release/win64/zh-CN/"
-fi
 
 chrome_appid=$(/mnt/c/Windows/System32/reg.exe query "HKLM\SOFTWARE\WOW6432Node\Google\Update\Clients" /s /f 'Google Chrome' /d | tr -d '\r' | grep -B1 'REG_SZ *Google Chrome$' | sed -n 's/.*Clients\\\({.*}\)$/\1/p')
 chrome_cur=$(/mnt/c/Windows/System32/reg.exe query "HKLM\SOFTWARE\WOW6432Node\Google\Update\Clients\\$chrome_appid" /v pv | tr -d '\r' | awk '/REG_SZ/{print $NF; exit}')
@@ -48,11 +39,22 @@ if [[ "$nerd_fonts_ver" != 3.5.1 ]]; then
     echo "Nerd Fonts 需要更新 https://github.com/ryanoasis/nerd-fonts/releases"
 fi
 
+rime_ver=$(git ls-remote --tags --refs https://github.com/rime/weasel.git | awk -F '/' '{print $NF}' | grep -oE '^[0-9]+\.([0-9]+\.*)*' | sort -V | tail -1)
+if [[ "$rime_ver" != 0.17.4 ]]; then
+    echo "rime 需要更新 https://rime.im/"
+fi
 rime_frost_ver=$(git ls-remote --tags --refs https://github.com/gaboolic/rime-frost.git | awk -F '/' '{print $NF}' | sed 's/^v//' | grep -oE '^[0-9]+\.([0-9]+\.*)*' | sort -V | tail -1)
 if [[ "$rime_frost_ver" != 1.0.4 ]]; then
     echo "Nerd Fonts 需要更新 https://github.com/gaboolic/rime-frost/releases"
 fi
-pydev_ver=$(git ls-remote --tags --refs https://github.com/fabioz/Pydev.git | awk -F '/' '{print $NF}' | sed -e 's/^pydev_//' -e "s/_/./g" | grep -oE '^[0-9]+\.([0-9]+\.*)*' | sort -V | tail -1)
-if [[ "$pydev_ver" != 13.1.0 ]]; then
-    echo "PyDev 需要更新 https://github.com/fabioz/Pydev/releases"
+
+cygwin_ver=$(curl -fsSL --max-time 20 https://cygwin.com/ | tr '\n' ' ' | grep -oiP 'most recent version of the Cygwin DLL is\s*<b>\s*(<a[^>]*>)?\K[0-9]+\.[0-9.]+')
+if [[ "$cygwin_ver" != 3.6.10 ]]; then
+    echo "cygwin 需要更新 https://cygwin.com/ curl wget nginx ngx-mod_stream vim rsync python inetutils"
+fi
+
+firefox_ver=$(curl -fsSL --max-time 15 https://product-details.mozilla.org/1.0/firefox_versions.json | jq -r .LATEST_FIREFOX_VERSION)
+firefox_cver=$(sed -n 's/^Version=//p' "/mnt/d/Programs/Mozilla Firefox/application.ini")
+if [[ "$firefox_ver" != "$firefox_cver" ]]; then
+    echo "FireFox 需要更新 https://www.firefox.com/en-US/download/all/desktop-release/win64/zh-CN/"
 fi
