@@ -13,8 +13,8 @@ ln -s /root/.local/share/claude/versions/* /usr/local/bin/claude
 /home/lixq/toolchains/data/reset-claude.sh
 /home/lixq/toolchains/data/lazyvim/update-lazyvim.sh
 
-if [[ -d /home/lixq/workspace-vscode/learn-nginx ]]; then
-    cd /home/lixq/workspace-vscode/learn-nginx
+if [[ -d /home/lixq/workspace-vscode/nginx/ ]]; then
+    cd /home/lixq/workspace-vscode/nginx/
     git fetch upstream
     git rebase upstream/master
     git push origin master
