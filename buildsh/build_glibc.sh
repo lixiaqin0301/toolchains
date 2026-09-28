@@ -16,6 +16,11 @@ export PATH="/home/lixq/toolchains/make/usr/bin:/home/lixq/toolchains/gcc/usr/bi
 cd /home/lixq/src
 rm -rf "$name-$ver" "linux-${kernelver}"
 tar -xf "$srcpath"
+gconv_path="$DESTDIR/usr/lib64/gconv"
+if [[ $DESTDIR == /opt/glibc ]]; then
+    gconv_path="$DESTDIR/lib64/gconv"
+fi
+sed -i "s|\$(gconvdir)|$gconv_path|g" "$name-$ver/iconv/Makefile"
 mkdir -p "$name-$ver/$name-$ver/build/glibc"
 cd "/home/lixq/src/$name-$ver/$name-$ver/build/glibc"
 
