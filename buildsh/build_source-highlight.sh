@@ -14,10 +14,10 @@ export LD_LIBRARY_PATH=
 export PKG_CONFIG_PATH=
 export INFOPATH=
 export PATH="$DESTDIR/usr/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
-export CPATH="/home/lixq/toolchains/boost/usr/include"
-export LIBRARY_PATH="/home/lixq/toolchains/boost/usr/lib:$DESTDIR/usr/lib64"
+export CPATH="/home/lixq/toolchains/boost_1_88_0/usr/include"
+export LIBRARY_PATH="/home/lixq/toolchains/boost_1_88_0/usr/lib:$DESTDIR/usr/lib64"
 export LD_RUN_PATH="$DESTDIR/usr/lib64"
-export LDFLAGS="-L/home/lixq/toolchains/boost/usr/lib -L$DESTDIR/usr/lib64 -Wl,-rpath-link,$LIBRARY_PATH -Wl,-rpath,$LD_RUN_PATH"
+export LDFLAGS="-L/home/lixq/toolchains/boost_1_88_0/usr/lib -L$DESTDIR/usr/lib64 -Wl,-rpath-link,$LIBRARY_PATH -Wl,-rpath,$LD_RUN_PATH"
 
 mkdir -p "$DESTDIR/usr/lib64"
 cd "$DESTDIR/usr/lib64"
