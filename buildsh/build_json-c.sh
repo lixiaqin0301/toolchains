@@ -18,9 +18,9 @@ export PATH="/home/lixq/toolchains/cmake/bin:/usr/local/sbin:/usr/local/bin:/usr
 cd /home/lixq/src
 rm -rf "json-c-$name-$ver"
 tar -xf "$srcpath"
-cd "/home/lixq/src/json-c-$name-$ver"
+cd "/home/lixq/src/$name-$ver"
 mkdir json-c-build
-cd "/home/lixq/src/json-c-$name-$ver/json-c-build"
+cd "/home/lixq/src/$name-$ver/json-c-build"
 cmake -DDISABLE_WERROR=ON -DCMAKE_INSTALL_PREFIX="$DESTDIR/usr" ..
 make -s "-j$(nproc)"
 make -s "-j$(nproc)" install
