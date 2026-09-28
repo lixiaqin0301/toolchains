@@ -13,7 +13,7 @@ export PATH="$DESTDIR/usr/bin:/root/.cargo/bin:/home/lixq/toolchains/gcc/usr/bin
 export PKG_CONFIG_PATH="$DESTDIR/usr/lib64/pkgconfig:$DESTDIR/usr/lib/pkgconfig"
 export CPPFLAGS="-I/home/lixq/src/$name-$ver --sysroot=$DESTDIR"
 export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/usr/lib --sysroot=$DESTDIR -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/usr/lib -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
-export GCONV_PATH="$DESTDIR/usr/lib64/gcov"
+export GCONV_PATH="$DESTDIR/usr/lib64/gconv"
 
 rm -rf /home/lixq/src/git_success
 GCC_INCLUDE_FIXED=""

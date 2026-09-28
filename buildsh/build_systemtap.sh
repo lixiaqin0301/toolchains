@@ -19,7 +19,7 @@ export CPATH="/home/lixq/toolchains/boost/usr/include:$DESTDIR/usr/include"
 export LIBRARY_PATH="/home/lixq/toolchains/boost/usr/lib:$DESTDIR/usr/lib"
 export LDFLAGS="-L/home/lixq/toolchains/boost/usr/lib -L$DESTDIR/lib64 -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/lib64:$LIBRARY_PATH --sysroot=$DESTDIR -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
 export LD_RUN_PATH="$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
-export GCONV_PATH="$DESTDIR/usr/lib64/gcov"
+export GCONV_PATH="$DESTDIR/usr/lib64/gconv"
 
 [[ -d /home/lixq/src ]] || mkdir /home/lixq/src
 cd /home/lixq/src

@@ -15,7 +15,7 @@ export CFLAGS="--sysroot=$DESTDIR"
 export CXXFLAGS="--sysroot=$DESTDIR"
 export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib --sysroot=$DESTDIR -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
 export LIBRARY_PATH="$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
-export GCONV_PATH="$DESTDIR/usr/lib64/gcov"
+export GCONV_PATH="$DESTDIR/usr/lib64/gconv"
 
 "$DESTDIR/usr/bin/pip3" install setuptools dnslib cachetools pyelftools systemd
 cd /home/lixq/src

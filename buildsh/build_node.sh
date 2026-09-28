@@ -17,7 +17,7 @@ export PATH="$DESTDIR/usr/bin:/home/lixq/toolchains/Miniforge3/bin:/home/lixq/to
 export CPPFLAGS="-I$DESTDIR/include --sysroot=$DESTDIR"
 export LDFLAGS=" -L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64 --sysroot=$DESTDIR -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64 -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
 export LIBRARY_PATH="$DESTDIR/usr/lib64:$DESTDIR/lib64"
-export GCONV_PATH="$DESTDIR/usr/lib64/gcov"
+export GCONV_PATH="$DESTDIR/usr/lib64/gconv"
 
 mkdir -p "$DESTDIR/usr/lib64"
 cd "$DESTDIR/usr/lib64"
