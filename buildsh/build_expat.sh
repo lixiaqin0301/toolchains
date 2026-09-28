@@ -8,6 +8,11 @@ srcpath=/share-rd/cdn_prd_cache/lixq/src/$name-$ver.tar.gz
 [[ -n "$DESTDIR" ]]
 [[ -f "$srcpath" ]]
 
+export MANPATH=
+export PCP_DIR=
+export LD_LIBRARY_PATH=
+export PKG_CONFIG_PATH=
+export INFOPATH=
 export PATH="$DESTDIR/usr/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export LD_RUN_PATH="$DESTDIR/usr/lib64"
 
