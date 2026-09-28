@@ -2,9 +2,9 @@
 set -euo pipefail
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=78.3
-DESTDIR=$1
-srcpath=/home/lixq/src/${name}-${ver}-sources.tgz
+ver=$1
+DESTDIR=$2
+srcpath=/share-rd/cdn_prd_cache/lixq/src/${name}-${ver}-sources.tgz
 [[ -n $DESTDIR ]]
 [[ -f $srcpath ]]
 
