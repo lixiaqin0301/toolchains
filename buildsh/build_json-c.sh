@@ -16,7 +16,7 @@ export INFOPATH=
 export PATH="/home/lixq/toolchains/cmake/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 cd /home/lixq/src
-rm -rf "json-c-$name-$ver"
+rm -rf "$name-$ver"
 tar -xf "$srcpath"
 cd "/home/lixq/src/$name-$ver"
 mkdir json-c-build
