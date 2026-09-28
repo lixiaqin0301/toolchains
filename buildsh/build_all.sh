@@ -64,6 +64,11 @@ if [[ $(curl -so/dev/null -w '%{http_code}\n' "https://update.code.visualstudio.
     echo "VSCode 需要更新"
 fi
 
+windterm_ver=$(git ls-remote --tags --refs https://github.com/kingToolbox/WindTerm.git | awk -F '/' '{print $NF}' | grep -oE '^[0-9]+\.([0-9]+\.*)*' | sort -V | tail -1)
+if [[ ! -d "/mnt/d/Programs/WindTerm_$windterm_ver" ]]; then
+    echo "WindTerm 需要更新 https://github.com/kingToolbox/WindTerm/releases"
+fi
+
 firefox_ver=$(curl -fsSL --max-time 15 https://product-details.mozilla.org/1.0/firefox_versions.json | jq -r .LATEST_FIREFOX_VERSION)
 firefox_cver=$(sed -n 's/^Version=//p' "/mnt/d/Programs/Mozilla Firefox/application.ini")
 if [[ "$firefox_ver" != "$firefox_cver" ]]; then
