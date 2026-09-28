@@ -34,6 +34,11 @@ cd /home/lixq/src
 rm -rf "$name-$ver"
 tar -xf "$srcpath"
 cd "/home/lixq/src/$name-$ver"
+
+# source highlight 3.1.9 不支持 c++ 17 以上的版本
+sed -i 's/ throw *(IOException)//' lib/srchilite/fileutil.h lib/srchilite/fileutil.cc
+sed -i -E 's/throw *\( *\)/noexcept/g' lib/srchilite/*exception.h lib/srchilite/*exception.cpp
+
 ./configure "--prefix=$DESTDIR/usr"
 make -s "-j$(nproc)"
 make -s "-j$(nproc)" install
