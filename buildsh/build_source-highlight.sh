@@ -15,9 +15,9 @@ export PKG_CONFIG_PATH=
 export INFOPATH=
 export PATH="$DESTDIR/usr/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
 export CPATH="/home/lixq/toolchains/boost/usr/include"
-export LIBRARY_PATH="/home/lixq/toolchains/boost/usr/lib:$DESTDIR/usr/lib64"
-export LD_RUN_PATH="$DESTDIR/usr/lib64:/home/lixq/toolchains/boost/usr/lib"
-export LDFLAGS="-L/home/lixq/toolchains/boost/usr/lib -L$DESTDIR/usr/lib64 -Wl,-rpath-link,$LIBRARY_PATH -Wl,-rpath,$LD_RUN_PATH"
+export LIBRARY_PATH="$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/usr/lib:/home/lixq/toolchains/boost/usr/lib"
+export LD_RUN_PATH="$LIBRARY_PATH"
+export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/usr/lib -L/home/lixq/toolchains/boost/usr/lib -Wl,-rpath-link,$LIBRARY_PATH --sysroot=$DESTDIR -Wl,-rpath,$LD_RUN_PATH -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
 
 mkdir -p "$DESTDIR/usr/lib64"
 cd "$DESTDIR/usr/lib64"
@@ -39,6 +39,6 @@ cd "/home/lixq/src/$name-$ver"
 sed -i 's/ throw *(IOException)//' lib/srchilite/fileutil.h lib/srchilite/fileutil.cc
 sed -i -E 's/throw *\( *\)/noexcept/g' lib/srchilite/*exception.h lib/srchilite/*exception.cpp
 
-./configure "--prefix=$DESTDIR/usr"
+./configure "--prefix=$DESTDIR/usr" --with-boost=/home/lixq/toolchains/boost/usr
 make -s "-j$(nproc)"
 make -s "-j$(nproc)" install
