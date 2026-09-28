@@ -22,7 +22,7 @@ export GCONV_PATH="$DESTDIR/usr/lib64/gconv"
 
 mkdir -p "$DESTDIR/usr/lib64"
 cd "$DESTDIR/usr/lib64"
-for p in /home/lixq/toolchains/gcc/usr/lib64/libgcc* /home/lixq/toolchains/gcc/usr/lib64/libstdc++.s*[0-9o]; do
+for p in /home/lixq/toolchains/gcc/usr/lib64/libgcc* /home/lixq/toolchains/gcc/usr/lib64/libstdc++.s*[0-9o] /home/lixq/toolchains/gcc/usr/lib64/libatomic.so* /home/lixq/toolchains/boost/usr/lib/libboost_regex.so*; do
     [[ -f $(basename "$p") ]] && continue
     if [[ -L $p ]]; then
         ln -sf "$(readlink "$p")" "$(basename "$p")"
