@@ -16,7 +16,7 @@ export INFOPATH=
 export PATH="$DESTDIR/usr/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
 export CPATH="/home/lixq/toolchains/boost/usr/include"
 export LIBRARY_PATH="/home/lixq/toolchains/boost/usr/lib:$DESTDIR/usr/lib64"
-export LD_RUN_PATH="$DESTDIR/usr/lib64"
+export LD_RUN_PATH="$DESTDIR/usr/lib64:/home/lixq/toolchains/boost/usr/lib"
 export LDFLAGS="-L/home/lixq/toolchains/boost/usr/lib -L$DESTDIR/usr/lib64 -Wl,-rpath-link,$LIBRARY_PATH -Wl,-rpath,$LD_RUN_PATH"
 
 mkdir -p "$DESTDIR/usr/lib64"
