@@ -17,7 +17,7 @@ if [[ -d /home/lixq/workspace-vscode/nginx/ ]]; then
     cd /home/lixq/workspace-vscode/nginx/
     git fetch upstream
     git rebase upstream/master
-    git push origin master
+    git push --force origin master
 fi
 
 chrome_appid=$(/mnt/c/Windows/System32/reg.exe query "HKLM\SOFTWARE\WOW6432Node\Google\Update\Clients" /s /f 'Google Chrome' /d | tr -d '\r' | grep -B1 'REG_SZ *Google Chrome$' | sed -n 's/.*Clients\\\({.*}\)$/\1/p')
