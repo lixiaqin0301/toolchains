@@ -36,4 +36,5 @@ make -s "-j$(nproc)" libs
 
 cd "/home/lixq/src/$name-$ver"
 make -C narrowc install.{libs,progs,data}
+rm -f "$DESTDIR/usr/lib"/libtinfo.so*
 make -C widec install.{libs,includes,man}
