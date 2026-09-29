@@ -52,7 +52,7 @@ if [[ "$rime_ver" != 0.17.4 ]]; then
 fi
 rime_frost_ver=$(git ls-remote --tags --refs https://github.com/gaboolic/rime-frost.git | awk -F '/' '{print $NF}' | sed 's/^v//' | grep -oE '^[0-9]+\.([0-9]+\.*)*' | sort -V | tail -1)
 if [[ "$rime_frost_ver" != 1.0.4 ]]; then
-    echo "Nerd Fonts 需要更新 https://github.com/gaboolic/rime-frost/releases"
+    echo "Rime Frost 需要更新 https://github.com/gaboolic/rime-frost/releases"
 fi
 
 cygwin_ver=$(curl -fsSL --max-time 20 https://cygwin.com/ | tr '\n' ' ' | grep -oiP 'most recent version of the Cygwin DLL is\s*<b>\s*(<a[^>]*>)?\K[0-9]+\.[0-9.]+')

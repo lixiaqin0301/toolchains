@@ -14,7 +14,6 @@ export CPPFLAGS="-I/home/lixq/src/$name-$ver --sysroot=$DESTDIR"
 export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/usr/lib --sysroot=$DESTDIR -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/usr/lib -Wl,--dynamic-linker=$DESTDIR/lib64/ld-linux-x86-64.so.2"
 export GCONV_PATH="$DESTDIR/usr/lib64/gconv"
 
-rm -rf /home/lixq/src/git_success
 GCC_INCLUDE_FIXED=""
 for d in /home/lixq/toolchains/gcc/usr/lib/gcc/x86_64-pc-linux-gnu/*/include-fixed/; do
     [[ -d "$d" ]] || continue
@@ -25,8 +24,6 @@ function recover() {
     [[ -d "$GCC_INCLUDE_FIXED.bak" ]] && mv "$GCC_INCLUDE_FIXED.bak" "$GCC_INCLUDE_FIXED"
     [[ -f /etc/hosts.bak ]] && mv /etc/hosts.bak /etc/hosts
     killall openresty || true
-    killall openresty || true
-    test -f /home/lixq/src/git_success
 }
 trap recover EXIT
 
@@ -56,7 +53,8 @@ EOF
 sed -i "/ ${host}\$/d" /etc/hosts
 sed -i "\$a 127.0.0.1 ${host}" /etc/hosts
 cp /etc/hosts /home/lixq/src/build-git-server/
-while killall openresty; do
+for _ in {1..10}; do
+    killall openresty || break
     sleep 1
 done
 openresty -p /home/lixq/src/build-git-server/
@@ -66,9 +64,8 @@ cd /home/lixq/src
 rm -rf "$name-$ver"
 tar -xf "$srcpath"
 cd "$name-$ver"
-mv "$GCC_INCLUDE_FIXED" "$GCC_INCLUDE_FIXED.bak"
+[[ -d "$GCC_INCLUDE_FIXED" ]] && mv "$GCC_INCLUDE_FIXED" "$GCC_INCLUDE_FIXED.bak"
 make configure
 ./configure "--prefix=$DESTDIR/usr" --with-libpcre2
 make -s "-j$(nproc)" all doc
 make -s "-j$(nproc)" install install-doc install-html
-touch /home/lixq/src/git_success

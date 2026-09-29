@@ -24,4 +24,4 @@ cd "$name-$ver"
 make -s "-j$(nproc)"
 make -s "-j$(nproc)" install
 cd "$DESTDIR/usr/bin"
-ln -s make gmake
+[[ -f gmake ]] || ln -s make gmake

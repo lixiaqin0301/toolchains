@@ -39,4 +39,4 @@ cd "/home/lixq/src/$name-$ver/build"
 make -s "-j$(nproc)"
 make -s "-j$(nproc)" install
 cd "$DESTDIR/usr/bin"
-ln -s gcc cc
+[[ -f cc ]] || ln -s gcc cc
