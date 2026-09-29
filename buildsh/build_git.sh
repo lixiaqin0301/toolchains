@@ -2,12 +2,11 @@
 set -euo pipefail
 name=$(basename "${BASH_SOURCE[0]}" .sh)
 name=${name#build_}
-ver=2.55.0
-DESTDIR=$1
-srcpath=/home/lixq/src/$name-$ver.tar.gz
+ver=$1
+DESTDIR=$2
+srcpath=/share-rd/cdn_prd_cache/lixq/src/$name-$ver.tar.gz
 [[ -n $DESTDIR ]]
 [[ -f $srcpath ]]
-[[ -f /home/lixq/src/docbook.sourceforge.net.tar.gz ]]
 
 export PATH="$DESTDIR/usr/bin:/root/.cargo/bin:/home/lixq/toolchains/gcc/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 export PKG_CONFIG_PATH="$DESTDIR/usr/lib64/pkgconfig:$DESTDIR/usr/lib/pkgconfig"
@@ -35,8 +34,6 @@ cp /etc/hosts /etc/hosts.bak
 rm -rf /home/lixq/src/build-git-server
 mkdir -p /home/lixq/src/build-git-server/conf /home/lixq/src/build-git-server/logs
 cd /home/lixq/src
-rm -rf docbook.sourceforge.net
-tar -xf docbook.sourceforge.net.tar.gz
 cd /home/lixq/src/build-git-server/conf
 host=docbook.sourceforge.net
 echo -e "CN\nFuJian\nXiaMen\nWangSu\nCache\n$host\nlixq@wangsu.com\n\n" | /usr/bin/openssl req -newkey rsa:2048 -nodes -keyout "${host}.key" -out "${host}.csr"
@@ -46,7 +43,7 @@ user root;
 events { }
 http {
     server {
-        root /home/lixq/src/docbook.sourceforge.net;
+        root /share-rd/cdn_prd_cache/lixq/src/docbook.sourceforge.net;
         server_name ${host};
         listen 80;
         listen 443 ssl;
@@ -64,7 +61,7 @@ while killall openresty; do
 done
 openresty -p /home/lixq/src/build-git-server/
 sleep 1
-wget http://docbook.sourceforge.net/release/xsl/current/html/docbook.xsl -O /tmp/docbook.xsl
+wget -nv http://docbook.sourceforge.net/release/xsl/current/html/docbook.xsl -O /tmp/docbook.xsl
 cd /home/lixq/src
 rm -rf "$name-$ver"
 tar -xf "$srcpath"
