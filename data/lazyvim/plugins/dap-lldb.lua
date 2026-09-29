@@ -105,11 +105,20 @@ return {
         command = "/home/lixq/toolchains/llvm/usr/bin/lldb-dap",
       }
 
+      -- lldb-dap does not read ~/.lldbinit, so load the nginx pretty-printers
+      -- explicitly. ngx_str_t is length-prefixed, not NUL-terminated, so without
+      -- this `r->uri` prints as "/mytest HTTP/1.1\r\nHost..." (data points into
+      -- the request-line buffer); with it, scopes/watches show "/mytest".
+      local ngx_pretty_printers = { "command script import " .. vim.fn.expand("/home/lixq/toolchains/data/ngx.py") }
+
       -- Swap the pid picker on the Attach config for c/cpp (defined by the clangd
       -- extra) so it lists every user's processes, not just root's.
       for _, lang in ipairs({ "c", "cpp" }) do
         local cfgs = dap.configurations[lang] or {}
         for _, cfg in ipairs(cfgs) do
+          -- Prepend so our import wins over anything already in initCommands.
+          cfg.initCommands = vim.list_extend(vim.deepcopy(ngx_pretty_printers), cfg.initCommands or {})
+
           if cfg.request == "attach" and cfg.pid ~= nil then
             cfg.pid = pick_process_all
           end
