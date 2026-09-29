@@ -68,7 +68,7 @@ tar -xf "$srcpath"
 cd "$name-$ver"
 mv "$GCC_INCLUDE_FIXED" "$GCC_INCLUDE_FIXED.bak"
 make configure
-./configure "--prefix=$DESTDIR/usr" --with-pcre2
+./configure "--prefix=$DESTDIR/usr" --with-libpcre2
 make -s "-j$(nproc)" all doc
 make -s "-j$(nproc)" install install-doc install-html
 touch /home/lixq/src/git_success
