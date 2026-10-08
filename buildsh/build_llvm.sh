@@ -14,8 +14,8 @@ export LD_LIBRARY_PATH=
 export PKG_CONFIG_PATH=
 export INFOPATH=
 export PATH="/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/gcc/usr/bin:$DESTDIR/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
-export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig:$DESTDIR/usr/lib64/pkgconfig:$DESTDIR/usr/share/pkgconfig"
-export LDFLAGS="-L$DESTDIR/lib64 -L$DESTDIR/usr/lib64 -L$DESTDIR/lib -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib -Wl,-rpath,$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr/lib"
+export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig:$DESTDIR/usr/lib64/pkgconfig"
+export LDFLAGS="-L$DESTDIR/usr/lib64 -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/usr/lib64:$DESTDIR/usr/lib -Wl,-rpath,$DESTDIR/usr/lib64:$DESTDIR/usr/lib"
 
 [[ -d $DESTDIR/usr/lib64 ]] || mkdir -p "$DESTDIR/usr/lib64"
 cd "$DESTDIR/usr/lib64" || exit 1
@@ -28,6 +28,7 @@ for p in /home/lixq/toolchains/gcc/usr/lib64/libgcc* /home/lixq/toolchains/gcc/u
     fi
 done
 
+[[ -d /home/lixq/src ]] || mkdir -p /home/lixq/src
 cd /home/lixq/src
 rm -rf "$name-project-$ver.src"
 tar -xf "$srcpath"
@@ -35,10 +36,12 @@ mkdir "$name-project-$ver.src/build"
 cd "/home/lixq/src/$name-project-$ver.src/build"
 cmake -G "Unix Makefiles" \
     -DCMAKE_INCLUDE_PATH="$DESTDIR/usr/include" \
-    -DCMAKE_LIBRARY_PATH="$DESTDIR/lib64;$DESTDIR/usr/lib64;$DESTDIR/lib;$DESTDIR/usr/lib" \
+    -DCMAKE_LIBRARY_PATH="$DESTDIR/usr/lib64;$DESTDIR/usr/lib" \
     -DCMAKE_BUILD_TYPE=Release \
     -DLLVM_TARGETS_TO_BUILD="BPF;X86" \
-    -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lld;lldb" \
+    -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra;lld;lldb;bolt" \
+    -DLLVM_BUILD_LLVM_DYLIB=ON \
+    -DLLVM_LINK_LLVM_DYLIB=ON \
     -DCMAKE_C_FLAGS="-isystem $DESTDIR/usr/include" \
     -DCMAKE_CXX_FLAGS="-isystem $DESTDIR/usr/include" \
     -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS" \
@@ -65,7 +68,7 @@ cmake -G "Unix Makefiles" \
     -DLLDB_ENABLE_LUA=1 \
     -DLUA_INCLUDE_DIR="$DESTDIR/usr/include" \
     -DLUA_LIBRARIES="$DESTDIR/usr/lib/liblua.a" \
-    -DLLVM_ENABLE_RUNTIMES="compiler-rt;libcxx;libcxxabi;libunwind" \
+    -DLLVM_ENABLE_RUNTIMES="compiler-rt;libcxx;libcxxabi;libunwind;openmp" \
     -DCMAKE_INSTALL_PREFIX="$DESTDIR/usr" \
     ../llvm
 make -s "-j$(nproc)"
