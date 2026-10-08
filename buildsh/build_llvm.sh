@@ -20,6 +20,7 @@ export LDFLAGS="-L$DESTDIR/usr/lib64 -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR
 [[ -d $DESTDIR/usr/lib64 ]] || mkdir -p "$DESTDIR/usr/lib64"
 cd "$DESTDIR/usr/lib64" || exit 1
 for p in /home/lixq/toolchains/gcc/usr/lib64/libgcc* /home/lixq/toolchains/gcc/usr/lib64/libstdc++.s*[0-9o]; do
+    [[ -e $p ]] || continue
     [[ -f $(basename "$p") ]] && continue
     if [[ -L $p ]]; then
         ln -sf "$(readlink "$p")" "$(basename "$p")"
