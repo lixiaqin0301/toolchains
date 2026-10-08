@@ -14,7 +14,7 @@ export LD_LIBRARY_PATH=
 export PKG_CONFIG_PATH=
 export INFOPATH=
 export PATH="/home/lixq/toolchains/cmake/bin:/home/lixq/toolchains/gcc/usr/bin:$DESTDIR/usr/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
-export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig:$DESTDIR/usr/lib64/pkgconfig"
+export PKG_CONFIG_PATH="$DESTDIR/usr/lib64/pkgconfig:$DESTDIR/usr/lib/pkgconfig"
 export LDFLAGS="-L$DESTDIR/usr/lib64 -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/usr/lib64:$DESTDIR/usr/lib -Wl,-rpath,$DESTDIR/usr/lib64:$DESTDIR/usr/lib"
 
 [[ -d $DESTDIR/usr/lib64 ]] || mkdir -p "$DESTDIR/usr/lib64"

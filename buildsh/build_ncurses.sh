@@ -14,6 +14,9 @@ export LD_LIBRARY_PATH=
 export PKG_CONFIG_PATH=
 export INFOPATH=
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
+export PKG_CONFIG_PATH="$DESTDIR/usr/lib64/pkgconfig:$DESTDIR/usr/lib/pkgconfig"
+export CPPFLAGS="-I$DESTDIR/usr/include"
+export LDFLAGS="-L$DESTDIR/usr/lib64 -L$DESTDIR/usr/lib -Wl,-rpath-link,$DESTDIR/usr/lib64:$DESTDIR/usr/lib -Wl,-rpath,$DESTDIR/usr/lib64:$DESTDIR/usr/lib"
 
 ncurses_options=(--with-shared --without-ada --with-ospeed=unsigned --enable-hard-tabs --enable-xmc-glitch --enable-colorfgbg --enable-overwrite --enable-pc-files --with-termlib=tinfo --with-chtype=long --with-cxx-shared --with-xterm-kbs=DEL "--prefix=$DESTDIR/usr")
 
