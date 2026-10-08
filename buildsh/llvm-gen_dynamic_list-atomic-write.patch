@@ -1,0 +1,52 @@
+--- a/compiler-rt/lib/sanitizer_common/scripts/gen_dynamic_list.py
++++ b/compiler-rt/lib/sanitizer_common/scripts/gen_dynamic_list.py
+@@ -20,6 +20,7 @@
+ import subprocess
+ import sys
+ import platform
++import tempfile
+
+ new_delete = set(
+     [
+@@ -146,16 +147,31 @@
+         for line in f:
+             result.add(line.rstrip())
+     # Print the resulting list in the format recognized by ld.
+-    with open(args.output, "w") as f:
+-        print("{", file=f)
+-        if args.version_list:
+-            print("global:", file=f)
+-        for sym in sorted(result):
+-            print("  %s;" % sym, file=f)
+-        if args.version_list:
+-            print("local:", file=f)
+-            print("  *;", file=f)
+-        print("};", file=f)
++    #
++    # This file is read by the linker,
++    # and CMake emits the rule that runs this script once per target that depends on the output,
++    # so a parallel build can run several instances at the same time.
++    # Write to a temporary file in the same directory and rename it into place,
++    # so that a concurrent linker never observes a truncated version script.
++    fd, tmp_path = tempfile.mkstemp(
++        dir=os.path.dirname(os.path.abspath(args.output)),
++        prefix=os.path.basename(args.output) + ".",
++    )
++    try:
++        with os.fdopen(fd, "w") as f:
++            print("{", file=f)
++            if args.version_list:
++                print("global:", file=f)
++            for sym in sorted(result):
++                print("  %s;" % sym, file=f)
++            if args.version_list:
++                print("local:", file=f)
++                print("  *;", file=f)
++            print("};", file=f)
++        os.replace(tmp_path, args.output)
++    except BaseException:
++        os.unlink(tmp_path)
++        raise
+
+
+ if __name__ == "__main__":

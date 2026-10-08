@@ -32,6 +32,11 @@ done
 cd /home/lixq/src
 rm -rf "$name-project-$ver.src"
 tar -xf "$srcpath"
+# compiler-rt 的 gen_dynamic_list.py 会原地截断输出文件，
+# 而 CMake 会为多个目标各生成一份调用，
+# 并行构建时链接器可能读到写了一半的 version script（syntax error in VERSION script）。
+# 补丁改为写临时文件后原子替换。若此补丁打不上，说明上游已改，需检查后移除。
+patch -p1 -d "$name-project-$ver.src" < /home/lixq/toolchains/buildsh/llvm-gen_dynamic_list-atomic-write.patch
 mkdir "$name-project-$ver.src/build"
 cd "/home/lixq/src/$name-project-$ver.src/build"
 cmake -G "Unix Makefiles" \
