@@ -77,12 +77,11 @@ cmake -G "Unix Makefiles" \
     -DLLVM_ENABLE_RUNTIMES="compiler-rt;libcxx;libcxxabi;libunwind;openmp" \
     -DCMAKE_INSTALL_PREFIX="$DESTDIR/usr" \
     ../llvm
-# clang 查找 GCC 的前缀是硬编码，用 cfg 让它改用 toolchains/gcc
 mkdir -p bin
 printf -- '--gcc-toolchain=/home/lixq/toolchains/gcc/usr\n' > bin/x86_64-unknown-linux-gnu.cfg
 make -s "-j$(nproc)"
 make -s "-j$(nproc)" install
 for f in bin/*; do
+    [[ "$f" == bin/x86_64-unknown-linux-gnu.cfg ]] && continue
     cp -an "$f" "$DESTDIR/usr/bin/"
 done
-printf -- '--gcc-toolchain=/home/lixq/toolchains/gcc/usr\n' > "$DESTDIR/usr/bin/x86_64-unknown-linux-gnu.cfg"
