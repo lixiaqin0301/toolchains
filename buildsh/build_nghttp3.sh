@@ -21,7 +21,6 @@ export LIBRARY_PATH="$DESTDIR/lib64:$DESTDIR/usr/lib64:$DESTDIR/lib:$DESTDIR/usr
 cd /home/lixq/src
 rm -rf "$name-$ver"
 tar -xf "$srcpath"
-cd "/home/lixq/src/$name-$ver/lib"
 cd "/home/lixq/src/$name-$ver"
 autoreconf -fi
 ./configure --prefix="$DESTDIR"/usr

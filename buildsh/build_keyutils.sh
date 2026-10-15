@@ -24,7 +24,7 @@ make -s "-j$(nproc)"
 make -s "-j$(nproc)" install DESTDIR="$DESTDIR" PREFIX=/usr
 
 cd "$DESTDIR"/lib64
-rm libkeyutils.so
+rm -f libkeyutils.so
 ln -s libkeyutils.so.1 libkeyutils.so
 
 for d in lib lib64; do
