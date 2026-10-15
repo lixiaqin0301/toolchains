@@ -74,3 +74,5 @@ firefox_cver=$(sed -n 's/^Version=//p' "/mnt/d/Programs/Mozilla Firefox/applicat
 if [[ "$firefox_ver" != "$firefox_cver" ]]; then
     echo "FireFox 需要更新 https://www.firefox.com/en-US/download/all/desktop-release/win64/zh-CN/"
 fi
+
+echo "FINISHED"
