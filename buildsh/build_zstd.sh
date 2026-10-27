@@ -22,5 +22,12 @@ cd /home/lixq/src
 rm -rf "$name-$ver"
 tar -xf "$srcpath"
 cd "/home/lixq/src/$name-$ver"
-make -s "-j$(nproc)"
-make -s "-j$(nproc)" install PREFIX="$DESTDIR"/usr
+if [[ $DESTDIR == */$name ]]; then
+    ZLIBLD='-Wl,-Bstatic -lz -Wl,-Bdynamic'
+    LZMALD='-Wl,-Bstatic -llzma -Wl,-Bdynamic'
+    make -s "-j$(nproc)" ZLIBLD="$ZLIBLD" LZMALD="$LZMALD"
+    make -s "-j$(nproc)" install PREFIX="$DESTDIR"/usr ZLIBLD="$ZLIBLD" LZMALD="$LZMALD"
+else
+    make -s "-j$(nproc)"
+    make -s "-j$(nproc)" install PREFIX="$DESTDIR"/usr
+fi
