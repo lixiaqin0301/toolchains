@@ -5,8 +5,8 @@ apt update -y
 apt upgrade -y
 apt dist-upgrade -y
 apt autoremove -y
-npm update -g
-npm update -g --prefix=/usr/local
+npm update -g || true
+npm update -g --prefix=/usr/local || true
 /home/lixq/toolchains/data/update-claude.sh
 rm -rf /usr/local/bin/claude
 ln -s /root/.local/share/claude/versions/* /usr/local/bin/claude
@@ -56,7 +56,7 @@ if [[ "$rime_frost_ver" != 1.0.4 ]]; then
 fi
 
 cygwin_ver=$(curl -fsSL --max-time 20 https://cygwin.com/ | tr '\n' ' ' | grep -oiP 'most recent version of the Cygwin DLL is\s*<b>\s*(<a[^>]*>)?\K[0-9]+\.[0-9.]+')
-if [[ "$cygwin_ver" != 3.6.11 ]]; then
+if [[ "$cygwin_ver" != 3.6.12 ]]; then
     echo "cygwin 需要更新 https://cygwin.com/ curl wget nginx ngx-mod_stream vim rsync python inetutils"
 fi
 
