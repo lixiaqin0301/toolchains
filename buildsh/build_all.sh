@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
+bash /home/lixq/toolchains/data/sync-all-edge-func.sh
+
 apt update -y
 apt upgrade -y
 apt dist-upgrade -y
