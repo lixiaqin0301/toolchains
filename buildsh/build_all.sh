@@ -15,13 +15,6 @@ ln -s /root/.local/share/claude/versions/* /usr/local/bin/claude
 /home/lixq/toolchains/data/reset-claude.sh
 /home/lixq/toolchains/data/lazyvim/update-lazyvim.sh
 
-if [[ -d /home/lixq/workspace-vscode/nginx/ ]]; then
-    cd /home/lixq/workspace-vscode/nginx/
-    git fetch upstream
-    git rebase upstream/master
-    git push --force origin master
-fi
-
 chrome_appid=$(/mnt/c/Windows/System32/reg.exe query "HKLM\SOFTWARE\WOW6432Node\Google\Update\Clients" /s /f 'Google Chrome' /d | tr -d '\r' | grep -B1 'REG_SZ *Google Chrome$' | sed -n 's/.*Clients\\\({.*}\)$/\1/p')
 chrome_cur=$(/mnt/c/Windows/System32/reg.exe query "HKLM\SOFTWARE\WOW6432Node\Google\Update\Clients\\$chrome_appid" /v pv | tr -d '\r' | awk '/REG_SZ/{print $NF; exit}')
 rm -rf /tmp/chrome
@@ -66,15 +59,30 @@ if [[ $(curl -so/dev/null -w '%{http_code}\n' "https://update.code.visualstudio.
     echo "VSCode 需要更新"
 fi
 
+firefox_ver=$(curl -fsSL --max-time 15 https://product-details.mozilla.org/1.0/firefox_versions.json | jq -r .LATEST_FIREFOX_VERSION)
+firefox_cver=$(sed -n 's/^Version=//p' "/mnt/d/Programs/Mozilla Firefox/application.ini")
+if [[ "$firefox_ver" != "$firefox_cver" ]]; then
+    echo "FireFox 需要更新 https://www.firefox.com/en-US/download/all/desktop-release/win64/zh-CN/"
+fi
+
 windterm_ver=$(git ls-remote --tags --refs https://github.com/kingToolbox/WindTerm.git | awk -F '/' '{print $NF}' | grep -oE '^[0-9]+\.([0-9]+\.*)*' | sort -V | tail -1)
 if [[ ! -d "/mnt/d/Programs/WindTerm_$windterm_ver" ]]; then
     echo "WindTerm 需要更新 https://github.com/kingToolbox/WindTerm/releases"
 fi
 
-firefox_ver=$(curl -fsSL --max-time 15 https://product-details.mozilla.org/1.0/firefox_versions.json | jq -r .LATEST_FIREFOX_VERSION)
-firefox_cver=$(sed -n 's/^Version=//p' "/mnt/d/Programs/Mozilla Firefox/application.ini")
-if [[ "$firefox_ver" != "$firefox_cver" ]]; then
-    echo "FireFox 需要更新 https://www.firefox.com/en-US/download/all/desktop-release/win64/zh-CN/"
+if [[ -d /home/lixq/workspace-vscode/nginx/ ]]; then
+    cd /home/lixq/workspace-vscode/nginx/
+    git fetch upstream
+    git rebase upstream/master
+    git push --force origin master
+    if [[ ! -d /home/lixq/workspace-vscode/nginx/src/njs ]]; then
+        mkdir -p /home/lixq/workspace-vscode/nginx/src
+        cd /home/lixq/workspace-vscode/nginx/src
+        git clone https://github.com/nginx/njs.git
+    else
+        cd /home/lixq/workspace-vscode/nginx/src/njs
+        git pull --no-rebase
+    fi
 fi
 
 echo "FINISHED"
