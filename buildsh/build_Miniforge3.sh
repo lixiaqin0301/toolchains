@@ -48,7 +48,8 @@ ln -s "Miniforge3-$ver" Miniforge3
 /home/lixq/toolchains/Miniforge3/bin/pip3 install robotcode 'robotcode[languageserver]' robotframework-tidy robotframework-robocop
 /home/lixq/toolchains/Miniforge3/bin/pip3 --trusted-host repo.haplat.net install cython
 /home/lixq/toolchains/Miniforge3/bin/pip3 --trusted-host repo.haplat.net install pandas
-
+rm -rf /home/lixq/toolchains/xorg-macros
+/home/lixq/toolchains/Miniforge3/bin/conda create -y -p /home/lixq/toolchains/xorg-macros -c conda-forge --no-deps xorg-util-macros
 for d in /home/lixq/toolchains/Miniforge3/lib/python*/; do
     echo /home/lixq/shark-test/lib > "$d/site-packages/shark-test.pth"
     echo /home/lixq/shark-test/lib/archive >> "$d/site-packages/shark-test.pth"

@@ -14,12 +14,13 @@ export LD_LIBRARY_PATH=
 export PKG_CONFIG_PATH=
 export INFOPATH=
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
-export PKG_CONFIG_PATH="$DESTDIR/usr/lib/pkgconfig:$DESTDIR/usr/lib64/pkgconfig:$DESTDIR/usr/share/pkgconfig"
+export ACLOCAL_PATH="/home/lixq/toolchains/xorg-macros/share/aclocal"
+export PKG_CONFIG_PATH="/home/lixq/toolchains/xorg-macros/share/pkgconfig:$DESTDIR/usr/lib/pkgconfig:$DESTDIR/usr/lib64/pkgconfig:$DESTDIR/usr/share/pkgconfig"
 
 cd /home/lixq/src
 rm -rf "$name-$ver"
 tar -xf "$srcpath"
 cd "/home/lixq/src/$name-$ver"
-./configure "--prefix=$DESTDIR/usr"
+./autogen.sh "--prefix=$DESTDIR/usr"
 make -s "-j$(nproc)"
 make -s "-j$(nproc)" install
