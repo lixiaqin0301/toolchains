@@ -75,14 +75,14 @@ if [[ -d /home/lixq/workspace-vscode/nginx/ ]]; then
     git fetch upstream
     git rebase upstream/master
     git push --force origin master
-    if [[ ! -d /home/lixq/workspace-vscode/nginx/src/njs ]]; then
-        mkdir -p /home/lixq/workspace-vscode/nginx/src
-        cd /home/lixq/workspace-vscode/nginx/src
-        git clone https://github.com/nginx/njs.git
-    else
-        cd /home/lixq/workspace-vscode/nginx/src/njs
+    [[ -d /home/lixq/workspace-vscode/nginx/src ]] || mkdir -p /home/lixq/workspace-vscode/nginx/src
+    cd /home/lixq/workspace-vscode/nginx/src
+    [[ -d njs ]] || git clone https://github.com/nginx/njs.git
+    [[ -d openssl ]] || git clone https://github.com/openssl/openssl.git
+    for d in njs openssl; do
+        cd "/home/lixq/workspace-vscode/nginx/src/$d"
         git pull --no-rebase
-    fi
+    done
 fi
 
 echo "FINISHED"
