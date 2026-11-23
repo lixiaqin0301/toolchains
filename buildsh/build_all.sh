@@ -70,19 +70,4 @@ if [[ ! -d "/mnt/d/Programs/WindTerm_$windterm_ver" ]]; then
     echo "WindTerm 需要更新 https://github.com/kingToolbox/WindTerm/releases"
 fi
 
-if [[ -d /home/lixq/workspace-vscode/nginx/ ]]; then
-    cd /home/lixq/workspace-vscode/nginx/
-    git fetch upstream
-    git rebase upstream/master
-    git push --force origin master
-    [[ -d /home/lixq/workspace-vscode/nginx/src ]] || mkdir -p /home/lixq/workspace-vscode/nginx/src
-    cd /home/lixq/workspace-vscode/nginx/src
-    [[ -d njs ]] || git clone https://github.com/nginx/njs.git
-    [[ -d openssl ]] || git clone https://github.com/openssl/openssl.git
-    for d in njs openssl; do
-        cd "/home/lixq/workspace-vscode/nginx/src/$d"
-        git pull --no-rebase
-    done
-fi
-
 echo "FINISHED"
