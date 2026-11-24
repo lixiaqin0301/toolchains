@@ -39,6 +39,7 @@ export PATH="/home/lixq/toolchains/bin:\
 /home/lixq/toolchains/zsh/usr/bin:\
 /snap/bin:\
 $HOME/.cargo/bin:\
+$HOME/.local/bin:\
 $HOME/go/bin"
 export MANPATH="/opt/node/usr/share/man:\
 /opt/node/usr/lib/node_modules/npm/man:\
