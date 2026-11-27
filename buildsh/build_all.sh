@@ -46,7 +46,7 @@ if [[ "$rime_ver" != 0.17.4 ]]; then
     echo "rime 需要更新 https://rime.im/"
 fi
 rime_frost_ver=$(git ls-remote --tags --refs https://github.com/gaboolic/rime-frost.git | awk -F '/' '{print $NF}' | sed 's/^v//' | grep -oE '^[0-9]+\.([0-9]+\.*)*' | sort -V | tail -1)
-if [[ "$rime_frost_ver" != 1.0.5 ]]; then
+if [[ "$rime_frost_ver" != 1.0.6 ]]; then
     echo "Rime Frost 需要更新 https://github.com/gaboolic/rime-frost/releases"
 fi
 
